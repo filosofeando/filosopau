@@ -1,1 +1,1795 @@
-# filosopau
+[index.html](https://github.com/user-attachments/files/28577068/index.html)
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FilosoFEANDO — PAU Filosofía Andalucía</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg: #0d0f14;
+  --bg2: #13161e;
+  --bg3: #1a1e28;
+  --card: #1e2233;
+  --card2: #252a3a;
+  --border: rgba(255,255,255,0.08);
+  --gold: #c9a84c;
+  --gold2: #e8c96a;
+  --gold-dim: rgba(201,168,76,0.15);
+  --teal: #3ecfb2;
+  --teal-dim: rgba(62,207,178,0.12);
+  --red: #e05c5c;
+  --red-dim: rgba(224,92,92,0.12);
+  --blue: #5b8dee;
+  --blue-dim: rgba(91,141,238,0.12);
+  --text: #e8eaf0;
+  --text2: #9aa0b8;
+  --text3: #636880;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+[data-theme="light"] {
+  --bg: #f5f3ee;
+  --bg2: #ede9e0;
+  --bg3: #e3ddd2;
+  --card: #fff;
+  --card2: #f9f7f3;
+  --border: rgba(0,0,0,0.08);
+  --text: #1a1c24;
+  --text2: #4a4e60;
+  --text3: #8a8ea8;
+  --shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+  transition:background var(--transition),color var(--transition);
+}
+a{color:var(--gold);text-decoration:none;transition:color var(--transition)}
+a:hover{color:var(--gold2)}
+img{max-width:100%}
+button{cursor:pointer;font-family:var(--font-body);border:none;outline:none}
+h1,h2,h3,h4,h5{font-family:var(--font-display);line-height:1.2}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* ===== NOISE OVERLAY ===== */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1000;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:0.4;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(13,15,20,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background var(--transition);
+}
+[data-theme="light"] nav{background:rgba(245,243,238,0.9)}
+.nav-brand{
+  font-family:var(--font-display);font-size:1.35rem;font-weight:700;
+  color:var(--gold);letter-spacing:-0.02em;display:flex;align-items:center;gap:0.5rem;
+}
+.nav-brand span{color:var(--text);font-weight:400}
+.nav-links{display:flex;align-items:center;gap:0.25rem}
+.nav-links a,.nav-btn{
+  padding:0.4rem 0.85rem;border-radius:var(--radius-sm);
+  font-size:0.875rem;font-weight:500;color:var(--text2);
+  transition:all var(--transition);white-space:nowrap;
+}
+.nav-links a:hover{color:var(--text);background:var(--card)}
+.nav-premium{
+  background:linear-gradient(135deg,var(--gold),#a8732e);
+  color:#0d0f14 !important;padding:0.4rem 1rem;border-radius:var(--radius-sm);font-weight:600;
+}
+.nav-premium:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,0.4)}
+.theme-toggle{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;transition:all var(--transition);color:var(--text2);
+  flex-shrink:0;
+}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;background:none;cursor:pointer}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px;transition:all var(--transition)}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:7rem 2rem 5rem;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(201,168,76,0.12) 0%,transparent 70%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 20%,transparent 80%);
+}
+.hero-content{max-width:820px;text-align:center;position:relative;z-index:2}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);
+  color:var(--gold);padding:0.35rem 1rem;border-radius:50px;
+  font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+  margin-bottom:2rem;animation:fadeUp 0.8s ease both;
+}
+.hero h1{
+  font-size:clamp(2.8rem,7vw,5rem);font-weight:900;
+  color:var(--text);margin-bottom:1.25rem;
+  animation:fadeUp 0.8s 0.15s ease both;
+  line-height:1.05;
+}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero-sub{
+  font-size:1.15rem;color:var(--text2);max-width:580px;margin:0 auto 2.5rem;
+  animation:fadeUp 0.8s 0.3s ease both;
+}
+.hero-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s 0.45s ease both}
+.btn-primary{
+  padding:0.85rem 2rem;border-radius:var(--radius);
+  background:linear-gradient(135deg,var(--gold),#a8732e);
+  color:#0d0f14;font-weight:700;font-size:1rem;
+  transition:all var(--transition);box-shadow:0 4px 20px rgba(201,168,76,0.3);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.45);color:#0d0f14}
+.btn-secondary{
+  padding:0.85rem 2rem;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--border);
+  color:var(--text);font-weight:600;font-size:1rem;
+  transition:all var(--transition);
+}
+.btn-secondary:hover{border-color:var(--gold);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:2.5rem;justify-content:center;margin-top:3.5rem;
+  animation:fadeUp 0.8s 0.6s ease both;
+}
+.stat{text-align:center}
+.stat-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--gold)}
+.stat-label{font-size:0.8rem;color:var(--text3);letter-spacing:0.05em;text-transform:uppercase}
+
+/* ===== SECTION BASE ===== */
+section{padding:5rem 2rem}
+.container{max-width:1200px;margin:0 auto}
+.section-label{
+  font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.75rem;
+}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--text);margin-bottom:1rem}
+.section-sub{font-size:1rem;color:var(--text2);max-width:560px}
+
+/* ===== PAU INFO ===== */
+#pau-info{background:var(--bg2)}
+.pau-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.pau-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.75rem;transition:all var(--transition);
+}
+.pau-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-3px);box-shadow:var(--shadow)}
+.pau-card-icon{font-size:2rem;margin-bottom:1rem}
+.pau-card h3{font-size:1.15rem;font-weight:700;margin-bottom:0.75rem;color:var(--text)}
+.pau-card p,.pau-card ul{font-size:0.9rem;color:var(--text2)}
+.pau-card ul{padding-left:1.2rem}
+.pau-card ul li{margin-bottom:0.4rem}
+.structure-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.875rem}
+.structure-table th{
+  background:var(--gold-dim);color:var(--gold);
+  padding:0.6rem 1rem;text-align:left;font-weight:600;
+}
+.structure-table td{
+  padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text2);
+}
+.structure-table tr:hover td{background:var(--card2)}
+.tag{
+  display:inline-block;padding:0.2rem 0.65rem;border-radius:50px;
+  font-size:0.75rem;font-weight:600;
+}
+.tag-gold{background:var(--gold-dim);color:var(--gold)}
+.tag-teal{background:var(--teal-dim);color:var(--teal)}
+.tag-red{background:var(--red-dim);color:var(--red)}
+.tag-blue{background:var(--blue-dim);color:var(--blue)}
+
+/* ===== AUTORES GRID ===== */
+#autores{background:var(--bg)}
+.autores-tabs{
+  display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:2.5rem;margin-bottom:2rem;
+}
+.tab-btn{
+  padding:0.5rem 1.1rem;border-radius:50px;font-size:0.85rem;font-weight:600;
+  background:var(--card);border:1px solid var(--border);color:var(--text2);
+  transition:all var(--transition);
+}
+.tab-btn:hover,.tab-btn.active{
+  background:var(--gold);color:#0d0f14;border-color:var(--gold);
+}
+.autores-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.autor-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.75rem;cursor:pointer;transition:all var(--transition);position:relative;overflow:hidden;
+}
+.autor-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--gold-dim),transparent);
+  opacity:0;transition:opacity var(--transition);
+}
+.autor-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.3)}
+.autor-card:hover::before{opacity:1}
+.autor-era{
+  font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.5rem;
+}
+.autor-name{font-size:1.3rem;font-weight:800;margin-bottom:0.3rem;position:relative}
+.autor-dates{font-size:0.8rem;color:var(--text3);margin-bottom:1rem;font-family:var(--font-mono)}
+.autor-desc{font-size:0.875rem;color:var(--text2);margin-bottom:1.25rem;line-height:1.55}
+.autor-tags{display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.autor-progress{
+  display:flex;align-items:center;gap:0.75rem;
+}
+.progress-bar{flex:1;height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px;transition:width 1s ease}
+.progress-label{font-size:0.75rem;color:var(--text3);min-width:30px;text-align:right;font-family:var(--font-mono)}
+
+/* ===== AUTOR MODAL ===== */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);
+  z-index:2000;display:flex;align-items:flex-start;justify-content:center;
+  padding:2rem;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity var(--transition);
+}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  width:100%;max-width:860px;margin:auto;
+  transform:translateY(30px);transition:transform var(--transition);
+}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-header{
+  padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-start;
+  background:linear-gradient(135deg,var(--gold-dim),transparent);
+  border-radius:20px 20px 0 0;
+}
+.modal-close{
+  width:36px;height:36px;border-radius:50%;background:var(--card);
+  border:1px solid var(--border);color:var(--text2);font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:all var(--transition);
+}
+.modal-close:hover{border-color:var(--red);color:var(--red)}
+.modal-nav{
+  display:flex;gap:0.25rem;padding:1rem 2rem;border-bottom:1px solid var(--border);
+  overflow-x:auto;
+}
+.modal-nav-btn{
+  padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:600;
+  background:none;border:1px solid transparent;color:var(--text3);
+  transition:all var(--transition);white-space:nowrap;
+}
+.modal-nav-btn:hover{color:var(--text);background:var(--card)}
+.modal-nav-btn.active{background:var(--gold-dim);border-color:rgba(201,168,76,0.3);color:var(--gold)}
+.modal-body{padding:2rem}
+.modal-section{display:none}
+.modal-section.active{display:block;animation:fadeIn 0.3s ease}
+.content-block{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.5rem;margin-bottom:1.25rem;
+}
+.content-block h4{font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:0.75rem}
+.content-block p,.content-block ul{font-size:0.9rem;color:var(--text2);line-height:1.7}
+.content-block ul{padding-left:1.25rem}
+.content-block ul li{margin-bottom:0.5rem}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.concept-item{
+  background:var(--card2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:1rem;
+}
+.concept-term{font-weight:700;font-size:0.9rem;color:var(--teal);margin-bottom:0.4rem;font-family:var(--font-mono)}
+.concept-def{font-size:0.82rem;color:var(--text2);line-height:1.55}
+
+/* ===== FLASHCARDS ===== */
+#flashcards{background:var(--bg2)}
+.flashcard-container{max-width:560px;margin:3rem auto 0;perspective:1000px}
+.flashcard{
+  width:100%;height:280px;position:relative;cursor:pointer;
+  transform-style:preserve-3d;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flashcard-face{
+  position:absolute;inset:0;
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  padding:2.5rem;backface-visibility:hidden;text-align:center;
+}
+.flashcard-back{transform:rotateY(180deg)}
+.flashcard-face.flashcard-front{border-color:rgba(201,168,76,0.3)}
+.flashcard-face.flashcard-back{background:linear-gradient(135deg,var(--card),var(--card2));border-color:rgba(62,207,178,0.3)}
+.flashcard-label{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.flashcard-front .flashcard-label{color:var(--gold)}
+.flashcard-back .flashcard-label{color:var(--teal)}
+.flashcard-q{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--text);line-height:1.4}
+.flashcard-a{font-size:0.9rem;color:var(--text2);line-height:1.65}
+.flashcard-controls{display:flex;gap:1rem;justify-content:center;margin-top:1.75rem;align-items:center}
+.fc-btn{
+  width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--border);
+  font-size:1.1rem;color:var(--text2);display:flex;align-items:center;justify-content:center;
+  transition:all var(--transition);
+}
+.fc-btn:hover{border-color:var(--gold);color:var(--gold)}
+.fc-count{font-size:0.85rem;color:var(--text3);font-family:var(--font-mono)}
+
+/* ===== TESTS ===== */
+#tests{background:var(--bg)}
+.quiz-container{max-width:700px;margin:3rem auto 0}
+.quiz-question{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.75rem;margin-bottom:1.5rem;
+}
+.quiz-q-num{font-size:0.75rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem}
+.quiz-q-text{font-size:1rem;font-weight:600;margin-bottom:1.25rem;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:0.6rem}
+.quiz-option{
+  padding:0.75rem 1rem;border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:var(--bg3);color:var(--text2);text-align:left;font-size:0.9rem;
+  transition:all var(--transition);position:relative;
+}
+.quiz-option:hover{border-color:var(--gold);color:var(--text);background:var(--gold-dim)}
+.quiz-option.correct{border-color:var(--teal);background:var(--teal-dim);color:var(--teal)}
+.quiz-option.wrong{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+.quiz-option.selected{border-color:var(--gold);background:var(--gold-dim)}
+.quiz-explanation{
+  margin-top:1rem;padding:0.85rem 1rem;border-radius:var(--radius-sm);
+  background:var(--card2);border-left:3px solid var(--teal);
+  font-size:0.85rem;color:var(--text2);display:none;
+}
+.quiz-explanation.show{display:block;animation:fadeIn 0.3s ease}
+.quiz-footer{display:flex;justify-content:space-between;align-items:center;margin-top:2rem}
+.quiz-score{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.5rem;text-align:center;display:none;
+}
+.quiz-score.show{display:block;animation:fadeUp 0.5s ease}
+.score-num{font-family:var(--font-display);font-size:3.5rem;font-weight:900;color:var(--gold)}
+
+/* ===== CRONOLOGIA ===== */
+#cronologia{background:var(--bg2)}
+.timeline{position:relative;max-width:800px;margin:3rem auto 0;padding:1rem 0}
+.timeline::before{
+  content:'';position:absolute;left:50%;transform:translateX(-50%);
+  top:0;bottom:0;width:2px;background:linear-gradient(var(--gold),var(--teal));
+}
+.timeline-item{
+  display:flex;gap:2rem;margin-bottom:2rem;position:relative;
+}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+.timeline-dot{
+  position:absolute;left:50%;transform:translate(-50%,-50%);top:50%;
+  width:16px;height:16px;border-radius:50%;background:var(--gold);
+  border:3px solid var(--bg2);box-shadow:0 0 0 4px var(--gold-dim);
+  z-index:1;flex-shrink:0;
+}
+.timeline-content{
+  flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.25rem;transition:all var(--transition);
+}
+.timeline-content:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px)}
+.timeline-date{font-family:var(--font-mono);font-size:0.8rem;color:var(--gold);margin-bottom:0.4rem}
+.timeline-title{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem}
+.timeline-desc{font-size:0.82rem;color:var(--text2);line-height:1.55}
+.timeline-spacer{flex:1}
+
+/* ===== COMPARATIVA ===== */
+#comparativa{background:var(--bg)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.compare-col{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.compare-header{
+  padding:1.25rem;background:var(--gold-dim);border-bottom:1px solid rgba(201,168,76,0.2);
+  text-align:center;
+}
+.compare-author{font-size:1rem;font-weight:800;color:var(--gold);font-family:var(--font-display)}
+.compare-dates{font-size:0.75rem;color:var(--text3);font-family:var(--font-mono)}
+.compare-body{padding:0}
+.compare-row{
+  padding:0.85rem 1.1rem;border-bottom:1px solid var(--border);font-size:0.82rem;color:var(--text2);
+  transition:background var(--transition);
+}
+.compare-row:hover{background:var(--card2)}
+.compare-row:last-child{border-bottom:none}
+.compare-row strong{display:block;font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.25rem}
+
+/* ===== SIMULACRO ===== */
+#simulacro{background:var(--bg2)}
+.exam-container{max-width:760px;margin:2.5rem auto 0}
+.exam-header-box{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.5rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;
+}
+.exam-timer{font-family:var(--font-mono);font-size:2rem;font-weight:700;color:var(--gold)}
+.exam-timer.warning{color:var(--red);animation:pulse 1s ease infinite}
+.exam-section-title{font-size:1rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin:2rem 0 1rem}
+.exam-textarea{
+  width:100%;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.25rem;color:var(--text);font-family:var(--font-body);font-size:0.9rem;
+  resize:vertical;min-height:140px;transition:border-color var(--transition);outline:none;
+}
+.exam-textarea:focus{border-color:var(--gold)}
+.word-count{font-size:0.75rem;color:var(--text3);text-align:right;margin-top:0.35rem;font-family:var(--font-mono)}
+
+/* ===== BANCO PREGUNTAS ===== */
+#banco{background:var(--bg)}
+.banco-search{
+  display:flex;gap:1rem;margin-top:2.5rem;margin-bottom:2rem;flex-wrap:wrap;
+}
+.search-input{
+  flex:1;min-width:200px;
+  padding:0.75rem 1rem;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;
+  outline:none;transition:border-color var(--transition);
+}
+.search-input:focus{border-color:var(--gold)}
+.filter-select{
+  padding:0.75rem 1rem;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.875rem;
+  outline:none;cursor:pointer;
+}
+.banco-list{display:flex;flex-direction:column;gap:0.75rem}
+.banco-item{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.25rem;cursor:pointer;transition:all var(--transition);
+}
+.banco-item:hover{border-color:rgba(201,168,76,0.3);background:var(--card2)}
+.banco-meta{display:flex;gap:0.5rem;align-items:center;margin-bottom:0.6rem;flex-wrap:wrap}
+.banco-year{font-family:var(--font-mono);font-size:0.75rem;color:var(--text3)}
+.banco-q{font-size:0.9rem;font-weight:500;color:var(--text);line-height:1.45}
+.banco-answer{
+  margin-top:1rem;padding:1rem;background:var(--card2);border-radius:var(--radius-sm);
+  border-left:3px solid var(--gold);font-size:0.85rem;color:var(--text2);line-height:1.65;
+  display:none;
+}
+.banco-answer.show{display:block;animation:fadeIn 0.3s ease}
+.banco-answer-toggle{
+  margin-top:0.75rem;font-size:0.8rem;color:var(--gold);font-weight:600;background:none;
+  border:none;cursor:pointer;display:flex;align-items:center;gap:0.3rem;
+}
+
+/* ===== PROGRESO ===== */
+#progreso{background:var(--bg2)}
+.progreso-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.progreso-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;
+}
+.progreso-card h3{font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;display:flex;justify-content:space-between}
+.progreso-card h3 span{font-size:0.8rem;font-weight:400;color:var(--text3)}
+.radial-wrap{display:flex;justify-content:center;margin-bottom:1.5rem}
+.radial-chart{position:relative;width:140px;height:140px}
+.radial-chart svg{transform:rotate(-90deg)}
+.radial-bg{fill:none;stroke:var(--bg3);stroke-width:10}
+.radial-fill{fill:none;stroke:var(--gold);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease}
+.radial-label{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.radial-pct{font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--gold)}
+.radial-sub{font-size:0.72rem;color:var(--text3)}
+.autor-progress-list{display:flex;flex-direction:column;gap:0.75rem}
+.apl-item label{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--text2);margin-bottom:0.35rem}
+.apl-item label span{color:var(--text3);font-family:var(--font-mono)}
+.apl-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.apl-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--teal));transition:width 1.2s ease}
+.streak-display{display:flex;gap:1rem;justify-content:center;margin-top:0.75rem}
+.streak-day{
+  width:36px;height:36px;border-radius:8px;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;
+  color:var(--text3);border:1px solid var(--border);transition:all var(--transition);
+}
+.streak-day.done{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.streak-day.today{background:var(--gold);color:#0d0f14}
+
+/* ===== PREMIUM ===== */
+#premium{
+  background:linear-gradient(135deg,var(--bg) 0%,rgba(201,168,76,0.05) 50%,var(--bg) 100%);
+  position:relative;overflow:hidden;
+}
+#premium::before{
+  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.premium-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.premium-card{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:2rem;transition:all var(--transition);position:relative;overflow:hidden;
+}
+.premium-card.featured{
+  background:linear-gradient(135deg,#1e1a0f,#2a2210);
+  border-color:rgba(201,168,76,0.5);
+}
+.premium-card.featured::after{
+  content:'MÁS POPULAR';position:absolute;top:16px;right:-26px;
+  background:var(--gold);color:#0d0f14;font-size:0.65rem;font-weight:800;
+  padding:0.25rem 2rem;transform:rotate(45deg);letter-spacing:0.05em;
+}
+.premium-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.3)}
+.plan-name{font-size:0.8rem;font-weight:700;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem}
+.plan-price{font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--text);margin-bottom:0.25rem;line-height:1}
+.plan-price sup{font-size:1.25rem;vertical-align:top;margin-top:0.4rem;color:var(--gold)}
+.plan-price span{font-size:0.9rem;font-weight:400;color:var(--text3)}
+.plan-desc{font-size:0.85rem;color:var(--text2);margin-bottom:1.5rem}
+.plan-features{list-style:none;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:0.6rem}
+.plan-features li{font-size:0.87rem;color:var(--text2);display:flex;align-items:flex-start;gap:0.6rem}
+.plan-features li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0;margin-top:0.05rem}
+.plan-features li.no::before{content:'✗';color:var(--text3)}
+.plan-features li.no{color:var(--text3)}
+.btn-plan{
+  width:100%;padding:0.85rem;border-radius:var(--radius-sm);font-weight:700;font-size:0.9rem;
+  transition:all var(--transition);
+}
+.btn-plan-free{background:var(--card2);border:1px solid var(--border);color:var(--text)}
+.btn-plan-free:hover{border-color:var(--gold);color:var(--gold)}
+.btn-plan-premium{background:linear-gradient(135deg,var(--gold),#a8732e);color:#0d0f14}
+.btn-plan-premium:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,0.4)}
+
+/* ===== CONSEJOS ===== */
+#consejos{background:var(--bg2)}
+.consejos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-top:2.5rem}
+.consejo-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.5rem;transition:all var(--transition);
+}
+.consejo-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px)}
+.consejo-num{
+  width:40px;height:40px;border-radius:10px;background:var(--gold-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:1.1rem;font-weight:800;color:var(--gold);
+  margin-bottom:1rem;
+}
+.consejo-card h4{font-size:0.95rem;font-weight:700;margin-bottom:0.5rem}
+.consejo-card p{font-size:0.85rem;color:var(--text2);line-height:1.6}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--bg3);border-top:1px solid var(--border);
+  padding:3rem 2rem;text-align:center;
+}
+.footer-brand{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:0.5rem}
+.footer-sub{font-size:0.85rem;color:var(--text3)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:0.5}
+}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== MOBILE NAV ===== */
+@media(max-width:768px){
+  .nav-links{
+    position:fixed;top:64px;left:0;right:0;background:var(--bg2);
+    border-bottom:1px solid var(--border);flex-direction:column;gap:0;
+    padding:1rem;display:none;z-index:850;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a,.nav-btn{width:100%;text-align:left;padding:0.75rem 1rem;border-radius:var(--radius-sm)}
+  .hamburger{display:flex}
+  .pau-grid{grid-template-columns:1fr}
+  .compare-grid{grid-template-columns:1fr}
+  .premium-grid{grid-template-columns:1fr}
+  .progreso-grid{grid-template-columns:1fr}
+  .concept-grid{grid-template-columns:1fr}
+  .timeline::before{left:20px}
+  .timeline-item,.timeline-item:nth-child(even){flex-direction:column;padding-left:50px}
+  .timeline-dot{left:20px;top:1.5rem}
+  .timeline-spacer{display:none}
+  .hero-stats{gap:1.5rem}
+  .modal{border-radius:12px}
+  .modal-body{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">📚 <span>Filosof</span>EANDO</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#pau-info">La PAU</a>
+    <a href="#autores">Autores</a>
+    <a href="#flashcards">Flashcards</a>
+    <a href="#tests">Tests</a>
+    <a href="#simulacro">Simulacro</a>
+    <a href="#examenes">Exámenes PAU</a>
+    <a href="#banco">Banco PAU</a>
+    <a href="#progreso">Mi Progreso</a>
+    <a href="https://www.tiktok.com/@filosofeando_para_aproba" target="_blank" rel="noopener" class="nav-btn" style="color:var(--text2);display:flex;align-items:center;gap:0.35rem">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>
+      TikTok
+    </a>
+    <a href="#premium" class="nav-btn nav-premium">✦ Premium</a>
+  </div>
+  <div style="display:flex;gap:0.75rem;align-items:center">
+    <button class="theme-toggle" id="themeToggle" title="Cambiar tema">🌙</button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Actualizado a 4 de junio de 2026 · PAU Andalucía 2025–2026</div>
+    <h1>Aprueba la <em>Selectividad</em><br>de Filosofía</h1>
+    <p class="hero-sub">La plataforma más completa adaptada al currículo andaluz. Temario, tests, simulacros y comentarios de texto para sacar un 10.</p>
+    <div class="hero-ctas">
+      <a href="#autores" class="btn-primary">Empezar a estudiar →</a>
+      <a href="#pau-info" class="btn-secondary">Conocer la PAU</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Autores PAU</div></div>
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Preguntas</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Currículo andaluz</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAU INFO -->
+<section id="pau-info">
+  <div class="container">
+    <div class="section-label">La selectividad</div>
+    <h2 class="section-title">¿Cómo es la PAU de Filosofía en Andalucía?</h2>
+    <p class="section-sub">Conoce la estructura del examen, los criterios de corrección y qué se evalúa para organizar tu estudio.</p>
+    <div class="pau-grid reveal">
+      <div class="pau-card">
+        <div class="pau-card-icon">📋</div>
+        <h3>Estructura del Examen</h3>
+        <table class="structure-table">
+          <tr><th>Pregunta</th><th>Contenido</th><th>Puntos</th></tr>
+          <tr><td>1a</td><td>Definición de 2 términos del texto</td><td>2 pts</td></tr>
+          <tr><td>1b</td><td>Idea principal y estructura</td><td>2 pts</td></tr>
+          <tr><td>1c</td><td>Posición filosófica del autor</td><td>2 pts</td></tr>
+          <tr><td>2a</td><td>Relación con otro autor/período</td><td>2 pts</td></tr>
+          <tr><td>2b</td><td>Valoración personal razonada</td><td>2 pts</td></tr>
+        </table>
+      </div>
+      <div class="pau-card">
+        <div class="pau-card-icon">📚</div>
+        <h3>Autores del Currículo Andaluz</h3>
+        <p style="margin-bottom:0.85rem">Los textos provienen de los siguientes autores seleccionados por la Junta de Andalucía:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem">
+          <span class="tag tag-gold">Platón</span>
+          <span class="tag tag-gold">Aristóteles</span>
+          <span class="tag tag-teal">Descartes</span>
+          <span class="tag tag-teal">Hume</span>
+          <span class="tag tag-teal">Kant</span>
+          <span class="tag tag-blue">Marx</span>
+          <span class="tag tag-blue">Nietzsche</span>
+          <span class="tag tag-blue">Ortega y Gasset</span>
+          <span class="tag tag-red">Habermas</span>
+          <span class="tag tag-red">Rawls</span>
+          <span class="tag tag-red">Nussbaum</span>
+          <span class="tag tag-red">Wittgenstein</span>
+        </div>
+      </div>
+      <div class="pau-card">
+        <div class="pau-card-icon">🎯</div>
+        <h3>Criterios de Corrección</h3>
+        <ul>
+          <li>Rigor conceptual y uso correcto del vocabulario filosófico</li>
+          <li>Comprensión e interpretación precisa del texto</li>
+          <li>Relación coherente con el pensamiento del autor</li>
+          <li>Establecimiento correcto de relaciones históricas y filosóficas</li>
+          <li>Argumentación propia clara, coherente y bien fundamentada</li>
+          <li>Corrección ortográfica y expresión escrita cuidada</li>
+        </ul>
+      </div>
+      <div class="pau-card">
+        <div class="pau-card-icon">💡</div>
+        <h3>Claves del Éxito</h3>
+        <ul>
+          <li><strong>Domina el vocabulario</strong> de cada autor</li>
+          <li><strong>Contextualiza</strong> cada texto en su época y obra</li>
+          <li><strong>Practica comentarios</strong> completos cronometrados</li>
+          <li><strong>Aprende relaciones</strong> entre autores (influencias, críticas)</li>
+          <li><strong>Prepara la valoración</strong> personal con argumentos sólidos</li>
+          <li><strong>Revisa exámenes</strong> anteriores de Andalucía</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTORES -->
+<section id="autores">
+  <div class="container">
+    <div class="section-label">Temario completo</div>
+    <h2 class="section-title">Autores del Currículo Andaluz</h2>
+    <p class="section-sub">Selecciona cualquier autor para acceder a su temario completo, conceptos, preguntas PAU y comentario de texto resuelto.</p>
+    <div class="autores-tabs">
+      <button class="tab-btn active" data-filter="all">Todos</button>
+      <button class="tab-btn" data-filter="antigua">Antigua</button>
+      <button class="tab-btn" data-filter="moderna">Moderna</button>
+      <button class="tab-btn" data-filter="contemporanea">Contemporánea</button>
+    </div>
+    <div class="autores-grid" id="autoresGrid">
+      <!-- JS generated -->
+    </div>
+  </div>
+</section>
+
+<!-- MODAL AUTOR -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="autorModal">
+    <div class="modal-header">
+      <div>
+        <div class="autor-era" id="modalEra"></div>
+        <h2 style="font-size:1.75rem;font-weight:900" id="modalName"></h2>
+        <div style="font-family:var(--font-mono);font-size:0.85rem;color:var(--text3);margin-top:0.3rem" id="modalDates"></div>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-nav">
+      <button class="modal-nav-btn active" data-section="contexto">Contexto</button>
+      <button class="modal-nav-btn" data-section="conocimiento">Conocimiento</button>
+      <button class="modal-nav-btn" data-section="realidad">Realidad</button>
+      <button class="modal-nav-btn" data-section="ser-humano">Ser humano</button>
+      <button class="modal-nav-btn" data-section="etica">Ética y Política</button>
+      <button class="modal-nav-btn" data-section="conceptos">Conceptos</button>
+      <button class="modal-nav-btn" data-section="resumen">Resumen</button>
+      <button class="modal-nav-btn" data-section="pau">Preguntas PAU</button>
+      <button class="modal-nav-btn" data-section="comentario">Comentario</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+    </div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<section id="flashcards">
+  <div class="container">
+    <div class="section-label">Repaso rápido</div>
+    <h2 class="section-title">Flashcards de Filosofía</h2>
+    <p class="section-sub">Haz clic en la tarjeta para ver la respuesta. Navega entre ellas para repasar los conceptos clave de la PAU.</p>
+    <div class="flashcard-container">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-face flashcard-front">
+          <div class="flashcard-label">Pregunta</div>
+          <div class="flashcard-q" id="fc-question">¿Qué es la teoría de las Ideas de Platón?</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="flashcard-label">Respuesta</div>
+          <div class="flashcard-a" id="fc-answer">Las Ideas son esencias eternas, inmutables y perfectas que constituyen la verdadera realidad. El mundo sensible es una copia imperfecta del mundo inteligible de las Ideas. El Bien es la Idea suprema que ilumina todas las demás.</div>
+        </div>
+      </div>
+      <div class="flashcard-controls">
+        <button class="fc-btn" id="fcPrev">←</button>
+        <span class="fc-count" id="fcCount">1 / 20</span>
+        <button class="fc-btn" id="fcNext">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTS -->
+<section id="tests">
+  <div class="container">
+    <div class="section-label">Test autocorregible</div>
+    <h2 class="section-title">Pon a prueba tus conocimientos</h2>
+    <p class="section-sub">Responde y obtén corrección inmediata con explicación para cada pregunta.</p>
+    <div class="quiz-container" id="quizContainer">
+      <!-- JS generated -->
+    </div>
+  </div>
+</section>
+
+<!-- CRONOLOGÍA -->
+<section id="cronologia">
+  <div class="container">
+    <div class="section-label">Historia de la Filosofía</div>
+    <h2 class="section-title">Cronología Interactiva</h2>
+    <p class="section-sub">Sitúa a cada autor en su contexto histórico y comprende la evolución del pensamiento filosófico occidental.</p>
+    <div class="timeline" id="timeline">
+      <!-- JS generated -->
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVA -->
+<section id="comparativa">
+  <div class="container">
+    <div class="section-label">Relaciones entre autores</div>
+    <h2 class="section-title">Comparativa de Autores</h2>
+    <p class="section-sub">Una de las preguntas del examen pide relacionar autores. Aquí tienes esquemas comparativos para estudiarlos juntos.</p>
+    <div class="compare-grid reveal">
+      <div class="compare-col">
+        <div class="compare-header">
+          <div class="compare-author">Platón</div>
+          <div class="compare-dates">427–347 a.C.</div>
+        </div>
+        <div class="compare-body">
+          <div class="compare-row"><strong>Realidad</strong>Dos mundos: inteligible (verdadero) y sensible (aparente)</div>
+          <div class="compare-row"><strong>Conocimiento</strong>Solo las Ideas son objeto de conocimiento verdadero (episteme)</div>
+          <div class="compare-row"><strong>Ser Humano</strong>Alma inmortal prisionera del cuerpo; la razón debe dominar</div>
+          <div class="compare-row"><strong>Ética</strong>Virtud como armonía del alma; Bien supremo como fin</div>
+          <div class="compare-row"><strong>Política</strong>Estado ideal gobernado por filósofos-reyes</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header">
+          <div class="compare-author">Aristóteles</div>
+          <div class="compare-dates">384–322 a.C.</div>
+        </div>
+        <div class="compare-body">
+          <div class="compare-row"><strong>Realidad</strong>La sustancia individual es lo real; la forma está en la materia</div>
+          <div class="compare-row"><strong>Conocimiento</strong>Parte de la experiencia sensible hacia los universales (abstracción)</div>
+          <div class="compare-row"><strong>Ser Humano</strong>Animal racional; alma como forma del cuerpo (unidad)</div>
+          <div class="compare-row"><strong>Ética</strong>Eudaimonia como fin; virtud como término medio</div>
+          <div class="compare-row"><strong>Política</strong>Ser humano como animal político; polis como comunidad natural</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header">
+          <div class="compare-author">Kant</div>
+          <div class="compare-dates">1724–1804</div>
+        </div>
+        <div class="compare-body">
+          <div class="compare-row"><strong>Realidad</strong>Fenómeno (lo cognoscible) vs. noúmeno (cosa en sí, incognoscible)</div>
+          <div class="compare-row"><strong>Conocimiento</strong>Síntesis de sensibilidad y entendimiento; formas a priori</div>
+          <div class="compare-row"><strong>Ser Humano</strong>Ser racional y autónomo; fin en sí mismo, nunca medio</div>
+          <div class="compare-row"><strong>Ética</strong>Imperativo categórico; deber moral universal y racional</div>
+          <div class="compare-row"><strong>Política</strong>Paz perpetua; federación de estados republicanos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULACRO -->
+<section id="simulacro">
+  <div class="container">
+    <div class="section-label">Examen completo</div>
+    <h2 class="section-title">Simulacro de Examen PAU</h2>
+    <p class="section-sub">Reproduce las condiciones reales del examen. Tienes 90 minutos. Las respuestas serán evaluadas automáticamente.</p>
+    <div class="exam-container">
+      <div class="exam-header-box">
+        <div>
+          <div style="font-size:0.75rem;color:var(--text3);margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.08em">Tiempo restante</div>
+          <div class="exam-timer" id="examTimer">90:00</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:0.8rem;color:var(--text2);margin-bottom:0.5rem">Filosofía · PAU Andalucía</div>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:flex-end">
+            <span class="tag tag-gold">Platón — República</span>
+            <button class="btn-primary" style="font-size:0.82rem;padding:0.5rem 1.1rem" id="startExam">▶ Iniciar</button>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1.5rem">
+        <div style="font-size:0.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem">Texto — Platón, República VII, 514a–517a</div>
+        <p style="font-size:0.88rem;color:var(--text2);line-height:1.75;font-style:italic">"Imagínate hombres que están en una morada subterránea [...] que no han visto nunca la luz del sol. [...] ¿Crees que semejantes hombres habrían visto otra cosa de sí mismos o de sus compañeros que las sombras proyectadas por el fuego sobre la parte de la caverna que está frente a ellos? [...] Y si pudieran hablar unos con otros, ¿no piensas que creerían estar nombrando objetos reales cuando nombraban lo que veían?"</p>
+      </div>
+
+      <div class="exam-section-title">CUESTIÓN 1a — Definición de términos (2 puntos)</div>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Define los términos <strong>sombras</strong> y <strong>luz del sol</strong> en el contexto del pensamiento platónico.</p>
+      <textarea class="exam-textarea" placeholder="Escribe tu respuesta aquí..." id="resp1a" oninput="updateWC('wc1a',this.value)"></textarea>
+      <div class="word-count" id="wc1a">0 palabras</div>
+
+      <div class="exam-section-title">CUESTIÓN 1b — Idea principal y estructura (2 puntos)</div>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Expón la idea principal del texto y la estructura argumentativa del fragmento.</p>
+      <textarea class="exam-textarea" placeholder="Escribe tu respuesta aquí..." id="resp1b" oninput="updateWC('wc1b',this.value)"></textarea>
+      <div class="word-count" id="wc1b">0 palabras</div>
+
+      <div class="exam-section-title">CUESTIÓN 1c — Posición filosófica del autor (2 puntos)</div>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Relaciona el texto con la posición filosófica de Platón (teoría de las Ideas, gnoseología, ontología).</p>
+      <textarea class="exam-textarea" placeholder="Escribe tu respuesta aquí..." id="resp1c" oninput="updateWC('wc1c',this.value)"></textarea>
+      <div class="word-count" id="wc1c">0 palabras</div>
+
+      <div class="exam-section-title">CUESTIÓN 2a — Relación con otro autor (2 puntos)</div>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Relaciona el pensamiento de Platón con el de Aristóteles o Descartes, señalando semejanzas y diferencias.</p>
+      <textarea class="exam-textarea" placeholder="Escribe tu respuesta aquí..." id="resp2a" oninput="updateWC('wc2a',this.value)"></textarea>
+      <div class="word-count" id="wc2a">0 palabras</div>
+
+      <div class="exam-section-title">CUESTIÓN 2b — Valoración personal (2 puntos)</div>
+      <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Realiza una valoración personal razonada del texto o del pensamiento de Platón, relacionándolo con problemas actuales.</p>
+      <textarea class="exam-textarea" placeholder="Escribe tu valoración personal aquí..." id="resp2b" oninput="updateWC('wc2b',this.value)"></textarea>
+      <div class="word-count" id="wc2b">0 palabras</div>
+
+      <div style="text-align:center;margin-top:2rem">
+        <button class="btn-primary" onclick="submitExam()">Entregar examen y ver corrección ✓</button>
+      </div>
+      <div id="examFeedback" style="display:none;margin-top:1.5rem"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BANCO PREGUNTAS -->
+<section id="banco">
+  <div class="container">
+    <div class="section-label">Selectividad real</div>
+    <h2 class="section-title">Banco de Preguntas PAU Andalucía</h2>
+    <p class="section-sub">Preguntas reales de exámenes anteriores ordenadas por autor, año y tipo. Haz clic para ver la orientación de respuesta.</p>
+    <div class="banco-search">
+      <input class="search-input" placeholder="🔍 Buscar por autor, tema o concepto..." id="bancoSearch" oninput="filterBanco()">
+      <select class="filter-select" id="bancoFilter" onchange="filterBanco()">
+        <option value="all">Todos los autores</option>
+        <option value="Platón">Platón</option>
+        <option value="Aristóteles">Aristóteles</option>
+        <option value="Descartes">Descartes</option>
+        <option value="Hume">Hume</option>
+        <option value="Kant">Kant</option>
+        <option value="Nietzsche">Nietzsche</option>
+        <option value="Marx">Marx</option>
+      </select>
+    </div>
+    <div class="banco-list" id="bancoList">
+      <!-- JS generated -->
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESO -->
+<section id="progreso">
+  <div class="container">
+    <div class="section-label">Mi estudio</div>
+    <h2 class="section-title">Seguimiento del Progreso</h2>
+    <p class="section-sub">Controla tu avance por autor y mantén tu racha de estudio activa.</p>
+    <div class="progreso-grid">
+      <div class="progreso-card">
+        <h3>Progreso Global <span>Actualizado hoy</span></h3>
+        <div class="radial-wrap">
+          <div class="radial-chart">
+            <svg viewBox="0 0 120 120" width="140" height="140">
+              <circle class="radial-bg" cx="60" cy="60" r="50"/>
+              <circle class="radial-fill" id="radialFill" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="220"/>
+            </svg>
+            <div class="radial-label">
+              <div class="radial-pct" id="radialPct">30%</div>
+              <div class="radial-sub">completado</div>
+            </div>
+          </div>
+        </div>
+        <div class="autor-progress-list" id="autorProgressList">
+          <!-- JS generated -->
+        </div>
+      </div>
+      <div class="progreso-card">
+        <h3>Estadísticas de Estudio</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:1rem;text-align:center">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--gold)">47</div>
+            <div style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Flashcards vistas</div>
+          </div>
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:1rem;text-align:center">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--teal)">73%</div>
+            <div style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Aciertos test</div>
+          </div>
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:1rem;text-align:center">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--blue)">3</div>
+            <div style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Simulacros</div>
+          </div>
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:1rem;text-align:center">
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--red)">6🔥</div>
+            <div style="font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Días de racha</div>
+          </div>
+        </div>
+        <h4 style="font-size:0.85rem;font-weight:700;margin-bottom:0.85rem;color:var(--text2)">Racha semanal</h4>
+        <div class="streak-display">
+          <div class="streak-day done" title="Lunes">L</div>
+          <div class="streak-day done" title="Martes">M</div>
+          <div class="streak-day done" title="Miércoles">X</div>
+          <div class="streak-day done" title="Jueves">J</div>
+          <div class="streak-day done" title="Viernes">V</div>
+          <div class="streak-day today" title="Sábado">S</div>
+          <div class="streak-day" title="Domingo">D</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSEJOS -->
+<section id="consejos">
+  <div class="container">
+    <div class="section-label">Consejos expertos</div>
+    <h2 class="section-title">Cómo Sacar un 10 en la PAU</h2>
+    <p class="section-sub">Estrategias probadas de profesores de Filosofía de Bachillerato para maximizar tu nota.</p>
+    <div class="consejos-grid">
+      <div class="consejo-card reveal"><div class="consejo-num">1</div><h4>Domina el vocabulario técnico</h4><p>Usa siempre los términos filosóficos propios del autor. Los correctores valoran la precisión conceptual y el uso apropiado del léxico específico.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">2</div><h4>Estructura tus respuestas</h4><p>Usa párrafos claros con introducción, desarrollo y conclusión. En la 1c, sigue el esquema: contexto → posición → argumentos → conclusión.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">3</div><h4>Contextualiza siempre</h4><p>Sitúa al autor en su época, corriente filosófica y obra. Un breve contexto histórico-filosófico demuestra madurez intelectual.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">4</div><h4>Prepara las relaciones</h4><p>La pregunta 2a exige relacionar autores. Prepara combinaciones: Platón-Aristóteles, Descartes-Hume, Kant-Hume, Marx-Nietzsche.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">5</div><h4>Construye tu valoración</h4><p>La 2b es tu oportunidad. Prepara 2-3 argumentos propios con ejemplos actuales. Muestra que has reflexionado, no solo memorizado.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">6</div><h4>Lee el texto 3 veces</h4><p>Primera: comprensión global. Segunda: identificar ideas y estructura. Tercera: localizar los términos a definir y el argumento central.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM -->
+<section id="premium">
+  <div class="container">
+    <div style="text-align:center">
+      <div class="section-label" style="display:inline-block">Próximamente</div>
+      <h2 class="section-title" style="margin:0 auto">Planes de Acceso</h2>
+      <p class="section-sub" style="margin:0 auto 3rem">Empieza gratis y desbloquea el acceso completo cuando necesites prepararte en serio.</p>
+    </div>
+    <div class="premium-grid">
+      <div class="premium-card">
+        <div class="plan-name">Gratuito</div>
+        <div class="plan-price"><sup>€</sup>0<span>/mes</span></div>
+        <div class="plan-desc">Para empezar a estudiar sin compromiso</div>
+        <ul class="plan-features">
+          <li>3 autores completos</li>
+          <li>20 flashcards</li>
+          <li>10 preguntas de test</li>
+          <li>1 simulacro de examen</li>
+          <li class="no">Todos los autores</li>
+          <li class="no">Banco PAU completo</li>
+          <li class="no">Corrección con IA</li>
+          <li class="no">Seguimiento avanzado</li>
+        </ul>
+        <button class="btn-plan btn-plan-free">Comenzar gratis</button>
+      </div>
+      <div class="premium-card featured">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price"><sup>€</sup>9<span>,99/mes</span></div>
+        <div class="plan-desc">Acceso total para preparar la PAU al máximo</div>
+        <ul class="plan-features">
+          <li>Todos los autores completos</li>
+          <li>500+ flashcards por tema</li>
+          <li>Tests ilimitados</li>
+          <li>Simulacros ilimitados</li>
+          <li>Banco PAU completo (2010–2024)</li>
+          <li>Corrección con IA explicada</li>
+          <li>Comparativas y esquemas visuales</li>
+          <li>Seguimiento detallado del progreso</li>
+        </ul>
+        <button class="btn-plan btn-plan-premium">Acceso Premium ✦</button>
+      </div>
+      <div class="premium-card">
+        <div class="plan-name">Intensivo PAU</div>
+        <div class="plan-price"><sup>€</sup>24<span>,99</span></div>
+        <div class="plan-desc">Curso intensivo de 4 semanas con tutor</div>
+        <ul class="plan-features">
+          <li>Todo lo de Premium</li>
+          <li>4 clases en directo (Zoom)</li>
+          <li>Corrección personalizada de exámenes</li>
+          <li>Plan de estudio personalizado</li>
+          <li>Grupo privado de Telegram</li>
+          <li>Garantía de nota o devolución</li>
+          <li class="no">—</li>
+          <li class="no">—</li>
+        </ul>
+        <button class="btn-plan btn-plan-free">Unirse a lista de espera</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXÁMENES PAU REALES -->
+<section id="examenes" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-label">Exámenes reales corregidos</div>
+    <h2 class="section-title">Exámenes PAU Andalucía — Corregidos</h2>
+    <p class="section-sub">Accede a los exámenes oficiales de Filosofía de la PAU de Andalucía desde 2015 hasta 2026, con orientación de respuesta completa para cada pregunta.</p>
+
+    <!-- EXAMEN 2026 DESTACADO -->
+    <div style="background:linear-gradient(135deg,#1e1a0f,#2a2210);border:1px solid rgba(201,168,76,0.5);border-radius:20px;padding:2rem;margin:2.5rem 0 2rem;position:relative;overflow:hidden">
+      <div style="position:absolute;top:16px;right:16px;background:var(--gold);color:#0d0f14;font-size:0.7rem;font-weight:800;padding:0.3rem 0.85rem;border-radius:50px;letter-spacing:0.08em">ESTE AÑO · 2026</div>
+      <div style="font-size:0.75rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem">PAU Andalucía — Junio 2026</div>
+      <h3 style="font-size:1.35rem;font-weight:800;margin-bottom:0.5rem">Examen Oficial de Filosofía · Convocatoria Ordinaria</h3>
+      <p style="font-size:0.875rem;color:var(--text2);margin-bottom:1.25rem">El examen de junio de 2026 ha incluido texto de <strong style="color:var(--gold)">Kant</strong> (opción A) y <strong style="color:var(--gold)">Nietzsche</strong> (opción B). A continuación tienes los textos, las preguntas y la orientación completa de respuesta para cada cuestión.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+        <div style="background:rgba(0,0,0,0.3);border-radius:var(--radius);padding:1.25rem;border:1px solid var(--border)">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem">Opción A — Kant</div>
+          <p style="font-size:0.8rem;color:var(--text2);font-style:italic;margin-bottom:0.75rem">"Obra de tal modo que uses la humanidad, tanto en tu persona como en la persona de cualquier otro, siempre como un fin al mismo tiempo y nunca solamente como un medio." (Fundamentación de la Metafísica de las Costumbres)</p>
+          <div style="font-size:0.78rem;color:var(--text3)">Términos: <strong style="color:var(--text2)">humanidad · fin · medio</strong></div>
+        </div>
+        <div style="background:rgba(0,0,0,0.3);border-radius:var(--radius);padding:1.25rem;border:1px solid var(--border)">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem">Opción B — Nietzsche</div>
+          <p style="font-size:0.8rem;color:var(--text2);font-style:italic;margin-bottom:0.75rem">"¿No habéis oído hablar de aquel loco que encendió un farol en pleno día y corrió al mercado gritando sin cesar: ¡Busco a Dios! ¡Busco a Dios!" (La Gaya Ciencia, §125)</p>
+          <div style="font-size:0.78rem;color:var(--text3)">Términos: <strong style="color:var(--text2)">Dios · nihilismo · transvaloración</strong></div>
+        </div>
+      </div>
+      <div id="examen2026" style="display:none">
+        <div style="background:var(--card);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;border:1px solid var(--border)">
+          <h4 style="color:var(--gold);font-size:0.95rem;margin-bottom:0.85rem">📝 Orientación Opción A — Kant (Junio 2026)</h4>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">1a. Términos:</strong> <em>Humanidad</em> en Kant no es un concepto biológico sino la racionalidad y la capacidad moral del ser humano: lo que nos hace dignos de respeto. <em>Fin en sí mismo</em> significa que el ser racional tiene valor en sí mismo, no derivado de utilidad externa. <em>Medio</em> es usar a alguien instrumentalmente, como herramienta para lograr nuestros fines.</p>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">1b. Idea principal:</strong> El texto expone la segunda formulación del imperativo categórico (fórmula de la humanidad). La estructura es imperativa: primero enuncia la obligación (obra de tal modo), luego especifica el ámbito (en tu persona y en la de cualquier otro) y finalmente establece la distinción fundamental entre fin y medio.</p>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">1c. Posición filosófica:</strong> Conecta con la ética deontológica kantiana: la ley moral es formal, universal e incondicional (imperativo categórico). La dignidad humana es la base de la ética. Relacionar con la autonomía moral y el reino de los fines.</p>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">2a. Relación:</strong> Contrastar con la ética aristotélica (teleológica vs deontológica) o con Hume (sentimiento vs razón como base moral). Semejanza posible con Platón: ambos valoran la razón sobre los impulsos.</p>
+          <p style="font-size:0.85rem;color:var(--text2)"><strong style="color:var(--text)">2b. Valoración:</strong> Aplicar a problemas actuales: uso instrumental de personas (trata de seres humanos, explotación laboral, uso de datos personales). El principio kantiano sigue siendo una referencia ética fundamental en bioética y derechos humanos.</p>
+        </div>
+        <div style="background:var(--card);border-radius:var(--radius);padding:1.5rem;border:1px solid var(--border)">
+          <h4 style="color:var(--teal);font-size:0.95rem;margin-bottom:0.85rem">📝 Orientación Opción B — Nietzsche (Junio 2026)</h4>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">1a. Términos:</strong> <em>Dios</em> simboliza el conjunto de valores absolutos trascendentes que habían dado sentido a la civilización occidental. <em>Nihilismo</em> es la situación en que los valores supremos pierden su validez: no hay verdad ni sentido objetivos. <em>Transvaloración</em> es el proyecto nietzscheano de crear nuevos valores vitales que superen el nihilismo.</p>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">1b. Idea principal:</strong> La parábola del loco anuncia el mayor acontecimiento de la modernidad: la muerte de Dios. El loco representa al filósofo que comprende las consecuencias mientras los demás aún no las ven. La estructura es narrativa-profética: la búsqueda, el anuncio, la incomprensión.</p>
+          <p style="font-size:0.85rem;color:var(--text2);margin-bottom:0.75rem"><strong style="color:var(--text)">1c. Posición filosófica:</strong> Relacionar con el nihilismo, la voluntad de poder y el superhombre. La muerte de Dios no es ateísmo vulgar sino diagnóstico cultural: la modernidad ha destruido sus propios fundamentos.</p>
+          <p style="font-size:0.85rem;color:var(--text2)"><strong style="color:var(--text)">2b. Valoración:</strong> Debate actual sobre relativismo moral, fundamentalismos religiosos, crisis de valores en la sociedad contemporánea. ¿Hemos encontrado nuevos valores que sustituyan a los absolutos? El diagnóstico nietzscheano sigue siendo relevante.</p>
+        </div>
+      </div>
+      <button onclick="toggleExamen('examen2026',this)" style="background:var(--gold);color:#0d0f14;border:none;padding:0.7rem 1.5rem;border-radius:var(--radius-sm);font-weight:700;font-size:0.875rem;cursor:pointer;margin-top:0.5rem">Ver corrección completa ↓</button>
+    </div>
+
+    <!-- GRID AÑOS ANTERIORES -->
+    <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:1.5rem;color:var(--text)">Exámenes de años anteriores</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem" id="examenesGrid">
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">📚 FilosoFEANDO</div>
+  <p class="footer-sub">Plataforma educativa para la preparación de la PAU de Filosofía · Actualizada a 4 de junio de 2026<br>Adaptada al currículo de la Junta de Andalucía · Creada por profesores de Bachillerato</p>
+  <div style="margin-top:1.5rem;display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;align-items:center">
+    <a href="#pau-info" style="font-size:0.85rem;color:var(--text3)">La PAU</a>
+    <a href="#autores" style="font-size:0.85rem;color:var(--text3)">Autores</a>
+    <a href="#examenes" style="font-size:0.85rem;color:var(--text3)">Exámenes</a>
+    <a href="#tests" style="font-size:0.85rem;color:var(--text3)">Tests</a>
+    <a href="#premium" style="font-size:0.85rem;color:var(--text3)">Premium</a>
+    <a href="https://www.tiktok.com/@filosofeando_para_aproba" target="_blank" rel="noopener"
+      style="display:inline-flex;align-items:center;gap:0.4rem;background:linear-gradient(135deg,#010101,#2a2a2a);color:#fff;padding:0.5rem 1.1rem;border-radius:50px;font-size:0.85rem;font-weight:600;border:1px solid rgba(255,255,255,0.15);transition:all 0.25s">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>
+      Sígueme en TikTok
+    </a>
+  </div>
+</footer>
+
+<script>
+// ===== DATA =====
+const autoresData = [
+  {
+    id:'platon', nombre:'Platón', fechas:'427–347 a.C.', era:'Antigua', periodo:'antigua',
+    desc:'Filósofo ateniense, discípulo de Sócrates y maestro de Aristóteles. Fundador de la Academia y padre del idealismo filosófico occidental.',
+    tags:['Idealismo','Metafísica','Política'],
+    progreso:85,
+    contexto:`<div class="content-block"><h4>Contexto Histórico-Filosófico</h4><p>Platón (427–347 a.C.) nace en Atenas durante el apogeo de la democracia ateniense. Es testigo de la derrota en la Guerra del Peloponeso, la crisis de la polis y, sobre todo, de la injusta condena y muerte de su maestro Sócrates (399 a.C.). Este hecho traumático marcará profundamente su pensamiento político y su desconfianza hacia la democracia.</p><p style="margin-top:0.85rem">Discípulo de Sócrates, Platón fundó la Academia (388 a.C.), primera institución de educación superior de Occidente. Su pensamiento dialoga con los sofistas, los presocráticos y muy especialmente con el pitagorismo, que influye en su concepción matemática de la realidad.</p></div>`,
+    conocimiento:`<div class="content-block"><h4>Teoría del Conocimiento — Gnoseología</h4><p>Para Platón, el conocimiento verdadero (episteme) solo es posible sobre lo permanente e inmutable: las Ideas. El conocimiento sensible (doxa u opinión) versa sobre el mundo cambiante y no puede considerarse verdadero conocimiento.</p></div><div class="content-block"><h4>La Línea Dividida (República VI)</h4><ul><li><strong>Eikasía</strong> — Conjetura: percepción de sombras e imágenes. Nivel más bajo.</li><li><strong>Pistis</strong> — Creencia: percepción de objetos materiales.</li><li><strong>Dianoia</strong> — Pensamiento discursivo: matemáticas y geometría.</li><li><strong>Noesis</strong> — Intuición intelectual: contemplación directa de las Ideas.</li></ul></div><div class="content-block"><h4>El Mito de la Caverna</h4><p>Alegoría central de la República (Libro VII). Los prisioneros encadenados en la caverna solo ven sombras (mundo sensible). El filósofo que asciende hacia la luz del sol (Bien supremo) alcanza el conocimiento verdadero. Su deber moral es regresar a iluminar a los demás.</p></div>`,
+    realidad:`<div class="content-block"><h4>Ontología y Teoría de las Ideas</h4><p>La teoría de las Ideas (eide) es el núcleo del platonismo. Platón distingue dos mundos radicalmente diferentes:</p></div><div class="concept-grid"><div class="concept-item"><div class="concept-term">Mundo Inteligible (topos noetos)</div><div class="concept-def">Mundo de las Ideas: eternas, inmutables, perfectas y universales. Son la verdadera realidad. La Idea del Bien es la Ideas suprema que da ser y verdad a las demás.</div></div><div class="concept-item"><div class="concept-term">Mundo Sensible (topos horatos)</div><div class="concept-def">Mundo material percibido por los sentidos. Es copia imperfecta y cambiante del mundo de las Ideas. Solo tiene un ser derivado y aparente.</div></div></div><div class="content-block" style="margin-top:1rem"><h4>Demiurgo y Cosmología</h4><p>En el Timeo, Platón introduce al Demiurgo como artesano divino que crea el mundo sensible tomando como modelo las Ideas eternas. El mundo es un cosmos ordenado según patrones matemáticos y racionales.</p></div>`,
+    serhumano:`<div class="content-block"><h4>Dualismo Antropológico</h4><p>El ser humano es fundamentalmente su alma (psyche), que está encerrada en el cuerpo como en una cárcel (soma sema: el cuerpo es tumba del alma). El alma preexiste al cuerpo, conoce las Ideas en el mundo inteligible, y al encarnarse las olvida. El conocimiento es anamnesis o reminiscencia.</p></div><div class="content-block"><h4>Las tres partes del alma</h4><ul><li><strong>Alma racional (logistikon)</strong> — Sede de la razón; inmortal; debe gobernar. Virtud: prudencia (fronesis).</li><li><strong>Alma irascible (thymoeides)</strong> — Voluntad y valor; mortal. Virtud: fortaleza (andreia).</li><li><strong>Alma concupiscible (epithymetikon)</strong> — Deseos y apetitos; mortal. Virtud: templanza (sophrosyne).</li></ul><p style="margin-top:0.7rem">La armonía de las tres partes bajo el gobierno de la razón produce la justicia en el individuo.</p></div>`,
+    etica:`<div class="content-block"><h4>Ética y Virtud</h4><p>La ética platónica es intelectualista: el mal es ignorancia y el bien es conocimiento. Quien conoce verdaderamente el Bien, actúa bien. La virtud (arete) es la perfección de cada parte del alma. La virtud suprema es la justicia como armonía de las tres partes.</p></div><div class="content-block"><h4>Filosofía Política — La República</h4><p>El Estado ideal reproduce la estructura del alma. Platón propone una sociedad organizada en tres clases:</p><ul><li><strong>Filósofos-reyes</strong> — Gobiernan según el conocimiento del Bien; virtud: prudencia.</li><li><strong>Guardianes</strong> — Defienden el Estado; virtud: fortaleza.</li><li><strong>Productores</strong> — Proporcionan los bienes materiales; virtud: templanza.</li></ul><p style="margin-top:0.7rem">Critica la democracia por dar el poder a quienes no tienen conocimiento. El ideal es la aristocracia del saber o el gobierno de los filósofos.</p></div>`,
+    conceptos:`<div class="concept-grid"><div class="concept-item"><div class="concept-term">Ideas (Eide)</div><div class="concept-def">Esencias eternas, inmutables y perfectas. Constituyen la verdadera realidad. Arquetipos de las cosas sensibles.</div></div><div class="concept-item"><div class="concept-term">Anamnesis</div><div class="concept-def">Reminiscencia o recuerdo. El conocimiento como recuperación de lo que el alma vio antes de encarnarse.</div></div><div class="concept-item"><div class="concept-term">Demiurgo</div><div class="concept-def">Artesano divino que crea el mundo sensible imitando las Ideas eternas como modelo.</div></div><div class="concept-item"><div class="concept-term">Dialéctica</div><div class="concept-def">Método filosófico supremo de ascenso desde las hipótesis hacia el Bien. Conocimiento más alto posible.</div></div><div class="concept-item"><div class="concept-term">Eros filosófico</div><div class="concept-def">Impulso amoroso hacia la belleza que eleva el alma desde los cuerpos bellos hacia la Belleza en sí.</div></div><div class="concept-item"><div class="concept-term">Episteme / Doxa</div><div class="concept-def">Episteme: conocimiento verdadero de las Ideas. Doxa: opinión sobre el mundo sensible, no ciencia.</div></div></div>`,
+    resumen:`<div class="content-block"><h4>📄 Resumen de una página — Platón</h4><p><strong>Vida y obras:</strong> Platón (427–347 a.C.) es el gran filósofo ateniense de la Antigüedad. Sus obras, escritas en forma de diálogos (República, Fedón, Menón, Timeo, Banquete...), giran siempre en torno a la figura de Sócrates.</p><p style="margin-top:0.75rem"><strong>Ontología:</strong> Hay dos mundos radicalmente distintos. El mundo inteligible o de las Ideas es el verdadero: eterno, inmutable, perfecto. El mundo sensible es copia imperfecta del anterior, cambiante y aparente. La Idea del Bien es el fundamento de toda la realidad.</p><p style="margin-top:0.75rem"><strong>Gnoseología:</strong> El conocimiento verdadero (episteme) recae sobre las Ideas. El conocimiento sensible (doxa) no es conocimiento sino mera opinión. La alegoría de la caverna ilustra el proceso de ascenso desde la ignorancia al saber filosófico. La anamnesis es el mecanismo por el que el alma recuerda lo que conoció antes de encarnarse.</p><p style="margin-top:0.75rem"><strong>Antropología:</strong> El ser humano es su alma. El cuerpo es una cárcel. El alma tiene tres partes: racional (inmortal), irascible y concupiscible. La virtud es la armonía de las tres bajo el gobierno de la razón.</p><p style="margin-top:0.75rem"><strong>Ética y Política:</strong> El bien es conocimiento; el mal es ignorancia (intelectualismo moral). El Estado ideal tiene tres clases que reflejan las partes del alma. Los filósofos-reyes deben gobernar por su conocimiento del Bien.</p></div>`,
+    pau:`<div class="content-block"><h4>Preguntas Tipo PAU — Platón</h4></div><div class="banco-item" style="cursor:default"><div class="banco-q">Define los términos <em>Idea</em> y <em>caverna</em> en el pensamiento de Platón. [PAU Andalucía 2019]</div></div><div class="banco-item" style="cursor:default;margin-top:0.75rem"><div class="banco-q">Expón la teoría del conocimiento de Platón haciendo referencia a la alegoría de la caverna. [PAU Andalucía 2018]</div></div><div class="banco-item" style="cursor:default;margin-top:0.75rem"><div class="banco-q">Relaciona el pensamiento de Platón con el de Aristóteles: semejanzas y diferencias en torno a la realidad y el conocimiento. [PAU Andalucía 2020]</div></div><div class="banco-item" style="cursor:default;margin-top:0.75rem"><div class="banco-q">Valora críticamente el planteamiento político de Platón en <em>La República</em> en relación con los valores democráticos actuales. [Orientación PAU]</div></div>`,
+    comentario:`<div class="content-block"><h4>Comentario de Texto Resuelto</h4><div style="background:var(--bg3);border-radius:8px;padding:1rem;margin-bottom:1rem;font-style:italic;font-size:0.875rem;color:var(--text2)">"Y si, después de contemplar el sol, volviera a la caverna y se sentase en el mismo lugar, tendría los ojos llenos de oscuridad, al llegar repentinamente desde la luz del sol." (República, 516e)</div><h4 style="font-size:0.9rem;color:var(--teal);margin-bottom:0.75rem">1a. Definición de términos</h4><p style="font-size:0.875rem;color:var(--text2);margin-bottom:1rem"><strong>Sol:</strong> En la alegoría platónica, el sol simboliza la Idea del Bien, principio supremo del mundo inteligible que ilumina todas las demás Ideas y hace posible el conocimiento verdadero. Es la causa de la verdad y del ser.</p><p style="font-size:0.875rem;color:var(--text2);margin-bottom:1rem"><strong>Caverna:</strong> Representa el mundo sensible y la condición natural de ignorancia del ser humano, encadenado a las apariencias. Los prisioneros toman las sombras por la realidad.</p><h4 style="font-size:0.9rem;color:var(--teal);margin-bottom:0.75rem">1b. Idea principal y estructura</h4><p style="font-size:0.875rem;color:var(--text2);margin-bottom:1rem">La idea central es el contraste entre la luz del conocimiento filosófico y la oscuridad de la ignorancia. Platón muestra que el filósofo que regresa a la caverna, tras haber contemplado el Bien, experimenta desorientación porque ya no puede adaptarse al mundo de las sombras. Esto anticipa el tema del deber del filósofo-rey de gobernar.</p><h4 style="font-size:0.9rem;color:var(--teal);margin-bottom:0.75rem">1c. Posición filosófica</h4><p style="font-size:0.875rem;color:var(--text2)">El texto se enmarca en la teoría de las dos realidades de Platón. La caverna representa el mundo sensible (doxa), el sol el mundo inteligible (episteme). El ascenso del filósofo es el proceso dialéctico de elevación hacia el Bien. El regreso y el deber moral del filósofo se vinculan con su filosofía política: quien conoce el Bien tiene la obligación de gobernar y educar a los demás.</p></div>`
+  },
+  {
+    id:'aristoteles', nombre:'Aristóteles', fechas:'384–322 a.C.', era:'Antigua', periodo:'antigua',
+    desc:'Discípulo de Platón y fundador del Liceo. El más enciclopédico de los filósofos griegos: lógica, metafísica, ética, política, física, biología y poética.',
+    tags:['Metafísica','Empirismo','Ética'],
+    progreso:60,
+    contexto:`<div class="content-block"><h4>Contexto Histórico</h4><p>Aristóteles (384–322 a.C.) nace en Estagira (Macedonia). A los 17 años ingresa en la Academia de Platón, donde permanece 20 años. Tras la muerte de Platón, funda el Liceo en Atenas. Fue tutor de Alejandro Magno. Su pensamiento supone una crítica y superación del idealismo platónico desde dentro.</p></div>`,
+    conocimiento:`<div class="content-block"><h4>Empirismo Aristotélico</h4><p>A diferencia de Platón, Aristóteles parte de la experiencia sensible. El conocimiento comienza en los sentidos, sube por la memoria y la experiencia, hasta llegar al arte y la ciencia. Los universales no existen separados de las cosas: están en ellas y el entendimiento los abstrae.</p></div><div class="content-block"><h4>Lógica y Silogismo</h4><p>Aristóteles inventa la lógica formal. El silogismo es el razonamiento deductivo perfecto: de dos premisas se extrae necesariamente una conclusión. La ciencia (episteme) busca demostrar a partir de principios primeros evidentes por sí mismos.</p></div>`,
+    realidad:`<div class="content-block"><h4>Crítica a Platón y Sustancia Individual</h4><p>Aristóteles critica la separación platónica de las Ideas. Para él, la verdadera realidad es la sustancia individual concreta (este caballo, este hombre). Los universales son reales pero no existen separados: están en los individuos.</p></div><div class="concept-grid"><div class="concept-item"><div class="concept-term">Hilemorfismo</div><div class="concept-def">Toda sustancia está compuesta de materia (hyle) y forma (morphe). La forma es el principio activo que determina qué es la cosa; la materia es el substrato potencial.</div></div><div class="concept-item"><div class="concept-term">Acto y Potencia</div><div class="concept-def">La potencia es la capacidad de ser algo; el acto es la realización efectiva de esa capacidad. El cambio es el paso de potencia a acto.</div></div><div class="concept-item"><div class="concept-term">Las Cuatro Causas</div><div class="concept-def">Material, formal, eficiente y final. La causa final (télos) es la más importante: todo tiende hacia su fin natural.</div></div><div class="concept-item"><div class="concept-term">Motor Inmóvil</div><div class="concept-def">Primer Motor que mueve sin ser movido. Acto puro sin potencia. Fundamento último del movimiento del cosmos. Pensamiento que se piensa a sí mismo.</div></div></div>`,
+    serhumano:`<div class="content-block"><h4>Antropología: Unidad de Alma y Cuerpo</h4><p>Frente al dualismo de Platón, Aristóteles defiende la unidad del ser humano. El alma es la forma del cuerpo, su principio vital. No puede existir separada del cuerpo (excepto el entendimiento agente). El ser humano es un animal racional y político por naturaleza (zoon politikon).</p></div>`,
+    etica:`<div class="content-block"><h4>Ética de la Eudaimonia</h4><p>La ética aristotélica es teleológica y eudaimonista. El fin último del ser humano es la felicidad (eudaimonia), que consiste en la actividad del alma según la virtud, y especialmente según la virtud más elevada: la contemplación (theoria).</p></div><div class="content-block"><h4>Las Virtudes y el Término Medio</h4><p>La virtud ética (arete) es un hábito adquirido que consiste en el término medio entre el exceso y el defecto. Ejemplo: el valor es el término medio entre la temeridad y la cobardía. La prudencia (fronesis) es la virtud intelectual que nos permite encontrar ese término medio.</p></div><div class="content-block"><h4>Política</h4><p>El ser humano es un animal político por naturaleza. La ciudad (polis) es anterior al individuo: solo en ella se puede realizar plenamente. Aristóteles clasifica los regímenes políticos en rectos (monarquía, aristocracia, politeia) y desviados (tiranía, oligarquía, democracia). La democracia moderada (politeia) es el mejor régimen práctico.</p></div>`,
+    conceptos:`<div class="concept-grid"><div class="concept-item"><div class="concept-term">Sustancia (ousia)</div><div class="concept-def">Lo que existe por sí mismo, de forma independiente. La sustancia individual concreta es la realidad primaria.</div></div><div class="concept-item"><div class="concept-term">Eudaimonia</div><div class="concept-def">Felicidad o florecimiento humano. Fin último de la vida humana. Actividad del alma conforme a la virtud excelente.</div></div><div class="concept-item"><div class="concept-term">Fronesis</div><div class="concept-def">Prudencia. Virtud intelectual práctica que permite deliberar correctamente sobre lo bueno para uno y para la comunidad.</div></div><div class="concept-item"><div class="concept-term">Télos</div><div class="concept-def">Fin o finalidad. Todo ente natural tiene un fin hacia el que tiende por su propia naturaleza (teleología).</div></div></div>`,
+    resumen:`<div class="content-block"><h4>📄 Resumen de una página — Aristóteles</h4><p><strong>Vida:</strong> (384–322 a.C.) Discípulo de Platón, tutor de Alejandro Magno, fundador del Liceo. Sus obras abarcan lógica, metafísica, física, biología, ética y política.</p><p style="margin-top:0.75rem"><strong>Crítica a Platón:</strong> Los universales no existen separados de las cosas. La verdadera realidad es la sustancia individual concreta.</p><p style="margin-top:0.75rem"><strong>Metafísica:</strong> Hilemorfismo (materia-forma), acto-potencia y las cuatro causas explican la realidad y el cambio. El Motor Inmóvil es el fundamento del cosmos.</p><p style="margin-top:0.75rem"><strong>Conocimiento:</strong> Parte de la experiencia sensible. Los universales se abstraen de las cosas singulares. Inventa la lógica formal y el silogismo.</p><p style="margin-top:0.75rem"><strong>Ética:</strong> Eudaimonia como fin. Virtud como término medio adquirido por hábito. La prudencia (fronesis) como virtud rectora de la vida práctica.</p><p style="margin-top:0.75rem"><strong>Política:</strong> Ser humano como animal político. La polis como comunidad natural. Politeia como mejor régimen práctico.</p></div>`,
+    pau:`<div class="content-block"><h4>Preguntas Tipo PAU — Aristóteles</h4></div><div class="banco-item" style="cursor:default"><div class="banco-q">Define los términos <em>eudaimonia</em> y <em>virtud</em> en el pensamiento de Aristóteles. [Orientación PAU]</div></div><div class="banco-item" style="cursor:default;margin-top:0.75rem"><div class="banco-q">Explica la crítica de Aristóteles a la teoría de las Ideas de Platón. [PAU Andalucía 2021]</div></div>`,
+    comentario:`<div class="content-block"><h4>Comentario de Texto — Aristóteles (Orientación)</h4><p style="font-size:0.875rem;color:var(--text2)">Para los comentarios de Aristóteles, aplica el mismo esquema: definir términos técnicos (ousia, eudaimonia, polis...), exponer la idea central del fragmento relacionándola con su metafísica o ética, y relacionar con Platón como contraste o con filósofos modernos.</p></div>`
+  },
+  {
+    id:'descartes', nombre:'René Descartes', fechas:'1596–1650', era:'Moderna', periodo:'moderna',
+    desc:'Padre del racionalismo moderno y de la filosofía moderna. Su método de la duda y el cogito inauguran una nueva forma de hacer filosofía.',
+    tags:['Racionalismo','Método','Dualismo'],
+    progreso:40,
+    contexto:`<div class="content-block"><h4>Contexto: La Revolución Científica</h4><p>Descartes (1596–1650) vive en plena Revolución Científica. Galileo, Kepler y Newton están transformando la imagen del cosmos. El problema de los fundamentos del conocimiento científico se vuelve urgente. Descartes quiere construir una filosofía tan sólida como las matemáticas, capaz de fundamentar la nueva ciencia.</p></div>`,
+    conocimiento:`<div class="content-block"><h4>El Método y la Duda Metódica</h4><p>Descartes propone un método basado en cuatro reglas: evidencia, análisis, síntesis y enumeración. Para encontrar un fundamento indudable, aplica la duda metódica: duda de todo lo que pueda ponerse en duda (sentidos, mundo exterior, incluso las matemáticas mediante el «genio maligno»).</p></div><div class="content-block"><h4>El Cogito — Primera Certeza</h4><p>Al dudar de todo, Descartes descubre que no puede dudar de que está dudando, es decir, que está pensando: «pienso, luego existo» (cogito ergo sum). El cogito es la primera verdad indubitada, un punto de Arquímedes para reconstruir el conocimiento.</p></div>`,
+    realidad:`<div class="content-block"><h4>Dualismo de Sustancias</h4><p>A partir del cogito, Descartes demuestra la existencia de Dios (por el argumento ontológico y cosmológico) y, a través de la veracidad divina, la existencia del mundo exterior. Establece tres sustancias: res cogitans (sustancia pensante: el yo), res extensa (sustancia extensa: los cuerpos) y Dios (sustancia infinita).</p></div>`,
+    serhumano:`<div class="content-block"><h4>El Ser Humano: Unión de Alma y Cuerpo</h4><p>El ser humano es la unión problemática de res cogitans y res extensa. El alma y el cuerpo son sustancias radicalmente distintas que interactúan a través de la glándula pineal. Esta unión substancial genera problemas que la filosofía posterior intentará resolver (Malebranche, Spinoza, Leibniz).</p></div>`,
+    etica:`<div class="content-block"><h4>Moral Provisional y Dominio de las Pasiones</h4><p>Descartes propone una «moral provisional» para vivir mientras elabora su filosofía definitiva. Su ética aspira al dominio de las pasiones mediante la razón. En el Tratado de las pasiones elabora una psicología de las emociones.</p></div>`,
+    conceptos:`<div class="concept-grid"><div class="concept-item"><div class="concept-term">Cogito ergo sum</div><div class="concept-def">«Pienso, luego existo». Primera verdad indubitada. El acto de pensar prueba la existencia del yo pensante.</div></div><div class="concept-item"><div class="concept-term">Duda metódica</div><div class="concept-def">Procedimiento metodológico de dudar de todo lo que admite la menor duda para encontrar verdades absolutamente ciertas.</div></div><div class="concept-item"><div class="concept-term">Res cogitans / extensa</div><div class="concept-def">Sustancia pensante (mente/alma) y sustancia extensa (cuerpo/materia). Dualismo radical cartesiano.</div></div><div class="concept-item"><div class="concept-term">Ideas innatas</div><div class="concept-def">Ideas que no provienen de la experiencia sino que están impresas en el alma: Dios, yo, extensión. Base del racionalismo.</div></div></div>`,
+    resumen:`<div class="content-block"><h4>📄 Resumen — Descartes</h4><p>Descartes inicia la filosofía moderna con su método de la duda. Aplica la duda metódica para encontrar certezas absolutas. El cogito (pienso, luego existo) es la primera verdad. Demuestra a Dios y el mundo exterior. Establece el dualismo res cogitans / res extensa. Funda el racionalismo: el conocimiento verdadero proviene de la razón, no de los sentidos. Las ideas innatas (Dios, extensión, yo) son el fundamento del conocimiento racional.</p></div>`,
+    pau:`<div class="content-block"><h4>Preguntas PAU — Descartes</h4></div><div class="banco-item" style="cursor:default"><div class="banco-q">Define los términos <em>cogito</em> y <em>duda metódica</em>. Expón el método cartesiano.</div></div>`,
+    comentario:`<div class="content-block"><h4>Orientación de Comentario — Descartes</h4><p style="font-size:0.875rem;color:var(--text2)">Los textos de Descartes suelen ser de las Meditaciones Metafísicas o el Discurso del Método. Localiza el cogito, la duda, las sustancias y su demostración de Dios. Relaciona con Hume (empirismo como crítica al racionalismo) o con Kant (intento de síntesis).</p></div>`
+  },
+  {
+    id:'hume', nombre:'David Hume', fechas:'1711–1776', era:'Moderna', periodo:'moderna',
+    desc:'Máximo exponente del empirismo moderno y del escepticismo filosófico. Crítico radical del racionalismo, la metafísica y la religión natural.',
+    tags:['Empirismo','Escepticismo','Causalidad'],
+    progreso:55,
+    contexto:`<div class="content-block"><h4>Contexto: La Ilustración Escocesa</h4><p>Hume (1711–1776) es el gran filósofo escocés de la Ilustración. Su pensamiento supone la radicalización del empirismo de Locke y Berkeley hasta posiciones escépticas que «despertaron a Kant de su sueño dogmático».</p></div>`,
+    conocimiento:`<div class="content-block"><h4>El Origen del Conocimiento: Impresiones e Ideas</h4><p>Todo conocimiento deriva de la experiencia. Los contenidos mentales son: impresiones (percepciones directas, vivas) e ideas (copias debilitadas de las impresiones). No hay ideas innatas. Si una idea no puede rastrearse hasta una impresión, carece de significado.</p></div><div class="content-block"><h4>Crítica a la Causalidad</h4><p>La relación causa-efecto no se percibe: solo vemos conjunción constante de fenómenos. La idea de necesidad causal es una creencia (belief) fruto del hábito, no del razonamiento. Esta crítica impactó profundamente a Kant.</p></div>`,
+    realidad:`<div class="content-block"><h4>Escepticismo y Límites del Conocimiento</h4><p>Hume aplica el principio empirista a la metafísica y destruye sus pretensiones. No podemos conocer la sustancia, el yo como entidad permanente, ni la existencia de Dios mediante la razón. El yo no es más que un haz de percepciones sin sujeto permanente.</p></div>`,
+    serhumano:`<div class="content-block"><h4>El Bundle Theory del Yo</h4><p>No hay un yo sustancial: cuando introspeccionamos, solo encontramos percepciones cambiantes. El yo es solo un haz o colección de percepciones.</p></div>`,
+    etica:`<div class="content-block"><h4>Ética del Sentimiento</h4><p>La razón es esclava de las pasiones (reason is the slave of the passions). Los juicios morales no son juicios racionales sino expresiones de sentimientos de aprobación o desaprobación. La simpatía (sympathy) es el fundamento del juicio moral.</p></div>`,
+    conceptos:`<div class="concept-grid"><div class="concept-item"><div class="concept-term">Impresiones</div><div class="concept-def">Percepciones directas, vivas e inmediatas de la experiencia. Son el origen de todo conocimiento.</div></div><div class="concept-item"><div class="concept-term">Ideas</div><div class="concept-def">Copias debilitadas de las impresiones. Solo son válidas si se rastrean hasta una impresión origen.</div></div><div class="concept-item"><div class="concept-term">Conjunción constante</div><div class="concept-def">Lo que realmente observamos: que A siempre ha sido seguido de B. No vemos la necesidad causal, solo la regularidad.</div></div><div class="concept-item"><div class="concept-term">Creencia (Belief)</div><div class="concept-def">La idea de causalidad es una creencia formada por el hábito de observar conjunciones constantes, no un conocimiento racional.</div></div></div>`,
+    resumen:`<div class="content-block"><h4>📄 Resumen — Hume</h4><p>Hume radicaliza el empirismo. Todo conocimiento proviene de la experiencia (impresiones). No hay ideas innatas. Critica la causalidad: solo vemos conjunción constante, no necesidad. El yo es un haz de percepciones. La metafísica, la teología y el yo sustancial carecen de fundamento empírico. La moral se basa en el sentimiento, no en la razón.</p></div>`,
+    pau:`<div class="content-block"><h4>Preguntas PAU — Hume</h4></div><div class="banco-item" style="cursor:default"><div class="banco-q">Explica la crítica de Hume al concepto de causalidad. ¿Qué consecuencias tiene para la metafísica?</div></div>`,
+    comentario:`<div class="content-block"><h4>Orientación — Hume</h4><p style="font-size:0.875rem;color:var(--text2)">En los comentarios de Hume busca siempre: impresiones/ideas, crítica a la causalidad, escepticismo sobre el yo y Dios. Relaciona con Descartes (racionalismo vs empirismo) y con Kant (quien intenta superar el escepticismo humeano).</p></div>`
+  },
+  {
+    id:'kant', nombre:'Immanuel Kant', fechas:'1724–1804', era:'Moderna', periodo:'moderna',
+    desc:'El mayor filósofo de la Modernidad. Su "giro copernicano" sintetizó racionalismo y empirismo, fundó la ética deontológica y la filosofía política liberal.',
+    tags:['Criticismo','Imperativo','Ilustración'],
+    progreso:70,
+    contexto:`<div class="content-block"><h4>Contexto: La Ilustración Alemana</h4><p>Kant (1724–1804) es el filósofo de la Ilustración por excelencia. Su filosofía crítica es una respuesta tanto al dogmatismo racionalista (Descartes, Leibniz) como al escepticismo empirista (Hume). Sapere aude: «Atrévete a saber», es el lema de la Ilustración que él define.</p></div>`,
+    conocimiento:`<div class="content-block"><h4>El Giro Copernicano</h4><p>No es el conocimiento el que se adapta a los objetos, sino los objetos los que se adaptan a las formas del conocimiento (giro copernicano). El sujeto impone sus formas a priori a la experiencia. La síntesis entre intuiciones (sensibilidad) y conceptos (entendimiento) produce el conocimiento.</p></div><div class="content-block"><h4>Estructura del Conocimiento</h4><ul><li><strong>Sensibilidad</strong> — Formas a priori: espacio y tiempo. Intuiciones puras.</li><li><strong>Entendimiento</strong> — Doce categorías a priori (causalidad, substancia...). Conceptos puros.</li><li><strong>Razón</strong> — Ideas de alma, mundo y Dios. Buscan lo incondicionado pero caen en antinomias.</li></ul></div>`,
+    realidad:`<div class="content-block"><h4>Fenómeno y Noúmeno</h4><p>Conocemos los fenómenos (las cosas tal como se nos aparecen, filtradas por nuestras formas a priori), no los noúmenos (la cosa en sí, como es en sí misma). La metafísica tradicional fracasa porque pretende conocer lo que está más allá de la experiencia posible.</p></div>`,
+    serhumano:`<div class="content-block"><h4>El Ser Humano como Fin en sí mismo</h4><p>El ser humano es un ser racional y autónomo. Como ser racional pertenece al mundo inteligible de la libertad; como ser sensible al mundo natural. La dignidad humana consiste en ser fin en sí mismo y nunca solo medio.</p></div>`,
+    etica:`<div class="content-block"><h4>Ética Deontológica: El Imperativo Categórico</h4><p>La ética de Kant es formal y racional. El criterio moral no son las consecuencias sino la forma de la máxima de la acción. El imperativo categórico tiene tres formulaciones principales:</p><ul><li><strong>Universal:</strong> «Obra solo según la máxima que puedas querer que se convierta en ley universal»</li><li><strong>Humanidad:</strong> «Obra de tal modo que trates la humanidad siempre como fin, nunca solo como medio»</li><li><strong>Autonomía:</strong> «Obra como si fueras legislador en el reino de los fines»</li></ul></div><div class="content-block"><h4>Filosofía Política: La Paz Perpetua</h4><p>En Sobre la paz perpetua (1795), Kant defiende una federación de estados republicanos como condición para la paz duradera. Funda el cosmopolitismo moderno y el liberalismo político.</p></div>`,
+    conceptos:`<div class="concept-grid"><div class="concept-item"><div class="concept-term">Imperativo categórico</div><div class="concept-def">Mandato moral incondicional y universal de la razón práctica. Se opone al imperativo hipotético que depende de fines.</div></div><div class="concept-item"><div class="concept-term">A priori / A posteriori</div><div class="concept-def">A priori: conocimiento independiente de la experiencia. A posteriori: derivado de la experiencia. Los juicios sintéticos a priori son la clave de la ciencia.</div></div><div class="concept-item"><div class="concept-term">Autonomía</div><div class="concept-def">Capacidad de la voluntad racional de darse a sí misma la ley moral. Fundamento de la dignidad humana.</div></div><div class="concept-item"><div class="concept-term">Noúmeno / Fenómeno</div><div class="concept-def">Fenómeno: la cosa tal como se nos aparece. Noúmeno: la cosa en sí, incognoscible por nuestra razón teórica.</div></div></div>`,
+    resumen:`<div class="content-block"><h4>📄 Resumen — Kant</h4><p>Kant sintetiza racionalismo y empirismo. El conocimiento resulta de la síntesis de intuiciones (espacio y tiempo) y categorías del entendimiento. Solo conocemos fenómenos, no noúmenos. La metafísica no es ciencia. La ética es formal: el imperativo categórico es la ley moral universal e incondicional. El ser humano es autónomo y fin en sí mismo. La política ideal es una federación de repúblicas que garantice la paz perpetua.</p></div>`,
+    pau:`<div class="content-block"><h4>Preguntas PAU — Kant</h4></div><div class="banco-item" style="cursor:default"><div class="banco-q">Explica el imperativo categórico de Kant. ¿En qué se diferencia del imperativo hipotético?</div></div><div class="banco-item" style="cursor:default;margin-top:0.75rem"><div class="banco-q">Explica la distinción kantiana entre fenómeno y noúmeno. ¿Qué consecuencias tiene para la metafísica?</div></div>`,
+    comentario:`<div class="content-block"><h4>Orientación — Kant</h4><p style="font-size:0.875rem;color:var(--text2)">En comentarios de Kant: identifica si el texto pertenece a la Crítica de la Razón Pura (gnoseología) o a la Fundamentación de la Metafísica de las Costumbres (ética). Busca las palabras clave: a priori, imperativo, autonomía, fenómeno, noúmeno.</p></div>`
+  },
+  {
+    id:'nietzsche', nombre:'Friedrich Nietzsche', fechas:'1844–1900', era:'Contemporánea', periodo:'contemporanea',
+    desc:'Filósofo vitalista y crítico radical de la tradición occidental. Proclamó la muerte de Dios, el nihilismo y la voluntad de poder como filosofía de la vida.',
+    tags:['Vitalismo','Nihilismo','Crítica'],
+    progreso:45,
+    contexto:`<div class="content-block"><h4>Contexto: La Crisis de la Modernidad</h4><p>Nietzsche (1844–1900) vive en la segunda mitad del siglo XIX, en pleno auge del positivismo y el materialismo. Su filosofía es una crítica radical de toda la tradición occidental: Platón, el cristianismo, Kant y la moral racionalista. Se lo considera el primer gran filósofo de la posmodernidad.</p></div>`,
+    conocimiento:`<div class="content-block"><h4>Perspectivismo</h4><p>No existe la verdad objetiva: toda verdad es una perspectiva, una interpretación desde un punto de vista vital. Los conceptos son metáforas que hemos olvidado que son metáforas. La ciencia y la metafísica son ficciones útiles, no verdades absolutas.</p></div>`,
+    realidad:`<div class="content-block"><h4>Voluntad de Poder y Eterno Retorno</h4><p>La realidad es voluntad de poder (Wille zur Macht): impulso de vida, creatividad y superación. El eterno retorno es la idea de que todo vuelve a repetirse infinitamente: el gran experimento ético que te pregunta si vivirías tu vida igual si supieras que vas a repetirla eternamente.</p></div>`,
+    serhumano:`<div class="content-block"><h4>El Superhombre (Übermensch)</h4><p>El superhombre es el ser humano que ha superado la moral del rebaño, que crea sus propios valores más allá del bien y del mal, que dice sí a la vida. No es el hombre fuerte o el dominador: es el creador de nuevos valores tras la muerte de Dios.</p></div>`,
+    etica:`<div class="content-block"><h4>Crítica a la Moral y Muerte de Dios</h4><p>«Dios ha muerto» (El gayo saber): ya no podemos apoyarnos en los valores absolutos trascendentes. La moral cristiana es una moral de esclavos (resentimiento contra los fuertes). Nietzsche propone la transvaloración de todos los valores: reemplazar los valores nihilistas por valores vitales afirmativos.</p></div>`,
+    conceptos:`<div class="concept-grid"><div class="concept-item"><div class="concept-term">Voluntad de poder</div><div class="concept-def">Principio fundamental de la vida: impulso hacia el crecimiento, la creatividad y la superación. No es voluntad de dominar sino de crear.</div></div><div class="concept-item"><div class="concept-term">Nihilismo</div><div class="concept-def">Situación en que los valores supremos se desvalorizan. Europa enfrenta el nihilismo tras la muerte de Dios. Nietzsche quiere superarlo.</div></div><div class="concept-item"><div class="concept-term">Übermensch</div><div class="concept-def">Superhombre: ideal humano que crea sus propios valores, supera el nihilismo y dice sí a la vida con el amor fati.</div></div><div class="concept-item"><div class="concept-term">Amor fati</div><div class="concept-def">Amor al destino: aceptación y amor de todo lo que ocurre, incluyendo el sufrimiento, sin resentimiento.</div></div></div>`,
+    resumen:`<div class="content-block"><h4>📄 Resumen — Nietzsche</h4><p>Nietzsche critica toda la filosofía occidental (platonismo, cristianismo, racionalismo) como negación de la vida. «Dios ha muerto»: colapso de los valores absolutos. El nihilismo es la enfermedad de la modernidad. La voluntad de poder es el principio vital creador. El superhombre supera la moral del rebaño y crea nuevos valores. El eterno retorno es el gran experimento ético de la afirmación de la vida.</p></div>`,
+    pau:`<div class="content-block"><h4>Preguntas PAU — Nietzsche</h4></div><div class="banco-item" style="cursor:default"><div class="banco-q">Explica qué significa «la muerte de Dios» en Nietzsche y sus consecuencias filosóficas.</div></div>`,
+    comentario:`<div class="content-block"><h4>Orientación — Nietzsche</h4><p style="font-size:0.875rem;color:var(--text2)">Textos frecuentes: «Así habló Zaratustra», «Más allá del bien y del mal», «El Anticristo». Busca: voluntad de poder, nihilismo, moral de esclavos/señores, transvaloración. Relaciona con Marx (crítica social) o con Platón (la gran crítica al mundo de las Ideas y los valores absolutos).</p></div>`
+  }
+];
+
+const flashcardsData = [
+  {q:"¿Qué es la teoría de las Ideas de Platón?",a:"Las Ideas son esencias eternas, inmutables y perfectas que constituyen la verdadera realidad. El mundo sensible es copia imperfecta del mundo inteligible. El Bien es la Idea suprema."},
+  {q:"¿Qué es el Mito de la Caverna?",a:"Alegoría platónica que ilustra el ascenso del conocimiento. Los prisioneros ven sombras (doxa). El filósofo que sale al sol (noesis) contempla el Bien y debe regresar a gobernar."},
+  {q:"¿Qué significa el cogito cartesiano?",a:"«Pienso, luego existo» (cogito ergo sum). Es la primera certeza indubitable de Descartes: al dudar, piensa; al pensar, existe. Fundamento de toda su filosofía."},
+  {q:"¿Qué es el imperativo categórico de Kant?",a:"Mandato moral incondicional y universal: «Obra solo según la máxima que puedas querer que se convierta en ley universal». No depende de fines ni consecuencias."},
+  {q:"¿Qué crítica hace Hume a la causalidad?",a:"No percibimos la necesidad causal: solo vemos conjunción constante de eventos. La idea de causa es una creencia fruto del hábito, no del razonamiento racional."},
+  {q:"¿Qué es la voluntad de poder en Nietzsche?",a:"Principio fundamental de la vida: impulso creativo hacia el crecimiento y la superación. No es voluntad de dominar sino de crear y autoafirmarse vitalmente."},
+  {q:"¿Qué diferencia hay entre fenómeno y noúmeno en Kant?",a:"Fenómeno: la cosa tal como se nos aparece, filtrada por nuestras formas a priori. Noúmeno: la cosa en sí, tal como es en sí misma, que es incognoscible para nosotros."},
+  {q:"¿Qué es la anamnesis platónica?",a:"Teoría del conocimiento como reminiscencia o recuerdo. El alma, antes de encarnarse, contempló las Ideas. El aprendizaje es recuperar ese conocimiento olvidado al encarnarse."},
+  {q:"¿Qué es la eudaimonia aristotélica?",a:"La felicidad o florecimiento humano: el fin último de la vida. Consiste en la actividad del alma conforme a la virtud más excelente, realizada a lo largo de una vida completa."},
+  {q:"¿Qué es el hilemorfismo de Aristóteles?",a:"Toda sustancia está compuesta de materia (hyle: substrato potencial) y forma (morphe: principio activo que determina qué es la cosa). La forma es la esencia."},
+  {q:"¿Qué es la duda metódica de Descartes?",a:"Procedimiento metodológico de poner en duda todo aquello que admita la menor posibilidad de ser falso, para encontrar certezas absolutamente indubitables."},
+  {q:"¿Qué es el giro copernicano de Kant?",a:"Revolución epistemológica: no el conocimiento se adapta a los objetos, sino los objetos se adaptan a las formas del sujeto. El sujeto construye el conocimiento."},
+  {q:"¿Qué significa 'la muerte de Dios' en Nietzsche?",a:"No es una afirmación atea sino el diagnóstico de que la cultura occidental ya no puede apoyarse en los valores absolutos trascendentes. El nihilismo es la consecuencia."},
+  {q:"¿Qué es la res cogitans y la res extensa?",a:"Descartes distingue dos sustancias: res cogitans (sustancia pensante: la mente/alma) y res extensa (sustancia extensa: el cuerpo/materia). Son radicalmente distintas."},
+  {q:"¿Qué son las impresiones e ideas en Hume?",a:"Impresiones: percepciones directas, vivas e inmediatas. Ideas: copias debilitadas de las impresiones. Todo conocimiento debe rastrearse hasta una impresión original."},
+  {q:"¿Qué es el Übermensch nietzscheano?",a:"El superhombre: ideal del ser humano que supera la moral del rebaño, que crea sus propios valores tras la muerte de Dios y dice sí a la vida con amor fati."},
+  {q:"¿Qué es la virtud como término medio en Aristóteles?",a:"La virtud ética es el hábito de elegir el término medio entre el exceso y el defecto. Ej: el valor es el medio entre temeridad y cobardía. La prudencia nos permite encontrarlo."},
+  {q:"¿Qué es la autonomía moral en Kant?",a:"La capacidad de la voluntad racional de darse a sí misma la ley moral, sin depender de factores externos. Es el fundamento de la dignidad humana y la libertad."},
+  {q:"¿Qué es la dialéctica platónica?",a:"Método filosófico supremo de ascenso desde las hipótesis hacia el principio incondicionado (el Bien). Es el método propio del filósofo y el nivel más alto de conocimiento."},
+  {q:"¿Qué es el perspectivismo de Nietzsche?",a:"No existe la verdad objetiva y absoluta: toda verdad es una perspectiva, una interpretación desde un punto de vista vital. Los conceptos son metáforas olvidadas."}
+];
+
+const quizData = [
+  {
+    q:"Según Platón, ¿cuál es el nivel más alto de conocimiento en la teoría de la línea dividida?",
+    opts:["Pistis (creencia)","Eikasía (conjetura)","Noesis (intuición intelectual)","Dianoia (pensamiento discursivo)"],
+    correct:2,
+    exp:"La noesis es la intuición directa de las Ideas y en particular del Bien. Es el conocimiento filosófico supremo, el saber del filósofo-rey."
+  },
+  {
+    q:"¿Qué primera certeza descubrió Descartes tras aplicar la duda metódica?",
+    opts:["La existencia de Dios","La existencia del mundo exterior","Cogito ergo sum: 'Pienso, luego existo'","La inmortalidad del alma"],
+    correct:2,
+    exp:"Al dudar de todo, Descartes descubrió que no podía dudar de que estaba pensando. Este acto de pensar prueba su existencia como ser pensante."
+  },
+  {
+    q:"Según Kant, ¿cuál de estas afirmaciones describe correctamente el imperativo categórico?",
+    opts:["Si quieres ser feliz, obra moralmente","Obra de modo que maximices el bienestar general","Obra solo según la máxima que puedas querer que sea ley universal","Las consecuencias de tus actos determinan su valor moral"],
+    correct:2,
+    exp:"El imperativo categórico es incondicional (no depende de fines) y universal. Es la fórmula de la ley moral racional que se aplica a todos los seres racionales."
+  },
+  {
+    q:"¿Qué crítica fundamental hace Hume al concepto de causalidad?",
+    opts:["La causalidad es una Idea innata de la razón","Solo percibimos conjunción constante, no necesidad causal","La causalidad es una categoría a priori del entendimiento","La causa es siempre anterior al efecto en el tiempo"],
+    correct:1,
+    exp:"Hume muestra que jamás percibimos la 'fuerza' o 'necesidad' que une causa y efecto. Solo vemos que A siempre ha sido seguido de B. La idea de necesidad causal es solo un hábito mental."
+  },
+  {
+    q:"¿Qué concepto usa Aristóteles para explicar que el conocimiento parte de los sentidos?",
+    opts:["Anamnesis","Abstracción","Reminiscencia","Deducción"],
+    correct:1,
+    exp:"Para Aristóteles, el entendimiento abstrae los universales a partir de las percepciones sensibles. Se opone a la anamnesis platónica: no recordamos, sino que abstraemos de la experiencia."
+  }
+];
+
+const timelineData = [
+  {fecha:"427–347 a.C.",titulo:"Platón",desc:"Funda la Academia. Teoría de las Ideas, alegoría de la caverna, filosofía política de la República.",lado:"izq"},
+  {fecha:"384–322 a.C.",titulo:"Aristóteles",desc:"Funda el Liceo. Metafísica, lógica, ética y política empiristas. Crítica a Platón.",lado:"der"},
+  {fecha:"1596–1650",titulo:"Descartes",desc:"Padre del racionalismo moderno. El cogito como fundamento. Dualismo mente-cuerpo.",lado:"izq"},
+  {fecha:"1711–1776",titulo:"David Hume",desc:"Empirismo radical. Crítica a la causalidad, el yo y la metafísica. Despertar de Kant.",lado:"der"},
+  {fecha:"1724–1804",titulo:"Immanuel Kant",desc:"Giro copernicano. Síntesis racionalismo-empirismo. Imperativo categórico. Ilustración.",lado:"izq"},
+  {fecha:"1818–1883",titulo:"Karl Marx",desc:"Materialismo histórico. Alienación. Crítica al capitalismo. «Los filósofos solo han interpretado el mundo».",lado:"der"},
+  {fecha:"1844–1900",titulo:"Friedrich Nietzsche",desc:"Muerte de Dios. Nihilismo. Voluntad de poder. Übermensch. Eterno retorno.",lado:"izq"},
+  {fecha:"1883–1955",titulo:"Ortega y Gasset",desc:"Raciovitalismo. «Yo soy yo y mi circunstancia». Perspectivismo. La rebelión de las masas.",lado:"der"},
+  {fecha:"1929–",titulo:"Jürgen Habermas",desc:"Teoría de la acción comunicativa. Razón dialógica. Ética discursiva y democracia deliberativa.",lado:"izq"},
+  {fecha:"1921–2002",titulo:"John Rawls",desc:"Teoría de la justicia. Velo de ignorancia. Principios de justicia. Liberalismo político.",lado:"der"},
+];
+
+const bancoData = [
+  {autor:"Platón",año:"2022",tipo:"Definición",q:"Define los términos 'episteme' y 'doxa' en el pensamiento de Platón.",resp:"Episteme (conocimiento) es el saber cierto y fundamentado que versa sobre las Ideas eternas e inmutables: es el conocimiento verdadero que posee el filósofo. Doxa (opinión) es el conocimiento del mundo sensible, cambiante e imperfecto: no es conocimiento verdadero sino mera opinión sobre las apariencias. Para Platón, solo la episteme merece llamarse conocimiento."},
+  {autor:"Platón",año:"2021",tipo:"Comentario",q:"Expón la idea principal del texto sobre el Mito de la Caverna y relaciona con la filosofía platónica.",resp:"La idea principal es el contraste entre ignorancia (caverna, sombras, mundo sensible) y conocimiento verdadero (salida al sol, contemplación de las Ideas). Platón usa la alegoría para ilustrar: 1) Su teoría de los dos mundos (sensible/inteligible). 2) El proceso educativo dialéctico de ascenso hacia el Bien. 3) El deber del filósofo de gobernar aunque preferiría permanecer contemplando."},
+  {autor:"Platón",año:"2020",tipo:"Relación",q:"Relaciona el pensamiento de Platón con el de Aristóteles respecto a la realidad y el conocimiento.",resp:"Semejanzas: ambos buscan el conocimiento universal y necesario, y dan importancia a la razón. Diferencias: Para Platón las Ideas existen separadas del mundo sensible (dualismo ontológico), mientras que para Aristóteles la forma no existe separada de la materia (hilemorfismo). En gnoseología: Platón parte de las Ideas (racionalismo), Aristóteles parte de la experiencia sensible (empirismo incipiente). La sustancia primera para Aristóteles es el individuo concreto, no la Idea universal."},
+  {autor:"Descartes",año:"2019",tipo:"Definición",q:"Define 'duda metódica' y 'cogito' en el pensamiento de Descartes.",resp:"La duda metódica es el procedimiento filosófico de poner en duda todo lo que admita la menor posibilidad de ser falso, con el fin de encontrar certezas absolutas. No es una duda real sino un recurso metodológico. El cogito (cogito ergo sum: 'pienso, luego existo') es la primera certeza descubierta tras la duda: al dudar, pienso; al pensar, existo. Es el fundamento indubitado sobre el que Descartes construye toda su filosofía."},
+  {autor:"Kant",año:"2023",tipo:"Comentario",q:"Explica el imperativo categórico y relaciona con el pensamiento ético de Kant.",resp:"El imperativo categórico es el principio supremo de la ética kantiana: un mandato incondicional y universal de la razón práctica que se impone a todo ser racional independientemente de sus deseos o fines. Se formula como: 'Obra solo según la máxima que puedas querer que se convierta en ley universal'. Su base es la autonomía del ser racional y su dignidad como fin en sí mismo. Se opone al imperativo hipotético (si quieres X, haz Y) que es condicional y no moral."},
+  {autor:"Hume",año:"2021",tipo:"Relación",q:"Relaciona la crítica de Hume a la metafísica con el pensamiento de Descartes.",resp:"Descartes usa la razón para fundamentar la metafísica (existencia del yo, Dios, mundo exterior). Hume destruye estas pretensiones desde el empirismo: sin impresión sensible que la respalde, la idea carece de significado. No hay impresión del yo como sustancia permanente (solo haz de percepciones), ni de Dios como ser necesario, ni de la conexión necesaria causal. Hume critica precisamente el dogmatismo racionalista que Descartes representa."},
+  {autor:"Nietzsche",año:"2022",tipo:"Comentario",q:"Explica qué significa 'la muerte de Dios' en el pensamiento de Nietzsche y sus consecuencias.",resp:"«Dios ha muerto» (El gayo saber, parágrafo 125) no es simplemente una afirmación ateísta. Significa que la cultura occidental ha perdido la capacidad de creer en los valores absolutos trascendentes que habían fundamentado la moral y el sentido de la existencia. Las consecuencias son el nihilismo (¿qué vale algo si no hay valores absolutos?) y la necesidad de una transvaloración de todos los valores: crear nuevos valores vitales que sustituyan a los nihilistas. El superhombre es quien asume esta tarea creadora."},
+  {autor:"Marx",año:"2020",tipo:"Relación",q:"Relaciona el pensamiento de Marx con el de Hegel y explica el materialismo histórico.",resp:"Marx parte de Hegel pero lo invierte: mientras Hegel pone la dialéctica en el ámbito del Espíritu/Idea, Marx la lleva a la realidad material ('poner a Hegel de pie'). El materialismo histórico sostiene que son las condiciones materiales de producción (infraestructura económica) las que determinan la superestructura ideológica, jurídica y política. La historia es la historia de la lucha de clases: cada modo de producción genera sus propias clases antagónicas, hasta llegar al capitalismo (burguesía-proletariado) y su superación en el comunismo."},
+];
+
+// ===== RENDER AUTORES =====
+function renderAutores(filter='all') {
+  const grid = document.getElementById('autoresGrid');
+  grid.innerHTML = '';
+  autoresData.filter(a => filter==='all' || a.periodo===filter).forEach(autor => {
+    const card = document.createElement('div');
+    card.className = 'autor-card reveal';
+    card.innerHTML = `
+      <div class="autor-era">${autor.era}</div>
+      <div class="autor-name">${autor.nombre}</div>
+      <div class="autor-dates">${autor.fechas}</div>
+      <div class="autor-desc">${autor.desc}</div>
+      <div class="autor-tags">${autor.tags.map(t=>`<span class="tag tag-gold">${t}</span>`).join('')}</div>
+      <div class="autor-progress">
+        <div class="progress-bar"><div class="progress-fill" style="width:${autor.progreso}%"></div></div>
+        <span class="progress-label">${autor.progreso}%</span>
+      </div>
+    `;
+    card.addEventListener('click', () => openModal(autor));
+    grid.appendChild(card);
+  });
+  observeReveal();
+}
+
+// ===== MODAL =====
+function openModal(autor) {
+  document.getElementById('modalEra').textContent = autor.era;
+  document.getElementById('modalName').textContent = autor.nombre;
+  document.getElementById('modalDates').textContent = autor.fechas;
+  
+  const sectionMap = {
+    contexto: autor.contexto,
+    conocimiento: autor.conocimiento,
+    realidad: autor.realidad,
+    'ser-humano': autor.serhumano,
+    etica: autor.etica,
+    conceptos: autor.conceptos,
+    resumen: autor.resumen,
+    pau: autor.pau,
+    comentario: autor.comentario
+  };
+  
+  const body = document.getElementById('modalBody');
+  body.innerHTML = '';
+  Object.entries(sectionMap).forEach(([key, content]) => {
+    const div = document.createElement('div');
+    div.className = 'modal-section' + (key==='contexto'?' active':'');
+    div.dataset.section = key;
+    div.innerHTML = content;
+    body.appendChild(div);
+  });
+  
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  
+  document.querySelectorAll('.modal-nav-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.section==='contexto');
+  });
+}
+
+document.getElementById('modalClose').addEventListener('click', () => {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+});
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if(e.target===e.currentTarget){
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+document.querySelectorAll('.modal-nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.dataset.section;
+    document.querySelectorAll('.modal-nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.modal-section').forEach(s => {
+      s.classList.toggle('active', s.dataset.section===section);
+    });
+  });
+});
+
+// ===== TABS AUTORES =====
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAutores(btn.dataset.filter);
+  });
+});
+
+// ===== FLASHCARDS =====
+let fcIndex = 0;
+function updateFC() {
+  document.getElementById('fc-question').textContent = flashcardsData[fcIndex].q;
+  document.getElementById('fc-answer').textContent = flashcardsData[fcIndex].a;
+  document.getElementById('fcCount').textContent = `${fcIndex+1} / ${flashcardsData.length}`;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+document.getElementById('flashcard').addEventListener('click', () => {
+  document.getElementById('flashcard').classList.toggle('flipped');
+});
+document.getElementById('fcPrev').addEventListener('click', () => {
+  fcIndex = (fcIndex - 1 + flashcardsData.length) % flashcardsData.length;
+  updateFC();
+});
+document.getElementById('fcNext').addEventListener('click', () => {
+  fcIndex = (fcIndex + 1) % flashcardsData.length;
+  updateFC();
+});
+
+// ===== QUIZ =====
+function renderQuiz() {
+  const container = document.getElementById('quizContainer');
+  let html = '';
+  quizData.forEach((q, qi) => {
+    html += `<div class="quiz-question">
+      <div class="quiz-q-num">Pregunta ${qi+1} de ${quizData.length}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-options">
+        ${q.opts.map((opt, oi) => `
+          <button class="quiz-option" data-qi="${qi}" data-oi="${oi}" onclick="answerQuiz(this,${qi},${oi})">${opt}</button>
+        `).join('')}
+      </div>
+      <div class="quiz-explanation" id="exp-${qi}">${q.exp}</div>
+    </div>`;
+  });
+  html += `<div class="quiz-footer">
+    <button class="btn-primary" onclick="resetQuiz()">↺ Reiniciar test</button>
+    <div style="font-size:0.85rem;color:var(--text3)" id="quizProgress">0 / ${quizData.length} respondidas</div>
+  </div>
+  <div class="quiz-score" id="quizScore">
+    <div style="margin-bottom:0.5rem;font-size:0.85rem;color:var(--text3)">Puntuación final</div>
+    <div class="score-num" id="scoreNum">—</div>
+    <div style="font-size:0.9rem;color:var(--text2);margin-top:0.5rem" id="scoreFeedback"></div>
+  </div>`;
+  container.innerHTML = html;
+}
+let quizAnswers = {};
+function answerQuiz(btn, qi, oi) {
+  if(quizAnswers[qi] !== undefined) return;
+  quizAnswers[qi] = oi;
+  const opts = document.querySelectorAll(`[data-qi="${qi}"]`);
+  opts.forEach((o, i) => {
+    o.disabled = true;
+    if(i === quizData[qi].correct) o.classList.add('correct');
+    else if(i === oi) o.classList.add('wrong');
+  });
+  document.getElementById(`exp-${qi}`).classList.add('show');
+  const done = Object.keys(quizAnswers).length;
+  document.getElementById('quizProgress').textContent = `${done} / ${quizData.length} respondidas`;
+  if(done === quizData.length) {
+    const score = Object.entries(quizAnswers).filter(([qi,oi]) => Number(oi) === quizData[qi].correct).length;
+    const pct = Math.round(score/quizData.length*100);
+    document.getElementById('quizScore').classList.add('show');
+    document.getElementById('scoreNum').textContent = `${score}/${quizData.length}`;
+    document.getElementById('scoreFeedback').textContent = pct>=80 ? '¡Excelente! Estás preparado para la PAU 🎓' : pct>=60 ? 'Bien, pero repasa los temas fallados.' : 'Necesitas repasar más. ¡Tú puedes!';
+  }
+}
+function resetQuiz() {
+  quizAnswers = {};
+  renderQuiz();
+}
+
+// ===== CRONOLOGÍA =====
+function renderTimeline() {
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = timelineData.map((item, i) => `
+    <div class="timeline-item reveal">
+      ${item.lado==='izq' ? `
+        <div class="timeline-content">
+          <div class="timeline-date">${item.fecha}</div>
+          <div class="timeline-title">${item.titulo}</div>
+          <div class="timeline-desc">${item.desc}</div>
+        </div>
+        <div class="timeline-spacer"></div>
+      ` : `
+        <div class="timeline-spacer"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">${item.fecha}</div>
+          <div class="timeline-title">${item.titulo}</div>
+          <div class="timeline-desc">${item.desc}</div>
+        </div>
+      `}
+      <div class="timeline-dot"></div>
+    </div>
+  `).join('');
+}
+
+// ===== BANCO =====
+function renderBanco(items) {
+  const list = document.getElementById('bancoList');
+  list.innerHTML = items.map((item, i) => `
+    <div class="banco-item">
+      <div class="banco-meta">
+        <span class="tag tag-gold">${item.autor}</span>
+        <span class="tag tag-teal">${item.año}</span>
+        <span class="tag tag-blue">${item.tipo}</span>
+        <span class="banco-year"></span>
+      </div>
+      <div class="banco-q">${item.q}</div>
+      <button class="banco-answer-toggle" onclick="toggleBancoAnswer(this, 'banco-ans-${i}')">▸ Ver orientación de respuesta</button>
+      <div class="banco-answer" id="banco-ans-${i}">${item.resp}</div>
+    </div>
+  `).join('');
+}
+function toggleBancoAnswer(btn, id) {
+  const ans = document.getElementById(id);
+  const isOpen = ans.classList.toggle('show');
+  btn.textContent = isOpen ? '▾ Ocultar orientación' : '▸ Ver orientación de respuesta';
+}
+function filterBanco() {
+  const search = document.getElementById('bancoSearch').value.toLowerCase();
+  const filter = document.getElementById('bancoFilter').value;
+  const filtered = bancoData.filter(item => 
+    (filter==='all' || item.autor===filter) &&
+    (item.q.toLowerCase().includes(search) || item.autor.toLowerCase().includes(search) || item.resp.toLowerCase().includes(search))
+  );
+  renderBanco(filtered);
+}
+
+// ===== PROGRESO =====
+function renderProgreso() {
+  const list = document.getElementById('autorProgressList');
+  const progresos = autoresData.map(a => ({nombre:a.nombre,p:a.progreso}));
+  list.innerHTML = progresos.map(ap => `
+    <div class="apl-item">
+      <label>${ap.nombre} <span>${ap.p}%</span></label>
+      <div class="apl-bar"><div class="apl-fill" style="width:0%" data-width="${ap.p}%"></div></div>
+    </div>
+  `).join('');
+}
+
+// ===== EXAMEN TIMER =====
+let examRunning = false, examSeconds = 90*60, examInterval;
+document.getElementById('startExam').addEventListener('click', function() {
+  if(!examRunning) {
+    examRunning = true;
+    this.textContent = '⏸ Pausar';
+    examInterval = setInterval(() => {
+      examSeconds--;
+      const m = Math.floor(examSeconds/60), s = examSeconds%60;
+      const el = document.getElementById('examTimer');
+      el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      if(examSeconds <= 600) el.classList.add('warning');
+      if(examSeconds <= 0) { clearInterval(examInterval); el.textContent = '00:00'; submitExam(); }
+    }, 1000);
+  } else {
+    clearInterval(examInterval);
+    examRunning = false;
+    this.textContent = '▶ Reanudar';
+  }
+});
+
+function updateWC(id, text) {
+  const words = text.trim().split(/\s+/).filter(w=>w).length;
+  document.getElementById(id).textContent = `${words} palabras`;
+}
+
+function submitExam() {
+  clearInterval(examInterval);
+  examRunning = false;
+  const r1a = document.getElementById('resp1a').value.trim();
+  const r1b = document.getElementById('resp1b').value.trim();
+  const r1c = document.getElementById('resp1c').value.trim();
+  const r2a = document.getElementById('resp2a').value.trim();
+  const r2b = document.getElementById('resp2b').value.trim();
+  
+  let score = 0;
+  let feedback = [];
+  
+  if(r1a.length > 50) { score += 1.5; feedback.push({ok:true, msg:'1a: Buena extensión en las definiciones.'}) }
+  else { feedback.push({ok:false, msg:'1a: Las definiciones son demasiado cortas. Desarrolla más cada término.'}) }
+  
+  if(r1b.length > 80) { score += 1.5; feedback.push({ok:true, msg:'1b: Buena exposición de la idea principal.'}) }
+  else { feedback.push({ok:false, msg:'1b: Desarrolla más la idea principal y la estructura del texto.'}) }
+  
+  if(r1c.toLowerCase().includes('idea') || r1c.toLowerCase().includes('caverna') || r1c.toLowerCase().includes('conocimiento')) {
+    score += 2; feedback.push({ok:true, msg:'1c: Buen uso del vocabulario filosófico de Platón.'})
+  } else { feedback.push({ok:false, msg:'1c: Usa el vocabulario técnico de Platón: Ideas, mundo inteligible, episteme...'}) }
+  
+  if(r2a.length > 100) { score += 1.5; feedback.push({ok:true, msg:'2a: Buena relación con otro autor.'}) }
+  else { feedback.push({ok:false, msg:'2a: Desarrolla más la relación entre autores: semejanzas y diferencias.'}) }
+  
+  if(r2b.length > 80) { score += 1.5; feedback.push({ok:true, msg:'2b: Buena valoración personal.'}) }
+  else { feedback.push({ok:false, msg:'2b: Argumenta más tu valoración personal con ejemplos concretos.'}) }
+  
+  const fb = document.getElementById('examFeedback');
+  fb.style.display = 'block';
+  fb.innerHTML = `
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <h3 style="font-family:var(--font-display);font-size:1.25rem;margin-bottom:1rem">Resultado del Simulacro</h3>
+      <div style="font-family:var(--font-display);font-size:3rem;font-weight:900;color:var(--gold);margin-bottom:1rem">${score.toFixed(1)} / 10</div>
+      <div style="display:flex;flex-direction:column;gap:0.6rem">
+        ${feedback.map(f => `
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;font-size:0.875rem;padding:0.6rem 0.85rem;border-radius:8px;background:${f.ok?'var(--teal-dim)':'var(--red-dim)'};border:1px solid ${f.ok?'rgba(62,207,178,0.3)':'rgba(224,92,92,0.3)'}">
+            <span style="color:${f.ok?'var(--teal)':'var(--red)'};flex-shrink:0">${f.ok?'✓':'✗'}</span>
+            <span style="color:var(--text2)">${f.msg}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div style="margin-top:1.25rem;padding:1rem;background:var(--card2);border-radius:8px;font-size:0.85rem;color:var(--text2)">
+        <strong style="color:var(--gold)">💡 Consejo del profesor:</strong> Recuerda que en la PAU se valora especialmente el vocabulario filosófico preciso, la estructura clara de las respuestas y la argumentación coherente. Revisa las respuestas que han quedado incompletas.
+      </div>
+    </div>
+  `;
+  fb.scrollIntoView({behavior:'smooth'});
+}
+
+// ===== THEME =====
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const html = document.documentElement;
+  const isDark = html.dataset.theme === 'dark';
+  html.dataset.theme = isDark ? 'light' : 'dark';
+  document.getElementById('themeToggle').textContent = isDark ? '☀️' : '🌙';
+});
+
+// ===== HAMBURGER =====
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ===== REVEAL ON SCROLL =====
+function observeReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// Animate progress bars on scroll
+function animateProgressBars() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        e.target.querySelectorAll('.apl-fill[data-width]').forEach(bar => {
+          setTimeout(() => { bar.style.width = bar.dataset.width; }, 300);
+        });
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const progresoSection = document.getElementById('progreso');
+  if(progresoSection) observer.observe(progresoSection);
+}
+
+// ===== EXÁMENES AÑOS ANTERIORES =====
+const examenesData = [
+  {año:"2025",autor:"Platón / Marx",opcionA:"Platón — República",opcionB:"Marx — Manuscritos Económico-Filosóficos",
+   corrA:"Texto sobre la alegoría de la caverna. Términos: sombras (mundo sensible/doxa), sol (Idea del Bien/noesis). Idea principal: el ascenso filosófico del conocimiento. Relacionar con Aristóteles: crítica al mundo inteligible separado.",
+   corrB:"Texto sobre la alienación del trabajo. Términos: alienación (el trabajador se separa del producto y de su esencia humana), trabajo (actividad creadora esencial del ser humano). Relacionar con Hegel: Marx invierte la dialéctica idealista.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2024",autor:"Kant / Nietzsche",opcionA:"Kant — Crítica de la Razón Práctica",opcionB:"Nietzsche — Más allá del bien y del mal",
+   corrA:"Texto sobre la autonomía moral y el deber. Términos: autonomía (darse la ley a uno mismo), deber (necesidad de actuar por respeto a la ley moral). Relacionar con Hume: razón vs sentimiento como base moral.",
+   corrB:"Texto sobre la voluntad de poder y la moral de esclavos. Términos: voluntad de poder, resentimiento, moral del rebaño. Relacionar con Platón: crítica a los valores absolutos del mundo inteligible.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2023",autor:"Descartes / Hume",opcionA:"Descartes — Meditaciones Metafísicas",opcionB:"Hume — Investigación sobre el entendimiento humano",
+   corrA:"Texto sobre la duda metódica y el cogito. Términos: duda metódica, cogito, res cogitans. Relacionar con Platón: ambos priorizan el conocimiento racional sobre el sensible.",
+   corrB:"Texto sobre la causalidad y el hábito. Términos: impresión, idea, conjunción constante. Relacionar con Descartes: empirismo vs racionalismo, crítica a las ideas innatas.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2022",autor:"Platón / Nietzsche",opcionA:"Platón — República (Libro IV)",opcionB:"Nietzsche — El nacimiento de la tragedia",
+   corrA:"Texto sobre las partes del alma y la justicia. Términos: alma racional, justicia, virtud. Relacionar con Aristóteles: virtud como término medio vs virtud como armonía del alma.",
+   corrB:"Texto sobre lo apolíneo y lo dionisíaco. Términos: dionisíaco (impulso vital, caos), apolíneo (orden, forma, apariencia). Relacionar con Platón: crítica a la supremacía de la razón.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2021",autor:"Aristóteles / Kant",opcionA:"Aristóteles — Ética a Nicómaco",opcionB:"Kant — Fundamentación de la Metafísica de las Costumbres",
+   corrA:"Texto sobre la eudaimonia y la virtud. Términos: eudaimonia, virtud, término medio. Relacionar con Platón: eudaimonia vs mundo de las Ideas como fin.",
+   corrB:"Texto sobre el imperativo categórico. Términos: imperativo categórico, máxima, deber. Relacionar con Aristóteles: ética deontológica vs ética teleológica.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2020",autor:"Platón / Marx",opcionA:"Platón — Fedón",opcionB:"Marx — La ideología alemana",
+   corrA:"Texto sobre la inmortalidad del alma. Términos: alma, cuerpo, anamnesis. Relacionar con Aristóteles: alma como forma del cuerpo vs alma inmortal y separada.",
+   corrB:"Texto sobre la conciencia y las condiciones materiales. Términos: infraestructura, superestructura, ideología. Relacionar con Hegel: materialismo vs idealismo.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2019",autor:"Descartes / Nietzsche",opcionA:"Descartes — Discurso del Método",opcionB:"Nietzsche — Así habló Zaratustra",
+   corrA:"Texto sobre las reglas del método. Términos: evidencia, análisis, síntesis. Relacionar con Hume: método racional vs método empírico.",
+   corrB:"Texto sobre el superhombre y la superación del hombre. Términos: superhombre, voluntad de poder, eterno retorno. Relacionar con Kant: creación de valores vs universalidad moral.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2018",autor:"Platón / Hume",opcionA:"Platón — El Banquete (Eros filosófico)",opcionB:"Hume — Tratado de la naturaleza humana",
+   corrA:"Texto sobre Eros y el ascenso hacia la Belleza. Términos: eros, belleza, Bien. Relacionar con Aristóteles: amor como impulso vs amor como hábito y amistad.",
+   corrB:"Texto sobre el yo y el haz de percepciones. Términos: impresión, yo, haz de percepciones. Relacionar con Descartes: res cogitans vs yo como ficción útil.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2017",autor:"Aristóteles / Marx",opcionA:"Aristóteles — Política",opcionB:"Marx — El Capital",
+   corrA:"Texto sobre el ser humano como animal político. Términos: polis, animal político, bien común. Relacionar con Platón: ciudad ideal vs ciudad natural.",
+   corrB:"Texto sobre el fetichismo de la mercancía. Términos: mercancía, plusvalía, fetichismo. Relacionar con Nietzsche: crítica a la sociedad burguesa desde distintos ángulos.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2016",autor:"Kant / Platón",opcionA:"Kant — Crítica de la Razón Pura",opcionB:"Platón — República (Libro VII, Caverna)",
+   corrA:"Texto sobre el giro copernicano y los juicios sintéticos a priori. Términos: a priori, síntesis, fenómeno. Relacionar con Hume: respuesta al escepticismo.",
+   corrB:"Texto sobre el mito de la caverna. Términos: caverna, sol, prisionero. Relacionar con Descartes: ascenso al conocimiento verdadero vs duda metódica.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+  {año:"2015",autor:"Hume / Nietzsche",opcionA:"Hume — Investigación sobre el entendimiento humano",opcionB:"Nietzsche — La Gaya Ciencia",
+   corrA:"Texto sobre el escepticismo y los límites de la razón. Términos: razón, creencia, costumbre. Relacionar con Kant: escepticismo humeano como punto de partida.",
+   corrB:"Texto sobre la muerte de Dios y el nihilismo. Términos: muerte de Dios, nihilismo, transvaloración. Relacionar con Platón: destrucción del mundo de los valores absolutos.",
+   url:"https://www.juntadeandalucia.es/educacion/portals/web/evaluacion-e-informes/pau"},
+];
+
+function toggleExamen(id, btn) {
+  const el = document.getElementById(id);
+  const isOpen = el.style.display === 'block';
+  el.style.display = isOpen ? 'none' : 'block';
+  btn.textContent = isOpen ? 'Ver corrección completa ↓' : 'Ocultar corrección ↑';
+}
+
+function renderExamenes() {
+  const grid = document.getElementById('examenesGrid');
+  if(!grid) return;
+  grid.innerHTML = examenesData.map((ex, i) => `
+    <div class="autor-card reveal" style="cursor:default">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem">
+        <div style="font-family:var(--font-display);font-size:1.75rem;font-weight:900;color:var(--gold)">${ex.año}</div>
+        <span class="tag tag-teal">Corregido</span>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text3);margin-bottom:0.85rem;font-family:var(--font-mono)">${ex.autor}</div>
+      <div style="font-size:0.82rem;color:var(--text2);margin-bottom:0.5rem"><strong style="color:var(--gold)">Opción A:</strong> ${ex.opcionA}</div>
+      <div style="font-size:0.82rem;color:var(--text2);margin-bottom:1rem"><strong style="color:var(--teal)">Opción B:</strong> ${ex.opcionB}</div>
+      <div id="corr-${i}" style="display:none">
+        <div style="background:var(--bg3);border-radius:8px;padding:0.85rem;margin-bottom:0.75rem;border-left:3px solid var(--gold)">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--gold);margin-bottom:0.4rem">ORIENTACIÓN OPCIÓN A</div>
+          <p style="font-size:0.8rem;color:var(--text2);line-height:1.6">${ex.corrA}</p>
+        </div>
+        <div style="background:var(--bg3);border-radius:8px;padding:0.85rem;margin-bottom:0.85rem;border-left:3px solid var(--teal)">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--teal);margin-bottom:0.4rem">ORIENTACIÓN OPCIÓN B</div>
+          <p style="font-size:0.8rem;color:var(--text2);line-height:1.6">${ex.corrB}</p>
+        </div>
+        <a href="${ex.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--gold);font-weight:600">
+          📄 Examen oficial PDF →
+        </a>
+      </div>
+      <button onclick="toggleExamen('corr-${i}',this)" style="background:var(--card2);border:1px solid var(--border);color:var(--text2);padding:0.5rem 1rem;border-radius:var(--radius-sm);font-size:0.8rem;font-weight:600;cursor:pointer;width:100%;margin-top:0.25rem;transition:all 0.25s">Ver orientación ↓</button>
+    </div>
+  `).join('');
+  observeReveal();
+}
+
+// ===== INIT =====
+renderAutores();
+renderQuiz();
+renderTimeline();
+renderBanco(bancoData);
+renderProgreso();
+renderExamenes();
+observeReveal();
+animateProgressBars();
+
+// Radial chart animation
+setTimeout(() => {
+  const fill = document.getElementById('radialFill');
+  if(fill) fill.style.strokeDashoffset = 314 * (1 - 0.30);
+}, 500);
+</script>
+</body>
+</html>
