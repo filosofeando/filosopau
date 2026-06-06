@@ -479,6 +479,9 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
     <a href="#podcasts">Podcasts</a>
     <a href="#libros">Libros</a>
     <a href="#progreso">Progreso</a>
+    <a href="#logros">🏆 Logros</a>
+    <a href="#ia-correctora">🤖 IA</a>
+    <a href="#comparador">⚖️ Comparar</a>
     <a href="#sugerencias">💬 Sugerencias</a>
     <a href="#premium" class="nav-premium" style="border-radius:var(--radius-sm);padding:0.35rem 0.85rem">✦ Premium</a>
   </div>
@@ -805,6 +808,46 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
           <div class="compare-row"><strong>Ser Humano</strong>Ser racional y autónomo; fin en sí mismo</div>
           <div class="compare-row"><strong>Ética</strong>Imperativo categórico; deber moral universal</div>
           <div class="compare-row"><strong>Política</strong>Paz perpetua; federación de estados republicanos</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header"><div class="compare-author">Descartes</div><div class="compare-dates">1596–1650</div></div>
+        <div>
+          <div class="compare-row"><strong>Realidad</strong>Dualismo: res cogitans (mente) y res extensa (materia)</div>
+          <div class="compare-row"><strong>Conocimiento</strong>Razón + ideas innatas; duda metódica como método</div>
+          <div class="compare-row"><strong>Ser Humano</strong>Unión de mente y cuerpo; cogito como primera certeza</div>
+          <div class="compare-row"><strong>Ética</strong>Moral provisional; dominio de las pasiones por la razón</div>
+          <div class="compare-row"><strong>Dios</strong>Garantía del conocimiento verdadero; prueba ontológica</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header"><div class="compare-author">Hume</div><div class="compare-dates">1711–1776</div></div>
+        <div>
+          <div class="compare-row"><strong>Realidad</strong>Solo podemos conocer impresiones e ideas derivadas de ellas</div>
+          <div class="compare-row"><strong>Conocimiento</strong>Empirismo radical; la causalidad es hábito, no necesidad</div>
+          <div class="compare-row"><strong>Ser Humano</strong>El yo es un haz de percepciones sin sustancia permanente</div>
+          <div class="compare-row"><strong>Ética</strong>La moral se basa en el sentimiento (simpatía), no en la razón</div>
+          <div class="compare-row"><strong>Religión</strong>Escepticismo: critica los milagros y el argumento del diseño</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header"><div class="compare-author">Marx</div><div class="compare-dates">1818–1883</div></div>
+        <div>
+          <div class="compare-row"><strong>Realidad</strong>Materialismo histórico: la base económica determina la superestructura</div>
+          <div class="compare-row"><strong>Conocimiento</strong>La praxis (acción transformadora) es el criterio de verdad</div>
+          <div class="compare-row"><strong>Ser Humano</strong>Ser genérico alienado por el capitalismo; se realiza en el trabajo libre</div>
+          <div class="compare-row"><strong>Ética</strong>No hay moral universal; la moral es ideología de clase dominante</div>
+          <div class="compare-row"><strong>Política</strong>Lucha de clases → revolución proletaria → sociedad sin clases</div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header"><div class="compare-author">Nietzsche</div><div class="compare-dates">1844–1900</div></div>
+        <div>
+          <div class="compare-row"><strong>Realidad</strong>El mundo es pura voluntad de poder; no hay verdades eternas</div>
+          <div class="compare-row"><strong>Conocimiento</strong>Perspectivismo: no existe la verdad objetiva, solo interpretaciones</div>
+          <div class="compare-row"><strong>Ser Humano</strong>Animal que debe superarse: del último hombre al superhombre</div>
+          <div class="compare-row"><strong>Ética</strong>Transvaloración: superar la moral del rebaño por la moral del señor</div>
+          <div class="compare-row"><strong>Historia</strong>Eterno retorno; amor fati; nihilismo como punto de partida</div>
         </div>
       </div>
     </div>
@@ -1181,18 +1224,258 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
   </div>
 </section>
 
+<section id="progreso" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label">Mi estudio</div>
+    <h2 class="section-title">📊 Mi Panel de Progreso</h2>
+    <p class="section-sub">Tu progreso se guarda automáticamente en este navegador. Cada test, juego y autor que estudias queda registrado.</p>
+    <div class="progreso-grid">
+      <div class="progreso-card">
+        <h3>Progreso Global <span id="fechaHoy"></span></h3>
+        <div class="radial-wrap">
+          <div class="radial-chart">
+            <svg viewBox="0 0 120 120" width="130" height="130">
+              <circle class="radial-bg" cx="60" cy="60" r="50"/>
+              <circle class="radial-fill" id="radialFill" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+            </svg>
+            <div class="radial-label">
+              <div class="radial-pct" id="radialPct">0%</div>
+              <div class="radial-sub">completado</div>
+            </div>
+          </div>
+        </div>
+        <div class="autor-progress-list" id="autorProgressList"></div>
+      </div>
+      <div class="progreso-card">
+        <h3>Mis Estadísticas Reales</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:1.35rem">
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
+            <div id="statTests" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--gold)">0</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Tests hechos</div>
+          </div>
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
+            <div id="statAciertos" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--teal)">—</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Nota media</div>
+          </div>
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
+            <div id="statJuegos" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--blue)">0</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Juegos jugados</div>
+          </div>
+          <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
+            <div id="statRacha" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--red)">0🔥</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Racha días</div>
+          </div>
+        </div>
+        <h4 style="font-size:0.82rem;font-weight:700;margin-bottom:0.75rem;color:var(--text2)">Racha semanal</h4>
+        <div id="rachaGrid" style="display:flex;gap:0.6rem;justify-content:center"></div>
+        <button onclick="resetProgreso()" style="margin-top:1.25rem;background:none;border:1px solid var(--border);color:var(--text3);padding:0.4rem 1rem;border-radius:var(--radius-sm);font-size:0.75rem;cursor:pointer;width:100%">↩ Reiniciar progreso</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGROS -->
+<section id="logros" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-label">Gamificación</div>
+    <h2 class="section-title">🏆 Logros y Nivel</h2>
+    <p class="section-sub">Desbloquea logros estudiando. Cada acción en la plataforma te acerca al siguiente nivel.</p>
+    <!-- NIVEL -->
+    <div style="background:var(--card);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);padding:1.5rem;margin-top:1.5rem;margin-bottom:1.5rem">
+      <div style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap">
+        <div id="nivelBadge" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0">
+          <div id="nivelNum" style="font-family:var(--font-mono);font-weight:900;font-size:1.4rem;color:#0d0f14;line-height:1">1</div>
+          <div style="font-size:0.5rem;color:#0d0f14;font-weight:700;text-transform:uppercase">nivel</div>
+        </div>
+        <div style="flex:1;min-width:180px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:0.4rem">
+            <strong id="nivelNombre" style="color:var(--gold)">Novato Filosófico</strong>
+            <span id="nivelXP" style="font-size:0.8rem;color:var(--text3)">0 XP</span>
+          </div>
+          <div style="background:var(--bg3);border-radius:50px;height:8px;overflow:hidden">
+            <div id="nivelBar" style="height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:50px;width:0%;transition:width 1s ease"></div>
+          </div>
+          <div id="nivelProximo" style="font-size:0.75rem;color:var(--text3);margin-top:0.35rem">Próximo nivel: 50 XP</div>
+        </div>
+      </div>
+    </div>
+    <!-- GRID LOGROS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.85rem" id="logrosGrid"></div>
+  </div>
+</section>
+
+<!-- MODO PAU 30 DÍAS -->
+<section id="modo30" style="background:linear-gradient(135deg,var(--bg2),rgba(201,168,76,0.05))">
+  <div class="container" style="max-width:760px">
+    <div class="section-label">Plan de choque</div>
+    <h2 class="section-title">🎯 Modo PAU: Plan de Estudio</h2>
+    <p class="section-sub">Dinos cuántos días te quedan y generamos tu plan de estudio diario personalizado automáticamente.</p>
+    <div style="background:var(--card);border:2px solid rgba(201,168,76,0.4);border-radius:20px;padding:2rem;margin-top:1.5rem">
+      <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap;margin-bottom:1.5rem">
+        <div style="flex:1;min-width:140px">
+          <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">¿Cuántos días te quedan?</label>
+          <input type="number" id="diasPAU" min="1" max="180" value="30" style="width:100%;padding:0.75rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1.1rem;font-weight:700;font-family:var(--font-mono);text-align:center;outline:none">
+        </div>
+        <div style="flex:1;min-width:140px">
+          <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">¿Horas al día disponibles?</label>
+          <input type="number" id="horasDia" min="0.5" max="8" step="0.5" value="2" style="width:100%;padding:0.75rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1.1rem;font-weight:700;font-family:var(--font-mono);text-align:center;outline:none">
+        </div>
+        <button onclick="generarPlanEstudio()" style="padding:0.75rem 1.5rem;background:linear-gradient(135deg,var(--gold),#a8732e);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-weight:800;font-size:0.95rem;cursor:pointer;white-space:nowrap">🎯 Generar plan</button>
+      </div>
+      <div id="planEstudioResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- IA CORRECTORA -->
+<section id="ia-correctora" style="background:var(--bg)">
+  <div class="container" style="max-width:760px">
+    <div class="section-label">Inteligencia Artificial</div>
+    <h2 class="section-title">🤖 IA Correctora de Comentarios</h2>
+    <p class="section-sub">Escribe tu respuesta a la pregunta 1c o 2b y la IA la analiza al instante: conceptos correctos, lo que falta y nota estimada.</p>
+    <div style="background:var(--card);border:1px solid rgba(62,207,178,0.3);border-radius:20px;padding:2rem;margin-top:1.5rem">
+      <div style="margin-bottom:1.25rem">
+        <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em">Tipo de pregunta</label>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+          <button id="btn1c" onclick="setTipoIA('1c')" style="padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)">1c · Posición filosófica</button>
+          <button id="btn2b" onclick="setTipoIA('2b')" style="padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)">2b · Valoración personal</button>
+        </div>
+      </div>
+      <div style="margin-bottom:1.25rem">
+        <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em">Autor del texto</label>
+        <select id="autorIA" style="width:100%;padding:0.65rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;outline:none">
+          <option value="Platón">Platón</option>
+          <option value="Aristóteles">Aristóteles</option>
+          <option value="Descartes">Descartes</option>
+          <option value="Hume">Hume</option>
+          <option value="Kant">Kant</option>
+          <option value="Nietzsche">Nietzsche</option>
+          <option value="Marx">Marx</option>
+        </select>
+      </div>
+      <div style="margin-bottom:1.25rem">
+        <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em">Tu respuesta</label>
+        <textarea id="respuestaIA" rows="8" placeholder="Escribe aquí tu respuesta completa a la pregunta. Cuanto más desarrollada, mejor será el análisis..." style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:0.85rem;font-family:var(--font-body);font-size:0.9rem;resize:vertical;outline:none;line-height:1.7;transition:border 0.2s" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+        <div id="charCount" style="font-size:0.72rem;color:var(--text3);text-align:right;margin-top:0.3rem">0 palabras · Recomendado: 150-250 palabras</div>
+      </div>
+      <button onclick="corregirConIA()" id="btnCorregir" style="width:100%;padding:0.9rem;background:linear-gradient(135deg,var(--teal),#2a9d8f);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.2s">
+        🤖 Analizar con IA
+      </button>
+      <div id="iaResultado" style="margin-top:1.5rem"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTADÍSTICAS FRECUENCIA PAU -->
+<section id="estadisticas-pau" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label">Datos reales 2015–2026</div>
+    <h2 class="section-title">📊 Frecuencia de Aparición en la PAU</h2>
+    <p class="section-sub">Basado en los exámenes de Filosofía de Andalucía de los últimos 11 años. Saber qué cae más te permite priorizar tu estudio.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem">
+      <!-- Autores -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem">👤 Frecuencia por Autor</h3>
+        <div style="display:flex;flex-direction:column;gap:0.75rem" id="freqAutores"></div>
+      </div>
+      <!-- Temas -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem">📋 Temas más preguntados</h3>
+        <div style="display:flex;flex-direction:column;gap:0.75rem" id="freqTemas"></div>
+      </div>
+      <!-- Predicción -->
+      <div style="background:linear-gradient(135deg,var(--card),rgba(201,168,76,0.05));border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);padding:1.5rem">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;color:var(--gold)">🔮 Predicción PAU 2027</h3>
+        <p style="font-size:0.78rem;color:var(--text3);margin-bottom:1rem">Basada en patrones históricos. No oficial.</p>
+        <div style="display:flex;flex-direction:column;gap:0.6rem">
+          <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem;border-left:3px solid var(--gold)">
+            <div style="font-weight:700;font-size:0.88rem">Opción A: Kant</div>
+            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.2rem">Imperativo categórico / Ilustración — No ha caído en 2025 ni 2026</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem;border-left:3px solid var(--purple)">
+            <div style="font-weight:700;font-size:0.88rem">Opción B: Marx</div>
+            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.2rem">Alienación / Materialismo histórico — Poco frecuente en los últimos 3 años</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem;border-left:3px solid var(--teal)">
+            <div style="font-weight:700;font-size:0.88rem">Alternativa: Platón</div>
+            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.2rem">Teoría de las Ideas / Caverna — Siempre posible, muy trabajado</div>
+          </div>
+          <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;font-style:italic">⚠️ Esta predicción es orientativa. Estudia todos los autores.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARADOR INTERACTIVO -->
+<section id="comparador" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-label">Pregunta 2a</div>
+    <h2 class="section-title">⚖️ Comparador Interactivo de Autores</h2>
+    <p class="section-sub">Selecciona dos autores y genera al instante una tabla comparativa con todos los temas del examen. Perfecto para preparar la pregunta 2a.</p>
+    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:1.5rem">
+      <select id="comp1" style="flex:1;min-width:140px;padding:0.65rem 1rem;background:var(--card);border:2px solid var(--gold);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.95rem;font-weight:600;outline:none">
+        <option value="platon">Platón</option>
+        <option value="aristoteles">Aristóteles</option>
+        <option value="descartes">Descartes</option>
+        <option value="hume">Hume</option>
+        <option value="kant">Kant</option>
+        <option value="nietzsche">Nietzsche</option>
+        <option value="marx">Marx</option>
+      </select>
+      <div style="font-size:1.5rem;color:var(--text3);font-weight:700">VS</div>
+      <select id="comp2" style="flex:1;min-width:140px;padding:0.65rem 1rem;background:var(--card);border:2px solid var(--teal);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.95rem;font-weight:600;outline:none">
+        <option value="aristoteles">Aristóteles</option>
+        <option value="platon">Platón</option>
+        <option value="descartes">Descartes</option>
+        <option value="hume">Hume</option>
+        <option value="kant">Kant</option>
+        <option value="nietzsche">Nietzsche</option>
+        <option value="marx">Marx</option>
+      </select>
+      <button onclick="generarComparacion()" style="padding:0.7rem 1.5rem;background:linear-gradient(135deg,var(--gold),#a8732e);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-weight:800;font-size:0.9rem;cursor:pointer">Comparar →</button>
+    </div>
+    <div id="comparadorResult"></div>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section id="comunidad" style="background:var(--bg2)">
+  <div class="container" style="max-width:680px">
+    <div class="section-label">Entre estudiantes</div>
+    <h2 class="section-title">🗣️ Comunidad FilosoFEANDO</h2>
+    <p class="section-sub">¿Qué autor te cuesta más? ¿Qué pregunta te parece más difícil? Vota y ve qué piensan el resto de estudiantes.</p>
+    <div style="display:grid;gap:1.25rem;margin-top:1.5rem" id="comunidadGrid"></div>
+  </div>
+</section>
+
 <!-- CONSEJOS -->
 <section id="consejos" style="background:var(--bg)">
   <div class="container">
     <div class="section-label">Consejos expertos</div>
     <h2 class="section-title">Cómo Sacar un 10 en la PAU</h2>
     <div class="consejos-grid">
-      <div class="consejo-card reveal"><div class="consejo-num">1</div><h4>Domina el vocabulario técnico</h4><p>Usa siempre los términos filosóficos propios del autor. Los correctores valoran la precisión conceptual y el uso apropiado del léxico específico.</p></div>
-      <div class="consejo-card reveal"><div class="consejo-num">2</div><h4>Estructura tus respuestas</h4><p>Usa párrafos claros con introducción, desarrollo y conclusión. En la 1c: contexto → posición → argumentos → conclusión.</p></div>
-      <div class="consejo-card reveal"><div class="consejo-num">3</div><h4>Contextualiza siempre</h4><p>Sitúa al autor en su época, corriente filosófica y obra. Un breve contexto histórico-filosófico demuestra madurez intelectual.</p></div>
-      <div class="consejo-card reveal"><div class="consejo-num">4</div><h4>Prepara las relaciones</h4><p>La pregunta 2a exige relacionar autores. Prepara: Platón-Aristóteles, Descartes-Hume, Kant-Hume, Marx-Nietzsche.</p></div>
-      <div class="consejo-card reveal"><div class="consejo-num">5</div><h4>Construye tu valoración</h4><p>La 2b es tu oportunidad. Prepara 2-3 argumentos propios con ejemplos actuales. Muestra que has reflexionado, no solo memorizado.</p></div>
-      <div class="consejo-card reveal"><div class="consejo-num">6</div><h4>Lee el texto 3 veces</h4><p>Primera: comprensión global. Segunda: ideas y estructura. Tercera: términos a definir y argumento central.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">1</div><h4>Domina el vocabulario técnico</h4><p>Usa siempre los términos filosóficos propios del autor. Los correctores valoran la precisión conceptual. Escribe «eudaimonia», «cogito», «imperativo categórico», no sus sinónimos vagos.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">2</div><h4>Estructura cada respuesta</h4><p>Usa párrafos con introducción, desarrollo y conclusión. En la 1c: <strong>contexto histórico → tesis del autor → argumentos principales → conclusión</strong>. En la 2b: tesis propia → 2 argumentos → conclusión.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">3</div><h4>Contextualiza siempre</h4><p>Sitúa al autor en su época, corriente filosófica y obra principal. Dos frases de contexto al inicio demuestran madurez intelectual y dan puntos extra.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">4</div><h4>Prepara los 4 pares clave</h4><p>La pregunta 2a sale siempre. Memoriza: <strong>Platón-Aristóteles</strong> (mundo ideas vs. formas en materia), <strong>Descartes-Hume</strong> (razón vs. experiencia), <strong>Hume-Kant</strong> (escepticismo vs. crítica), <strong>Marx-Nietzsche</strong> (alienación social vs. valorativa).</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">5</div><h4>Construye tu valoración personal</h4><p>La 2b es TU oportunidad. Prepara 2-3 argumentos propios con ejemplos actuales (IA, redes sociales, política actual). Muestra que has pensado, no que has memorizado.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">6</div><h4>Lee el texto 3 veces</h4><p><strong>1ª lectura:</strong> comprensión global. <strong>2ª lectura:</strong> subraya ideas clave y términos. <strong>3ª lectura:</strong> identifica la tesis y la estructura argumentativa. Dedica 10 minutos a esto, te ahorrará tiempo después.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">7</div><h4>Gestiona el tiempo</h4><p>90 minutos divididos así: 10' leer → 15' definiciones → 15' idea principal → 20' posición filosófica → 20' relación autores → 15' valoración → 5' revisar. Nunca te saltes la revisión final.</p></div>
+      <div class="consejo-card reveal"><div class="consejo-num">8</div><h4>Cuida la presentación</h4><p>Letra legible, párrafos diferenciados, sin tachones excesivos. Los correctores leen decenas de exámenes: una presentación clara predispone positivamente. Usa conectores: «en primer lugar», «sin embargo», «en conclusión».</p></div>
+    </div>
+    <div style="margin-top:2.5rem;padding:1.5rem;background:var(--card);border:1px solid rgba(224,92,92,0.3);border-radius:var(--radius);border-left:4px solid var(--red)">
+      <div style="font-weight:800;font-size:1rem;margin-bottom:1rem;color:var(--red)">❌ Los 8 errores que más puntos te cuestan</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.75rem">
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">1a ·</strong> Definir con sinónimos circulares («el cogito es el cogito»). Siempre aporte contenido filosófico real.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">1a ·</strong> Mezclar conceptos de distintos autores. El cogito es de Descartes, no de Platón.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">1b ·</strong> Resumir el texto en lugar de analizar su estructura lógica y argumento central.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">1c ·</strong> Copiar frases del texto en lugar de elaborar la posición filosófica completa del autor.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">2a ·</strong> Solo listar semejanzas sin explicar las diferencias, o viceversa. Siempre ambas partes.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">2a ·</strong> Relacionar autores que no tienen conexión temática real. Justifica siempre el nexo.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">2b ·</strong> Repetir lo que dijo el autor en lugar de dar TU valoración personal y argumentada.</div>
+        <div style="font-size:0.82rem;color:var(--text2);padding:0.6rem 0.85rem;background:var(--red-dim);border-radius:8px;line-height:1.5"><strong style="color:var(--red)">General ·</strong> No repasar el examen los últimos 5 minutos. Siempre hay algo que mejorar.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1631,6 +1914,7 @@ function renderAutores(filter='all') {
 
 // ===== MODAL =====
 function openModal(autor) {
+  registrarAutor(autor.id);
   document.getElementById('modalEra').textContent = autor.era;
   document.getElementById('modalName').textContent = autor.nombre;
   document.getElementById('modalDates').textContent = autor.fechas;
@@ -1648,8 +1932,23 @@ function openModal(autor) {
   document.body.style.overflow = 'hidden';
   document.querySelectorAll('.modal-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section==='contexto'));
 }
-document.getElementById('modalClose').addEventListener('click', () => { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; });
-document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget){ document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }});
+document.addEventListener('DOMContentLoaded',()=>{
+  const mc=document.getElementById('modalClose');
+  if(mc)mc.addEventListener('click',()=>{
+    const ov=document.getElementById('modalOverlay');
+    if(ov)ov.classList.remove('open');
+    document.body.style.overflow='';
+  });
+  const mo=document.getElementById('modalOverlay');
+  if(mo)mo.addEventListener('click',e=>{
+    if(e.target===e.currentTarget){
+      mo.classList.remove('open');
+      document.body.style.overflow='';
+    }
+  });
+});
+
+
 document.querySelectorAll('.modal-nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const s = btn.dataset.section;
@@ -1680,14 +1979,15 @@ document.querySelectorAll('.tab-btn[data-libfilter]').forEach(btn => {
 // ===== FLASHCARDS =====
 let fcIndex = 0;
 function updateFC() {
-  document.getElementById('fc-question').textContent = flashcardsData[fcIndex].q;
-  document.getElementById('fc-answer').textContent = flashcardsData[fcIndex].a;
-  document.getElementById('fcCount').textContent = `${fcIndex+1} / ${flashcardsData.length}`;
-  document.getElementById('flashcard').classList.remove('flipped');
+  const fq=document.getElementById('fc-question');
+  const fa=document.getElementById('fc-answer');
+  const fcc=document.getElementById('fcCount');
+  const fc=document.getElementById('flashcard');
+  if(fq) fq.textContent = flashcardsData[fcIndex].q;
+  if(fa) fa.textContent = flashcardsData[fcIndex].a;
+  if(fcc) fcc.textContent = `${fcIndex+1} / ${flashcardsData.length}`;
+  if(fc) fc.classList.remove('flipped');
 }
-document.getElementById('flashcard').addEventListener('click', () => document.getElementById('flashcard').classList.toggle('flipped'));
-document.getElementById('fcPrev').addEventListener('click', () => { fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length; updateFC(); });
-document.getElementById('fcNext').addEventListener('click', () => { fcIndex=(fcIndex+1)%flashcardsData.length; updateFC(); });
 
 // ===== QUIZ =====
 function renderQuiz() {
@@ -1724,6 +2024,7 @@ function showGame(type) {
   const zone = document.getElementById('gameZone');
   zone.style.display='block';
   zone.scrollIntoView({behavior:'smooth'});
+  registrarJuego();
   if(type==='quiensoy') renderQuienSoy();
   else if(type==='wordle') renderWordle();
   else if(type==='parejas') renderParejas();
@@ -2187,25 +2488,54 @@ function renderOrdenar() {
 
 // ===== TIMELINE =====
 const timelineData = [
-  {fecha:"427–347 a.C.",titulo:"Platón",desc:"Funda la Academia. Teoría de las Ideas, alegoría de la caverna, República.",lado:"izq"},
-  {fecha:"384–322 a.C.",titulo:"Aristóteles",desc:"Funda el Liceo. Metafísica, lógica, ética y política empiristas.",lado:"der"},
-  {fecha:"1596–1650",titulo:"Descartes",desc:"Padre del racionalismo moderno. El cogito como fundamento.",lado:"izq"},
-  {fecha:"1711–1776",titulo:"David Hume",desc:"Empirismo radical. Crítica a la causalidad. Despertar de Kant.",lado:"der"},
-  {fecha:"1724–1804",titulo:"Immanuel Kant",desc:"Giro copernicano. Síntesis racionalismo-empirismo. Imperativo categórico.",lado:"izq"},
-  {fecha:"1818–1883",titulo:"Karl Marx",desc:"Materialismo histórico. Alienación. Crítica al capitalismo.",lado:"der"},
-  {fecha:"1844–1900",titulo:"Friedrich Nietzsche",desc:"Muerte de Dios. Nihilismo. Voluntad de poder. Übermensch.",lado:"izq"},
-  {fecha:"1883–1955",titulo:"Ortega y Gasset",desc:"Raciovitalismo. «Yo soy yo y mi circunstancia». Rebelión de las masas.",lado:"der"},
-  {fecha:"1889–1951",titulo:"Wittgenstein",desc:"Giro lingüístico. Los límites del lenguaje son los límites del mundo.",lado:"izq"},
-  {fecha:"1929–",titulo:"Jürgen Habermas",desc:"Acción comunicativa. Razón dialógica. Ética discursiva.",lado:"der"},
+  {fecha:"470–399 a.C.",titulo:"Sócrates",corriente:"Filosofía Antigua",color:"var(--gold)",desc:"No dejó escritos. Método socrático (mayéutica). «Solo sé que no sé nada». Condenado a muerte por corromper a la juventud.",lado:"izq"},
+  {fecha:"427–347 a.C.",titulo:"Platón",corriente:"Idealismo Clásico",color:"var(--gold)",desc:"Funda la Academia. Teoría de las Ideas, alegoría de la caverna, dualismo alma-cuerpo, Estado ideal gobernado por filósofos-reyes.",lado:"der"},
+  {fecha:"384–322 a.C.",titulo:"Aristóteles",corriente:"Empirismo Clásico",color:"var(--teal)",desc:"Funda el Liceo. Metafísica hilemórfica, lógica formal, ética de la eudaimonia, zoon politikon. Tutor de Alejandro Magno.",lado:"izq"},
+  {fecha:"1225–1274",titulo:"Tomás de Aquino",corriente:"Escolástica Medieval",color:"var(--purple)",desc:"Síntesis del aristotelismo con la teología cristiana. Las cinco vías para demostrar la existencia de Dios. Fe y razón son compatibles.",lado:"der"},
+  {fecha:"1561–1626",titulo:"Francis Bacon",corriente:"Empirismo moderno",color:"var(--teal)",desc:"Nuevo método inductivo. Crítica a los ídolos del conocimiento. «Saber es poder». Precursor del empirismo y la revolución científica.",lado:"izq"},
+  {fecha:"1596–1650",titulo:"Descartes",corriente:"Racionalismo",color:"var(--blue)",desc:"Padre del racionalismo moderno. Duda metódica, cogito ergo sum, dualismo mente-cuerpo. Fundador de la filosofía moderna.",lado:"der"},
+  {fecha:"1632–1677",titulo:"Spinoza",corriente:"Racionalismo",color:"var(--blue)",desc:"Deus sive Natura: Dios y la Naturaleza son lo mismo. Monismo. Ética demostrada more geometrico. Determinismo y libertad como comprensión.",lado:"izq"},
+  {fecha:"1646–1716",titulo:"Leibniz",corriente:"Racionalismo",color:"var(--blue)",desc:"Las mónadas como sustancias simples. Teodicea: vivimos en el mejor de los mundos posibles. Optimismo metafísico racionalista.",lado:"der"},
+  {fecha:"1632–1704",titulo:"John Locke",corriente:"Empirismo",color:"var(--teal)",desc:"La mente es una tabula rasa. Ideas simples (de la experiencia) e ideas complejas. Padre del liberalismo político moderno.",lado:"izq"},
+  {fecha:"1711–1776",titulo:"David Hume",corriente:"Empirismo Escocés",color:"var(--teal)",desc:"Escepticismo radical. La causalidad es hábito, no necesidad. El yo es solo un haz de percepciones. Despertó a Kant de su sueño dogmático.",lado:"der"},
+  {fecha:"1712–1778",titulo:"Jean-Jacques Rousseau",corriente:"Ilustración",color:"var(--purple)",desc:"El ser humano nace bueno y la sociedad le corrompe. Contrato social. Voluntad general. Educación natural (Emilio).",lado:"izq"},
+  {fecha:"1724–1804",titulo:"Immanuel Kant",corriente:"Idealismo Crítico",color:"var(--blue)",desc:"Giro copernicano: el sujeto conforma el objeto. Síntesis racionalismo-empirismo. Imperativo categórico. Paz perpetua.",lado:"der"},
+  {fecha:"1770–1831",titulo:"Georg W. F. Hegel",corriente:"Idealismo Absoluto",color:"var(--purple)",desc:"Dialéctica tesis-antítesis-síntesis. El Espíritu Absoluto se realiza en la Historia. El búho de Minerva alza el vuelo al anochecer.",lado:"izq"},
+  {fecha:"1806–1873",titulo:"John Stuart Mill",corriente:"Utilitarismo",color:"var(--teal)",desc:"La acción correcta maximiza la felicidad del mayor número. Utilitarismo cualitativo: no solo cantidad de placer. Defensor del sufragio femenino.",lado:"der"},
+  {fecha:"1818–1883",titulo:"Karl Marx",corriente:"Materialismo Histórico",color:"var(--red)",desc:"La historia es lucha de clases. Materialismo histórico y dialéctico. Alienación del trabajador. El Capital. Manifiesto Comunista.",lado:"izq"},
+  {fecha:"1844–1900",titulo:"Friedrich Nietzsche",corriente:"Vitalismo",color:"var(--gold)",desc:"Muerte de Dios. Nihilismo y transvaloración. Voluntad de poder. Eterno retorno. Übermensch. Amor fati. Contra el resentimiento.",lado:"der"},
+  {fecha:"1858–1917",titulo:"Émile Durkheim",corriente:"Sociología / Positivismo",color:"var(--purple)",desc:"Fundador de la sociología moderna. Los hechos sociales como cosas. La solidaridad orgánica de las sociedades industriales.",lado:"izq"},
+  {fecha:"1856–1939",titulo:"Sigmund Freud",corriente:"Psicoanálisis",color:"var(--teal)",desc:"El inconsciente como motor de la conducta. Ello, yo y superyó. La represión y la civilización. Influye profundamente en la filosofía del siglo XX.",lado:"der"},
+  {fecha:"1883–1955",titulo:"Ortega y Gasset",corriente:"Raciovitalismo",color:"var(--gold)",desc:"«Yo soy yo y mi circunstancia». Raciovitalismo: la razón vital e histórica. La rebelión de las masas y el hombre-masa.",lado:"izq"},
+  {fecha:"1889–1951",titulo:"Wittgenstein",corriente:"Filosofía del Lenguaje",color:"var(--blue)",desc:"Primer Wittgenstein: el lenguaje pinta la realidad (Tractatus). Segundo Wittgenstein: los juegos de lenguaje (Investigaciones filosóficas).",lado:"der"},
+  {fecha:"1900–1961",titulo:"Merleau-Ponty",corriente:"Fenomenología",color:"var(--purple)",desc:"La percepción como fundamento del conocimiento. El cuerpo vivido como sujeto. Crítica al dualismo cartesiano desde la experiencia encarnada.",lado:"izq"},
+  {fecha:"1908–1986",titulo:"Simone de Beauvoir",corriente:"Existencialismo feminista",color:"var(--red)",desc:"«No se nace mujer, se llega a serlo». El Segundo Sexo: crítica a la opresión de la mujer. Existencialismo aplicado a la emancipación femenina.",lado:"der"},
+  {fecha:"1929–",titulo:"Jürgen Habermas",corriente:"Teoría Crítica",color:"var(--blue)",desc:"Acción comunicativa: la racionalidad reside en el diálogo entre iguales. Ética discursiva. Defensa de la democracia deliberativa.",lado:"izq"},
 ];
 
 function renderTimeline() {
-  document.getElementById('timeline').innerHTML = timelineData.map(item => `
+  document.getElementById('timeline').innerHTML = timelineData.map((item,i) => `
     <div class="timeline-item reveal">
-      ${item.lado==='izq'?`<div class="timeline-content"><div class="timeline-date">${item.fecha}</div><div class="timeline-title">${item.titulo}</div><div class="timeline-desc">${item.desc}</div></div><div class="timeline-spacer"></div>`:`<div class="timeline-spacer"></div><div class="timeline-content"><div class="timeline-date">${item.fecha}</div><div class="timeline-title">${item.titulo}</div><div class="timeline-desc">${item.desc}</div></div>`}
-      <div class="timeline-dot"></div>
+      ${item.lado==='izq'
+        ? `<div class="timeline-content" style="border-top:2px solid ${item.color}">
+             <div class="timeline-date" style="color:${item.color}">${item.fecha}</div>
+             <div style="font-size:0.65rem;font-weight:700;color:${item.color}88;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.3rem">${item.corriente}</div>
+             <div class="timeline-title">${item.titulo}</div>
+             <div class="timeline-desc">${item.desc}</div>
+           </div>
+           <div class="timeline-spacer"></div>`
+        : `<div class="timeline-spacer"></div>
+           <div class="timeline-content" style="border-top:2px solid ${item.color}">
+             <div class="timeline-date" style="color:${item.color}">${item.fecha}</div>
+             <div style="font-size:0.65rem;font-weight:700;color:${item.color}88;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.3rem">${item.corriente}</div>
+             <div class="timeline-title">${item.titulo}</div>
+             <div class="timeline-desc">${item.desc}</div>
+           </div>`
+      }
+      <div class="timeline-dot" style="background:${item.color};box-shadow:0 0 0 3px ${item.color}33"></div>
     </div>`).join('');
 }
+
 
 // ===== BANCO =====
 function renderBanco(items) {
@@ -2302,7 +2632,7 @@ function renderProgreso() {
 
 // ===== SIMULACRO =====
 let examRunning=false, examSeconds=90*60, examInterval;
-document.getElementById('startExam').addEventListener('click', function() {
+const _se=document.getElementById('startExam');if(_se)_se.addEventListener('click', function() {
   if(!examRunning) {
     examRunning=true; this.textContent='⏸ Pausar';
     examInterval=setInterval(()=>{
@@ -2332,14 +2662,14 @@ function submitExam() {
 }
 
 // ===== THEME =====
-document.getElementById('themeToggle').addEventListener('click', () => {
+const _tt=document.getElementById('themeToggle');if(_tt)_tt.addEventListener('click', () => {
   const isDark=document.documentElement.dataset.theme==='dark';
   document.documentElement.dataset.theme=isDark?'light':'dark';
-  document.getElementById('themeToggle').textContent=isDark?'☀️':'🌙';
+  const tog=document.getElementById('themeToggle');if(tog)tog.textContent=isDark?'☀️':'🌙';
 });
 
 // ===== HAMBURGER =====
-document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+const _hb=document.getElementById('hamburger');if(_hb)_hb.addEventListener('click', () => { const nl=document.getElementById('navLinks');if(nl)nl.classList.toggle('open'); });
 
 // ===== REVEAL =====
 function observeReveal() {
@@ -2426,7 +2756,7 @@ function buscarFilo(q) {
   sugs.style.display = q ? 'none' : 'flex';
   if(!q.trim()) { res.innerHTML=''; return; }
   const query = q.toLowerCase().trim();
-  const results = searchIndex.filter(item =>
+  const results = searchIndex.map((item,i)=>({...item,_idx:i})).filter(item =>
     item.titulo.toLowerCase().includes(query) ||
     item.subtitulo.toLowerCase().includes(query) ||
     item.texto.toLowerCase().includes(query)
@@ -2438,7 +2768,7 @@ function buscarFilo(q) {
   const typeColors = {autor:'var(--gold)',concepto:'var(--teal)',corriente:'var(--blue)',sección:'var(--purple)'};
   const typeBg = {autor:'var(--gold-dim)',concepto:'var(--teal-dim)',corriente:'var(--blue-dim)',sección:'var(--purple-dim)'};
   res.innerHTML = results.map(r => `
-    <div class="search-result" onclick="(${r.accion.toString()})();document.getElementById('buscadorInput').blur()">
+    <div class="search-result" onclick="searchIndex[${r._idx}].accion();document.getElementById('buscadorInput').blur()">
       <div class="search-result-icon">${r.icon}</div>
       <div class="search-result-body">
         <div class="search-result-title">${highlight(r.titulo, q)}</div>
@@ -2464,18 +2794,785 @@ function limpiarBusqueda() {
   input.focus();
 }
 
+// ===== PROGRESO REAL CON LOCALSTORAGE =====
+const STORE = {
+  get: k => { try { return JSON.parse(localStorage.getItem('filo_'+k)); } catch { return null; } },
+  set: (k,v) => localStorage.setItem('filo_'+k, JSON.stringify(v)),
+};
+
+function getProgreso() {
+  return STORE.get('progreso') || {tests:0,notaMedia:0,notas:[],juegos:0,autoresVistos:[],dias:[],xp:0};
+}
+function saveProgreso(p) { STORE.set('progreso', p); }
+
+function addXP(cantidad, motivo) {
+  const p = getProgreso();
+  p.xp = (p.xp||0) + cantidad;
+  saveProgreso(p);
+  actualizarNivel(p.xp);
+  // Toast
+  const t = document.createElement('div');
+  t.innerHTML = `+${cantidad} XP · ${motivo}`;
+  t.style.cssText='position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#0d0f14;padding:0.4rem 1.25rem;border-radius:50px;font-weight:700;font-size:0.82rem;z-index:900;animation:fadeUp 0.3s ease;pointer-events:none';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 2000);
+}
+
+function registrarDiaEstudio() {
+  const p = getProgreso();
+  const hoy = new Date().toDateString();
+  if(!p.dias) p.dias = [];
+  if(!p.dias.includes(hoy)) { p.dias.push(hoy); addXP(10,'Día de estudio'); }
+  saveProgreso(p);
+}
+
+function registrarTest(nota) {
+  const p = getProgreso();
+  p.tests = (p.tests||0) + 1;
+  if(!p.notas) p.notas = [];
+  p.notas.push(nota);
+  p.notaMedia = Math.round(p.notas.reduce((a,b)=>a+b,0)/p.notas.length * 10)/10;
+  saveProgreso(p);
+  addXP(20, 'Test completado');
+  verificarLogros(p);
+  renderProgresoPanel();
+}
+
+function registrarJuego() {
+  const p = getProgreso();
+  p.juegos = (p.juegos||0) + 1;
+  saveProgreso(p);
+  addXP(15, 'Juego completado');
+  verificarLogros(p);
+  renderProgresoPanel();
+}
+
+function registrarAutor(id) {
+  const p = getProgreso();
+  if(!p.autoresVistos) p.autoresVistos = [];
+  if(!p.autoresVistos.includes(id)) {
+    p.autoresVistos.push(id);
+    saveProgreso(p);
+    addXP(30, 'Autor estudiado');
+    verificarLogros(p);
+    renderProgresoPanel();
+  }
+}
+
+function resetProgreso() {
+  if(!confirm('¿Seguro que quieres reiniciar todo tu progreso? Esta acción no se puede deshacer.')) return;
+  localStorage.removeItem('filo_progreso');
+  localStorage.removeItem('filo_logros');
+  renderProgresoPanel();
+  renderLogros();
+}
+
+function calcularRacha(dias) {
+  if(!dias||!dias.length) return 0;
+  const sorted = dias.map(d=>new Date(d)).sort((a,b)=>b-a);
+  let racha = 1, hoy = new Date();
+  hoy.setHours(0,0,0,0);
+  const ayer = new Date(hoy); ayer.setDate(ayer.getDate()-1);
+  if(sorted[0].toDateString()!==hoy.toDateString()&&sorted[0].toDateString()!==ayer.toDateString()) return 0;
+  for(let i=1;i<sorted.length;i++) {
+    const diff = (sorted[i-1]-sorted[i])/(1000*60*60*24);
+    if(Math.round(diff)===1) racha++;
+    else break;
+  }
+  return racha;
+}
+
+function renderProgresoPanel() {
+  const p = getProgreso();
+  const racha = calcularRacha(p.dias||[]);
+  const autoresTotal = 7;
+  const pct = Math.round((p.autoresVistos||[]).length/autoresTotal*100);
+
+  // Radial
+  const fill = document.getElementById('radialFill');
+  const pctEl = document.getElementById('radialPct');
+  if(fill) { fill.style.strokeDashoffset = 314 - (314*pct/100); }
+  if(pctEl) pctEl.textContent = pct+'%';
+
+  // Stats
+  const el = id => document.getElementById(id);
+  if(el('statTests')) el('statTests').textContent = p.tests||0;
+  if(el('statAciertos')) el('statAciertos').textContent = p.notaMedia ? p.notaMedia+'/10' : '—';
+  if(el('statJuegos')) el('statJuegos').textContent = p.juegos||0;
+  if(el('statRacha')) el('statRacha').textContent = racha+'🔥';
+
+  // Racha semanal
+  const dias = ['L','M','X','J','V','S','D'];
+  const hoy = new Date().getDay();
+  const diasSemana = Array.from({length:7},(_,i)=>{
+    const d = new Date(); d.setDate(d.getDate()-(((hoy||7)-1+7-i)%7));
+    return d.toDateString();
+  });
+  const rachaGrid = el('rachaGrid');
+  if(rachaGrid) rachaGrid.innerHTML = dias.map((d,i)=>{
+    const hecho = (p.dias||[]).includes(diasSemana[i]);
+    const esHoy = i===(hoy===0?6:hoy-1);
+    return `<div class="streak-day${hecho?' done':''}${esHoy?' today':''}">${d}</div>`;
+  }).join('');
+
+  // Autor list
+  const autorList = el('autorProgressList');
+  if(autorList && window.autoresData) {
+    autorList.innerHTML = autoresData.map(a=>{
+      const visto = (p.autoresVistos||[]).includes(a.id);
+      return `<label>${a.nombre} <span>${visto?'✅ Estudiado':'Pendiente'}</span></label>
+      <div class="apl-bar"><div class="apl-fill" style="width:${visto?100:0}%" data-width="${visto?100:0}%"></div></div>`;
+    }).join('');
+  }
+  actualizarNivel(p.xp||0);
+}
+
+// ===== NIVELES =====
+const niveles = [
+  {min:0,max:50,num:1,nombre:'Novato Filosófico',icon:'🌱'},
+  {min:50,max:150,num:2,nombre:'Aprendiz de Sócrates',icon:'📖'},
+  {min:150,max:300,num:3,nombre:'Discípulo de Platón',icon:'🏛️'},
+  {min:300,max:500,num:5,nombre:'Seguidor de Aristóteles',icon:'🏺'},
+  {min:500,max:800,num:8,nombre:'Racionalista de Descartes',icon:'🔍'},
+  {min:800,max:1200,num:12,nombre:'Escéptico de Hume',icon:'🔬'},
+  {min:1200,max:1800,num:18,nombre:'Kantiano Crítico',icon:'📐'},
+  {min:1800,max:2500,num:25,nombre:'Sócrates',icon:'⚡'},
+  {min:2500,max:4000,num:35,nombre:'Aristóteles',icon:'🏆'},
+  {min:4000,max:Infinity,num:50,nombre:'Filósofo Supremo',icon:'👑'},
+];
+function actualizarNivel(xp) {
+  const nivel = niveles.find(n=>xp>=n.min&&xp<n.max)||niveles[niveles.length-1];
+  const next = niveles[niveles.indexOf(nivel)+1];
+  const pct = next ? Math.round((xp-nivel.min)/(next.min-nivel.min)*100) : 100;
+  const el = id=>document.getElementById(id);
+  if(el('nivelNum')) el('nivelNum').textContent = nivel.num;
+  if(el('nivelNombre')) el('nivelNombre').textContent = nivel.icon+' '+nivel.nombre;
+  if(el('nivelXP')) el('nivelXP').textContent = xp+' XP';
+  if(el('nivelBar')) el('nivelBar').style.width = pct+'%';
+  if(el('nivelProximo')) el('nivelProximo').textContent = next ? `Próximo: ${next.nombre} (${next.min} XP)` : '🏆 Nivel máximo alcanzado';
+}
+
+// ===== LOGROS =====
+const todosLogros = [
+  {id:'primer_test',icon:'🎯',nombre:'Primer Test',desc:'Completa tu primer test',check:p=>p.tests>=1,xp:50},
+  {id:'cinco_tests',icon:'📝',nombre:'Estudioso',desc:'Completa 5 tests',check:p=>p.tests>=5,xp:100},
+  {id:'diez_tests',icon:'🧪',nombre:'Investigador',desc:'Completa 10 tests',check:p=>p.tests>=10,xp:200},
+  {id:'primer_juego',icon:'🎮',nombre:'Gamer Filosófico',desc:'Juega tu primer juego',check:p=>p.juegos>=1,xp:30},
+  {id:'cinco_juegos',icon:'🕹️',nombre:'Jugador Experto',desc:'Juega 5 juegos',check:p=>p.juegos>=5,xp:80},
+  {id:'primer_autor',icon:'📚',nombre:'Primer Autor',desc:'Estudia el temario de un autor',check:p=>(p.autoresVistos||[]).length>=1,xp:30},
+  {id:'tres_autores',icon:'🏛️',nombre:'Polihistor',desc:'Estudia 3 autores',check:p=>(p.autoresVistos||[]).length>=3,xp:90},
+  {id:'todos_autores',icon:'🌍',nombre:'Maestro del Currículo',desc:'Estudia los 7 autores',check:p=>(p.autoresVistos||[]).length>=7,xp:300},
+  {id:'racha3',icon:'🔥',nombre:'Constancia',desc:'Mantén 3 días seguidos',check:p=>calcularRacha(p.dias||[])>=3,xp:60},
+  {id:'racha7',icon:'💪',nombre:'Semana Filosófica',desc:'Mantén 7 días seguidos',check:p=>calcularRacha(p.dias||[])>=7,xp:150},
+  {id:'racha30',icon:'🏆',nombre:'Mes de Filosofía',desc:'Mantén 30 días seguidos',check:p=>calcularRacha(p.dias||[])>=30,xp:500},
+  {id:'nota_alta',icon:'⭐',nombre:'Brillante',desc:'Saca una nota media ≥ 8',check:p=>p.notaMedia>=8&&p.tests>0,xp:200},
+  {id:'pau_mode',icon:'🎯',nombre:'Modo PAU Activado',desc:'Genera tu plan de estudio',check:p=>p.planGenerado,xp:25},
+  {id:'ia_uso',icon:'🤖',nombre:'Amigo de la IA',desc:'Usa el corrector de IA',check:p=>p.iaUsos>=1,xp:40},
+];
+
+function verificarLogros(p) {
+  const desbloqueados = STORE.get('logros') || [];
+  todosLogros.forEach(logro => {
+    if(!desbloqueados.includes(logro.id) && logro.check(p)) {
+      desbloqueados.push(logro.id);
+      STORE.set('logros', desbloqueados);
+      addXP(logro.xp, `🏆 Logro: ${logro.nombre}`);
+      mostrarToastLogro(logro);
+    }
+  });
+  renderLogros();
+}
+
+function mostrarToastLogro(logro) {
+  const t = document.createElement('div');
+  t.innerHTML = `<div style="font-size:1.2rem">${logro.icon}</div><div><strong>¡Logro desbloqueado!</strong><br><span style="font-size:0.8rem">${logro.nombre}</span></div>`;
+  t.style.cssText='position:fixed;top:80px;right:1rem;background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:0.75rem 1rem;display:flex;gap:0.75rem;align-items:center;z-index:900;animation:popIn 0.4s ease;box-shadow:0 8px 32px rgba(0,0,0,0.4);max-width:260px';
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), 4000);
+}
+
+function renderLogros() {
+  const grid = document.getElementById('logrosGrid');
+  if(!grid) return;
+  const desbloqueados = STORE.get('logros') || [];
+  const p = getProgreso();
+  grid.innerHTML = todosLogros.map(l => {
+    const ok = desbloqueados.includes(l.id);
+    return `<div style="background:var(--card);border:1px solid ${ok?'rgba(201,168,76,0.5)':'var(--border)'};border-radius:var(--radius-sm);padding:1rem;display:flex;gap:0.75rem;align-items:center;opacity:${ok?1:0.5};transition:all 0.3s">
+      <div style="font-size:1.75rem;filter:${ok?'none':'grayscale(1)'}">${l.icon}</div>
+      <div>
+        <div style="font-weight:700;font-size:0.85rem;color:${ok?'var(--gold)':'var(--text)'}">${l.nombre}</div>
+        <div style="font-size:0.75rem;color:var(--text3)">${l.desc}</div>
+        <div style="font-size:0.7rem;color:var(--text3);margin-top:0.2rem">+${l.xp} XP · ${ok?'✅ Desbloqueado':'🔒 Bloqueado'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ===== PLAN DE ESTUDIO 30 DÍAS =====
+function generarPlanEstudio() {
+  const dias = parseInt(document.getElementById('diasPAU').value)||30;
+  const horas = parseFloat(document.getElementById('horasDia').value)||2;
+  const autores = ['Platón','Aristóteles','Descartes','Hume','Kant','Nietzsche','Marx'];
+  const actividades = [
+    {emoji:'📖',texto:'Leer temario completo del autor del día'},
+    {emoji:'🃏',texto:'Repasar flashcards (15 min)'},
+    {emoji:'🎮',texto:'Jugar al "¿Quién soy?" o FiloAhorcado'},
+    {emoji:'📝',texto:'Hacer el test autocorregible'},
+    {emoji:'✍️',texto:'Practicar comentario de texto 1c'},
+    {emoji:'⚖️',texto:'Usar el comparador con otro autor'},
+    {emoji:'🤖',texto:'Corregir una respuesta con la IA'},
+    {emoji:'📋',texto:'Repasar examen PAU anterior de este autor'},
+    {emoji:'💬',texto:'Escribir de memoria los conceptos clave'},
+    {emoji:'⏱️',texto:'Simulacro de examen completo (90 min)'},
+  ];
+  const plan = [];
+  if(dias<=7) {
+    // Plan intensivo
+    autores.forEach((a,i)=>{
+      if(i<dias) plan.push({dia:i+1,autor:a,tipo:'intensivo',actos:[actividades[0],actividades[1],actividades[3],actividades[4]]});
+    });
+    for(let i=autores.length;i<dias;i++) plan.push({dia:i+1,autor:'Repaso general',tipo:'repaso',actos:[actividades[9],actividades[5],actividades[7]]});
+  } else if(dias<=30) {
+    autores.forEach((a,i)=>{ plan.push({dia:i*Math.floor(dias/7)+1,autor:a,tipo:'normal',actos:[actividades[0],actividades[1],actividades[3]]}); });
+    for(let d=autores.length*(Math.floor(dias/7));d<=dias;d++) plan.push({dia:d,autor:'Repaso + exámenes',tipo:'repaso',actos:[actividades[7],actividades[9]]});
+  } else {
+    for(let d=1;d<=dias;d++) {
+      const autor = autores[(d-1)%autores.length];
+      const actoIdx = (d-1)%actividades.length;
+      plan.push({dia:d,autor,tipo:'profundo',actos:[actividades[actoIdx],actividades[(actoIdx+1)%actividades.length]]});
+    }
+  }
+
+  // Guardar que generó plan
+  const p = getProgreso(); p.planGenerado = true; saveProgreso(p);
+  verificarLogros(p);
+  addXP(25, 'Plan de estudio generado');
+
+  const colores = {intensivo:'var(--red)',normal:'var(--teal)',profundo:'var(--blue)',repaso:'var(--gold)'};
+  const res = document.getElementById('planEstudioResult');
+  const hoyNum = new Date().getDay()||7;
+  res.innerHTML = `
+    <div style="display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
+      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.85rem"><strong>${dias}</strong> días planificados</div>
+      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.85rem"><strong>${horas}h/día</strong> de estudio</div>
+      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.85rem"><strong>${Math.round(dias*horas*60)} min</strong> totales</div>
+    </div>
+    <div style="max-height:400px;overflow-y:auto;display:flex;flex-direction:column;gap:0.5rem;padding-right:0.25rem">
+      ${plan.slice(0,dias).map(({dia,autor,tipo,actos})=>`
+        <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.85rem;border-left:3px solid ${colores[tipo]||'var(--border)'}">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem">
+            <strong style="font-size:0.85rem">Día ${dia} · ${autor}</strong>
+            <span style="font-size:0.7rem;background:${colores[tipo]||'var(--border)'};color:#0d0f14;padding:2px 8px;border-radius:50px;font-weight:700;opacity:0.85">${tipo}</span>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text2)">${actos.map(a=>`${a.emoji} ${a.texto}`).join(' · ')}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ===== IA CORRECTORA =====
+let tipoIA = '1c';
+function setTipoIA(tipo) {
+  tipoIA = tipo;
+  document.getElementById('btn1c').style.cssText = tipo==='1c'
+    ? 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)'
+    : 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)';
+  document.getElementById('btn2b').style.cssText = tipo==='2b'
+    ? 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)'
+    : 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)';
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const ta = document.getElementById('respuestaIA');
+  if(ta) ta.addEventListener('input',()=>{
+    const words = ta.value.trim().split(/\s+/).filter(Boolean).length;
+    document.getElementById('charCount').textContent = `${words} palabras · Recomendado: 150-250 palabras`;
+  });
+  // Flashcards
+  const fc = document.getElementById('flashcard');
+  if(fc) fc.addEventListener('click', () => fc.classList.toggle('flipped'));
+  const fcPrev = document.getElementById('fcPrev');
+  const fcNext = document.getElementById('fcNext');
+  if(fcPrev) fcPrev.addEventListener('click', () => { fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length; updateFC(); });
+  if(fcNext) fcNext.addEventListener('click', () => { fcIndex=(fcIndex+1)%flashcardsData.length; updateFC(); });
+  // Inicializar secciones
+  registrarDiaEstudio();
+  renderProgresoPanel();
+  renderLogros();
+  renderEstadisticas();
+  renderComunidad();
+  setTimeout(()=>generarComparacion(), 500);
+});
+
+async function corregirConIA() {
+  const autor = document.getElementById('autorIA').value;
+  const respuesta = document.getElementById('respuestaIA').value.trim();
+  const btn = document.getElementById('btnCorregir');
+  const res = document.getElementById('iaResultado');
+  if(respuesta.split(/\s+/).length < 20) {
+    res.innerHTML=`<div style="background:var(--red-dim);border:1px solid var(--red);border-radius:var(--radius-sm);padding:1rem;color:var(--red)">✍️ Escribe al menos 20 palabras para que la IA pueda analizar tu respuesta.</div>`;
+    return;
+  }
+  btn.textContent='⏳ Analizando con IA…';
+  btn.disabled=true;
+  res.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--text3)"><div style="font-size:2rem;margin-bottom:0.5rem;animation:pulse 1s infinite">🤖</div>La IA está leyendo tu respuesta…</div>`;
+
+  const prompt = `Eres un profesor experto en filosofía que corrige exámenes PAU de Andalucía de 2º de Bachillerato. 
+
+El alumno ha respondido a la pregunta ${tipoIA==='1c'?'1c (posición filosófica del autor)':'2b (valoración personal razonada)'} sobre ${autor}.
+
+RESPUESTA DEL ALUMNO:
+"${respuesta}"
+
+Analiza la respuesta y devuelve SOLO un JSON con esta estructura exacta (sin markdown, sin texto adicional):
+{
+  "notaEstimada": <número del 0 al 2 con un decimal>,
+  "correctos": [<lista de 3-5 conceptos o ideas bien desarrollados>],
+  "mejoras": [<lista de 2-4 conceptos o ideas que faltan o están mal>],
+  "estructuraOk": <true o false>,
+  "vocabularioOk": <true o false>,
+  "consejo": "<un consejo personalizado específico de máximo 2 frases>",
+  "fragmentoDestacado": "<cita textual de la mejor frase de la respuesta del alumno>"
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    const r = JSON.parse(text);
+
+    // Registrar uso IA
+    const p = getProgreso(); p.iaUsos=(p.iaUsos||0)+1; saveProgreso(p);
+    verificarLogros(p); addXP(15,'Corrección con IA');
+
+    const notaColor = r.notaEstimada>=1.5?'var(--teal)':r.notaEstimada>=1?'var(--gold)':'var(--red)';
+    res.innerHTML=`
+      <div style="display:grid;gap:1rem">
+        <!-- NOTA -->
+        <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:1.25rem;display:flex;align-items:center;gap:1.5rem">
+          <div style="text-align:center;flex-shrink:0">
+            <div style="font-size:2.5rem;font-weight:900;font-family:var(--font-mono);color:${notaColor}">${r.notaEstimada}</div>
+            <div style="font-size:0.7rem;color:var(--text3)">de 2 puntos</div>
+          </div>
+          <div style="flex:1">
+            <div style="margin-bottom:0.4rem;font-size:0.8rem;display:flex;gap:0.5rem">
+              <span style="background:${r.estructuraOk?'var(--teal-dim)':'var(--red-dim)'};color:${r.estructuraOk?'var(--teal)':'var(--red)'};padding:2px 8px;border-radius:50px;font-size:0.72rem;font-weight:700">${r.estructuraOk?'✅':'❌'} Estructura</span>
+              <span style="background:${r.vocabularioOk?'var(--teal-dim)':'var(--red-dim)'};color:${r.vocabularioOk?'var(--teal)':'var(--red)'};padding:2px 8px;border-radius:50px;font-size:0.72rem;font-weight:700">${r.vocabularioOk?'✅':'❌'} Vocabulario</span>
+            </div>
+            <p style="font-size:0.82rem;color:var(--text2);line-height:1.5;font-style:italic">"${r.fragmentoDestacado}"</p>
+          </div>
+        </div>
+        <!-- CORRECTOS -->
+        <div style="background:var(--teal-dim);border:1px solid var(--teal);border-radius:var(--radius-sm);padding:1rem">
+          <div style="font-weight:700;color:var(--teal);margin-bottom:0.6rem;font-size:0.85rem">✅ Bien desarrollado</div>
+          <ul style="margin:0;padding-left:1.2rem;font-size:0.82rem;line-height:1.8;color:var(--text2)">
+            ${r.correctos.map(c=>`<li>${c}</li>`).join('')}
+          </ul>
+        </div>
+        <!-- MEJORAS -->
+        <div style="background:var(--gold-dim);border:1px solid rgba(201,168,76,0.4);border-radius:var(--radius-sm);padding:1rem">
+          <div style="font-weight:700;color:var(--gold);margin-bottom:0.6rem;font-size:0.85rem">⚠️ Puedes mejorar</div>
+          <ul style="margin:0;padding-left:1.2rem;font-size:0.82rem;line-height:1.8;color:var(--text2)">
+            ${r.mejoras.map(m=>`<li>${m}</li>`).join('')}
+          </ul>
+        </div>
+        <!-- CONSEJO -->
+        <div style="background:var(--blue-dim);border:1px solid var(--blue);border-radius:var(--radius-sm);padding:1rem">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:0.4rem;font-size:0.85rem">💡 Consejo del profesor IA</div>
+          <p style="font-size:0.85rem;color:var(--text2);line-height:1.6;margin:0">${r.consejo}</p>
+        </div>
+        <button onclick="document.getElementById('respuestaIA').value='';document.getElementById('iaResultado').innerHTML='';document.getElementById('btnCorregir').textContent='🤖 Analizar con IA';document.getElementById('btnCorregir').disabled=false" style="background:var(--card2);border:1px solid var(--border);color:var(--text2);padding:0.55rem 1.25rem;border-radius:var(--radius-sm);font-size:0.82rem;font-weight:700;cursor:pointer">↩ Analizar otra respuesta</button>
+      </div>`;
+  } catch(e) {
+    res.innerHTML=`<div style="background:var(--red-dim);border:1px solid var(--red);border-radius:var(--radius-sm);padding:1rem;color:var(--red)">❌ Error al conectar con la IA. Comprueba tu conexión e inténtalo de nuevo.</div>`;
+  }
+  btn.textContent='🤖 Analizar con IA';
+  btn.disabled=false;
+}
+
+// ===== CALCULADORA NOTA =====
+function calcularNota() {
+  const vals = ['n1a','n1b','n1c','n2a','n2b'].map(id=>{
+    const v = parseFloat(document.getElementById(id).value)||0;
+    return Math.min(2,Math.max(0,v));
+  });
+  const total = vals.reduce((a,b)=>a+b,0);
+  const nota = Math.min(10,total);
+  const el = document.getElementById('notaFinal');
+  const label = document.getElementById('notaLabel');
+  if(!el) return;
+  el.textContent = nota.toFixed(2);
+  const color = nota>=9?'var(--gold)':nota>=7?'var(--teal)':nota>=5?'var(--blue)':nota>=3?'var(--gold)':'var(--red)';
+  el.style.color = color;
+  const msgs = nota>=9?'🏆 ¡Sobresaliente! Excelente trabajo':nota>=7?'👏 Notable. Muy buena preparación':nota>=5?'✅ Aprobado. Sigue mejorando':nota>=3?'⚠️ Casi. Repasa los puntos flojos':'❌ Suspendido. Necesitas más práctica';
+  label.textContent = msgs;
+  label.style.color = color;
+}
+
+// ===== ESTADÍSTICAS FRECUENCIA PAU =====
+const freqAutoresData = [
+  {autor:'Platón',pct:89,color:'var(--gold)'},
+  {autor:'Kant',pct:83,color:'var(--teal)'},
+  {autor:'Nietzsche',pct:78,color:'var(--red)'},
+  {autor:'Descartes',pct:72,color:'var(--blue)'},
+  {autor:'Aristóteles',pct:67,color:'var(--gold)'},
+  {autor:'Hume',pct:61,color:'var(--purple)'},
+  {autor:'Marx',pct:44,color:'var(--red)'},
+];
+const freqTemasData = [
+  {tema:'Teoría del conocimiento',pct:94,color:'var(--teal)'},
+  {tema:'Ética y moral',pct:88,color:'var(--gold)'},
+  {tema:'Realidad / Metafísica',pct:83,color:'var(--blue)'},
+  {tema:'Política y sociedad',pct:72,color:'var(--purple)'},
+  {tema:'Ser humano / Antropología',pct:67,color:'var(--red)'},
+  {tema:'Relación entre autores',pct:100,color:'var(--gold)'},
+];
+
+function renderEstadisticas() {
+  const el = id => document.getElementById(id);
+  if(el('freqAutores')) el('freqAutores').innerHTML = freqAutoresData.map(f=>`
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;font-size:0.83rem">
+        <span>${f.autor}</span><span style="font-weight:700;color:${f.color}">${f.pct}%</span>
+      </div>
+      <div style="background:var(--bg3);border-radius:50px;height:6px;overflow:hidden">
+        <div style="height:100%;background:${f.color};border-radius:50px;width:0%;transition:width 1.2s ease" data-width="${f.pct}%"></div>
+      </div>
+    </div>`).join('');
+  if(el('freqTemas')) el('freqTemas').innerHTML = freqTemasData.map(f=>`
+    <div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;font-size:0.83rem">
+        <span>${f.tema}</span><span style="font-weight:700;color:${f.color}">${f.pct}%</span>
+      </div>
+      <div style="background:var(--bg3);border-radius:50px;height:6px;overflow:hidden">
+        <div style="height:100%;background:${f.color};border-radius:50px;width:0%;transition:width 1.2s ease" data-width="${f.pct}%"></div>
+      </div>
+    </div>`).join('');
+  // Animar barras
+  setTimeout(()=>{
+    document.querySelectorAll('#freqAutores [data-width], #freqTemas [data-width]').forEach(b=>{
+      b.style.width = b.dataset.width;
+    });
+  }, 300);
+}
+
+// ===== COMPARADOR INTERACTIVO =====
+const comparadorData = {
+  platon:{nombre:'Platón',color:'var(--gold)',
+    temas:{
+      'Realidad':'Dos mundos: el mundo sensible (apariencia) y el mundo inteligible (Ideas). Solo las Ideas son verdaderamente reales.',
+      'Conocimiento':'Reminiscencia (anamnesis): conocer es recordar las Ideas que el alma contempló antes de nacer. Doxa (opinión) vs episteme (ciencia).',
+      'Ser Humano':'Alma inmortal y divina atrapada en el cuerpo. El alma tiene tres partes: racional, irascible y concupiscible.',
+      'Ética':'La virtud consiste en la armonía del alma bajo el dominio de la razón. El Bien supremo es el fin último.',
+      'Política':'El Estado ideal es una aristocracia gobernada por filósofos-reyes que conocen el Bien.',
+      'Método':'Dialéctica: ascenso progresivo desde las opiniones hasta las Ideas mediante el diálogo.',
+    }},
+  aristoteles:{nombre:'Aristóteles',color:'var(--teal)',
+    temas:{
+      'Realidad':'La sustancia individual concreta es lo real. La forma y la materia son inseparables (hilemorfismo).',
+      'Conocimiento':'Parte de la experiencia sensible. Abstracción de universales a partir de los particulares. Inducción y deducción.',
+      'Ser Humano':'Animal racional. El alma es la forma del cuerpo (no hay separación). Animal político por naturaleza.',
+      'Ética':'La eudaimonía (felicidad) es el fin supremo. La virtud es el término medio entre dos extremos viciosos.',
+      'Política':'El ser humano necesita la polis para desarrollarse. Analiza y compara constituciones reales.',
+      'Método':'Lógica formal (silogismo). Critica a Platón: las Ideas no pueden estar separadas de las cosas.',
+    }},
+  descartes:{nombre:'Descartes',color:'var(--blue)',
+    temas:{
+      'Realidad':'Tres sustancias: res cogitans (mente), res extensa (materia) y Dios. Dualismo radical mente-cuerpo.',
+      'Conocimiento':'Duda metódica para encontrar certezas. El cogito como primera verdad. Ideas claras y distintas garantizadas por Dios.',
+      'Ser Humano':'Res cogitans: el ser humano es esencialmente una cosa que piensa. El cuerpo es una máquina.',
+      'Ética':'El dominio de las pasiones mediante la razón. La generosidad como virtud principal.',
+      'Política':'No desarrolló una filosofía política sistemática. Prima el orden racional.',
+      'Método':'Cuatro reglas: evidencia, análisis, síntesis, enumeración. Matemáticas como modelo.',
+    }},
+  hume:{nombre:'Hume',color:'var(--purple)',
+    temas:{
+      'Realidad':'Solo podemos conocer nuestras percepciones. Escepticismo sobre la realidad exterior, Dios y el yo.',
+      'Conocimiento':'Impresiones (vivaces) → Ideas (copias). La causalidad no es racional sino un hábito. Crítica a la inducción.',
+      'Ser Humano':'El yo es solo un "haz de percepciones". No hay identidad personal sustancial.',
+      'Ética':'La moral se basa en el sentimiento (emotivismo moral). La razón es esclava de las pasiones.',
+      'Política':'Convencionalismo: las instituciones sociales son convenciones útiles, no naturales.',
+      'Método':'Análisis de las impresiones. Principio de copia. Guillotina: del "es" no se puede derivar el "debe".',
+    }},
+  kant:{nombre:'Kant',color:'var(--teal)',
+    temas:{
+      'Realidad':'Fenómeno (lo que conocemos) vs noúmeno (cosa en sí, incognoscible). Giro copernicano.',
+      'Conocimiento':'Síntesis de sensibilidad (intuiciones a priori) y entendimiento (categorías). Juicios sintéticos a priori.',
+      'Ser Humano':'Ser racional y autónomo. Fin en sí mismo, nunca medio. Ciudadano del reino de los fines.',
+      'Ética':'Imperativo categórico: actúa solo según la máxima que puedas querer que sea ley universal.',
+      'Política':'Paz perpetua mediante federación de repúblicas. Uso público de la razón (Ilustración).',
+      'Método':'Crítica de la razón. Analiza las condiciones de posibilidad del conocimiento y la moral.',
+    }},
+  nietzsche:{nombre:'Nietzsche',color:'var(--red)',
+    temas:{
+      'Realidad':'No hay mundos verdaderos ni apariencias: solo hay interpretaciones. Crítica al platonismo.',
+      'Conocimiento':'Perspectivismo: no hay verdad objetiva, solo perspectivas. El conocimiento sirve a la vida.',
+      'Ser Humano':'Ser que puede superarse: del último hombre al superhombre (Übermensch). Voluntad de poder.',
+      'Ética':'Transvaloración de los valores. Moral de señores (afirmación) vs moral de esclavos (resentimiento).',
+      'Política':'Crítica al Estado, al nacionalismo y a la democracia igualitaria. Elite de espíritus libres.',
+      'Método':'Genealogía de la moral. Filosofía con martillo. Aforismo y metáfora como formas de pensamiento.',
+    }},
+  marx:{nombre:'Marx',color:'var(--red)',
+    temas:{
+      'Realidad':'Materialismo: la realidad material (economía) determina la conciencia, no al revés.',
+      'Conocimiento':'La ideología distorsiona el conocimiento para servir a los intereses de la clase dominante.',
+      'Ser Humano':'Ser social y productor. La alienación separa al trabajador de su esencia humana creadora.',
+      'Ética':'La moral burguesa es ideología. La praxis revolucionaria como acción transformadora del mundo.',
+      'Política':'Materialismo histórico: la historia es lucha de clases. El Estado es instrumento de la burguesía.',
+      'Método':'Dialéctica materialista (herencia de Hegel). Crítica de la economía política. Praxis.',
+    }},
+};
+
+function generarComparacion() {
+  const a1 = document.getElementById('comp1').value;
+  const a2 = document.getElementById('comp2').value;
+  if(a1===a2) { document.getElementById('comparadorResult').innerHTML='<div style="text-align:center;padding:1rem;color:var(--text3)">Selecciona dos autores distintos.</div>'; return; }
+  const d1 = comparadorData[a1], d2 = comparadorData[a2];
+  const temas = Object.keys(d1.temas);
+  document.getElementById('comparadorResult').innerHTML=`
+    <div style="overflow-x:auto;margin-top:0.5rem">
+      <table style="width:100%;border-collapse:collapse;font-size:0.83rem">
+        <thead>
+          <tr>
+            <th style="background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text3);width:15%">Tema</th>
+            <th style="background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;color:${d1.color};font-size:0.9rem">⚖️ ${d1.nombre}</th>
+            <th style="background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;color:${d2.color};font-size:0.9rem">⚖️ ${d2.nombre}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${temas.map((t,i)=>`
+            <tr style="background:${i%2===0?'var(--bg3)':'var(--card)'}">
+              <td style="border:1px solid var(--border);padding:0.75rem 1rem;font-weight:700;color:var(--text2);white-space:nowrap">${t}</td>
+              <td style="border:1px solid var(--border);padding:0.75rem 1rem;line-height:1.6;border-left:3px solid ${d1.color}">${d1.temas[t]}</td>
+              <td style="border:1px solid var(--border);padding:0.75rem 1rem;line-height:1.6;border-left:3px solid ${d2.color}">${d2.temas[t]}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:1rem;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius-sm);padding:1rem;font-size:0.82rem;color:var(--text2)">
+      💡 <strong style="color:var(--gold)">Para la pregunta 2a:</strong> Usa frases como <em>"mientras ${d1.nombre} defiende que…, ${d2.nombre} sostiene por el contrario…"</em>, <em>"ambos coinciden en…, sin embargo difieren en…"</em>, <em>"desde la perspectiva de ${d1.nombre}… frente a la postura de ${d2.nombre}…"</em>
+    </div>`;
+}
+
+// ===== COMUNIDAD (votos con localStorage) =====
+const encuestas = [
+  {id:'dificil',pregunta:'¿Qué autor te cuesta más?',opciones:['Kant','Platón','Nietzsche','Hume','Marx','Descartes','Aristóteles']},
+  {id:'pregunta',pregunta:'¿Qué pregunta te parece más difícil?',opciones:['1a Definiciones','1b Idea y estructura','1c Posición filosófica','2a Relación autores','2b Valoración personal']},
+  {id:'tiempo',pregunta:'¿Cuándo empezaste a estudiar filosofía?',opciones:['Más de 3 meses antes','1-3 meses antes','1 mes antes','2 semanas antes','La noche anterior 😅']},
+];
+
+function renderComunidad() {
+  const grid = document.getElementById('comunidadGrid');
+  if(!grid) return;
+  grid.innerHTML = encuestas.map(e=>{
+    const votos = STORE.get('votos_'+e.id) || {};
+    const votado = STORE.get('vote_'+e.id);
+    const total = Object.values(votos).reduce((a,b)=>a+b,0)||1;
+    return `<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🗳️ ${e.pregunta}</h3>
+      <div style="display:flex;flex-direction:column;gap:0.6rem">
+        ${e.opciones.map(op=>{
+          const v = votos[op]||0;
+          const pct = Math.round(v/total*100);
+          const esVotado = votado===op;
+          return `<div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem;font-size:0.82rem">
+              <button onclick="votar('${e.id}','${op}')" style="background:none;border:none;color:${esVotado?'var(--gold)':'var(--text2)'};cursor:pointer;font-size:0.82rem;text-align:left;font-family:var(--font-body);font-weight:${esVotado?700:400};padding:0">${esVotado?'✓ ':''} ${op}</button>
+              <span style="color:var(--text3)">${votado?pct+'%':''}</span>
+            </div>
+            ${votado?`<div style="background:var(--bg3);border-radius:50px;height:5px;overflow:hidden"><div style="height:100%;background:${esVotado?'var(--gold)':'var(--teal)'};border-radius:50px;width:${pct}%;transition:width 0.6s ease"></div></div>`:''}
+          </div>`;
+        }).join('')}
+      </div>
+      ${!votado?`<p style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem">Vota para ver los resultados</p>`:`<p style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem">${total} votos totales</p>`}
+    </div>`;
+  }).join('');
+}
+
+function votar(encuestaId, opcion) {
+  if(STORE.get('vote_'+encuestaId)) return;
+  const votos = STORE.get('votos_'+encuestaId) || {};
+  votos[opcion] = (votos[opcion]||0)+1;
+  STORE.set('votos_'+encuestaId, votos);
+  STORE.set('vote_'+encuestaId, opcion);
+  addXP(5,'Voto en comunidad');
+  renderComunidad();
+}
+
 // ===== POPUP SOCIAL =====
 function closePopup() {
-  document.getElementById('socialPopup').classList.remove('show');
+  const p=document.getElementById('socialPopup');
+  if(p) p.classList.remove('show');
   localStorage.setItem('popupClosed', Date.now());
 }
 setTimeout(() => {
   const last = localStorage.getItem('popupClosed');
   const now = Date.now();
   if(!last || now - last > 24*60*60*1000) {
-    document.getElementById('socialPopup').classList.add('show');
+    const p=document.getElementById('socialPopup');
+    if(p) p.classList.add('show');
   }
 }, 15000);
+
+
+// ===== CALCULADORA DE NOTA =====
+function calcularNota() {
+  const vals = ['n1a','n1b','n1c','n2a','n2b'].map(id => {
+    const v = parseFloat(document.getElementById(id).value) || 0;
+    return Math.min(2, Math.max(0, v));
+  });
+  const total = vals.reduce((a,b) => a+b, 0);
+  const nota = Math.min(10, total);
+  const el = document.getElementById('notaFinal');
+  const label = document.getElementById('notaLabel');
+  const cont = document.getElementById('resultadoCalc');
+  el.textContent = nota.toFixed(2);
+  let color, msg, border;
+  if(nota >= 9) { color='var(--gold)'; msg='🏆 Sobresaliente — ¡Excelente trabajo!'; border='rgba(201,168,76,0.5)'; }
+  else if(nota >= 7) { color='var(--teal)'; msg='✅ Notable — Muy buena nota.'; border='rgba(62,207,178,0.4)'; }
+  else if(nota >= 5) { color='var(--blue)'; msg='📘 Aprobado — Sigue practicando.'; border='rgba(91,141,238,0.4)'; }
+  else { color='var(--red)'; msg='❌ Suspenso — Repasa y vuelve a intentarlo.'; border='rgba(224,92,92,0.4)'; }
+  el.style.color = color;
+  label.textContent = msg;
+  label.style.color = color;
+  cont.style.borderColor = border;
+}
+
+
+// ===== DATOS CURIOSOS =====
+const curiosidadesData = [
+  { icon:'🏋️', autor:'Platón', color:'var(--gold)', colorDim:'var(--gold-dim)', titulo:'El luchador campeón',
+    texto:'«Platón» significa <strong>ancho de espaldas</strong> en griego. Su nombre real era <strong>Aristocles</strong>. Fue luchador y compitió en los Juegos Ístmicos. Su maestro de gimnasia le puso el apodo por su complexión atlética.' },
+  { icon:'🐬', autor:'Aristóteles', color:'var(--teal)', colorDim:'var(--teal-dim)', titulo:'El primer biólogo del mundo',
+    texto:'Aristóteles catalogó más de <strong>500 especies animales</strong> e identificó correctamente que los <strong>delfines son mamíferos</strong> más de 2.000 años antes que nadie más. También describió la pesca con caña, la migración de aves y el desarrollo embrionario.' },
+  { icon:'🛏️', autor:'Descartes', color:'var(--blue)', colorDim:'var(--blue-dim)', titulo:'El filósofo dormilón',
+    texto:'Descartes era famoso por <strong>quedarse en cama hasta el mediodía</strong>. Sus mejores ideas se le ocurrían al despertar. Cuando la reina Cristina de Suecia le obligó a dar clases filosóficas a las <strong>5 de la mañana</strong> en el frío de Estocolmo, murió de neumonía a los tres meses.' },
+  { icon:'🎭', autor:'Hume', color:'var(--purple)', colorDim:'var(--purple-dim)', titulo:'«Le bon David»',
+    texto:'Hume era conocido en París como <strong>«le bon David»</strong> por su simpatía y sentido del humor. Era bibliotecario, secretario de embajada y asesor político. Los salones parisinos le adoraban, aunque sus ideas sobre la religión escandalizaban a la Iglesia.' },
+  { icon:'⏰', autor:'Kant', color:'var(--blue)', colorDim:'var(--blue-dim)', titulo:'El reloj humano de Königsberg',
+    texto:'Kant era tan puntual en sus paseos diarios que los vecinos <strong>ajustaban sus relojes</strong> al verle pasar. Solo rompió esa rutina dos veces en su vida: al leer el <em>Emilio</em> de Rousseau y al enterarse de la Revolución Francesa. <strong>Nunca salió de Königsberg</strong>.' },
+  { icon:'📰', autor:'Marx', color:'var(--red)', colorDim:'var(--red-dim)', titulo:'Vivía en la pobreza',
+    texto:'Marx vivió en extrema pobreza en Londres. Tres de sus siete hijos murieron de pequeños. Su principal fuente de ingresos era escribir para el <strong>New York Tribune</strong>. <strong>Friedrich Engels</strong> le financió económicamente durante décadas para que pudiera escribir <em>El Capital</em>.' },
+  { icon:'🎸', autor:'Nietzsche', color:'var(--gold)', colorDim:'var(--gold-dim)', titulo:'El músico fracasado',
+    texto:'Nietzsche era un pianista brillante. Wagner decía que si no se hubiera dedicado a la filosofía habría sido un gran músico. Rompió con Wagner porque consideró que su música se volvía <strong>«enfermiza y cristiana»</strong>. Sufrió un colapso mental a los 44 años y ya no se recuperó.' },
+  { icon:'🦉', autor:'Ortega', color:'var(--teal)', colorDim:'var(--teal-dim)', titulo:'El filósofo de café',
+    texto:'Ortega y Gasset desarrolló gran parte de su filosofía en los <strong>cafés madrileños</strong>, especialmente en la Granja El Henar. Fue diputado, fundó la <em>Revista de Occidente</em> y durante el franquismo vivió exiliado, siendo figura intelectual de referencia en toda la España de posguerra.' },
+  { icon:'🪂', autor:'Wittgenstein', color:'var(--purple)', colorDim:'var(--purple-dim)', titulo:'Voluntario de guerra',
+    texto:'Durante la Primera Guerra Mundial, Wittgenstein se alistó <strong>voluntariamente</strong> en el ejército austriaco y pidió ser destinado a los puestos de mayor peligro. En las trincheras escribió el <em>Tractatus Logico-Philosophicus</em>, uno de los libros filosóficos más influyentes del siglo XX.' },
+  { icon:'🧮', autor:'Habermas', color:'var(--blue)', colorDim:'var(--blue-dim)', titulo:'El filósofo más citado vivo',
+    texto:'Jürgen Habermas (nacido en 1929) es considerado el <strong>filósofo vivo más citado del mundo</strong> en ciencias sociales. A los 15 años escuchó las transmisiones de los juicios de Núremberg por radio, lo que le marcó profundamente y orientó toda su filosofía hacia la democracia y la razón comunicativa.' },
+];
+
+function renderCuriosidades() {
+  const grid = document.getElementById('curiosidadesGrid');
+  if(!grid) return;
+  grid.innerHTML = curiosidadesData.map((c,i) => `
+    <div class="pau-card reveal" style="border-left:3px solid ${c.color};cursor:default;animation-delay:${i*0.05}s">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.85rem">
+        <div style="width:42px;height:42px;border-radius:10px;background:${c.colorDim};border:1px solid ${c.color}33;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">${c.icon}</div>
+        <div>
+          <div style="font-size:0.68rem;font-weight:700;color:${c.color};text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.1rem">${c.autor}</div>
+          <div style="font-weight:700;font-size:0.95rem">${c.titulo}</div>
+        </div>
+      </div>
+      <p style="font-size:0.83rem;color:var(--text2);line-height:1.7;margin:0">${c.texto}</p>
+    </div>`).join('');
+  observeReveal();
+}
+
+
+// ===== MAPA DE RELACIONES =====
+const relacionesData = [
+  { par:'Platón — Aristóteles', tagColor:'var(--gold)', emoji:'🏛️',
+    semejanzas:['Ambos buscan la verdad universal y objetiva','Los dos conciben la ética ligada a la política','Para ambos la razón es la facultad superior humana','Comparten el ideal del Estado justo'],
+    diferencias:['Platón: Ideas separadas del mundo · Aristóteles: formas en la materia','Platón: alma inmortal y separada del cuerpo · Aristóteles: alma como forma del cuerpo','Platón: conocimiento como recuerdo (anamnesis) · Aristóteles: parte de los sentidos','Platón: filósofo-rey · Aristóteles: deliberación entre ciudadanos'],
+    frec:'⭐⭐⭐ Muy frecuente en la PAU' },
+  { par:'Descartes — Hume', tagColor:'var(--blue)', emoji:'💡',
+    semejanzas:['Ambos buscan el fundamento seguro del conocimiento','Los dos reflexionan sobre la causalidad','Ambos cuestionan el conocimiento previo no examinado'],
+    diferencias:['Descartes: racionalista (razón como fuente) · Hume: empirista (experiencia como fuente)','Descartes: ideas innatas · Hume: todas las ideas vienen de impresiones','Descartes: certeza del yo pensante · Hume: el yo es solo un haz de percepciones','Descartes: la causalidad es racional · Hume: es solo hábito y costumbre'],
+    frec:'⭐⭐⭐ Muy frecuente en la PAU' },
+  { par:'Hume — Kant', tagColor:'var(--purple)', emoji:'🌐',
+    semejanzas:['Ambos reflexionan sobre los límites del conocimiento humano','Los dos cuestionan la metafísica dogmática tradicional','Ambos tienen una visión crítica de la causalidad'],
+    diferencias:['Hume: la causalidad es solo hábito · Kant: la causalidad es una categoría a priori del entendimiento','Hume: escepticismo · Kant: fundamentación crítica del conocimiento','Hume: la moral es sentimiento · Kant: la moral es razón pura práctica','Hume: niega el yo sustancial · Kant: el yo trascendental es condición del conocimiento'],
+    frec:'⭐⭐⭐ Muy frecuente en la PAU' },
+  { par:'Platón — Kant', tagColor:'var(--teal)', emoji:'🔮',
+    semejanzas:['Ambos distinguen entre el mundo de la apariencia y el de la verdad','Los dos conciben una ética de principios universales','Para ambos, la razón es la facultad suprema','Ambos valoran la autonomía moral'],
+    diferencias:['Platón: Ideas ontológicamente reales · Kant: las categorías son formas del sujeto, no del ser','Platón: el bien es un Idea objetiva · Kant: el bien depende del imperativo de la razón práctica','Platón: el conocimiento es recuerdo · Kant: es síntesis de experiencia y categorías a priori','Platón: teoría del Estado ideal · Kant: paz perpetua y derecho cosmopolita'],
+    frec:'⭐⭐ Frecuente' },
+  { par:'Marx — Nietzsche', tagColor:'var(--red)', emoji:'⚡',
+    semejanzas:['Ambos son críticos radicales de la sociedad burguesa y occidental','Los dos cuestionan los valores dominantes de su época','Ambos parten del sufrimiento real del ser humano concreto','Ambos rechazan el idealismo de Hegel (a su modo)'],
+    diferencias:['Marx: la alienación es económica y social · Nietzsche: es cultural y de valores','Marx: solución colectiva y revolucionaria · Nietzsche: solución individual y aristocrática','Marx: materialismo histórico · Nietzsche: voluntad de poder y vitalismo','Marx: el superhombre es el proletariado liberado · Nietzsche: el superhombre es el individuo creador de valores'],
+    frec:'⭐⭐ Frecuente' },
+  { par:'Aristóteles — Kant', tagColor:'var(--blue)', emoji:'⚖️',
+    semejanzas:['Ambos buscan una fundamentación racional de la ética','Los dos conciben al ser humano como fin en sí mismo (en sus términos)','Para ambos, la razón práctica tiene un papel central en la moral'],
+    diferencias:['Aristóteles: ética de la virtud y la eudaimonia · Kant: ética del deber y el imperativo','Aristóteles: el bien depende del contexto y la polis · Kant: el bien moral es universal e incondicional','Aristóteles: teleológico (fin natural) · Kant: deontológico (deber racional)','Aristóteles: la virtud se aprende con la práctica · Kant: la ley moral es apriorística'],
+    frec:'⭐⭐ Frecuente' },
+  { par:'Marx — Platón', tagColor:'var(--gold)', emoji:'🏗️',
+    semejanzas:['Ambos proponen una organización racional de la sociedad','Los dos critican la sociedad de su tiempo','Ambos piensan que las condiciones materiales/sociales forman al individuo'],
+    diferencias:['Platón: el Estado ideal es estático y jerárquico · Marx: la sociedad ideal llega por revolución histórica','Platón: el conocimiento de las Ideas es la clave · Marx: la praxis transformadora es la clave','Platón: idealismo · Marx: materialismo histórico','Platón: la injusticia viene del alma desequilibrada · Marx: viene de la explotación económica'],
+    frec:'⭐ Ocasional' },
+  { par:'Descartes — Platón', tagColor:'var(--teal)', emoji:'💭',
+    semejanzas:['Ambos son racionalistas: la razón es la fuente del conocimiento verdadero','Los dos distinguen entre el mundo aparente y el verdadero','Ambos defienden la existencia de ideas o conocimientos independientes de los sentidos','Los dos tienen una visión dualista del ser humano (alma/cuerpo)'],
+    diferencias:['Platón: las Ideas existen independientemente en el mundo inteligible · Descartes: las ideas innatas están en la mente del sujeto','Platón: el conocimiento es reminiscencia · Descartes: es deducción racional a partir del cogito','Platón: el alma es inmortal y transmigra · Descartes: la mente es res cogitans, no transmigra','Platón: mito como recurso filosófico · Descartes: método matemático estricto'],
+    frec:'⭐ Ocasional' },
+];
+
+let relacionAbierta = null;
+
+function renderRelaciones() {
+  const grid = document.getElementById('relacionesGrid');
+  if(!grid) return;
+  grid.innerHTML = relacionesData.map((r,i) => `
+    <div class="pau-card reveal" style="cursor:pointer;border:1px solid var(--border);transition:all 0.25s" onclick="toggleRelacion(${i})" id="rel-card-${i}">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.65rem">
+        <div style="display:flex;align-items:center;gap:0.6rem">
+          <span style="font-size:1.4rem">${r.emoji}</span>
+          <div style="font-weight:800;font-size:0.95rem">${r.par}</div>
+        </div>
+        <span style="font-size:1rem;color:var(--text3);transition:transform 0.25s" id="rel-arrow-${i}">▸</span>
+      </div>
+      <div style="font-size:0.72rem;color:${r.tagColor};font-weight:600;margin-bottom:0.5rem">${r.frec}</div>
+      <div id="rel-body-${i}" style="display:none;margin-top:0.75rem;border-top:1px solid var(--border);padding-top:0.85rem">
+        <div style="margin-bottom:0.85rem">
+          <div style="font-size:0.7rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem">✓ Semejanzas</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.3rem">
+            ${r.semejanzas.map(s=>`<li style="font-size:0.8rem;color:var(--text2);padding:0.3rem 0.6rem;background:var(--teal-dim);border-radius:6px;border-left:2px solid var(--teal)">• ${s}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:0.7rem;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem">✗ Diferencias</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.3rem">
+            ${r.diferencias.map(d=>`<li style="font-size:0.8rem;color:var(--text2);padding:0.3rem 0.6rem;background:var(--red-dim);border-radius:6px;border-left:2px solid var(--red)">• ${d}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>`).join('');
+  observeReveal();
+}
+
+function toggleRelacion(i) {
+  const body = document.getElementById('rel-body-'+i);
+  const arrow = document.getElementById('rel-arrow-'+i);
+  const card = document.getElementById('rel-card-'+i);
+  const open = body.style.display === 'block';
+  if(!open && relacionAbierta !== null && relacionAbierta !== i) {
+    document.getElementById('rel-body-'+relacionAbierta).style.display='none';
+    document.getElementById('rel-arrow-'+relacionAbierta).style.transform='rotate(0deg)';
+    document.getElementById('rel-card-'+relacionAbierta).style.borderColor='var(--border)';
+  }
+  body.style.display = open ? 'none' : 'block';
+  arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(90deg)';
+  card.style.borderColor = open ? 'var(--border)' : 'rgba(201,168,76,0.4)';
+  relacionAbierta = open ? null : i;
+}
 
 // ===== FECHA AUTOMÁTICA =====
 (function() {
@@ -2493,6 +3590,8 @@ setTimeout(() => {
 renderAutores();
 renderQuiz();
 renderTimeline();
+renderCuriosidades();
+renderRelaciones();
 renderBanco(bancoData);
 renderProgreso();
 renderExamenes();
