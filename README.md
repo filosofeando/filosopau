@@ -511,6 +511,19 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
   </div>
 </section>
 
+<!-- FRASE DEL DÍA -->
+<div id="fraseDelDia" style="background:linear-gradient(135deg,var(--bg2),rgba(201,168,76,0.04));border-bottom:1px solid var(--border);padding:1.25rem 1rem">
+  <div style="max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap">
+    <div style="flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--gold-dim);border:2px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;font-size:1.3rem">💭</div>
+    <div style="flex:1;min-width:200px">
+      <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.25rem" id="fraseLabel">Frase del día</div>
+      <blockquote id="fraseTexto" style="margin:0;font-size:0.95rem;line-height:1.6;color:var(--text);font-style:italic;font-family:var(--font-display)"></blockquote>
+      <div id="fraseAutorQ" style="font-size:0.78rem;color:var(--text3);margin-top:0.35rem;font-style:normal;font-weight:600"></div>
+    </div>
+    <button onclick="siguienteFrase()" title="Ver otra frase" style="flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--text3);width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text3)'">↻</button>
+  </div>
+</div>
+
 <!-- SOCIAL BANNER -->
 <div class="social-banner">
   <div class="social-banner-inner">
@@ -3095,6 +3108,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const fcNext = document.getElementById('fcNext');
   if(fcPrev) fcPrev.addEventListener('click', () => { fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length; updateFC(); });
   if(fcNext) fcNext.addEventListener('click', () => { fcIndex=(fcIndex+1)%flashcardsData.length; updateFC(); });
+  // Frase del día
+  mostrarFraseDia();
   // Inicializar secciones
   registrarDiaEstudio();
   renderProgresoPanel();
@@ -3405,6 +3420,288 @@ function votar(encuestaId, opcion) {
   STORE.set('vote_'+encuestaId, opcion);
   addXP(5,'Voto en comunidad');
   renderComunidad();
+}
+
+// ===== FRASE DEL DÍA =====
+const frasesDelDia = [
+  {t:"La vida sin examen no merece la pena ser vivida.",a:"Sócrates"},
+  {t:"El conocimiento es la única cosa que nadie puede quitarte.",a:"Platón"},
+  {t:"El principio de la sabiduría es la admiración.",a:"Aristóteles"},
+  {t:"Pienso, luego existo.",a:"Descartes"},
+  {t:"La razón sin la experiencia está vacía; la experiencia sin la razón está ciega.",a:"Kant"},
+  {t:"Lo que no te destruye te hace más fuerte.",a:"Nietzsche"},
+  {t:"La religión es el suspiro de la criatura oprimida, pero también el opio del pueblo.",a:"Marx"},
+  {t:"La razón es y solo puede ser la esclava de las pasiones.",a:"Hume"},
+  {t:"Atrévete a saber. Ten el valor de usar tu propia razón.",a:"Kant"},
+  {t:"Dios ha muerto. Nosotros lo hemos matado.",a:"Nietzsche"},
+  {t:"El ser humano es por naturaleza un animal político.",a:"Aristóteles"},
+  {t:"Solo sé que no sé nada.",a:"Sócrates"},
+  {t:"El amor a la sabiduría es el principio de toda filosofía.",a:"Platón"},
+  {t:"El filósofo no huye del mundo, lo transforma.",a:"Marx"},
+  {t:"La duda es el origen de la sabiduría.",a:"Descartes"},
+  {t:"Feliz quien pudo conocer las causas de las cosas.",a:"Virgilio"},
+  {t:"El éxito no es definitivo, el fracaso no es fatal: lo que cuenta es el coraje de continuar.",a:"Winston Churchill"},
+  {t:"No esperes que te lleguen las circunstancias; créalas.",a:"Francis Bacon"},
+  {t:"El único modo de hacer un gran trabajo es amar lo que haces.",a:"Steve Jobs"},
+  {t:"Quien tiene un porqué para vivir puede soportar casi cualquier cómo.",a:"Nietzsche"},
+  {t:"La imaginación es más importante que el conocimiento.",a:"Einstein"},
+  {t:"Nuestras vidas empiezan a terminar el día en que guardamos silencio sobre las cosas que importan.",a:"Martin Luther King"},
+  {t:"El hombre que mueve montañas comienza por llevarse las piedras pequeñas.",a:"Confucio"},
+  {t:"No temas a la perfección; nunca la alcanzarás.",a:"Salvador Dalí"},
+  {t:"La mente es todo. Te conviertes en lo que piensas.",a:"Buda"},
+  {t:"Cada día es una nueva oportunidad para cambiar tu vida.",a:"Anónimo"},
+  {t:"La excelencia no es una habilidad. Es una actitud.",a:"Ralph Marston"},
+  {t:"Cuanto más estudias, más suerte tienes.",a:"Gary Player"},
+  {t:"El esfuerzo de hoy es el éxito de mañana.",a:"Anónimo"},
+  {t:"No estudies para el examen. Estudia para la vida.",a:"Anónimo"},
+  {t:"El verdadero conocimiento es conocer el alcance de la propia ignorancia.",a:"Confucio"},
+  {t:"Un libro es un sueño del que tienes el control.",a:"Neil Gaiman"},
+  {t:"Educar la mente sin educar el corazón no es educación en absoluto.",a:"Aristóteles"},
+  {t:"Aprender sin reflexionar es malgastar la energía.",a:"Confucio"},
+  {t:"Quien no ha superado una dificultad no conoce su valor real.",a:"Confucio"},
+  {t:"La libertad no consiste en hacer lo que se quiere, sino en querer lo que se hace.",a:"Jean-Paul Sartre"},
+  {t:"El miedo a equivocarse es mayor obstáculo para aprender que el propio error.",a:"Anónimo"},
+  {t:"La filosofía no resuelve los problemas; los disuelve.",a:"Ludwig Wittgenstein"},
+  {t:"Lo que sabemos es una gota; lo que ignoramos es un océano.",a:"Isaac Newton"},
+  {t:"Cuando crees que ya no puedes más, siempre puedes un poco más.",a:"Anónimo"},
+  {t:"El dolor de estudiar es temporal. El dolor del fracaso dura más.",a:"Anónimo"},
+  {t:"Conocerte a ti mismo es el principio de toda sabiduría.",a:"Aristóteles"},
+  {t:"No hay atajos hacia ningún lugar que valga la pena ir.",a:"Beverly Sills"},
+  {t:"La disciplina es el puente entre las metas y los logros.",a:"Jim Rohn"},
+  {t:"Primero domínate a ti mismo, después a lo demás.",a:"Epicteto"},
+  {t:"El hombre que sigue al rebaño nunca avanzará más que el rebaño.",a:"Albert Einstein"},
+  {t:"No busques que los sucesos ocurran como deseas; desea que ocurran como son y encontrarás tranquilidad.",a:"Epicteto"},
+  {t:"Cuanto más vivo, más aprendo. Cuanto más aprendo, más me doy cuenta de lo poco que sé.",a:"Michel de Montaigne"},
+  {t:"Invertir en conocimiento paga siempre el mejor interés.",a:"Benjamin Franklin"},
+  {t:"Un hombre que no lee libros no tiene ventaja sobre un hombre que no sabe leer.",a:"Mark Twain"},
+  {t:"La igualdad consiste en tratar de manera igual a los iguales.",a:"Aristóteles"},
+  {t:"Ama la verdad, pero perdona el error.",a:"Voltaire"},
+  {t:"Todo lo que existe en el universo es fruto del azar y de la necesidad.",a:"Demócrito"},
+  {t:"La grandeza no consiste en ser fuerte, sino en el recto uso de la fuerza.",a:"Henry Ward Beecher"},
+  {t:"El que no arriesga no gana.",a:"Proverbio popular"},
+  {t:"La paciencia es amarga, pero su fruto es dulce.",a:"Jean-Jacques Rousseau"},
+  {t:"El optimista ve oportunidades en cada dificultad.",a:"Winston Churchill"},
+  {t:"Fracasar es solo la oportunidad de comenzar de nuevo con más inteligencia.",a:"Henry Ford"},
+  {t:"Los hombres son más perturbados por las opiniones que por los hechos.",a:"Epicteto"},
+  {t:"El trabajo duro vence al talento cuando el talento no trabaja duro.",a:"Tim Notke"},
+  {t:"Cada problema tiene un regalo para ti en sus manos.",a:"Richard Bach"},
+  {t:"Actúa solo según aquella máxima que puedas querer que sea ley universal.",a:"Kant"},
+  {t:"La virtud es el término medio entre dos extremos viciosos.",a:"Aristóteles"},
+  {t:"No somos lo que pensamos que somos, sino lo que pensamos.",a:"Anónimo"},
+  {t:"El que teme sufrir, ya está sufriendo lo que teme.",a:"Michel de Montaigne"},
+  {t:"La educación es el arma más poderosa que puedes usar para cambiar el mundo.",a:"Nelson Mandela"},
+  {t:"No hay ningún viento favorable para el que no sabe a qué puerto se dirige.",a:"Schopenhauer"},
+  {t:"La felicidad no se busca, se construye.",a:"Anónimo"},
+  {t:"Recuerda que nada es permanente. La euforia del éxito y la angustia del fracaso son pasajeras.",a:"Sri Sri Ravi Shankar"},
+  {t:"El conocimiento es el único bien que crece cuando se comparte.",a:"Sócrates"},
+  {t:"Si quieres ir rápido, ve solo. Si quieres llegar lejos, ve acompañado.",a:"Proverbio africano"},
+  {t:"Lo que somos es el resultado de lo que hemos pensado.",a:"Buda"},
+  {t:"No puedes controlar el viento, pero puedes ajustar las velas.",a:"Epicteto"},
+  {t:"La filosofía es la práctica de la muerte voluntaria.",a:"Platón"},
+  {t:"El hombre más feliz es el que hace que su felicidad dependa de las cosas menos posibles.",a:"Immanuel Kant"},
+  {t:"El superhombre no niega la vida, sino que la afirma con todas sus contradicciones.",a:"Nietzsche"},
+  {t:"La historia de toda sociedad hasta nuestros días es la historia de la lucha de clases.",a:"Marx y Engels"},
+  {t:"Las ideas no son responsables de las personas que las usan.",a:"Charles F. Kettering"},
+  {t:"El fin de la educación es reemplazar una mente vacía con una mente abierta.",a:"Malcolm Forbes"},
+  {t:"Cuando el alumno está listo, el maestro aparece.",a:"Buda"},
+  {t:"El coraje no es la ausencia del miedo, sino la decisión de que algo es más importante que el miedo.",a:"Ambrose Redmoon"},
+  {t:"La curiosidad tiene su propia razón de existir.",a:"Albert Einstein"},
+  {t:"La ciencia sin religión está coja; la religión sin ciencia está ciega.",a:"Albert Einstein"},
+  {t:"El pensamiento sin contenido es vacío; la intuición sin conceptos es ciega.",a:"Kant"},
+  {t:"No hay nada más poderoso que una idea cuyo momento ha llegado.",a:"Victor Hugo"},
+  {t:"Si no puedes explicarlo de forma simple, es que no lo entiendes suficientemente bien.",a:"Albert Einstein"},
+  {t:"Que tu comida sea tu medicina y tu medicina sea tu comida.",a:"Hipócrates"},
+  {t:"El hombre sabio no dice todo lo que piensa, pero siempre piensa todo lo que dice.",a:"Aristóteles"},
+  {t:"La memoria es el centinela del cerebro.",a:"William Shakespeare"},
+  {t:"Toda la filosofía occidental es una serie de notas a pie de página de Platón.",a:"Alfred North Whitehead"},
+  {t:"Los límites de mi lenguaje son los límites de mi mundo.",a:"Ludwig Wittgenstein"},
+  {t:"El hombre está condenado a ser libre.",a:"Jean-Paul Sartre"},
+  {t:"La existencia precede a la esencia.",a:"Jean-Paul Sartre"},
+  {t:"Prefiero morir de pie a vivir arrodillado.",a:"Emiliano Zapata"},
+  {t:"No llores porque terminó, sonríe porque sucedió.",a:"Gabriel García Márquez"},
+  {t:"El hombre que mueve una montaña empieza cargando piedras pequeñas.",a:"Confucio"},
+  {t:"Las palabras son, en mi no muy humilde opinión, nuestra inagotable fuente de magia.",a:"J.K. Rowling"},
+  {t:"La sabiduría de los hombres está en sus respuestas; su inteligencia, en sus preguntas.",a:"Naguib Mahfuz"},
+  {t:"La naturaleza no hace nada en vano.",a:"Aristóteles"},
+  {t:"Toda teoría es gris; verde es el árbol dorado de la vida.",a:"Goethe"},
+  {t:"No hay deber más urgente que el de devolver gracias.",a:"Marco Tulio Cicerón"},
+  {t:"El tiempo es el recurso más valioso porque no se puede recuperar.",a:"Teofrastro"},
+  {t:"Quien aprende y no piensa, pierde el tiempo; quien piensa y no aprende, se expone al peligro.",a:"Confucio"},
+  {t:"La búsqueda de la verdad es más preciosa que su posesión.",a:"G. E. Lessing"},
+  {t:"El dolor de ayer es la fortaleza de hoy.",a:"Arnold Schwarzenegger"},
+  {t:"Haz hoy lo que otros no harán y mañana tendrás lo que otros no tendrán.",a:"Jerry Rice"},
+  {t:"No te preocupes por los fracasos, preocúpate por las posibilidades que pierdes cuando ni siquiera lo intentas.",a:"Jack Canfield"},
+  {t:"Para hacer las grandes cosas no hace falta ser un genio, sino tan solo no tener las manos llenas.",a:"G. K. Chesterton"},
+  {t:"La clave del éxito es comenzar antes de estar listo.",a:"Marie Forleo"},
+  {t:"Todo gran logro fue en algún momento considerado imposible.",a:"Anónimo"},
+  {t:"No esperes el momento perfecto. Toma el momento y hazlo perfecto.",a:"Anónimo"},
+  {t:"Haz de tu vida un sueño y de tu sueño una realidad.",a:"Antoine de Saint-Exupéry"},
+  {t:"El hábito de estudiar hace que el saber sea un placer.",a:"Anónimo"},
+  {t:"Cuida tus pensamientos, pues se convertirán en palabras. Cuida tus palabras, pues se convertirán en actos.",a:"Lao-Tse"},
+  {t:"No hay educación que sea igual al ejemplo.",a:"Anónimo"},
+  {t:"Ser es ser percibido.",a:"George Berkeley"},
+  {t:"El más perfecto conocimiento es el autoconocimiento.",a:"Anónimo"},
+  {t:"La filosofía es el amor a la sabiduría.",a:"Pitágoras"},
+  {t:"No es sabio el que sabe muchas cosas, sino el que sabe las necesarias.",a:"Esquilo"},
+  {t:"La filosofía comienza con el asombro.",a:"Platón"},
+  {t:"El primer sorbo del vaso de las ciencias naturales te hace ateo; pero en el fondo del vaso te espera Dios.",a:"Werner Heisenberg"},
+  {t:"Hay que atreverse a ser lo que se quiere ser.",a:"Anónimo"},
+  {t:"Prefiere la sabiduría a las riquezas, porque la sabiduría permanece.",a:"Pitágoras"},
+  {t:"La ignorancia es la noche de la mente.",a:"Confucio"},
+  {t:"Un hombre que piensa que puede hacer algo, tiene razón; el que piensa que no puede, también.",a:"Henry Ford"},
+  {t:"La filosofía es la conquista de la certeza a través de la duda.",a:"Descartes"},
+  {t:"Eres libre de elegir, pero no libre de las consecuencias de tu elección.",a:"Anónimo"},
+  {t:"El error es humano, perseverar en él es diabólico.",a:"San Agustín"},
+  {t:"La mente es como un paracaídas: solo funciona cuando está abierta.",a:"Frank Zappa"},
+  {t:"Haz cada día algo que te asuste.",a:"Eleanor Roosevelt"},
+  {t:"El peor analfabeto es el analfabeto político.",a:"Bertolt Brecht"},
+  {t:"Cada libro es un mundo.",a:"Virginia Woolf"},
+  {t:"Quien controla el pasado, controla el futuro.",a:"George Orwell"},
+  {t:"La duda metódica nos abre a la luz de la razón.",a:"Descartes"},
+  {t:"No importa cuán lento vayas, siempre y cuando no te detengas.",a:"Confucio"},
+  {t:"El talento es más barato que la sal. Lo que separa al individuo con talento del que ha triunfado es el trabajo duro.",a:"Stephen King"},
+  {t:"Vivir es la cosa más rara del mundo. La mayoría de la gente sólo existe.",a:"Oscar Wilde"},
+  {t:"La única manera de hacer algo muy bien es amarlo.",a:"Steve Jobs"},
+  {t:"La filosofía es la búsqueda de la verdad como totalidad.",a:"Hegel"},
+  {t:"El miedo tiene ojos grandes.",a:"Cervantes"},
+  {t:"No podemos resolver problemas pensando de la misma manera que cuando los creamos.",a:"Albert Einstein"},
+  {t:"El sabio no dice todo lo que piensa, pero piensa todo lo que dice.",a:"Aristóteles"},
+  {t:"Cuantos más leen, menos copian.",a:"Anónimo"},
+  {t:"La acción es la clave fundamental del éxito.",a:"Pablo Picasso"},
+  {t:"Lo que el hombre sabe es sólo una gota; lo que ignora es todo el océano.",a:"Newton"},
+  {t:"La vida no se mide por el número de respiros que tomamos, sino por los momentos que nos dejan sin aliento.",a:"Maya Angelou"},
+  {t:"Un camino de mil millas comienza con un solo paso.",a:"Lao-Tse"},
+  {t:"Si educar es caro, prueba con la ignorancia.",a:"Derek Bok"},
+  {t:"Nunca consideres el estudio como una obligación, sino como una oportunidad.",a:"Albert Einstein"},
+  {t:"La grandeza de las acciones humanas se mide por la inspiración que las produce.",a:"Louis Pasteur"},
+  {t:"La mejor preparación para mañana es hacer tu mejor trabajo hoy.",a:"H. Jackson Brown Jr."},
+  {t:"La virtud está en la lucha, no en el premio.",a:"Friedrich von Schiller"},
+  {t:"El verdadero signo de la inteligencia no es el conocimiento sino la imaginación.",a:"Albert Einstein"},
+  {t:"No busques la perfección; busca la mejora constante.",a:"Anónimo"},
+  {t:"Los obstáculos son esas cosas que ves cuando apartas los ojos de tus metas.",a:"Henry Ford"},
+  {t:"La filosofía es vivir, no solo pensar.",a:"Anónimo"},
+  {t:"El pesimista se queja del viento; el optimista espera que cambie; el realista ajusta las velas.",a:"William George Ward"},
+  {t:"La perseverancia no es una carrera larga; es muchas carreras cortas, una tras otra.",a:"Walter Elliott"},
+  {t:"Cometer un error y no corregirlo: eso sí es error.",a:"Confucio"},
+  {t:"La voluntad de poder no es dominar a otros, sino superarse a uno mismo.",a:"Nietzsche"},
+  {t:"El hombre inteligente no es el que tiene muchas ideas, sino el que sabe utilizarlas.",a:"Anónimo"},
+  {t:"Para alcanzar algo que nunca has tenido, debes hacer algo que nunca has hecho.",a:"Anónimo"},
+  {t:"La ética kantiana: trata a las personas como fines, nunca solo como medios.",a:"Kant"},
+  {t:"La razón humana tropieza continuamente con preguntas que no puede responder.",a:"Kant"},
+  {t:"El trabajo es la esencia del ser humano; la alienación, su negación.",a:"Marx"},
+  {t:"Lo que no se puede decir no se puede silenciar tampoco.",a:"Wittgenstein"},
+  {t:"El hombre no es otra cosa que lo que él se hace.",a:"Jean-Paul Sartre"},
+  {t:"Vivir es decidir.",a:"Jean-Paul Sartre"},
+  {t:"El hombre es el único animal que se avergüenza de sí mismo.",a:"Mark Twain"},
+  {t:"Ser original no es buscar la diferencia, sino la autenticidad.",a:"Anónimo"},
+  {t:"La filosofía no es un sistema, es una actitud.",a:"Karl Jaspers"},
+  {t:"En la pregunta está ya la mitad de la respuesta.",a:"Anónimo"},
+  {t:"Si no luchamos por lo que queremos, ¿qué nos queda?",a:"Anónimo"},
+  {t:"El conocimiento auténtico comienza con la ignorancia reconocida.",a:"Anónimo"},
+  {t:"La historia es la suma de todo aquello que hubiéramos podido evitar.",a:"Konrad Adenauer"},
+  {t:"La verdadera ignorancia no es la ausencia de conocimiento sino la negativa a adquirirlo.",a:"Karl Popper"},
+  {t:"Piensa como los hombres de acción, actúa como los hombres de pensamiento.",a:"Henri Bergson"},
+  {t:"La filosofía es un arma para transformar el mundo.",a:"Marx"},
+  {t:"Deja que tu curiosidad sea más fuerte que tu miedo.",a:"Anónimo"},
+  {t:"El que estudia y no practica es como el que ara y no siembra.",a:"Proverbio chino"},
+  {t:"No hay fracaso excepto en no seguir intentándolo.",a:"Elbert Hubbard"},
+  {t:"Aprende las reglas como un profesional para poder romperlas como un artista.",a:"Pablo Picasso"},
+  {t:"La filosofía empieza con el asombro y termina con la sabiduría.",a:"Platón"},
+  {t:"Toda nuestra dignidad consiste en el pensamiento.",a:"Blaise Pascal"},
+  {t:"El hombre es libre, pero en todas partes está encadenado.",a:"Rousseau"},
+  {t:"Si puedes soñarlo, puedes lograrlo.",a:"Walt Disney"},
+  {t:"El secreto del éxito es constancia en el propósito.",a:"Benjamin Disraeli"},
+  {t:"No estás derrotado cuando pierdes; estás derrotado cuando te rindes.",a:"Anónimo"},
+  {t:"La motivación es lo que te pone en marcha; el hábito es lo que te mantiene.",a:"Jim Ryun"},
+  {t:"Ser filósofo no es tener sutiles pensamientos, ni fundar una escuela, sino amar la sabiduría hasta vivir según sus dictados.",a:"Henry D. Thoreau"},
+  {t:"El tiempo que disfrutamos desperdiciando no es tiempo desperdiciado.",a:"Bertrand Russell"},
+  {t:"La felicidad es el significado y el propósito de la vida, el objetivo y el fin de la existencia humana.",a:"Aristóteles"},
+  {t:"La razón pura no puede darnos las cosas; solo puede ordenarlas.",a:"Kant"},
+  {t:"Nada en exceso.",a:"Inscripción en Delfos"},
+  {t:"Conócete a ti mismo.",a:"Inscripción en el oráculo de Delfos"},
+  {t:"La vida examinada vale la pena ser vivida.",a:"Sócrates"},
+  {t:"El saber no ocupa lugar, pero sin espacio no hay saber.",a:"Anónimo"},
+  {t:"Caer está permitido. Levantarse es obligatorio.",a:"Proverbio ruso"},
+  {t:"Prepárate en la calma para cuando llegue la tormenta.",a:"Epicteto"},
+  {t:"Los que no recuerdan el pasado están condenados a repetirlo.",a:"George Santayana"},
+  {t:"No hay viento favorable para aquel que no sabe hacia dónde va.",a:"Séneca"},
+  {t:"La paciencia es una virtud.",a:"Catón el Viejo"},
+  {t:"El ocio sin libros es muerte.",a:"Séneca"},
+  {t:"Cuida tus hábitos, pues se convertirán en carácter.",a:"Aristóteles"},
+  {t:"Somos lo que hacemos repetidamente. La excelencia no es un acto, sino un hábito.",a:"Aristóteles"},
+  {t:"No preguntes qué puede hacer tu país por ti; pregunta qué puedes hacer tú por tu país.",a:"John F. Kennedy"},
+  {t:"El pesimismo es un lujo que un judío no puede permitirse.",a:"Golda Meir"},
+  {t:"Si no fracasas de vez en cuando, es que no te lo estás currando.",a:"Woody Allen"},
+  {t:"Toda persona lleva en sí misma a un posible traidor.",a:"Anaïs Nin"},
+  {t:"La filosofía no es otra cosa que la reflexión del espíritu sobre sí mismo.",a:"Hegel"},
+  {t:"Debemos aprender a vivir juntos como hermanos, o moriremos juntos como necios.",a:"Martin Luther King"},
+  {t:"La verdad es hija del tiempo, no de la autoridad.",a:"Francis Bacon"},
+  {t:"El ignorante afirma, el sabio duda y reflexiona.",a:"Aristóteles"},
+  {t:"Todo lo real es racional; todo lo racional es real.",a:"Hegel"},
+  {t:"La filosofía es el esfuerzo del pensamiento por ir más allá de sí mismo.",a:"Paul Ricoeur"},
+  {t:"La mayor victoria es aquella que se logra sin necesidad de combatir.",a:"Sun Tzu"},
+  {t:"La prueba del éxito no es lo que haces con tu vida, sino lo que te has perdido.",a:"Benjamin Franklin"},
+  {t:"El que no ha cometido ningún error, nunca ha intentado nada.",a:"Albert Einstein"},
+  {t:"La voluntad de creer puede sustituir muchas veces a la voluntad de conocer.",a:"William James"},
+  {t:"El lenguaje es la casa del ser.",a:"Martin Heidegger"},
+  {t:"La angustia es el vértigo de la libertad.",a:"Søren Kierkegaard"},
+  {t:"Ante el absurdo de la existencia, hay que imaginar a Sísifo feliz.",a:"Albert Camus"},
+  {t:"La esperanza no es lo último que se pierde; a veces es lo único que queda.",a:"Anónimo"},
+  {t:"Actuar bien es más difícil que saber qué está bien.",a:"Aristóteles"},
+  {t:"No hay camino hacia la paz; la paz es el camino.",a:"Gandhi"},
+  {t:"El mundo no está en peligro por las malas personas, sino por aquellas que permiten la maldad.",a:"Albert Einstein"},
+  {t:"La desgracia de los sabios es que sus pensamientos llegan antes que sus palabras.",a:"Platón"},
+  {t:"La filosofía es el arte de plantear buenas preguntas.",a:"Anónimo"},
+  {t:"Lo que no se puede medir no se puede mejorar.",a:"Lord Kelvin"},
+  {t:"La belleza es la promesa de la felicidad.",a:"Stendhal"},
+  {t:"La mejor hora para plantar un árbol fue hace veinte años. La segunda mejor es ahora.",a:"Proverbio chino"},
+  {t:"Si quieres tener lo que nunca has tenido, debes hacer lo que nunca has hecho.",a:"Anónimo"},
+  {t:"Hoy es el primer día del resto de tu vida.",a:"Anónimo"},
+  {t:"Estudia mientras los demás duermen, trabaja mientras los demás descansan.",a:"Anónimo"},
+  {t:"Cada día que pasa sin estudiar es un día que te acercas al examen sin preparación.",a:"Anónimo"},
+  {t:"El conocimiento no tiene precio, pero tiene un coste: el esfuerzo.",a:"Anónimo"},
+  {t:"Cuando todo parezca ir en tu contra, recuerda que el avión despega contra el viento.",a:"Henry Ford"},
+  {t:"La mente es todo lo que tienes. Cuídala.",a:"Anónimo"},
+  {t:"El secreto del éxito no está en hacer lo que te gusta, sino en que te guste lo que haces.",a:"Anónimo"},
+  {t:"La filosofía PAU no es solo un examen; es aprender a pensar.",a:"Anónimo"},
+  {t:"Cada concepto que aprendes hoy es una herramienta para toda la vida.",a:"Anónimo"},
+  {t:"El examen es solo el principio. El pensamiento crítico te acompañará siempre.",a:"Anónimo"},
+  {t:"Si puedes leer esto, ya tienes más herramientas que la mayoría.",a:"Anónimo"},
+  {t:"Un día difícil de estudio vale más que un mes de arrepentimiento.",a:"Anónimo"},
+  {t:"La PAU no define quién eres, pero sí demuestra de lo que eres capaz.",a:"Anónimo"},
+  {t:"Cada autor que estudias te regala una forma diferente de ver el mundo.",a:"Anónimo"},
+  {t:"Estudiar filosofía es aprender a dudar, a preguntar y a no conformarse.",a:"Anónimo"},
+  {t:"El esfuerzo de esta semana es la nota del día del examen.",a:"Anónimo"},
+  {t:"No tienes que ser el mejor; solo tienes que dar lo mejor de ti.",a:"Anónimo"},
+];
+
+let fraseIndiceExtra = 0;
+
+function mostrarFraseDia() {
+  const hoy = new Date();
+  const diaDelAnio = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / (1000*60*60*24));
+  const idx = (diaDelAnio + fraseIndiceExtra) % frasesDelDia.length;
+  const f = frasesDelDia[idx];
+  const el = id => document.getElementById(id);
+  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  if(el('fraseLabel')) el('fraseLabel').textContent = `${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]} · Frase del día`;
+  if(el('fraseTexto')) {
+    el('fraseTexto').style.opacity='0';
+    el('fraseTexto').style.transform='translateY(6px)';
+    setTimeout(()=>{
+      el('fraseTexto').textContent = `"${f.t}"`;
+      el('fraseAutorQ').textContent = `— ${f.a}`;
+      el('fraseTexto').style.transition='all 0.4s ease';
+      el('fraseTexto').style.opacity='1';
+      el('fraseTexto').style.transform='translateY(0)';
+    },150);
+  }
+}
+
+function siguienteFrase() {
+  fraseIndiceExtra = (fraseIndiceExtra + 1) % frasesDelDia.length;
+  mostrarFraseDia();
 }
 
 // ===== POPUP SOCIAL =====
