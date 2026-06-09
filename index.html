@@ -6,13 +6,7 @@
 <title>FilosoFEANDO — PAU Filosofía Andalucía</title>
 <meta name="description" content="La plataforma gratuita más completa para preparar la PAU de Filosofía en Andalucía. Temario, tests, exámenes corregidos, flashcards y más.">
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RW528WSNZ8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RW528WSNZ8');
-</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -479,9 +473,6 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
     <a href="#podcasts">Podcasts</a>
     <a href="#libros">Libros</a>
     <a href="#progreso">Progreso</a>
-    <a href="#logros">🏆 Logros</a>
-    <a href="#ia-correctora">🤖 IA</a>
-    <a href="#comparador">⚖️ Comparar</a>
     <a href="#sugerencias">💬 Sugerencias</a>
     <a href="#premium" class="nav-premium" style="border-radius:var(--radius-sm);padding:0.35rem 0.85rem">✦ Premium</a>
   </div>
@@ -510,19 +501,6 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
     </div>
   </div>
 </section>
-
-<!-- FRASE DEL DÍA -->
-<div id="fraseDelDia" style="background:linear-gradient(135deg,var(--bg2),rgba(201,168,76,0.04));border-bottom:1px solid var(--border);padding:1.25rem 1rem">
-  <div style="max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap">
-    <div style="flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--gold-dim);border:2px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;font-size:1.3rem">💭</div>
-    <div style="flex:1;min-width:200px">
-      <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.25rem" id="fraseLabel">Frase del día</div>
-      <blockquote id="fraseTexto" style="margin:0;font-size:0.95rem;line-height:1.6;color:var(--text);font-style:italic;font-family:var(--font-display)"></blockquote>
-      <div id="fraseAutorQ" style="font-size:0.78rem;color:var(--text3);margin-top:0.35rem;font-style:normal;font-weight:600"></div>
-    </div>
-    <button onclick="siguienteFrase()" title="Ver otra frase" style="flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--text3);width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text3)'">↻</button>
-  </div>
-</div>
 
 <!-- SOCIAL BANNER -->
 <div class="social-banner">
@@ -1159,6 +1137,37 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
 </section>
 
 <!-- PODCASTS -->
+<section id="mis-videos" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label">FilosoFEANDO en vídeo</div>
+    <h2 class="section-title">🎬 Mis Vídeos</h2>
+    <p class="section-sub">Todo el contenido publicado en TikTok e Instagram, organizado por categorías. Haz clic para verlo.</p>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:1.5rem" id="vTabBar">
+      <button class="tab-btn" onclick="vFiltrar('todos',this)" style="background:var(--gold-dim);border-color:var(--gold);color:var(--gold)">Todos</button>
+      <button class="tab-btn" onclick="vFiltrar('filosofo',this)">👤 Filósofos</button>
+      <button class="tab-btn" onclick="vFiltrar('reflexion',this)">💭 Reflexión</button>
+      <button class="tab-btn" onclick="vFiltrar('arte',this)">🎨 Arte</button>
+      <button class="tab-btn" onclick="vFiltrar('web',this)">🌐 Mi Web</button>
+      <button class="tab-btn" onclick="vFiltrar('tiktok',this)">TikTok</button>
+      <button class="tab-btn" onclick="vFiltrar('instagram',this)">Instagram</button>
+    </div>
+    <!-- Avatares filósofos -->
+    <div id="vAvatares" style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem"></div>
+    <!-- Lista vídeos -->
+    <div id="vGrid" style="display:flex;flex-direction:column;gap:0.65rem"></div>
+    <div style="text-align:center;margin-top:2rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://www.tiktok.com/@filosofeando_para_aproba" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1.25rem;background:#010101;color:#fff;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>
+        Seguir en TikTok
+      </a>
+      <a href="https://www.instagram.com/filosofeando_para_aprobar/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1.25rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Seguir en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="podcasts">
   <div class="container">
     <div class="section-label">Escucha y aprende</div>
@@ -1188,8 +1197,8 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
 <section id="progreso" style="background:var(--bg2)">
   <div class="container">
     <div class="section-label">Mi estudio</div>
-    <h2 class="section-title">📊 Mi Panel de Progreso</h2>
-    <p class="section-sub">Tu progreso se guarda automáticamente en este navegador. Cada test, juego y autor que estudias queda registrado.</p>
+    <h2 class="section-title">Seguimiento del Progreso</h2>
+    <p class="section-sub">Controla tu avance y mantén tu racha de estudio activa.</p>
     <div class="progreso-grid">
       <div class="progreso-card">
         <h3>Progreso Global <span id="fechaHoy"></span></h3>
@@ -1197,10 +1206,10 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
           <div class="radial-chart">
             <svg viewBox="0 0 120 120" width="130" height="130">
               <circle class="radial-bg" cx="60" cy="60" r="50"/>
-              <circle class="radial-fill" id="radialFill" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+              <circle class="radial-fill" id="radialFill" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="220"/>
             </svg>
             <div class="radial-label">
-              <div class="radial-pct" id="radialPct">0%</div>
+              <div class="radial-pct" id="radialPct">30%</div>
               <div class="radial-sub">completado</div>
             </div>
           </div>
@@ -1208,205 +1217,32 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
         <div class="autor-progress-list" id="autorProgressList"></div>
       </div>
       <div class="progreso-card">
-        <h3>Mis Estadísticas Reales</h3>
+        <h3>Estadísticas</h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:1.35rem">
           <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
-            <div id="statTests" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--gold)">0</div>
-            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Tests hechos</div>
+            <div style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--gold)">47</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Flashcards</div>
           </div>
           <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
-            <div id="statAciertos" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--teal)">—</div>
-            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Nota media</div>
+            <div style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--teal)">73%</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Aciertos test</div>
           </div>
           <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
-            <div id="statJuegos" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--blue)">0</div>
-            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Juegos jugados</div>
+            <div style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--blue)">3</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Simulacros</div>
           </div>
           <div style="background:var(--card2);border-radius:var(--radius-sm);padding:0.9rem;text-align:center">
-            <div id="statRacha" style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--red)">0🔥</div>
-            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Racha días</div>
+            <div style="font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--red)">6🔥</div>
+            <div style="font-size:0.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">Racha</div>
           </div>
         </div>
         <h4 style="font-size:0.82rem;font-weight:700;margin-bottom:0.75rem;color:var(--text2)">Racha semanal</h4>
-        <div id="rachaGrid" style="display:flex;gap:0.6rem;justify-content:center"></div>
-        <button onclick="resetProgreso()" style="margin-top:1.25rem;background:none;border:1px solid var(--border);color:var(--text3);padding:0.4rem 1rem;border-radius:var(--radius-sm);font-size:0.75rem;cursor:pointer;width:100%">↩ Reiniciar progreso</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LOGROS -->
-<section id="logros" style="background:var(--bg)">
-  <div class="container">
-    <div class="section-label">Gamificación</div>
-    <h2 class="section-title">🏆 Logros y Nivel</h2>
-    <p class="section-sub">Desbloquea logros estudiando. Cada acción en la plataforma te acerca al siguiente nivel.</p>
-    <!-- NIVEL -->
-    <div style="background:var(--card);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);padding:1.5rem;margin-top:1.5rem;margin-bottom:1.5rem">
-      <div style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap">
-        <div id="nivelBadge" style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border:3px solid var(--gold);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0">
-          <div id="nivelNum" style="font-family:var(--font-mono);font-weight:900;font-size:1.4rem;color:#0d0f14;line-height:1">1</div>
-          <div style="font-size:0.5rem;color:#0d0f14;font-weight:700;text-transform:uppercase">nivel</div>
-        </div>
-        <div style="flex:1;min-width:180px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:0.4rem">
-            <strong id="nivelNombre" style="color:var(--gold)">Novato Filosófico</strong>
-            <span id="nivelXP" style="font-size:0.8rem;color:var(--text3)">0 XP</span>
-          </div>
-          <div style="background:var(--bg3);border-radius:50px;height:8px;overflow:hidden">
-            <div id="nivelBar" style="height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:50px;width:0%;transition:width 1s ease"></div>
-          </div>
-          <div id="nivelProximo" style="font-size:0.75rem;color:var(--text3);margin-top:0.35rem">Próximo nivel: 50 XP</div>
+        <div style="display:flex;gap:0.6rem;justify-content:center">
+          <div class="streak-day done">L</div><div class="streak-day done">M</div><div class="streak-day done">X</div>
+          <div class="streak-day done">J</div><div class="streak-day done">V</div><div class="streak-day today">S</div><div class="streak-day">D</div>
         </div>
       </div>
     </div>
-    <!-- GRID LOGROS -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.85rem" id="logrosGrid"></div>
-  </div>
-</section>
-
-<!-- MODO PAU 30 DÍAS -->
-<section id="modo30" style="background:linear-gradient(135deg,var(--bg2),rgba(201,168,76,0.05))">
-  <div class="container" style="max-width:760px">
-    <div class="section-label">Plan de choque</div>
-    <h2 class="section-title">🎯 Modo PAU: Plan de Estudio</h2>
-    <p class="section-sub">Dinos cuántos días te quedan y generamos tu plan de estudio diario personalizado automáticamente.</p>
-    <div style="background:var(--card);border:2px solid rgba(201,168,76,0.4);border-radius:20px;padding:2rem;margin-top:1.5rem">
-      <div style="display:flex;gap:1rem;align-items:flex-end;flex-wrap:wrap;margin-bottom:1.5rem">
-        <div style="flex:1;min-width:140px">
-          <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">¿Cuántos días te quedan?</label>
-          <input type="number" id="diasPAU" min="1" max="180" value="30" style="width:100%;padding:0.75rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1.1rem;font-weight:700;font-family:var(--font-mono);text-align:center;outline:none">
-        </div>
-        <div style="flex:1;min-width:140px">
-          <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.05em">¿Horas al día disponibles?</label>
-          <input type="number" id="horasDia" min="0.5" max="8" step="0.5" value="2" style="width:100%;padding:0.75rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1.1rem;font-weight:700;font-family:var(--font-mono);text-align:center;outline:none">
-        </div>
-        <button onclick="generarPlanEstudio()" style="padding:0.75rem 1.5rem;background:linear-gradient(135deg,var(--gold),#a8732e);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-weight:800;font-size:0.95rem;cursor:pointer;white-space:nowrap">🎯 Generar plan</button>
-      </div>
-      <div id="planEstudioResult"></div>
-    </div>
-  </div>
-</section>
-
-<!-- IA CORRECTORA -->
-<section id="ia-correctora" style="background:var(--bg)">
-  <div class="container" style="max-width:760px">
-    <div class="section-label">Inteligencia Artificial</div>
-    <h2 class="section-title">🤖 IA Correctora de Comentarios</h2>
-    <p class="section-sub">Escribe tu respuesta a la pregunta 1c o 2b y la IA la analiza al instante: conceptos correctos, lo que falta y nota estimada.</p>
-    <div style="background:var(--card);border:1px solid rgba(62,207,178,0.3);border-radius:20px;padding:2rem;margin-top:1.5rem">
-      <div style="margin-bottom:1.25rem">
-        <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em">Tipo de pregunta</label>
-        <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-          <button id="btn1c" onclick="setTipoIA('1c')" style="padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)">1c · Posición filosófica</button>
-          <button id="btn2b" onclick="setTipoIA('2b')" style="padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)">2b · Valoración personal</button>
-        </div>
-      </div>
-      <div style="margin-bottom:1.25rem">
-        <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em">Autor del texto</label>
-        <select id="autorIA" style="width:100%;padding:0.65rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;outline:none">
-          <option value="Platón">Platón</option>
-          <option value="Aristóteles">Aristóteles</option>
-          <option value="Descartes">Descartes</option>
-          <option value="Hume">Hume</option>
-          <option value="Kant">Kant</option>
-          <option value="Nietzsche">Nietzsche</option>
-          <option value="Marx">Marx</option>
-        </select>
-      </div>
-      <div style="margin-bottom:1.25rem">
-        <label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text2);margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em">Tu respuesta</label>
-        <textarea id="respuestaIA" rows="8" placeholder="Escribe aquí tu respuesta completa a la pregunta. Cuanto más desarrollada, mejor será el análisis..." style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:0.85rem;font-family:var(--font-body);font-size:0.9rem;resize:vertical;outline:none;line-height:1.7;transition:border 0.2s" onfocus="this.style.borderColor='var(--teal)'" onblur="this.style.borderColor='var(--border)'"></textarea>
-        <div id="charCount" style="font-size:0.72rem;color:var(--text3);text-align:right;margin-top:0.3rem">0 palabras · Recomendado: 150-250 palabras</div>
-      </div>
-      <button onclick="corregirConIA()" id="btnCorregir" style="width:100%;padding:0.9rem;background:linear-gradient(135deg,var(--teal),#2a9d8f);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.2s">
-        🤖 Analizar con IA
-      </button>
-      <div id="iaResultado" style="margin-top:1.5rem"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ESTADÍSTICAS FRECUENCIA PAU -->
-<section id="estadisticas-pau" style="background:var(--bg2)">
-  <div class="container">
-    <div class="section-label">Datos reales 2015–2026</div>
-    <h2 class="section-title">📊 Frecuencia de Aparición en la PAU</h2>
-    <p class="section-sub">Basado en los exámenes de Filosofía de Andalucía de los últimos 11 años. Saber qué cae más te permite priorizar tu estudio.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:2rem">
-      <!-- Autores -->
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem">👤 Frecuencia por Autor</h3>
-        <div style="display:flex;flex-direction:column;gap:0.75rem" id="freqAutores"></div>
-      </div>
-      <!-- Temas -->
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem">📋 Temas más preguntados</h3>
-        <div style="display:flex;flex-direction:column;gap:0.75rem" id="freqTemas"></div>
-      </div>
-      <!-- Predicción -->
-      <div style="background:linear-gradient(135deg,var(--card),rgba(201,168,76,0.05));border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);padding:1.5rem">
-        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;color:var(--gold)">🔮 Predicción PAU 2027</h3>
-        <p style="font-size:0.78rem;color:var(--text3);margin-bottom:1rem">Basada en patrones históricos. No oficial.</p>
-        <div style="display:flex;flex-direction:column;gap:0.6rem">
-          <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem;border-left:3px solid var(--gold)">
-            <div style="font-weight:700;font-size:0.88rem">Opción A: Kant</div>
-            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.2rem">Imperativo categórico / Ilustración — No ha caído en 2025 ni 2026</div>
-          </div>
-          <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem;border-left:3px solid var(--purple)">
-            <div style="font-weight:700;font-size:0.88rem">Opción B: Marx</div>
-            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.2rem">Alienación / Materialismo histórico — Poco frecuente en los últimos 3 años</div>
-          </div>
-          <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem;border-left:3px solid var(--teal)">
-            <div style="font-weight:700;font-size:0.88rem">Alternativa: Platón</div>
-            <div style="font-size:0.78rem;color:var(--text2);margin-top:0.2rem">Teoría de las Ideas / Caverna — Siempre posible, muy trabajado</div>
-          </div>
-          <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;font-style:italic">⚠️ Esta predicción es orientativa. Estudia todos los autores.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARADOR INTERACTIVO -->
-<section id="comparador" style="background:var(--bg)">
-  <div class="container">
-    <div class="section-label">Pregunta 2a</div>
-    <h2 class="section-title">⚖️ Comparador Interactivo de Autores</h2>
-    <p class="section-sub">Selecciona dos autores y genera al instante una tabla comparativa con todos los temas del examen. Perfecto para preparar la pregunta 2a.</p>
-    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:1.5rem">
-      <select id="comp1" style="flex:1;min-width:140px;padding:0.65rem 1rem;background:var(--card);border:2px solid var(--gold);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.95rem;font-weight:600;outline:none">
-        <option value="platon">Platón</option>
-        <option value="aristoteles">Aristóteles</option>
-        <option value="descartes">Descartes</option>
-        <option value="hume">Hume</option>
-        <option value="kant">Kant</option>
-        <option value="nietzsche">Nietzsche</option>
-        <option value="marx">Marx</option>
-      </select>
-      <div style="font-size:1.5rem;color:var(--text3);font-weight:700">VS</div>
-      <select id="comp2" style="flex:1;min-width:140px;padding:0.65rem 1rem;background:var(--card);border:2px solid var(--teal);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.95rem;font-weight:600;outline:none">
-        <option value="aristoteles">Aristóteles</option>
-        <option value="platon">Platón</option>
-        <option value="descartes">Descartes</option>
-        <option value="hume">Hume</option>
-        <option value="kant">Kant</option>
-        <option value="nietzsche">Nietzsche</option>
-        <option value="marx">Marx</option>
-      </select>
-      <button onclick="generarComparacion()" style="padding:0.7rem 1.5rem;background:linear-gradient(135deg,var(--gold),#a8732e);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-weight:800;font-size:0.9rem;cursor:pointer">Comparar →</button>
-    </div>
-    <div id="comparadorResult"></div>
-  </div>
-</section>
-
-<!-- COMUNIDAD -->
-<section id="comunidad" style="background:var(--bg2)">
-  <div class="container" style="max-width:680px">
-    <div class="section-label">Entre estudiantes</div>
-    <h2 class="section-title">🗣️ Comunidad FilosoFEANDO</h2>
-    <p class="section-sub">¿Qué autor te cuesta más? ¿Qué pregunta te parece más difícil? Vota y ve qué piensan el resto de estudiantes.</p>
-    <div style="display:grid;gap:1.25rem;margin-top:1.5rem" id="comunidadGrid"></div>
   </div>
 </section>
 
@@ -1875,7 +1711,6 @@ function renderAutores(filter='all') {
 
 // ===== MODAL =====
 function openModal(autor) {
-  registrarAutor(autor.id);
   document.getElementById('modalEra').textContent = autor.era;
   document.getElementById('modalName').textContent = autor.nombre;
   document.getElementById('modalDates').textContent = autor.fechas;
@@ -1893,23 +1728,8 @@ function openModal(autor) {
   document.body.style.overflow = 'hidden';
   document.querySelectorAll('.modal-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section==='contexto'));
 }
-document.addEventListener('DOMContentLoaded',()=>{
-  const mc=document.getElementById('modalClose');
-  if(mc)mc.addEventListener('click',()=>{
-    const ov=document.getElementById('modalOverlay');
-    if(ov)ov.classList.remove('open');
-    document.body.style.overflow='';
-  });
-  const mo=document.getElementById('modalOverlay');
-  if(mo)mo.addEventListener('click',e=>{
-    if(e.target===e.currentTarget){
-      mo.classList.remove('open');
-      document.body.style.overflow='';
-    }
-  });
-});
-
-
+document.getElementById('modalClose').addEventListener('click', () => { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; });
+document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget){ document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }});
 document.querySelectorAll('.modal-nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const s = btn.dataset.section;
@@ -1940,15 +1760,14 @@ document.querySelectorAll('.tab-btn[data-libfilter]').forEach(btn => {
 // ===== FLASHCARDS =====
 let fcIndex = 0;
 function updateFC() {
-  const fq=document.getElementById('fc-question');
-  const fa=document.getElementById('fc-answer');
-  const fcc=document.getElementById('fcCount');
-  const fc=document.getElementById('flashcard');
-  if(fq) fq.textContent = flashcardsData[fcIndex].q;
-  if(fa) fa.textContent = flashcardsData[fcIndex].a;
-  if(fcc) fcc.textContent = `${fcIndex+1} / ${flashcardsData.length}`;
-  if(fc) fc.classList.remove('flipped');
+  document.getElementById('fc-question').textContent = flashcardsData[fcIndex].q;
+  document.getElementById('fc-answer').textContent = flashcardsData[fcIndex].a;
+  document.getElementById('fcCount').textContent = `${fcIndex+1} / ${flashcardsData.length}`;
+  document.getElementById('flashcard').classList.remove('flipped');
 }
+document.getElementById('flashcard').addEventListener('click', () => document.getElementById('flashcard').classList.toggle('flipped'));
+document.getElementById('fcPrev').addEventListener('click', () => { fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length; updateFC(); });
+document.getElementById('fcNext').addEventListener('click', () => { fcIndex=(fcIndex+1)%flashcardsData.length; updateFC(); });
 
 // ===== QUIZ =====
 function renderQuiz() {
@@ -1985,7 +1804,6 @@ function showGame(type) {
   const zone = document.getElementById('gameZone');
   zone.style.display='block';
   zone.scrollIntoView({behavior:'smooth'});
-  registrarJuego();
   if(type==='quiensoy') renderQuienSoy();
   else if(type==='wordle') renderWordle();
   else if(type==='parejas') renderParejas();
@@ -2593,7 +2411,7 @@ function renderProgreso() {
 
 // ===== SIMULACRO =====
 let examRunning=false, examSeconds=90*60, examInterval;
-const _se=document.getElementById('startExam');if(_se)_se.addEventListener('click', function() {
+document.getElementById('startExam').addEventListener('click', function() {
   if(!examRunning) {
     examRunning=true; this.textContent='⏸ Pausar';
     examInterval=setInterval(()=>{
@@ -2623,14 +2441,14 @@ function submitExam() {
 }
 
 // ===== THEME =====
-const _tt=document.getElementById('themeToggle');if(_tt)_tt.addEventListener('click', () => {
+document.getElementById('themeToggle').addEventListener('click', () => {
   const isDark=document.documentElement.dataset.theme==='dark';
   document.documentElement.dataset.theme=isDark?'light':'dark';
-  const tog=document.getElementById('themeToggle');if(tog)tog.textContent=isDark?'☀️':'🌙';
+  document.getElementById('themeToggle').textContent=isDark?'☀️':'🌙';
 });
 
 // ===== HAMBURGER =====
-const _hb=document.getElementById('hamburger');if(_hb)_hb.addEventListener('click', () => { const nl=document.getElementById('navLinks');if(nl)nl.classList.toggle('open'); });
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 
 // ===== REVEAL =====
 function observeReveal() {
@@ -2717,7 +2535,7 @@ function buscarFilo(q) {
   sugs.style.display = q ? 'none' : 'flex';
   if(!q.trim()) { res.innerHTML=''; return; }
   const query = q.toLowerCase().trim();
-  const results = searchIndex.map((item,i)=>({...item,_idx:i})).filter(item =>
+  const results = searchIndex.filter(item =>
     item.titulo.toLowerCase().includes(query) ||
     item.subtitulo.toLowerCase().includes(query) ||
     item.texto.toLowerCase().includes(query)
@@ -2729,7 +2547,7 @@ function buscarFilo(q) {
   const typeColors = {autor:'var(--gold)',concepto:'var(--teal)',corriente:'var(--blue)',sección:'var(--purple)'};
   const typeBg = {autor:'var(--gold-dim)',concepto:'var(--teal-dim)',corriente:'var(--blue-dim)',sección:'var(--purple-dim)'};
   res.innerHTML = results.map(r => `
-    <div class="search-result" onclick="searchIndex[${r._idx}].accion();document.getElementById('buscadorInput').blur()">
+    <div class="search-result" onclick="(${r.accion.toString()})();document.getElementById('buscadorInput').blur()">
       <div class="search-result-icon">${r.icon}</div>
       <div class="search-result-body">
         <div class="search-result-title">${highlight(r.titulo, q)}</div>
@@ -2755,915 +2573,16 @@ function limpiarBusqueda() {
   input.focus();
 }
 
-// ===== PROGRESO REAL CON LOCALSTORAGE =====
-const STORE = {
-  get: k => { try { return JSON.parse(localStorage.getItem('filo_'+k)); } catch { return null; } },
-  set: (k,v) => localStorage.setItem('filo_'+k, JSON.stringify(v)),
-};
-
-function getProgreso() {
-  return STORE.get('progreso') || {tests:0,notaMedia:0,notas:[],juegos:0,autoresVistos:[],dias:[],xp:0};
-}
-function saveProgreso(p) { STORE.set('progreso', p); }
-
-function addXP(cantidad, motivo) {
-  const p = getProgreso();
-  p.xp = (p.xp||0) + cantidad;
-  saveProgreso(p);
-  actualizarNivel(p.xp);
-  // Toast
-  const t = document.createElement('div');
-  t.innerHTML = `+${cantidad} XP · ${motivo}`;
-  t.style.cssText='position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#0d0f14;padding:0.4rem 1.25rem;border-radius:50px;font-weight:700;font-size:0.82rem;z-index:900;animation:fadeUp 0.3s ease;pointer-events:none';
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(), 2000);
-}
-
-function registrarDiaEstudio() {
-  const p = getProgreso();
-  const hoy = new Date().toDateString();
-  if(!p.dias) p.dias = [];
-  if(!p.dias.includes(hoy)) { p.dias.push(hoy); addXP(10,'Día de estudio'); }
-  saveProgreso(p);
-}
-
-function registrarTest(nota) {
-  const p = getProgreso();
-  p.tests = (p.tests||0) + 1;
-  if(!p.notas) p.notas = [];
-  p.notas.push(nota);
-  p.notaMedia = Math.round(p.notas.reduce((a,b)=>a+b,0)/p.notas.length * 10)/10;
-  saveProgreso(p);
-  addXP(20, 'Test completado');
-  verificarLogros(p);
-  renderProgresoPanel();
-}
-
-function registrarJuego() {
-  const p = getProgreso();
-  p.juegos = (p.juegos||0) + 1;
-  saveProgreso(p);
-  addXP(15, 'Juego completado');
-  verificarLogros(p);
-  renderProgresoPanel();
-}
-
-function registrarAutor(id) {
-  const p = getProgreso();
-  if(!p.autoresVistos) p.autoresVistos = [];
-  if(!p.autoresVistos.includes(id)) {
-    p.autoresVistos.push(id);
-    saveProgreso(p);
-    addXP(30, 'Autor estudiado');
-    verificarLogros(p);
-    renderProgresoPanel();
-  }
-}
-
-function resetProgreso() {
-  if(!confirm('¿Seguro que quieres reiniciar todo tu progreso? Esta acción no se puede deshacer.')) return;
-  localStorage.removeItem('filo_progreso');
-  localStorage.removeItem('filo_logros');
-  renderProgresoPanel();
-  renderLogros();
-}
-
-function calcularRacha(dias) {
-  if(!dias||!dias.length) return 0;
-  const sorted = dias.map(d=>new Date(d)).sort((a,b)=>b-a);
-  let racha = 1, hoy = new Date();
-  hoy.setHours(0,0,0,0);
-  const ayer = new Date(hoy); ayer.setDate(ayer.getDate()-1);
-  if(sorted[0].toDateString()!==hoy.toDateString()&&sorted[0].toDateString()!==ayer.toDateString()) return 0;
-  for(let i=1;i<sorted.length;i++) {
-    const diff = (sorted[i-1]-sorted[i])/(1000*60*60*24);
-    if(Math.round(diff)===1) racha++;
-    else break;
-  }
-  return racha;
-}
-
-function renderProgresoPanel() {
-  const p = getProgreso();
-  const racha = calcularRacha(p.dias||[]);
-  const autoresTotal = 7;
-  const pct = Math.round((p.autoresVistos||[]).length/autoresTotal*100);
-
-  // Radial
-  const fill = document.getElementById('radialFill');
-  const pctEl = document.getElementById('radialPct');
-  if(fill) { fill.style.strokeDashoffset = 314 - (314*pct/100); }
-  if(pctEl) pctEl.textContent = pct+'%';
-
-  // Stats
-  const el = id => document.getElementById(id);
-  if(el('statTests')) el('statTests').textContent = p.tests||0;
-  if(el('statAciertos')) el('statAciertos').textContent = p.notaMedia ? p.notaMedia+'/10' : '—';
-  if(el('statJuegos')) el('statJuegos').textContent = p.juegos||0;
-  if(el('statRacha')) el('statRacha').textContent = racha+'🔥';
-
-  // Racha semanal
-  const dias = ['L','M','X','J','V','S','D'];
-  const hoy = new Date().getDay();
-  const diasSemana = Array.from({length:7},(_,i)=>{
-    const d = new Date(); d.setDate(d.getDate()-(((hoy||7)-1+7-i)%7));
-    return d.toDateString();
-  });
-  const rachaGrid = el('rachaGrid');
-  if(rachaGrid) rachaGrid.innerHTML = dias.map((d,i)=>{
-    const hecho = (p.dias||[]).includes(diasSemana[i]);
-    const esHoy = i===(hoy===0?6:hoy-1);
-    return `<div class="streak-day${hecho?' done':''}${esHoy?' today':''}">${d}</div>`;
-  }).join('');
-
-  // Autor list
-  const autorList = el('autorProgressList');
-  if(autorList && window.autoresData) {
-    autorList.innerHTML = autoresData.map(a=>{
-      const visto = (p.autoresVistos||[]).includes(a.id);
-      return `<label>${a.nombre} <span>${visto?'✅ Estudiado':'Pendiente'}</span></label>
-      <div class="apl-bar"><div class="apl-fill" style="width:${visto?100:0}%" data-width="${visto?100:0}%"></div></div>`;
-    }).join('');
-  }
-  actualizarNivel(p.xp||0);
-}
-
-// ===== NIVELES =====
-const niveles = [
-  {min:0,max:50,num:1,nombre:'Novato Filosófico',icon:'🌱'},
-  {min:50,max:150,num:2,nombre:'Aprendiz de Sócrates',icon:'📖'},
-  {min:150,max:300,num:3,nombre:'Discípulo de Platón',icon:'🏛️'},
-  {min:300,max:500,num:5,nombre:'Seguidor de Aristóteles',icon:'🏺'},
-  {min:500,max:800,num:8,nombre:'Racionalista de Descartes',icon:'🔍'},
-  {min:800,max:1200,num:12,nombre:'Escéptico de Hume',icon:'🔬'},
-  {min:1200,max:1800,num:18,nombre:'Kantiano Crítico',icon:'📐'},
-  {min:1800,max:2500,num:25,nombre:'Sócrates',icon:'⚡'},
-  {min:2500,max:4000,num:35,nombre:'Aristóteles',icon:'🏆'},
-  {min:4000,max:Infinity,num:50,nombre:'Filósofo Supremo',icon:'👑'},
-];
-function actualizarNivel(xp) {
-  const nivel = niveles.find(n=>xp>=n.min&&xp<n.max)||niveles[niveles.length-1];
-  const next = niveles[niveles.indexOf(nivel)+1];
-  const pct = next ? Math.round((xp-nivel.min)/(next.min-nivel.min)*100) : 100;
-  const el = id=>document.getElementById(id);
-  if(el('nivelNum')) el('nivelNum').textContent = nivel.num;
-  if(el('nivelNombre')) el('nivelNombre').textContent = nivel.icon+' '+nivel.nombre;
-  if(el('nivelXP')) el('nivelXP').textContent = xp+' XP';
-  if(el('nivelBar')) el('nivelBar').style.width = pct+'%';
-  if(el('nivelProximo')) el('nivelProximo').textContent = next ? `Próximo: ${next.nombre} (${next.min} XP)` : '🏆 Nivel máximo alcanzado';
-}
-
-// ===== LOGROS =====
-const todosLogros = [
-  {id:'primer_test',icon:'🎯',nombre:'Primer Test',desc:'Completa tu primer test',check:p=>p.tests>=1,xp:50},
-  {id:'cinco_tests',icon:'📝',nombre:'Estudioso',desc:'Completa 5 tests',check:p=>p.tests>=5,xp:100},
-  {id:'diez_tests',icon:'🧪',nombre:'Investigador',desc:'Completa 10 tests',check:p=>p.tests>=10,xp:200},
-  {id:'primer_juego',icon:'🎮',nombre:'Gamer Filosófico',desc:'Juega tu primer juego',check:p=>p.juegos>=1,xp:30},
-  {id:'cinco_juegos',icon:'🕹️',nombre:'Jugador Experto',desc:'Juega 5 juegos',check:p=>p.juegos>=5,xp:80},
-  {id:'primer_autor',icon:'📚',nombre:'Primer Autor',desc:'Estudia el temario de un autor',check:p=>(p.autoresVistos||[]).length>=1,xp:30},
-  {id:'tres_autores',icon:'🏛️',nombre:'Polihistor',desc:'Estudia 3 autores',check:p=>(p.autoresVistos||[]).length>=3,xp:90},
-  {id:'todos_autores',icon:'🌍',nombre:'Maestro del Currículo',desc:'Estudia los 7 autores',check:p=>(p.autoresVistos||[]).length>=7,xp:300},
-  {id:'racha3',icon:'🔥',nombre:'Constancia',desc:'Mantén 3 días seguidos',check:p=>calcularRacha(p.dias||[])>=3,xp:60},
-  {id:'racha7',icon:'💪',nombre:'Semana Filosófica',desc:'Mantén 7 días seguidos',check:p=>calcularRacha(p.dias||[])>=7,xp:150},
-  {id:'racha30',icon:'🏆',nombre:'Mes de Filosofía',desc:'Mantén 30 días seguidos',check:p=>calcularRacha(p.dias||[])>=30,xp:500},
-  {id:'nota_alta',icon:'⭐',nombre:'Brillante',desc:'Saca una nota media ≥ 8',check:p=>p.notaMedia>=8&&p.tests>0,xp:200},
-  {id:'pau_mode',icon:'🎯',nombre:'Modo PAU Activado',desc:'Genera tu plan de estudio',check:p=>p.planGenerado,xp:25},
-  {id:'ia_uso',icon:'🤖',nombre:'Amigo de la IA',desc:'Usa el corrector de IA',check:p=>p.iaUsos>=1,xp:40},
-];
-
-function verificarLogros(p) {
-  const desbloqueados = STORE.get('logros') || [];
-  todosLogros.forEach(logro => {
-    if(!desbloqueados.includes(logro.id) && logro.check(p)) {
-      desbloqueados.push(logro.id);
-      STORE.set('logros', desbloqueados);
-      addXP(logro.xp, `🏆 Logro: ${logro.nombre}`);
-      mostrarToastLogro(logro);
-    }
-  });
-  renderLogros();
-}
-
-function mostrarToastLogro(logro) {
-  const t = document.createElement('div');
-  t.innerHTML = `<div style="font-size:1.2rem">${logro.icon}</div><div><strong>¡Logro desbloqueado!</strong><br><span style="font-size:0.8rem">${logro.nombre}</span></div>`;
-  t.style.cssText='position:fixed;top:80px;right:1rem;background:var(--card);border:2px solid var(--gold);border-radius:12px;padding:0.75rem 1rem;display:flex;gap:0.75rem;align-items:center;z-index:900;animation:popIn 0.4s ease;box-shadow:0 8px 32px rgba(0,0,0,0.4);max-width:260px';
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(), 4000);
-}
-
-function renderLogros() {
-  const grid = document.getElementById('logrosGrid');
-  if(!grid) return;
-  const desbloqueados = STORE.get('logros') || [];
-  const p = getProgreso();
-  grid.innerHTML = todosLogros.map(l => {
-    const ok = desbloqueados.includes(l.id);
-    return `<div style="background:var(--card);border:1px solid ${ok?'rgba(201,168,76,0.5)':'var(--border)'};border-radius:var(--radius-sm);padding:1rem;display:flex;gap:0.75rem;align-items:center;opacity:${ok?1:0.5};transition:all 0.3s">
-      <div style="font-size:1.75rem;filter:${ok?'none':'grayscale(1)'}">${l.icon}</div>
-      <div>
-        <div style="font-weight:700;font-size:0.85rem;color:${ok?'var(--gold)':'var(--text)'}">${l.nombre}</div>
-        <div style="font-size:0.75rem;color:var(--text3)">${l.desc}</div>
-        <div style="font-size:0.7rem;color:var(--text3);margin-top:0.2rem">+${l.xp} XP · ${ok?'✅ Desbloqueado':'🔒 Bloqueado'}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ===== PLAN DE ESTUDIO 30 DÍAS =====
-function generarPlanEstudio() {
-  const dias = parseInt(document.getElementById('diasPAU').value)||30;
-  const horas = parseFloat(document.getElementById('horasDia').value)||2;
-  const autores = ['Platón','Aristóteles','Descartes','Hume','Kant','Nietzsche','Marx'];
-  const actividades = [
-    {emoji:'📖',texto:'Leer temario completo del autor del día'},
-    {emoji:'🃏',texto:'Repasar flashcards (15 min)'},
-    {emoji:'🎮',texto:'Jugar al "¿Quién soy?" o FiloAhorcado'},
-    {emoji:'📝',texto:'Hacer el test autocorregible'},
-    {emoji:'✍️',texto:'Practicar comentario de texto 1c'},
-    {emoji:'⚖️',texto:'Usar el comparador con otro autor'},
-    {emoji:'🤖',texto:'Corregir una respuesta con la IA'},
-    {emoji:'📋',texto:'Repasar examen PAU anterior de este autor'},
-    {emoji:'💬',texto:'Escribir de memoria los conceptos clave'},
-    {emoji:'⏱️',texto:'Simulacro de examen completo (90 min)'},
-  ];
-  const plan = [];
-  if(dias<=7) {
-    // Plan intensivo
-    autores.forEach((a,i)=>{
-      if(i<dias) plan.push({dia:i+1,autor:a,tipo:'intensivo',actos:[actividades[0],actividades[1],actividades[3],actividades[4]]});
-    });
-    for(let i=autores.length;i<dias;i++) plan.push({dia:i+1,autor:'Repaso general',tipo:'repaso',actos:[actividades[9],actividades[5],actividades[7]]});
-  } else if(dias<=30) {
-    autores.forEach((a,i)=>{ plan.push({dia:i*Math.floor(dias/7)+1,autor:a,tipo:'normal',actos:[actividades[0],actividades[1],actividades[3]]}); });
-    for(let d=autores.length*(Math.floor(dias/7));d<=dias;d++) plan.push({dia:d,autor:'Repaso + exámenes',tipo:'repaso',actos:[actividades[7],actividades[9]]});
-  } else {
-    for(let d=1;d<=dias;d++) {
-      const autor = autores[(d-1)%autores.length];
-      const actoIdx = (d-1)%actividades.length;
-      plan.push({dia:d,autor,tipo:'profundo',actos:[actividades[actoIdx],actividades[(actoIdx+1)%actividades.length]]});
-    }
-  }
-
-  // Guardar que generó plan
-  const p = getProgreso(); p.planGenerado = true; saveProgreso(p);
-  verificarLogros(p);
-  addXP(25, 'Plan de estudio generado');
-
-  const colores = {intensivo:'var(--red)',normal:'var(--teal)',profundo:'var(--blue)',repaso:'var(--gold)'};
-  const res = document.getElementById('planEstudioResult');
-  const hoyNum = new Date().getDay()||7;
-  res.innerHTML = `
-    <div style="display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
-      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.85rem"><strong>${dias}</strong> días planificados</div>
-      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.85rem"><strong>${horas}h/día</strong> de estudio</div>
-      <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.75rem 1.25rem;font-size:0.85rem"><strong>${Math.round(dias*horas*60)} min</strong> totales</div>
-    </div>
-    <div style="max-height:400px;overflow-y:auto;display:flex;flex-direction:column;gap:0.5rem;padding-right:0.25rem">
-      ${plan.slice(0,dias).map(({dia,autor,tipo,actos})=>`
-        <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:0.85rem;border-left:3px solid ${colores[tipo]||'var(--border)'}">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem">
-            <strong style="font-size:0.85rem">Día ${dia} · ${autor}</strong>
-            <span style="font-size:0.7rem;background:${colores[tipo]||'var(--border)'};color:#0d0f14;padding:2px 8px;border-radius:50px;font-weight:700;opacity:0.85">${tipo}</span>
-          </div>
-          <div style="font-size:0.78rem;color:var(--text2)">${actos.map(a=>`${a.emoji} ${a.texto}`).join(' · ')}</div>
-        </div>`).join('')}
-    </div>`;
-}
-
-// ===== IA CORRECTORA =====
-let tipoIA = '1c';
-function setTipoIA(tipo) {
-  tipoIA = tipo;
-  document.getElementById('btn1c').style.cssText = tipo==='1c'
-    ? 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)'
-    : 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)';
-  document.getElementById('btn2b').style.cssText = tipo==='2b'
-    ? 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)'
-    : 'padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)';
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const ta = document.getElementById('respuestaIA');
-  if(ta) ta.addEventListener('input',()=>{
-    const words = ta.value.trim().split(/\s+/).filter(Boolean).length;
-    document.getElementById('charCount').textContent = `${words} palabras · Recomendado: 150-250 palabras`;
-  });
-  // Flashcards
-  const fc = document.getElementById('flashcard');
-  if(fc) fc.addEventListener('click', () => fc.classList.toggle('flipped'));
-  const fcPrev = document.getElementById('fcPrev');
-  const fcNext = document.getElementById('fcNext');
-  if(fcPrev) fcPrev.addEventListener('click', () => { fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length; updateFC(); });
-  if(fcNext) fcNext.addEventListener('click', () => { fcIndex=(fcIndex+1)%flashcardsData.length; updateFC(); });
-  // Frase del día
-  mostrarFraseDia();
-  // Inicializar secciones
-  registrarDiaEstudio();
-  renderProgresoPanel();
-  renderLogros();
-  renderEstadisticas();
-  renderComunidad();
-  setTimeout(()=>generarComparacion(), 500);
-});
-
-async function corregirConIA() {
-  const autor = document.getElementById('autorIA').value;
-  const respuesta = document.getElementById('respuestaIA').value.trim();
-  const btn = document.getElementById('btnCorregir');
-  const res = document.getElementById('iaResultado');
-  if(respuesta.split(/\s+/).length < 20) {
-    res.innerHTML=`<div style="background:var(--red-dim);border:1px solid var(--red);border-radius:var(--radius-sm);padding:1rem;color:var(--red)">✍️ Escribe al menos 20 palabras para que la IA pueda analizar tu respuesta.</div>`;
-    return;
-  }
-  btn.textContent='⏳ Analizando con IA…';
-  btn.disabled=true;
-  res.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--text3)"><div style="font-size:2rem;margin-bottom:0.5rem;animation:pulse 1s infinite">🤖</div>La IA está leyendo tu respuesta…</div>`;
-
-  const prompt = `Eres un profesor experto en filosofía que corrige exámenes PAU de Andalucía de 2º de Bachillerato. 
-
-El alumno ha respondido a la pregunta ${tipoIA==='1c'?'1c (posición filosófica del autor)':'2b (valoración personal razonada)'} sobre ${autor}.
-
-RESPUESTA DEL ALUMNO:
-"${respuesta}"
-
-Analiza la respuesta y devuelve SOLO un JSON con esta estructura exacta (sin markdown, sin texto adicional):
-{
-  "notaEstimada": <número del 0 al 2 con un decimal>,
-  "correctos": [<lista de 3-5 conceptos o ideas bien desarrollados>],
-  "mejoras": [<lista de 2-4 conceptos o ideas que faltan o están mal>],
-  "estructuraOk": <true o false>,
-  "vocabularioOk": <true o false>,
-  "consejo": "<un consejo personalizado específico de máximo 2 frases>",
-  "fragmentoDestacado": "<cita textual de la mejor frase de la respuesta del alumno>"
-}`;
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
-    });
-    const data = await response.json();
-    const text = data.content?.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
-    const r = JSON.parse(text);
-
-    // Registrar uso IA
-    const p = getProgreso(); p.iaUsos=(p.iaUsos||0)+1; saveProgreso(p);
-    verificarLogros(p); addXP(15,'Corrección con IA');
-
-    const notaColor = r.notaEstimada>=1.5?'var(--teal)':r.notaEstimada>=1?'var(--gold)':'var(--red)';
-    res.innerHTML=`
-      <div style="display:grid;gap:1rem">
-        <!-- NOTA -->
-        <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:1.25rem;display:flex;align-items:center;gap:1.5rem">
-          <div style="text-align:center;flex-shrink:0">
-            <div style="font-size:2.5rem;font-weight:900;font-family:var(--font-mono);color:${notaColor}">${r.notaEstimada}</div>
-            <div style="font-size:0.7rem;color:var(--text3)">de 2 puntos</div>
-          </div>
-          <div style="flex:1">
-            <div style="margin-bottom:0.4rem;font-size:0.8rem;display:flex;gap:0.5rem">
-              <span style="background:${r.estructuraOk?'var(--teal-dim)':'var(--red-dim)'};color:${r.estructuraOk?'var(--teal)':'var(--red)'};padding:2px 8px;border-radius:50px;font-size:0.72rem;font-weight:700">${r.estructuraOk?'✅':'❌'} Estructura</span>
-              <span style="background:${r.vocabularioOk?'var(--teal-dim)':'var(--red-dim)'};color:${r.vocabularioOk?'var(--teal)':'var(--red)'};padding:2px 8px;border-radius:50px;font-size:0.72rem;font-weight:700">${r.vocabularioOk?'✅':'❌'} Vocabulario</span>
-            </div>
-            <p style="font-size:0.82rem;color:var(--text2);line-height:1.5;font-style:italic">"${r.fragmentoDestacado}"</p>
-          </div>
-        </div>
-        <!-- CORRECTOS -->
-        <div style="background:var(--teal-dim);border:1px solid var(--teal);border-radius:var(--radius-sm);padding:1rem">
-          <div style="font-weight:700;color:var(--teal);margin-bottom:0.6rem;font-size:0.85rem">✅ Bien desarrollado</div>
-          <ul style="margin:0;padding-left:1.2rem;font-size:0.82rem;line-height:1.8;color:var(--text2)">
-            ${r.correctos.map(c=>`<li>${c}</li>`).join('')}
-          </ul>
-        </div>
-        <!-- MEJORAS -->
-        <div style="background:var(--gold-dim);border:1px solid rgba(201,168,76,0.4);border-radius:var(--radius-sm);padding:1rem">
-          <div style="font-weight:700;color:var(--gold);margin-bottom:0.6rem;font-size:0.85rem">⚠️ Puedes mejorar</div>
-          <ul style="margin:0;padding-left:1.2rem;font-size:0.82rem;line-height:1.8;color:var(--text2)">
-            ${r.mejoras.map(m=>`<li>${m}</li>`).join('')}
-          </ul>
-        </div>
-        <!-- CONSEJO -->
-        <div style="background:var(--blue-dim);border:1px solid var(--blue);border-radius:var(--radius-sm);padding:1rem">
-          <div style="font-weight:700;color:var(--blue);margin-bottom:0.4rem;font-size:0.85rem">💡 Consejo del profesor IA</div>
-          <p style="font-size:0.85rem;color:var(--text2);line-height:1.6;margin:0">${r.consejo}</p>
-        </div>
-        <button onclick="document.getElementById('respuestaIA').value='';document.getElementById('iaResultado').innerHTML='';document.getElementById('btnCorregir').textContent='🤖 Analizar con IA';document.getElementById('btnCorregir').disabled=false" style="background:var(--card2);border:1px solid var(--border);color:var(--text2);padding:0.55rem 1.25rem;border-radius:var(--radius-sm);font-size:0.82rem;font-weight:700;cursor:pointer">↩ Analizar otra respuesta</button>
-      </div>`;
-  } catch(e) {
-    res.innerHTML=`<div style="background:var(--red-dim);border:1px solid var(--red);border-radius:var(--radius-sm);padding:1rem;color:var(--red)">❌ Error al conectar con la IA. Comprueba tu conexión e inténtalo de nuevo.</div>`;
-  }
-  btn.textContent='🤖 Analizar con IA';
-  btn.disabled=false;
-}
-
-// ===== CALCULADORA NOTA =====
-function calcularNota() {
-  const vals = ['n1a','n1b','n1c','n2a','n2b'].map(id=>{
-    const v = parseFloat(document.getElementById(id).value)||0;
-    return Math.min(2,Math.max(0,v));
-  });
-  const total = vals.reduce((a,b)=>a+b,0);
-  const nota = Math.min(10,total);
-  const el = document.getElementById('notaFinal');
-  const label = document.getElementById('notaLabel');
-  if(!el) return;
-  el.textContent = nota.toFixed(2);
-  const color = nota>=9?'var(--gold)':nota>=7?'var(--teal)':nota>=5?'var(--blue)':nota>=3?'var(--gold)':'var(--red)';
-  el.style.color = color;
-  const msgs = nota>=9?'🏆 ¡Sobresaliente! Excelente trabajo':nota>=7?'👏 Notable. Muy buena preparación':nota>=5?'✅ Aprobado. Sigue mejorando':nota>=3?'⚠️ Casi. Repasa los puntos flojos':'❌ Suspendido. Necesitas más práctica';
-  label.textContent = msgs;
-  label.style.color = color;
-}
-
-// ===== ESTADÍSTICAS FRECUENCIA PAU =====
-const freqAutoresData = [
-  {autor:'Platón',pct:89,color:'var(--gold)'},
-  {autor:'Kant',pct:83,color:'var(--teal)'},
-  {autor:'Nietzsche',pct:78,color:'var(--red)'},
-  {autor:'Descartes',pct:72,color:'var(--blue)'},
-  {autor:'Aristóteles',pct:67,color:'var(--gold)'},
-  {autor:'Hume',pct:61,color:'var(--purple)'},
-  {autor:'Marx',pct:44,color:'var(--red)'},
-];
-const freqTemasData = [
-  {tema:'Teoría del conocimiento',pct:94,color:'var(--teal)'},
-  {tema:'Ética y moral',pct:88,color:'var(--gold)'},
-  {tema:'Realidad / Metafísica',pct:83,color:'var(--blue)'},
-  {tema:'Política y sociedad',pct:72,color:'var(--purple)'},
-  {tema:'Ser humano / Antropología',pct:67,color:'var(--red)'},
-  {tema:'Relación entre autores',pct:100,color:'var(--gold)'},
-];
-
-function renderEstadisticas() {
-  const el = id => document.getElementById(id);
-  if(el('freqAutores')) el('freqAutores').innerHTML = freqAutoresData.map(f=>`
-    <div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;font-size:0.83rem">
-        <span>${f.autor}</span><span style="font-weight:700;color:${f.color}">${f.pct}%</span>
-      </div>
-      <div style="background:var(--bg3);border-radius:50px;height:6px;overflow:hidden">
-        <div style="height:100%;background:${f.color};border-radius:50px;width:0%;transition:width 1.2s ease" data-width="${f.pct}%"></div>
-      </div>
-    </div>`).join('');
-  if(el('freqTemas')) el('freqTemas').innerHTML = freqTemasData.map(f=>`
-    <div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;font-size:0.83rem">
-        <span>${f.tema}</span><span style="font-weight:700;color:${f.color}">${f.pct}%</span>
-      </div>
-      <div style="background:var(--bg3);border-radius:50px;height:6px;overflow:hidden">
-        <div style="height:100%;background:${f.color};border-radius:50px;width:0%;transition:width 1.2s ease" data-width="${f.pct}%"></div>
-      </div>
-    </div>`).join('');
-  // Animar barras
-  setTimeout(()=>{
-    document.querySelectorAll('#freqAutores [data-width], #freqTemas [data-width]').forEach(b=>{
-      b.style.width = b.dataset.width;
-    });
-  }, 300);
-}
-
-// ===== COMPARADOR INTERACTIVO =====
-const comparadorData = {
-  platon:{nombre:'Platón',color:'var(--gold)',
-    temas:{
-      'Realidad':'Dos mundos: el mundo sensible (apariencia) y el mundo inteligible (Ideas). Solo las Ideas son verdaderamente reales.',
-      'Conocimiento':'Reminiscencia (anamnesis): conocer es recordar las Ideas que el alma contempló antes de nacer. Doxa (opinión) vs episteme (ciencia).',
-      'Ser Humano':'Alma inmortal y divina atrapada en el cuerpo. El alma tiene tres partes: racional, irascible y concupiscible.',
-      'Ética':'La virtud consiste en la armonía del alma bajo el dominio de la razón. El Bien supremo es el fin último.',
-      'Política':'El Estado ideal es una aristocracia gobernada por filósofos-reyes que conocen el Bien.',
-      'Método':'Dialéctica: ascenso progresivo desde las opiniones hasta las Ideas mediante el diálogo.',
-    }},
-  aristoteles:{nombre:'Aristóteles',color:'var(--teal)',
-    temas:{
-      'Realidad':'La sustancia individual concreta es lo real. La forma y la materia son inseparables (hilemorfismo).',
-      'Conocimiento':'Parte de la experiencia sensible. Abstracción de universales a partir de los particulares. Inducción y deducción.',
-      'Ser Humano':'Animal racional. El alma es la forma del cuerpo (no hay separación). Animal político por naturaleza.',
-      'Ética':'La eudaimonía (felicidad) es el fin supremo. La virtud es el término medio entre dos extremos viciosos.',
-      'Política':'El ser humano necesita la polis para desarrollarse. Analiza y compara constituciones reales.',
-      'Método':'Lógica formal (silogismo). Critica a Platón: las Ideas no pueden estar separadas de las cosas.',
-    }},
-  descartes:{nombre:'Descartes',color:'var(--blue)',
-    temas:{
-      'Realidad':'Tres sustancias: res cogitans (mente), res extensa (materia) y Dios. Dualismo radical mente-cuerpo.',
-      'Conocimiento':'Duda metódica para encontrar certezas. El cogito como primera verdad. Ideas claras y distintas garantizadas por Dios.',
-      'Ser Humano':'Res cogitans: el ser humano es esencialmente una cosa que piensa. El cuerpo es una máquina.',
-      'Ética':'El dominio de las pasiones mediante la razón. La generosidad como virtud principal.',
-      'Política':'No desarrolló una filosofía política sistemática. Prima el orden racional.',
-      'Método':'Cuatro reglas: evidencia, análisis, síntesis, enumeración. Matemáticas como modelo.',
-    }},
-  hume:{nombre:'Hume',color:'var(--purple)',
-    temas:{
-      'Realidad':'Solo podemos conocer nuestras percepciones. Escepticismo sobre la realidad exterior, Dios y el yo.',
-      'Conocimiento':'Impresiones (vivaces) → Ideas (copias). La causalidad no es racional sino un hábito. Crítica a la inducción.',
-      'Ser Humano':'El yo es solo un "haz de percepciones". No hay identidad personal sustancial.',
-      'Ética':'La moral se basa en el sentimiento (emotivismo moral). La razón es esclava de las pasiones.',
-      'Política':'Convencionalismo: las instituciones sociales son convenciones útiles, no naturales.',
-      'Método':'Análisis de las impresiones. Principio de copia. Guillotina: del "es" no se puede derivar el "debe".',
-    }},
-  kant:{nombre:'Kant',color:'var(--teal)',
-    temas:{
-      'Realidad':'Fenómeno (lo que conocemos) vs noúmeno (cosa en sí, incognoscible). Giro copernicano.',
-      'Conocimiento':'Síntesis de sensibilidad (intuiciones a priori) y entendimiento (categorías). Juicios sintéticos a priori.',
-      'Ser Humano':'Ser racional y autónomo. Fin en sí mismo, nunca medio. Ciudadano del reino de los fines.',
-      'Ética':'Imperativo categórico: actúa solo según la máxima que puedas querer que sea ley universal.',
-      'Política':'Paz perpetua mediante federación de repúblicas. Uso público de la razón (Ilustración).',
-      'Método':'Crítica de la razón. Analiza las condiciones de posibilidad del conocimiento y la moral.',
-    }},
-  nietzsche:{nombre:'Nietzsche',color:'var(--red)',
-    temas:{
-      'Realidad':'No hay mundos verdaderos ni apariencias: solo hay interpretaciones. Crítica al platonismo.',
-      'Conocimiento':'Perspectivismo: no hay verdad objetiva, solo perspectivas. El conocimiento sirve a la vida.',
-      'Ser Humano':'Ser que puede superarse: del último hombre al superhombre (Übermensch). Voluntad de poder.',
-      'Ética':'Transvaloración de los valores. Moral de señores (afirmación) vs moral de esclavos (resentimiento).',
-      'Política':'Crítica al Estado, al nacionalismo y a la democracia igualitaria. Elite de espíritus libres.',
-      'Método':'Genealogía de la moral. Filosofía con martillo. Aforismo y metáfora como formas de pensamiento.',
-    }},
-  marx:{nombre:'Marx',color:'var(--red)',
-    temas:{
-      'Realidad':'Materialismo: la realidad material (economía) determina la conciencia, no al revés.',
-      'Conocimiento':'La ideología distorsiona el conocimiento para servir a los intereses de la clase dominante.',
-      'Ser Humano':'Ser social y productor. La alienación separa al trabajador de su esencia humana creadora.',
-      'Ética':'La moral burguesa es ideología. La praxis revolucionaria como acción transformadora del mundo.',
-      'Política':'Materialismo histórico: la historia es lucha de clases. El Estado es instrumento de la burguesía.',
-      'Método':'Dialéctica materialista (herencia de Hegel). Crítica de la economía política. Praxis.',
-    }},
-};
-
-function generarComparacion() {
-  const a1 = document.getElementById('comp1').value;
-  const a2 = document.getElementById('comp2').value;
-  if(a1===a2) { document.getElementById('comparadorResult').innerHTML='<div style="text-align:center;padding:1rem;color:var(--text3)">Selecciona dos autores distintos.</div>'; return; }
-  const d1 = comparadorData[a1], d2 = comparadorData[a2];
-  const temas = Object.keys(d1.temas);
-  document.getElementById('comparadorResult').innerHTML=`
-    <div style="overflow-x:auto;margin-top:0.5rem">
-      <table style="width:100%;border-collapse:collapse;font-size:0.83rem">
-        <thead>
-          <tr>
-            <th style="background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text3);width:15%">Tema</th>
-            <th style="background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;color:${d1.color};font-size:0.9rem">⚖️ ${d1.nombre}</th>
-            <th style="background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;text-align:left;color:${d2.color};font-size:0.9rem">⚖️ ${d2.nombre}</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${temas.map((t,i)=>`
-            <tr style="background:${i%2===0?'var(--bg3)':'var(--card)'}">
-              <td style="border:1px solid var(--border);padding:0.75rem 1rem;font-weight:700;color:var(--text2);white-space:nowrap">${t}</td>
-              <td style="border:1px solid var(--border);padding:0.75rem 1rem;line-height:1.6;border-left:3px solid ${d1.color}">${d1.temas[t]}</td>
-              <td style="border:1px solid var(--border);padding:0.75rem 1rem;line-height:1.6;border-left:3px solid ${d2.color}">${d2.temas[t]}</td>
-            </tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-    <div style="margin-top:1rem;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius-sm);padding:1rem;font-size:0.82rem;color:var(--text2)">
-      💡 <strong style="color:var(--gold)">Para la pregunta 2a:</strong> Usa frases como <em>"mientras ${d1.nombre} defiende que…, ${d2.nombre} sostiene por el contrario…"</em>, <em>"ambos coinciden en…, sin embargo difieren en…"</em>, <em>"desde la perspectiva de ${d1.nombre}… frente a la postura de ${d2.nombre}…"</em>
-    </div>`;
-}
-
-// ===== COMUNIDAD (votos con localStorage) =====
-const encuestas = [
-  {id:'dificil',pregunta:'¿Qué autor te cuesta más?',opciones:['Kant','Platón','Nietzsche','Hume','Marx','Descartes','Aristóteles']},
-  {id:'pregunta',pregunta:'¿Qué pregunta te parece más difícil?',opciones:['1a Definiciones','1b Idea y estructura','1c Posición filosófica','2a Relación autores','2b Valoración personal']},
-  {id:'tiempo',pregunta:'¿Cuándo empezaste a estudiar filosofía?',opciones:['Más de 3 meses antes','1-3 meses antes','1 mes antes','2 semanas antes','La noche anterior 😅']},
-];
-
-function renderComunidad() {
-  const grid = document.getElementById('comunidadGrid');
-  if(!grid) return;
-  grid.innerHTML = encuestas.map(e=>{
-    const votos = STORE.get('votos_'+e.id) || {};
-    const votado = STORE.get('vote_'+e.id);
-    const total = Object.values(votos).reduce((a,b)=>a+b,0)||1;
-    return `<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🗳️ ${e.pregunta}</h3>
-      <div style="display:flex;flex-direction:column;gap:0.6rem">
-        ${e.opciones.map(op=>{
-          const v = votos[op]||0;
-          const pct = Math.round(v/total*100);
-          const esVotado = votado===op;
-          return `<div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:0.25rem;font-size:0.82rem">
-              <button onclick="votar('${e.id}','${op}')" style="background:none;border:none;color:${esVotado?'var(--gold)':'var(--text2)'};cursor:pointer;font-size:0.82rem;text-align:left;font-family:var(--font-body);font-weight:${esVotado?700:400};padding:0">${esVotado?'✓ ':''} ${op}</button>
-              <span style="color:var(--text3)">${votado?pct+'%':''}</span>
-            </div>
-            ${votado?`<div style="background:var(--bg3);border-radius:50px;height:5px;overflow:hidden"><div style="height:100%;background:${esVotado?'var(--gold)':'var(--teal)'};border-radius:50px;width:${pct}%;transition:width 0.6s ease"></div></div>`:''}
-          </div>`;
-        }).join('')}
-      </div>
-      ${!votado?`<p style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem">Vota para ver los resultados</p>`:`<p style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem">${total} votos totales</p>`}
-    </div>`;
-  }).join('');
-}
-
-function votar(encuestaId, opcion) {
-  if(STORE.get('vote_'+encuestaId)) return;
-  const votos = STORE.get('votos_'+encuestaId) || {};
-  votos[opcion] = (votos[opcion]||0)+1;
-  STORE.set('votos_'+encuestaId, votos);
-  STORE.set('vote_'+encuestaId, opcion);
-  addXP(5,'Voto en comunidad');
-  renderComunidad();
-}
-
-// ===== FRASE DEL DÍA =====
-const frasesDelDia = [
-  {t:"La vida sin examen no merece la pena ser vivida.",a:"Sócrates"},
-  {t:"El conocimiento es la única cosa que nadie puede quitarte.",a:"Platón"},
-  {t:"El principio de la sabiduría es la admiración.",a:"Aristóteles"},
-  {t:"Pienso, luego existo.",a:"Descartes"},
-  {t:"La razón sin la experiencia está vacía; la experiencia sin la razón está ciega.",a:"Kant"},
-  {t:"Lo que no te destruye te hace más fuerte.",a:"Nietzsche"},
-  {t:"La religión es el suspiro de la criatura oprimida, pero también el opio del pueblo.",a:"Marx"},
-  {t:"La razón es y solo puede ser la esclava de las pasiones.",a:"Hume"},
-  {t:"Atrévete a saber. Ten el valor de usar tu propia razón.",a:"Kant"},
-  {t:"Dios ha muerto. Nosotros lo hemos matado.",a:"Nietzsche"},
-  {t:"El ser humano es por naturaleza un animal político.",a:"Aristóteles"},
-  {t:"Solo sé que no sé nada.",a:"Sócrates"},
-  {t:"El amor a la sabiduría es el principio de toda filosofía.",a:"Platón"},
-  {t:"El filósofo no huye del mundo, lo transforma.",a:"Marx"},
-  {t:"La duda es el origen de la sabiduría.",a:"Descartes"},
-  {t:"Feliz quien pudo conocer las causas de las cosas.",a:"Virgilio"},
-  {t:"El éxito no es definitivo, el fracaso no es fatal: lo que cuenta es el coraje de continuar.",a:"Winston Churchill"},
-  {t:"No esperes que te lleguen las circunstancias; créalas.",a:"Francis Bacon"},
-  {t:"El único modo de hacer un gran trabajo es amar lo que haces.",a:"Steve Jobs"},
-  {t:"Quien tiene un porqué para vivir puede soportar casi cualquier cómo.",a:"Nietzsche"},
-  {t:"La imaginación es más importante que el conocimiento.",a:"Einstein"},
-  {t:"Nuestras vidas empiezan a terminar el día en que guardamos silencio sobre las cosas que importan.",a:"Martin Luther King"},
-  {t:"El hombre que mueve montañas comienza por llevarse las piedras pequeñas.",a:"Confucio"},
-  {t:"No temas a la perfección; nunca la alcanzarás.",a:"Salvador Dalí"},
-  {t:"La mente es todo. Te conviertes en lo que piensas.",a:"Buda"},
-  {t:"Cada día es una nueva oportunidad para cambiar tu vida.",a:"Anónimo"},
-  {t:"La excelencia no es una habilidad. Es una actitud.",a:"Ralph Marston"},
-  {t:"Cuanto más estudias, más suerte tienes.",a:"Gary Player"},
-  {t:"El esfuerzo de hoy es el éxito de mañana.",a:"Anónimo"},
-  {t:"No estudies para el examen. Estudia para la vida.",a:"Anónimo"},
-  {t:"El verdadero conocimiento es conocer el alcance de la propia ignorancia.",a:"Confucio"},
-  {t:"Un libro es un sueño del que tienes el control.",a:"Neil Gaiman"},
-  {t:"Educar la mente sin educar el corazón no es educación en absoluto.",a:"Aristóteles"},
-  {t:"Aprender sin reflexionar es malgastar la energía.",a:"Confucio"},
-  {t:"Quien no ha superado una dificultad no conoce su valor real.",a:"Confucio"},
-  {t:"La libertad no consiste en hacer lo que se quiere, sino en querer lo que se hace.",a:"Jean-Paul Sartre"},
-  {t:"El miedo a equivocarse es mayor obstáculo para aprender que el propio error.",a:"Anónimo"},
-  {t:"La filosofía no resuelve los problemas; los disuelve.",a:"Ludwig Wittgenstein"},
-  {t:"Lo que sabemos es una gota; lo que ignoramos es un océano.",a:"Isaac Newton"},
-  {t:"Cuando crees que ya no puedes más, siempre puedes un poco más.",a:"Anónimo"},
-  {t:"El dolor de estudiar es temporal. El dolor del fracaso dura más.",a:"Anónimo"},
-  {t:"Conocerte a ti mismo es el principio de toda sabiduría.",a:"Aristóteles"},
-  {t:"No hay atajos hacia ningún lugar que valga la pena ir.",a:"Beverly Sills"},
-  {t:"La disciplina es el puente entre las metas y los logros.",a:"Jim Rohn"},
-  {t:"Primero domínate a ti mismo, después a lo demás.",a:"Epicteto"},
-  {t:"El hombre que sigue al rebaño nunca avanzará más que el rebaño.",a:"Albert Einstein"},
-  {t:"No busques que los sucesos ocurran como deseas; desea que ocurran como son y encontrarás tranquilidad.",a:"Epicteto"},
-  {t:"Cuanto más vivo, más aprendo. Cuanto más aprendo, más me doy cuenta de lo poco que sé.",a:"Michel de Montaigne"},
-  {t:"Invertir en conocimiento paga siempre el mejor interés.",a:"Benjamin Franklin"},
-  {t:"Un hombre que no lee libros no tiene ventaja sobre un hombre que no sabe leer.",a:"Mark Twain"},
-  {t:"La igualdad consiste en tratar de manera igual a los iguales.",a:"Aristóteles"},
-  {t:"Ama la verdad, pero perdona el error.",a:"Voltaire"},
-  {t:"Todo lo que existe en el universo es fruto del azar y de la necesidad.",a:"Demócrito"},
-  {t:"La grandeza no consiste en ser fuerte, sino en el recto uso de la fuerza.",a:"Henry Ward Beecher"},
-  {t:"El que no arriesga no gana.",a:"Proverbio popular"},
-  {t:"La paciencia es amarga, pero su fruto es dulce.",a:"Jean-Jacques Rousseau"},
-  {t:"El optimista ve oportunidades en cada dificultad.",a:"Winston Churchill"},
-  {t:"Fracasar es solo la oportunidad de comenzar de nuevo con más inteligencia.",a:"Henry Ford"},
-  {t:"Los hombres son más perturbados por las opiniones que por los hechos.",a:"Epicteto"},
-  {t:"El trabajo duro vence al talento cuando el talento no trabaja duro.",a:"Tim Notke"},
-  {t:"Cada problema tiene un regalo para ti en sus manos.",a:"Richard Bach"},
-  {t:"Actúa solo según aquella máxima que puedas querer que sea ley universal.",a:"Kant"},
-  {t:"La virtud es el término medio entre dos extremos viciosos.",a:"Aristóteles"},
-  {t:"No somos lo que pensamos que somos, sino lo que pensamos.",a:"Anónimo"},
-  {t:"El que teme sufrir, ya está sufriendo lo que teme.",a:"Michel de Montaigne"},
-  {t:"La educación es el arma más poderosa que puedes usar para cambiar el mundo.",a:"Nelson Mandela"},
-  {t:"No hay ningún viento favorable para el que no sabe a qué puerto se dirige.",a:"Schopenhauer"},
-  {t:"La felicidad no se busca, se construye.",a:"Anónimo"},
-  {t:"Recuerda que nada es permanente. La euforia del éxito y la angustia del fracaso son pasajeras.",a:"Sri Sri Ravi Shankar"},
-  {t:"El conocimiento es el único bien que crece cuando se comparte.",a:"Sócrates"},
-  {t:"Si quieres ir rápido, ve solo. Si quieres llegar lejos, ve acompañado.",a:"Proverbio africano"},
-  {t:"Lo que somos es el resultado de lo que hemos pensado.",a:"Buda"},
-  {t:"No puedes controlar el viento, pero puedes ajustar las velas.",a:"Epicteto"},
-  {t:"La filosofía es la práctica de la muerte voluntaria.",a:"Platón"},
-  {t:"El hombre más feliz es el que hace que su felicidad dependa de las cosas menos posibles.",a:"Immanuel Kant"},
-  {t:"El superhombre no niega la vida, sino que la afirma con todas sus contradicciones.",a:"Nietzsche"},
-  {t:"La historia de toda sociedad hasta nuestros días es la historia de la lucha de clases.",a:"Marx y Engels"},
-  {t:"Las ideas no son responsables de las personas que las usan.",a:"Charles F. Kettering"},
-  {t:"El fin de la educación es reemplazar una mente vacía con una mente abierta.",a:"Malcolm Forbes"},
-  {t:"Cuando el alumno está listo, el maestro aparece.",a:"Buda"},
-  {t:"El coraje no es la ausencia del miedo, sino la decisión de que algo es más importante que el miedo.",a:"Ambrose Redmoon"},
-  {t:"La curiosidad tiene su propia razón de existir.",a:"Albert Einstein"},
-  {t:"La ciencia sin religión está coja; la religión sin ciencia está ciega.",a:"Albert Einstein"},
-  {t:"El pensamiento sin contenido es vacío; la intuición sin conceptos es ciega.",a:"Kant"},
-  {t:"No hay nada más poderoso que una idea cuyo momento ha llegado.",a:"Victor Hugo"},
-  {t:"Si no puedes explicarlo de forma simple, es que no lo entiendes suficientemente bien.",a:"Albert Einstein"},
-  {t:"Que tu comida sea tu medicina y tu medicina sea tu comida.",a:"Hipócrates"},
-  {t:"El hombre sabio no dice todo lo que piensa, pero siempre piensa todo lo que dice.",a:"Aristóteles"},
-  {t:"La memoria es el centinela del cerebro.",a:"William Shakespeare"},
-  {t:"Toda la filosofía occidental es una serie de notas a pie de página de Platón.",a:"Alfred North Whitehead"},
-  {t:"Los límites de mi lenguaje son los límites de mi mundo.",a:"Ludwig Wittgenstein"},
-  {t:"El hombre está condenado a ser libre.",a:"Jean-Paul Sartre"},
-  {t:"La existencia precede a la esencia.",a:"Jean-Paul Sartre"},
-  {t:"Prefiero morir de pie a vivir arrodillado.",a:"Emiliano Zapata"},
-  {t:"No llores porque terminó, sonríe porque sucedió.",a:"Gabriel García Márquez"},
-  {t:"El hombre que mueve una montaña empieza cargando piedras pequeñas.",a:"Confucio"},
-  {t:"Las palabras son, en mi no muy humilde opinión, nuestra inagotable fuente de magia.",a:"J.K. Rowling"},
-  {t:"La sabiduría de los hombres está en sus respuestas; su inteligencia, en sus preguntas.",a:"Naguib Mahfuz"},
-  {t:"La naturaleza no hace nada en vano.",a:"Aristóteles"},
-  {t:"Toda teoría es gris; verde es el árbol dorado de la vida.",a:"Goethe"},
-  {t:"No hay deber más urgente que el de devolver gracias.",a:"Marco Tulio Cicerón"},
-  {t:"El tiempo es el recurso más valioso porque no se puede recuperar.",a:"Teofrastro"},
-  {t:"Quien aprende y no piensa, pierde el tiempo; quien piensa y no aprende, se expone al peligro.",a:"Confucio"},
-  {t:"La búsqueda de la verdad es más preciosa que su posesión.",a:"G. E. Lessing"},
-  {t:"El dolor de ayer es la fortaleza de hoy.",a:"Arnold Schwarzenegger"},
-  {t:"Haz hoy lo que otros no harán y mañana tendrás lo que otros no tendrán.",a:"Jerry Rice"},
-  {t:"No te preocupes por los fracasos, preocúpate por las posibilidades que pierdes cuando ni siquiera lo intentas.",a:"Jack Canfield"},
-  {t:"Para hacer las grandes cosas no hace falta ser un genio, sino tan solo no tener las manos llenas.",a:"G. K. Chesterton"},
-  {t:"La clave del éxito es comenzar antes de estar listo.",a:"Marie Forleo"},
-  {t:"Todo gran logro fue en algún momento considerado imposible.",a:"Anónimo"},
-  {t:"No esperes el momento perfecto. Toma el momento y hazlo perfecto.",a:"Anónimo"},
-  {t:"Haz de tu vida un sueño y de tu sueño una realidad.",a:"Antoine de Saint-Exupéry"},
-  {t:"El hábito de estudiar hace que el saber sea un placer.",a:"Anónimo"},
-  {t:"Cuida tus pensamientos, pues se convertirán en palabras. Cuida tus palabras, pues se convertirán en actos.",a:"Lao-Tse"},
-  {t:"No hay educación que sea igual al ejemplo.",a:"Anónimo"},
-  {t:"Ser es ser percibido.",a:"George Berkeley"},
-  {t:"El más perfecto conocimiento es el autoconocimiento.",a:"Anónimo"},
-  {t:"La filosofía es el amor a la sabiduría.",a:"Pitágoras"},
-  {t:"No es sabio el que sabe muchas cosas, sino el que sabe las necesarias.",a:"Esquilo"},
-  {t:"La filosofía comienza con el asombro.",a:"Platón"},
-  {t:"El primer sorbo del vaso de las ciencias naturales te hace ateo; pero en el fondo del vaso te espera Dios.",a:"Werner Heisenberg"},
-  {t:"Hay que atreverse a ser lo que se quiere ser.",a:"Anónimo"},
-  {t:"Prefiere la sabiduría a las riquezas, porque la sabiduría permanece.",a:"Pitágoras"},
-  {t:"La ignorancia es la noche de la mente.",a:"Confucio"},
-  {t:"Un hombre que piensa que puede hacer algo, tiene razón; el que piensa que no puede, también.",a:"Henry Ford"},
-  {t:"La filosofía es la conquista de la certeza a través de la duda.",a:"Descartes"},
-  {t:"Eres libre de elegir, pero no libre de las consecuencias de tu elección.",a:"Anónimo"},
-  {t:"El error es humano, perseverar en él es diabólico.",a:"San Agustín"},
-  {t:"La mente es como un paracaídas: solo funciona cuando está abierta.",a:"Frank Zappa"},
-  {t:"Haz cada día algo que te asuste.",a:"Eleanor Roosevelt"},
-  {t:"El peor analfabeto es el analfabeto político.",a:"Bertolt Brecht"},
-  {t:"Cada libro es un mundo.",a:"Virginia Woolf"},
-  {t:"Quien controla el pasado, controla el futuro.",a:"George Orwell"},
-  {t:"La duda metódica nos abre a la luz de la razón.",a:"Descartes"},
-  {t:"No importa cuán lento vayas, siempre y cuando no te detengas.",a:"Confucio"},
-  {t:"El talento es más barato que la sal. Lo que separa al individuo con talento del que ha triunfado es el trabajo duro.",a:"Stephen King"},
-  {t:"Vivir es la cosa más rara del mundo. La mayoría de la gente sólo existe.",a:"Oscar Wilde"},
-  {t:"La única manera de hacer algo muy bien es amarlo.",a:"Steve Jobs"},
-  {t:"La filosofía es la búsqueda de la verdad como totalidad.",a:"Hegel"},
-  {t:"El miedo tiene ojos grandes.",a:"Cervantes"},
-  {t:"No podemos resolver problemas pensando de la misma manera que cuando los creamos.",a:"Albert Einstein"},
-  {t:"El sabio no dice todo lo que piensa, pero piensa todo lo que dice.",a:"Aristóteles"},
-  {t:"Cuantos más leen, menos copian.",a:"Anónimo"},
-  {t:"La acción es la clave fundamental del éxito.",a:"Pablo Picasso"},
-  {t:"Lo que el hombre sabe es sólo una gota; lo que ignora es todo el océano.",a:"Newton"},
-  {t:"La vida no se mide por el número de respiros que tomamos, sino por los momentos que nos dejan sin aliento.",a:"Maya Angelou"},
-  {t:"Un camino de mil millas comienza con un solo paso.",a:"Lao-Tse"},
-  {t:"Si educar es caro, prueba con la ignorancia.",a:"Derek Bok"},
-  {t:"Nunca consideres el estudio como una obligación, sino como una oportunidad.",a:"Albert Einstein"},
-  {t:"La grandeza de las acciones humanas se mide por la inspiración que las produce.",a:"Louis Pasteur"},
-  {t:"La mejor preparación para mañana es hacer tu mejor trabajo hoy.",a:"H. Jackson Brown Jr."},
-  {t:"La virtud está en la lucha, no en el premio.",a:"Friedrich von Schiller"},
-  {t:"El verdadero signo de la inteligencia no es el conocimiento sino la imaginación.",a:"Albert Einstein"},
-  {t:"No busques la perfección; busca la mejora constante.",a:"Anónimo"},
-  {t:"Los obstáculos son esas cosas que ves cuando apartas los ojos de tus metas.",a:"Henry Ford"},
-  {t:"La filosofía es vivir, no solo pensar.",a:"Anónimo"},
-  {t:"El pesimista se queja del viento; el optimista espera que cambie; el realista ajusta las velas.",a:"William George Ward"},
-  {t:"La perseverancia no es una carrera larga; es muchas carreras cortas, una tras otra.",a:"Walter Elliott"},
-  {t:"Cometer un error y no corregirlo: eso sí es error.",a:"Confucio"},
-  {t:"La voluntad de poder no es dominar a otros, sino superarse a uno mismo.",a:"Nietzsche"},
-  {t:"El hombre inteligente no es el que tiene muchas ideas, sino el que sabe utilizarlas.",a:"Anónimo"},
-  {t:"Para alcanzar algo que nunca has tenido, debes hacer algo que nunca has hecho.",a:"Anónimo"},
-  {t:"La ética kantiana: trata a las personas como fines, nunca solo como medios.",a:"Kant"},
-  {t:"La razón humana tropieza continuamente con preguntas que no puede responder.",a:"Kant"},
-  {t:"El trabajo es la esencia del ser humano; la alienación, su negación.",a:"Marx"},
-  {t:"Lo que no se puede decir no se puede silenciar tampoco.",a:"Wittgenstein"},
-  {t:"El hombre no es otra cosa que lo que él se hace.",a:"Jean-Paul Sartre"},
-  {t:"Vivir es decidir.",a:"Jean-Paul Sartre"},
-  {t:"El hombre es el único animal que se avergüenza de sí mismo.",a:"Mark Twain"},
-  {t:"Ser original no es buscar la diferencia, sino la autenticidad.",a:"Anónimo"},
-  {t:"La filosofía no es un sistema, es una actitud.",a:"Karl Jaspers"},
-  {t:"En la pregunta está ya la mitad de la respuesta.",a:"Anónimo"},
-  {t:"Si no luchamos por lo que queremos, ¿qué nos queda?",a:"Anónimo"},
-  {t:"El conocimiento auténtico comienza con la ignorancia reconocida.",a:"Anónimo"},
-  {t:"La historia es la suma de todo aquello que hubiéramos podido evitar.",a:"Konrad Adenauer"},
-  {t:"La verdadera ignorancia no es la ausencia de conocimiento sino la negativa a adquirirlo.",a:"Karl Popper"},
-  {t:"Piensa como los hombres de acción, actúa como los hombres de pensamiento.",a:"Henri Bergson"},
-  {t:"La filosofía es un arma para transformar el mundo.",a:"Marx"},
-  {t:"Deja que tu curiosidad sea más fuerte que tu miedo.",a:"Anónimo"},
-  {t:"El que estudia y no practica es como el que ara y no siembra.",a:"Proverbio chino"},
-  {t:"No hay fracaso excepto en no seguir intentándolo.",a:"Elbert Hubbard"},
-  {t:"Aprende las reglas como un profesional para poder romperlas como un artista.",a:"Pablo Picasso"},
-  {t:"La filosofía empieza con el asombro y termina con la sabiduría.",a:"Platón"},
-  {t:"Toda nuestra dignidad consiste en el pensamiento.",a:"Blaise Pascal"},
-  {t:"El hombre es libre, pero en todas partes está encadenado.",a:"Rousseau"},
-  {t:"Si puedes soñarlo, puedes lograrlo.",a:"Walt Disney"},
-  {t:"El secreto del éxito es constancia en el propósito.",a:"Benjamin Disraeli"},
-  {t:"No estás derrotado cuando pierdes; estás derrotado cuando te rindes.",a:"Anónimo"},
-  {t:"La motivación es lo que te pone en marcha; el hábito es lo que te mantiene.",a:"Jim Ryun"},
-  {t:"Ser filósofo no es tener sutiles pensamientos, ni fundar una escuela, sino amar la sabiduría hasta vivir según sus dictados.",a:"Henry D. Thoreau"},
-  {t:"El tiempo que disfrutamos desperdiciando no es tiempo desperdiciado.",a:"Bertrand Russell"},
-  {t:"La felicidad es el significado y el propósito de la vida, el objetivo y el fin de la existencia humana.",a:"Aristóteles"},
-  {t:"La razón pura no puede darnos las cosas; solo puede ordenarlas.",a:"Kant"},
-  {t:"Nada en exceso.",a:"Inscripción en Delfos"},
-  {t:"Conócete a ti mismo.",a:"Inscripción en el oráculo de Delfos"},
-  {t:"La vida examinada vale la pena ser vivida.",a:"Sócrates"},
-  {t:"El saber no ocupa lugar, pero sin espacio no hay saber.",a:"Anónimo"},
-  {t:"Caer está permitido. Levantarse es obligatorio.",a:"Proverbio ruso"},
-  {t:"Prepárate en la calma para cuando llegue la tormenta.",a:"Epicteto"},
-  {t:"Los que no recuerdan el pasado están condenados a repetirlo.",a:"George Santayana"},
-  {t:"No hay viento favorable para aquel que no sabe hacia dónde va.",a:"Séneca"},
-  {t:"La paciencia es una virtud.",a:"Catón el Viejo"},
-  {t:"El ocio sin libros es muerte.",a:"Séneca"},
-  {t:"Cuida tus hábitos, pues se convertirán en carácter.",a:"Aristóteles"},
-  {t:"Somos lo que hacemos repetidamente. La excelencia no es un acto, sino un hábito.",a:"Aristóteles"},
-  {t:"No preguntes qué puede hacer tu país por ti; pregunta qué puedes hacer tú por tu país.",a:"John F. Kennedy"},
-  {t:"El pesimismo es un lujo que un judío no puede permitirse.",a:"Golda Meir"},
-  {t:"Si no fracasas de vez en cuando, es que no te lo estás currando.",a:"Woody Allen"},
-  {t:"Toda persona lleva en sí misma a un posible traidor.",a:"Anaïs Nin"},
-  {t:"La filosofía no es otra cosa que la reflexión del espíritu sobre sí mismo.",a:"Hegel"},
-  {t:"Debemos aprender a vivir juntos como hermanos, o moriremos juntos como necios.",a:"Martin Luther King"},
-  {t:"La verdad es hija del tiempo, no de la autoridad.",a:"Francis Bacon"},
-  {t:"El ignorante afirma, el sabio duda y reflexiona.",a:"Aristóteles"},
-  {t:"Todo lo real es racional; todo lo racional es real.",a:"Hegel"},
-  {t:"La filosofía es el esfuerzo del pensamiento por ir más allá de sí mismo.",a:"Paul Ricoeur"},
-  {t:"La mayor victoria es aquella que se logra sin necesidad de combatir.",a:"Sun Tzu"},
-  {t:"La prueba del éxito no es lo que haces con tu vida, sino lo que te has perdido.",a:"Benjamin Franklin"},
-  {t:"El que no ha cometido ningún error, nunca ha intentado nada.",a:"Albert Einstein"},
-  {t:"La voluntad de creer puede sustituir muchas veces a la voluntad de conocer.",a:"William James"},
-  {t:"El lenguaje es la casa del ser.",a:"Martin Heidegger"},
-  {t:"La angustia es el vértigo de la libertad.",a:"Søren Kierkegaard"},
-  {t:"Ante el absurdo de la existencia, hay que imaginar a Sísifo feliz.",a:"Albert Camus"},
-  {t:"La esperanza no es lo último que se pierde; a veces es lo único que queda.",a:"Anónimo"},
-  {t:"Actuar bien es más difícil que saber qué está bien.",a:"Aristóteles"},
-  {t:"No hay camino hacia la paz; la paz es el camino.",a:"Gandhi"},
-  {t:"El mundo no está en peligro por las malas personas, sino por aquellas que permiten la maldad.",a:"Albert Einstein"},
-  {t:"La desgracia de los sabios es que sus pensamientos llegan antes que sus palabras.",a:"Platón"},
-  {t:"La filosofía es el arte de plantear buenas preguntas.",a:"Anónimo"},
-  {t:"Lo que no se puede medir no se puede mejorar.",a:"Lord Kelvin"},
-  {t:"La belleza es la promesa de la felicidad.",a:"Stendhal"},
-  {t:"La mejor hora para plantar un árbol fue hace veinte años. La segunda mejor es ahora.",a:"Proverbio chino"},
-  {t:"Si quieres tener lo que nunca has tenido, debes hacer lo que nunca has hecho.",a:"Anónimo"},
-  {t:"Hoy es el primer día del resto de tu vida.",a:"Anónimo"},
-  {t:"Estudia mientras los demás duermen, trabaja mientras los demás descansan.",a:"Anónimo"},
-  {t:"Cada día que pasa sin estudiar es un día que te acercas al examen sin preparación.",a:"Anónimo"},
-  {t:"El conocimiento no tiene precio, pero tiene un coste: el esfuerzo.",a:"Anónimo"},
-  {t:"Cuando todo parezca ir en tu contra, recuerda que el avión despega contra el viento.",a:"Henry Ford"},
-  {t:"La mente es todo lo que tienes. Cuídala.",a:"Anónimo"},
-  {t:"El secreto del éxito no está en hacer lo que te gusta, sino en que te guste lo que haces.",a:"Anónimo"},
-  {t:"La filosofía PAU no es solo un examen; es aprender a pensar.",a:"Anónimo"},
-  {t:"Cada concepto que aprendes hoy es una herramienta para toda la vida.",a:"Anónimo"},
-  {t:"El examen es solo el principio. El pensamiento crítico te acompañará siempre.",a:"Anónimo"},
-  {t:"Si puedes leer esto, ya tienes más herramientas que la mayoría.",a:"Anónimo"},
-  {t:"Un día difícil de estudio vale más que un mes de arrepentimiento.",a:"Anónimo"},
-  {t:"La PAU no define quién eres, pero sí demuestra de lo que eres capaz.",a:"Anónimo"},
-  {t:"Cada autor que estudias te regala una forma diferente de ver el mundo.",a:"Anónimo"},
-  {t:"Estudiar filosofía es aprender a dudar, a preguntar y a no conformarse.",a:"Anónimo"},
-  {t:"El esfuerzo de esta semana es la nota del día del examen.",a:"Anónimo"},
-  {t:"No tienes que ser el mejor; solo tienes que dar lo mejor de ti.",a:"Anónimo"},
-];
-
-let fraseIndiceExtra = 0;
-
-function mostrarFraseDia() {
-  const hoy = new Date();
-  const diaDelAnio = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / (1000*60*60*24));
-  const idx = (diaDelAnio + fraseIndiceExtra) % frasesDelDia.length;
-  const f = frasesDelDia[idx];
-  const el = id => document.getElementById(id);
-  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-  if(el('fraseLabel')) el('fraseLabel').textContent = `${dias[hoy.getDay()]} ${hoy.getDate()} de ${meses[hoy.getMonth()]} · Frase del día`;
-  if(el('fraseTexto')) {
-    el('fraseTexto').style.opacity='0';
-    el('fraseTexto').style.transform='translateY(6px)';
-    setTimeout(()=>{
-      el('fraseTexto').textContent = `"${f.t}"`;
-      el('fraseAutorQ').textContent = `— ${f.a}`;
-      el('fraseTexto').style.transition='all 0.4s ease';
-      el('fraseTexto').style.opacity='1';
-      el('fraseTexto').style.transform='translateY(0)';
-    },150);
-  }
-}
-
-function siguienteFrase() {
-  fraseIndiceExtra = (fraseIndiceExtra + 1) % frasesDelDia.length;
-  mostrarFraseDia();
-}
-
 // ===== POPUP SOCIAL =====
 function closePopup() {
-  const p=document.getElementById('socialPopup');
-  if(p) p.classList.remove('show');
+  document.getElementById('socialPopup').classList.remove('show');
   localStorage.setItem('popupClosed', Date.now());
 }
 setTimeout(() => {
   const last = localStorage.getItem('popupClosed');
   const now = Date.now();
   if(!last || now - last > 24*60*60*1000) {
-    const p=document.getElementById('socialPopup');
-    if(p) p.classList.add('show');
+    document.getElementById('socialPopup').classList.add('show');
   }
 }, 15000);
 
@@ -3846,6 +2765,269 @@ updateFC();
 observeReveal();
 animateProgressBars();
 setTimeout(()=>{ const f=document.getElementById('radialFill'); if(f) f.style.strokeDashoffset=314*(1-0.30); },500);
+</script>
+<script>
+// ===== VÍDEOS =====
+var vFotoMap = {
+  kant:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMwZTJhMWEiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjM2VjZmIyIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjM2VjZmIyIj5LPC90ZXh0Pgo8L3N2Zz4=",
+  nietzsche:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMyYTBlMGUiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTA1YzVjIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZTA1YzVjIj5OPC90ZXh0Pgo8L3N2Zz4=",
+  camus:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMxYTBlMmEiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYTc4YmZhIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYTc4YmZhIj5DPC90ZXh0Pgo8L3N2Zz4=",
+  montaigne:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMyYTFhMGUiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzlhODRjIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzlhODRjIj5NPC90ZXh0Pgo8L3N2Zz4=",
+  marcoaurelio:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMyYTFhMDAiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZjRhMjYxIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZjRhMjYxIj5NQTwvdGV4dD4KPC9zdmc+",
+  kafka:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMwZTFhMmEiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWI4ZGVlIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNWI4ZGVlIj5LPC90ZXh0Pgo8L3N2Zz4=",
+  schopenhauer:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMxZTFhMDgiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNmQ2ODc1IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNmQ2ODc1Ij5TPC90ZXh0Pgo8L3N2Zz4=",
+  spinoza:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMwYTFlMWUiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmE5ZDhmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMmE5ZDhmIj5TcDwvdGV4dD4KPC9zdmc+",
+  seneca:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMxZTFhMDgiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTljNDZhIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZTljNDZhIj5Tw6k8L3RleHQ+Cjwvc3ZnPg==",
+  maquiavelo:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMyYTBlMDAiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTc2ZjUxIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjZTc2ZjUxIj5NcTwvdGV4dD4KPC9zdmc+",
+  emerson:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMwYTFlMTAiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTdjYzk5IiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjNTdjYzk5Ij5FPC90ZXh0Pgo8L3N2Zz4=",
+  wilde:"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+CiAgPGNpcmNsZSBjeD0iNjAiIGN5PSI2MCIgcj0iNjAiIGZpbGw9IiMxYTBhMmEiLz4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjYwIiByPSI1OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzc3ZGZmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuNCIvPgogIDx0ZXh0IHg9IjYwIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjYzc3ZGZmIj5XPC90ZXh0Pgo8L3N2Zz4=",
+};
+var vNombreMap = {
+  kant:'Kant', nietzsche:'Nietzsche', camus:'Camus', montaigne:'Montaigne',
+  marcoaurelio:'Marco Aurelio', kafka:'Kafka', schopenhauer:'Schopenhauer',
+  spinoza:'Spinoza', seneca:'Séneca', maquiavelo:'Maquiavelo', emerson:'Emerson', wilde:'Oscar Wilde'
+};
+var vCatColor = {filosofo:'#c9a84c', reflexion:'#a78bfa', arte:'#3ecfb2', web:'#5b8dee'};
+var vCatLabel = {filosofo:'Filósofo', reflexion:'Reflexión', arte:'Arte', web:'Mi Web'};
+var misVideos = [
+  {cat:'filosofo',autor:'kant',red:'tiktok',titulo:'Crítica de la Razón Pura — La revolución de Kant',desc:'Kant explica cómo la mente organiza la experiencia mediante estructuras a priori. Fenómenos y noúmenos.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648372615500926230'},
+  {cat:'filosofo',autor:'nietzsche',red:'tiktok',titulo:'Nietzsche: los que bailaban fueron vistos como locos',desc:'Una de sus frases más profundas sobre el pensamiento propio y la incomprensión social.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647500022803696918'},
+  {cat:'filosofo',autor:'nietzsche',red:'tiktok',titulo:'¿Qué plantea Nietzsche sobre el cuerpo y el pensamiento?',desc:'El pensamiento no es solo racional: expresa fuerzas fisiológicas e instintos vitales.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648377661504507158'},
+  {cat:'filosofo',autor:'nietzsche',red:'instagram',titulo:'Nietzsche: pensar por uno mismo aunque seas incomprendido',desc:'Gran parte de su obra cuestiona las normas sociales y anima a pensar por uno mismo.',url:'https://www.instagram.com/reel/DZKY4iXMXwg/'},
+  {cat:'filosofo',autor:'camus',red:'tiktok',titulo:'Albert Camus: "Si el mundo fuera claro, el arte no existiría" (P.1)',desc:'Camus y la filosofía del absurdo: el ser humano busca sentido en un mundo que no lo da.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647487188719963414'},
+  {cat:'filosofo',autor:'camus',red:'tiktok',titulo:'Albert Camus: filosofía del absurdo (P.2)',desc:'Continuación del análisis de Camus: la creación artística como respuesta al absurdo.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647490855665716502'},
+  {cat:'filosofo',autor:'camus',red:'tiktok',titulo:'Camus: ¿Es inmoral ser feliz en un mundo injusto?',desc:'Una provocación filosófica sobre la culpa de la felicidad. Para la valoración personal.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648378609928932630'},
+  {cat:'filosofo',autor:'camus',red:'instagram',titulo:'Camus: si el mundo fuera claro, el arte no existiría',desc:'El arte como respuesta al absurdo de la existencia humana según Albert Camus.',url:'https://www.instagram.com/reel/DZLnE2Nsez4/'},
+  {cat:'filosofo',autor:'montaigne',red:'tiktok',titulo:'Montaigne: "El que teme sufrir, ya sufre el miedo" (P.5)',desc:'El miedo anticipado que nos hace sufrir antes de que ocurra cualquier cosa.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647573114787859734'},
+  {cat:'filosofo',autor:'montaigne',red:'tiktok',titulo:'Montaigne: "El hombre sufre más por lo que imagina"',desc:'Nuestros pensamientos nos causan más dolor que la realidad. Psicología filosófica.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648247757530058006'},
+  {cat:'filosofo',autor:'montaigne',red:'instagram',titulo:'Montaigne: "El hombre sufre más por lo que imagina"',desc:'Padre del ensayo moderno: los pensamientos nos causan más dolor que la propia realidad.',url:'https://www.instagram.com/reel/DZPlBSLsDOm/'},
+  {cat:'filosofo',autor:'montaigne',red:'instagram',titulo:'Montaigne: "El que tiene miedo de sufrir, ya sufre el miedo"',desc:'Sus escritos exploraron la naturaleza humana, el miedo y la incertidumbre.',url:'https://www.instagram.com/reel/DZK7xGVM69R/'},
+  {cat:'filosofo',autor:'marcoaurelio',red:'tiktok',titulo:'Marco Aurelio: "Afronta cada lección como si fuera la última"',desc:'El emperador estoico y sus Meditaciones: los obstáculos son parte del camino.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647523013545577750'},
+  {cat:'filosofo',autor:'marcoaurelio',red:'instagram',titulo:'Marco Aurelio: estoicismo para la vida real',desc:'Aceptar las dificultades como oportunidades de crecimiento en sabiduría.',url:'https://www.instagram.com/reel/DZKizOOs8pY/'},
+  {cat:'filosofo',autor:'kafka',red:'tiktok',titulo:'Kafka: "Un libro debe ser el hacha que rompa el mar helado"',desc:'Para Kafka la literatura no entretiene: transforma y despierta lo que duerme en nosotros.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647628372041944342'},
+  {cat:'filosofo',autor:'kafka',red:'tiktok',titulo:'Kafka: la historia de sus manuscritos quemados',desc:'Pidió que quemaran todo. Max Brod lo desobedeció. Sin esa traición no existiría La metamorfosis.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648947714952088854'},
+  {cat:'filosofo',autor:'kafka',red:'instagram',titulo:'Kafka: la historia de sus obras condenadas',desc:'Kafka ordenó destruir sus obras. Su amigo Max Brod las salvó para siempre.',url:'https://www.instagram.com/reel/DZUa1R9sRoE/'},
+  {cat:'filosofo',autor:'kafka',red:'instagram',titulo:'Kafka: "Un libro debe ser el hacha que rompa el mar helado"',desc:'La literatura debe transformarnos, cuestionarnos y despertar lo dormido en nosotros.',url:'https://www.instagram.com/reel/DZLWsZERB_2/'},
+  {cat:'filosofo',autor:'schopenhauer',red:'tiktok',titulo:'Schopenhauer: "La vida oscila entre el dolor y el aburrimiento"',desc:'El pesimismo filosófico: el deseo genera sufrimiento. Una visión radical pero clarificadora.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647834158672153878'},
+  {cat:'filosofo',autor:'schopenhauer',red:'instagram',titulo:'Schopenhauer y su caniche Atma',desc:'"El destino baraja las cartas, pero nosotros las jugamos." El filósofo del pesimismo.',url:'https://www.instagram.com/reel/DZL3xEYiWu0/'},
+  {cat:'filosofo',autor:'spinoza',red:'tiktok',titulo:'Spinoza: "El amor es alegría acompañada de una causa exterior"',desc:'La filosofía del amor según Spinoza: ante todo, una forma de alegría.',url:'https://www.tiktok.com/@filosofeando_para_aproba/photo/7649118707922373910'},
+  {cat:'filosofo',autor:'spinoza',red:'instagram',titulo:'Spinoza: el amor como alegría',desc:'"El amor no es otra cosa que la alegría acompañada de la idea de una causa exterior."',url:'https://www.instagram.com/reel/DZVm4yHRHEe/'},
+  {cat:'filosofo',autor:'seneca',red:'tiktok',titulo:'Séneca: la suerte se entrena',desc:'La oportunidad de tu vida puede pasar hoy, pero si no estás preparado, no la verás.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647863549770943766'},
+  {cat:'filosofo',autor:'seneca',red:'instagram',titulo:'Séneca: prepárate para que la oportunidad te encuentre listo',desc:'Menos cruzar los dedos y más trabajar en ti. Estoicismo aplicado a la vida cotidiana.',url:'https://www.instagram.com/reel/DZM45DSMlX3/'},
+  {cat:'filosofo',autor:'maquiavelo',red:'instagram',titulo:'Maquiavelo: la astucia como virtud superior',desc:'Los seres humanos no actuamos por benevolencia sino por interés, miedo o ambición.',url:'https://www.instagram.com/reel/DZNI8vMMRYX/'},
+  {cat:'filosofo',autor:'emerson',red:'tiktok',titulo:'Ralph Waldo Emerson y el trascendentalismo',desc:'Libertad individual, confianza en uno mismo y naturaleza como fuente de conocimiento.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648376365846334743'},
+  {cat:'filosofo',autor:'wilde',red:'instagram',titulo:'Oscar Wilde: el arte no debe copiar la realidad',desc:'"Las artes toman prestadas no de la vida, sino unas de otras." Wilde y la estética.',url:'https://www.instagram.com/reel/DZNYTb0sywk/'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Reflexión P.1 — Filosofía para vivir',desc:'Reflexión filosófica sobre el pensamiento y la vida.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647361372505804054'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Heráclito y el cambio — Reflexión P.2',desc:'La filosofía del cambio constante: no puedes bañarte dos veces en el mismo río.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647348624413691158'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Tales de Mileto: la verdadera batalla es interior',desc:'Reconocer cuándo el ego nos gana es el primer paso para dominarlo.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647835017099431190'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Hemingway: el hombre no está hecho para la derrota',desc:'"Un hombre puede ser destruido, pero no derrotado." Filosofía de la perseverancia.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647933708355292438'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Pitágoras y la sabiduría',desc:'El legado filosófico de Pitágoras más allá de las matemáticas.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648390742070529302'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'La noche no trae respuestas, solo preguntas',desc:'Los pensamientos que callamos durante el día y la importancia de la introspección.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648466200313236758'},
+  {cat:'reflexion',autor:'',red:'tiktok',titulo:'"La gente te amará como puede, no como quieres"',desc:'El único amor a tu completo gusto es el que te brindes a ti mismo.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648378156805623062'},
+  {cat:'reflexion',autor:'',red:'instagram',titulo:'La tormenta siempre pasa — Nunca dejes de confiar en ti',desc:'La constancia y la disciplina son lo que te llevan a lo más alto.',url:'https://www.instagram.com/reel/DZTiqmNiBft/'},
+  {cat:'reflexion',autor:'',red:'instagram',titulo:'Bondad y religión — Una reflexión filosófica',desc:'Creer no te hace automáticamente bueno, ni dudar te hace malo.',url:'https://www.instagram.com/reel/DZVDat3MhXG/'},
+  {cat:'reflexion',autor:'',red:'instagram',titulo:'"La gente te amará como puede, no como quieres"',desc:'El único amor a tu gusto es el que te brindes a ti mismo. Sobre expectativas.',url:'https://www.instagram.com/reel/DZSfptrMQAq/'},
+  {cat:'reflexion',autor:'',red:'instagram',titulo:'La noche no trae respuestas, solo preguntas',desc:'Una reflexión nocturna sobre la introspección y los pensamientos silenciados.',url:'https://www.instagram.com/reel/DZRFxuYCeCP/'},
+  {cat:'reflexion',autor:'',red:'instagram',titulo:'Pitágoras — Reflexión filosófica',desc:'La sabiduría de Pitágoras más allá de su legado matemático.',url:'https://www.instagram.com/reel/DZQxmWOMlS8/'},
+  {cat:'arte',autor:'',red:'tiktok',titulo:'La Mona Lisa — ¿Por qué es tan famosa?',desc:'El sfumato, la sonrisa que cambia, el robo de 1911. Todo lo que hace grande a Da Vinci.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648341588166364438'},
+  {cat:'arte',autor:'',red:'tiktok',titulo:'Salvator Mundi — Leonardo da Vinci',desc:'La esfera que no distorsiona. El simbolismo filosófico de la obra más cara de la historia.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648107788752784662'},
+  {cat:'arte',autor:'',red:'tiktok',titulo:'Daniel en el foso de los leones — Rubens',desc:'La tensión contenida: los leones están listos pero no actúan. Rubens estudió leones reales.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647975213841288450'},
+  {cat:'arte',autor:'',red:'instagram',titulo:'La Mona Lisa — Misterio y sfumato',desc:'La mirada que te sigue y el fondo irreal. El retrato más enigmático de la historia.',url:'https://www.instagram.com/reel/DZQPXxisxul/'},
+  {cat:'arte',autor:'',red:'instagram',titulo:'Salvator Mundi — Simbolismo y percepción',desc:'Una obra sobre control, percepción y realidad. El debate filosófico de la esfera.',url:'https://www.instagram.com/reel/DZOmSxfi9Dk/'},
+  {cat:'arte',autor:'',red:'instagram',titulo:'Daniel en el foso de los leones — Rubens',desc:'Más que un milagro: el instante en que la naturaleza se detiene y nadie sabe por qué.',url:'https://www.instagram.com/reel/DZNri6CsW8U/'},
+  {cat:'web',autor:'',red:'tiktok',titulo:'He creado la web de Filosofía que me habría ahorrado horas',desc:'Autores PAU, juegos, simulacros, flashcards y exámenes anteriores. Todo gratis.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647434603548003606'},
+  {cat:'web',autor:'',red:'tiktok',titulo:'¿De qué se compone FilosoFEANDO?',desc:'Esquema completo de todo lo que abarca la plataforma.',url:'https://www.tiktok.com/@filosofeando_para_aproba/photo/7647365426778754326'},
+  {cat:'web',autor:'',red:'tiktok',titulo:'Plataforma GRATUITA PAU Filosofía Andalucía',desc:'Tests, flashcards, simulacros y exámenes anteriores. Todo en un solo sitio.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648736661001784579'},
+  {cat:'web',autor:'',red:'instagram',titulo:'Bienvenido a Filosofeando',desc:'Piensa menos como todos. Piensa más por ti mismo. Filosofía práctica para tu vida.',url:'https://www.instagram.com/p/DZJhNfcCSLP/'},
+  {cat:'web',autor:'',red:'instagram',titulo:'Plataforma GRATUITA PAU Filosofía Andalucía',desc:'Tests interactivos, flashcards, simulacros y exámenes anteriores. Todo gratis.',url:'https://www.instagram.com/reel/DZS9--pR7e4/'},
+  {cat:'web',autor:'',red:'instagram',titulo:'¿Por qué usar FilosoFEANDO?',desc:'¿Por qué pensamos como pensamos? Entra, explora y descubre nuevas formas de ver la realidad.',url:'https://www.instagram.com/reel/DZQYHq8MUpR/'}
+];
+
+var vFiltroActual = 'todos';
+var vAutorActual = '';
+
+function vFiltrar(f, btn) {
+  vFiltroActual = f;
+  vAutorActual = '';
+  document.querySelectorAll('#vTabBar .tab-btn').forEach(function(b) {
+    b.style.background = ''; b.style.borderColor = ''; b.style.color = '';
+  });
+  if (btn) { btn.style.background = 'var(--gold-dim)'; btn.style.borderColor = 'var(--gold)'; btn.style.color = 'var(--gold)'; }
+  vRenderAvatares();
+  vRender();
+}
+
+function vFiltrarAutor(a) {
+  vAutorActual = vAutorActual === a ? '' : a;
+  vRenderAvatares();
+  vRender();
+}
+
+function vRenderAvatares() {
+  var el = document.getElementById('vAvatares');
+  if (!el) return;
+  var show = vFiltroActual === 'todos' || vFiltroActual === 'filosofo';
+  el.style.display = show ? 'flex' : 'none';
+  if (!show) return;
+  var autores = [];
+  misVideos.forEach(function(v) {
+    if (v.cat === 'filosofo' && v.autor && autores.indexOf(v.autor) === -1) autores.push(v.autor);
+  });
+  el.innerHTML = autores.map(function(a) {
+    var sel = vAutorActual === a;
+    var foto = vFotoMap[a];
+    var nombre = vNombreMap[a] || a;
+    var cnt = misVideos.filter(function(v) { return v.autor === a; }).length;
+    var avatarHtml = foto
+      ? '<img src="' + foto + '" alt="' + nombre + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentNode.innerHTML=\'<span style=\\\"font-size:1.1rem;font-weight:800;color:#c9a84c\\\">' + nombre[0] + '</span>\'">'
+      : '<span style="font-size:1.1rem;font-weight:800;color:#c9a84c">' + nombre[0] + '</span>';
+    return '<button onclick="vFiltrarAutor(\'' + a + '\')" style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;background:none;border:none;cursor:pointer;padding:0.2rem;opacity:' + (sel || !vAutorActual ? 1 : 0.35) + ';transition:opacity 0.2s">'
+      + '<div style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:2.5px solid ' + (sel ? '#c9a84c' : 'var(--border)') + ';display:flex;align-items:center;justify-content:center;background:var(--card2)">' + avatarHtml + '</div>'
+      + '<span style="font-size:0.61rem;color:' + (sel ? '#c9a84c' : 'var(--text3)') + ';font-weight:' + (sel ? 700 : 500) + ';max-width:54px;text-align:center;line-height:1.2">' + nombre + '</span>'
+      + '<span style="font-size:0.58rem;color:var(--text3)">' + cnt + 'v</span>'
+      + '</button>';
+  }).join('');
+}
+
+function vRender() {
+  var el = document.getElementById('vGrid');
+  if (!el) return;
+  var lista = misVideos;
+  if (vFiltroActual === 'filosofo') lista = lista.filter(function(v) { return v.cat === 'filosofo'; });
+  else if (vFiltroActual === 'reflexion') lista = lista.filter(function(v) { return v.cat === 'reflexion'; });
+  else if (vFiltroActual === 'arte') lista = lista.filter(function(v) { return v.cat === 'arte'; });
+  else if (vFiltroActual === 'web') lista = lista.filter(function(v) { return v.cat === 'web'; });
+  else if (vFiltroActual === 'tiktok') lista = lista.filter(function(v) { return v.red === 'tiktok'; });
+  else if (vFiltroActual === 'instagram') lista = lista.filter(function(v) { return v.red === 'instagram'; });
+  if (vAutorActual) lista = lista.filter(function(v) { return v.autor === vAutorActual; });
+  if (!lista.length) { el.innerHTML = '<p style="text-align:center;color:var(--text3);padding:1.5rem">Sin vídeos para este filtro.</p>'; return; }
+
+  // Group by category when showing all
+  var cats = vFiltroActual === 'todos' ? ['filosofo','reflexion','arte','web'] : [vFiltroActual];
+  var html = '';
+  cats.forEach(function(cat) {
+    var items = lista.filter(function(v) { return v.cat === cat; });
+    if (!items.length) return;
+    var col = vCatColor[cat] || '#c9a84c';
+    if (vFiltroActual === 'todos') {
+      html += '<div style="display:flex;align-items:center;gap:0.5rem;margin:1rem 0 0.6rem">'
+        + '<span style="width:14px;height:2px;background:' + col + ';display:block;border-radius:2px"></span>'
+        + '<span style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.09em;color:' + col + '">' + (vCatLabel[cat]||cat) + '</span>'
+        + '<span style="flex:1;height:1px;background:var(--border);display:block"></span>'
+        + '<span style="font-size:0.68rem;color:var(--text3)">' + items.length + ' vídeos</span>'
+        + '</div>';
+    }
+    items.forEach(function(v) {
+      var col2 = vCatColor[v.cat] || '#c9a84c';
+      var foto = vFotoMap[v.autor];
+      var nombre = vNombreMap[v.autor] || (v.cat === 'reflexion' ? 'Reflexión' : v.cat === 'arte' ? 'Arte' : 'Mi Web');
+      var avatarHtml = foto
+        ? '<img src="' + foto + '" alt="' + nombre + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentNode.innerHTML=\'<span style=\\\"font-size:1rem\\\">' + (v.cat==='reflexion'?'💭':v.cat==='arte'?'🎨':'🌐') + '</span>\'">'
+        : '<span style="font-size:1rem">' + (v.cat==='reflexion'?'💭':v.cat==='arte'?'🎨':'🌐') + '</span>';
+      var redBg = v.red === 'tiktok' ? '#010101' : 'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)';
+      var redLabel = v.red === 'tiktok' ? 'TikTok' : 'IG';
+      html += '<a href="' + v.url + '" target="_blank" rel="noopener" '
+        + 'style="display:flex;gap:0.85rem;align-items:center;background:var(--card);border:1px solid var(--border);border-left:3px solid ' + col2 + ';border-radius:var(--radius-sm);padding:0.85rem;text-decoration:none;color:inherit;transition:transform 0.18s" '
+        + 'onmouseover="this.style.transform=\'translateX(4px)\'" onmouseout="this.style.transform=\'\'">'
+        + '<div style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid ' + col2 + '55;display:flex;align-items:center;justify-content:center;background:var(--bg3)">' + avatarHtml + '</div>'
+        + '<div style="flex:1;min-width:0">'
+        + '<div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.2rem">'
+        + '<span style="font-size:0.65rem;font-weight:700;color:' + col2 + '">' + nombre + '</span>'
+        + '<span style="font-size:0.62rem;font-weight:700;padding:1px 6px;border-radius:50px;background:' + redBg + ';color:#fff">' + redLabel + '</span>'
+        + '</div>'
+        + '<div style="font-weight:600;font-size:0.84rem;line-height:1.35;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">' + v.titulo + '</div>'
+        + '<div style="font-size:0.75rem;color:var(--text3);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-top:0.15rem">' + v.desc + '</div>'
+        + '</div>'
+        + '<span style="flex-shrink:0;color:' + col2 + ';font-size:0.8rem">▶</span>'
+        + '</a>';
+    });
+  });
+  el.innerHTML = html;
+}
+
+// ===== SECCIONES COLAPSABLES =====
+function vColapsarSeccion(id, previewText) {
+  var sec = document.getElementById(id);
+  if (!sec) return;
+  var cont = sec.querySelector('.container');
+  if (!cont) return;
+  var h2 = cont.querySelector('h2');
+  if (!h2) return;
+
+  // Wrap content after h2 in collapsible div
+  var body = document.createElement('div');
+  body.id = 'scb-' + id;
+  body.style.cssText = 'overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s;';
+
+  var children = Array.prototype.slice.call(cont.children);
+  children.forEach(function(ch) {
+    if (ch !== h2 && !ch.classList.contains('section-label') && !ch.classList.contains('section-sub')) {
+      body.appendChild(ch);
+    }
+  });
+
+  // Add chevron to h2
+  h2.style.cursor = 'pointer';
+  h2.style.display = 'flex';
+  h2.style.alignItems = 'center';
+  h2.style.justifyContent = 'space-between';
+  var chev = document.createElement('span');
+  chev.id = 'scc-' + id;
+  chev.textContent = '▾';
+  chev.style.cssText = 'font-size:1.1rem;color:var(--text3);transition:transform 0.3s;margin-left:0.5rem;flex-shrink:0';
+  h2.appendChild(chev);
+  h2.addEventListener('click', function() { vToggleSec(id); });
+
+  // Preview text
+  var prev = document.createElement('div');
+  prev.id = 'scp-' + id;
+  prev.textContent = previewText;
+  prev.style.cssText = 'font-size:0.78rem;color:var(--text3);font-style:italic;margin-top:0.25rem;display:none';
+
+  cont.appendChild(prev);
+  cont.appendChild(body);
+  body.style.maxHeight = body.scrollHeight + 'px';
+}
+
+function vToggleSec(id) {
+  var body = document.getElementById('scb-' + id);
+  var chev = document.getElementById('scc-' + id);
+  var prev = document.getElementById('scp-' + id);
+  if (!body) return;
+  var isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+  if (isOpen) {
+    body.style.maxHeight = '0px';
+    body.style.opacity = '0';
+    if (chev) chev.style.transform = 'rotate(-90deg)';
+    if (prev) prev.style.display = 'block';
+  } else {
+    body.style.maxHeight = body.scrollHeight + 100 + 'px';
+    body.style.opacity = '1';
+    if (chev) chev.style.transform = '';
+    if (prev) prev.style.display = 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Init videos
+  vRenderAvatares();
+  vRender();
+  // Make sections collapsible
+  var secs = [
+    ['podcasts', '12 podcasts y canales de filosofía'],
+    ['libros', '25 libros seleccionados por nivel'],
+    ['cronologia', 'Línea de tiempo de los 7 autores del currículo'],
+    ['comparativa', 'Tabla comparativa de autores'],
+    ['guia-pau', 'Estructura y tiempo para cada pregunta del examen'],
+    ['calculadora', 'Introduce tus notas y calcula tu nota final'],
+    ['curiosidades', 'Datos curiosos que no vienen en el libro'],
+    ['relaciones', 'Pares más frecuentes en la pregunta 2a'],
+    ['estadisticas-pau', 'Frecuencia de aparición 2015-2026'],
+    ['comunidad', 'Encuestas entre estudiantes'],
+    ['consejos', '6 consejos para sacar un 10']
+  ];
+  secs.forEach(function(s) { vColapsarSeccion(s[0], s[1]); });
+});
 </script>
 </body>
 </html>
