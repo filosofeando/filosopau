@@ -6,9 +6,14 @@
 <title>FilosoFEANDO — PAU Filosofía Andalucía</title>
 <meta name="description" content="La plataforma gratuita más completa para preparar la PAU de Filosofía en Andalucía. Temario, tests, exámenes corregidos, flashcards y más.">
 <!-- Google Analytics -->
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RW528WSNZ8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RW528WSNZ8');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script>window.addEventListener("error",function(e){if(!e.filename||e.filename===""){e.preventDefault();return false;}},true);window.onerror=function(msg,src,line,col,err){if(!src||src==="")return true;};</script>
 <style>
 :root{
   --bg:#0d0f14;--bg2:#13161e;--bg3:#1a1e28;--card:#1e2233;--card2:#252a3a;
@@ -502,19 +507,6 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
     </div>
   </div>
 </section>
-
-<!-- FRASE DEL DÍA -->
-<div id="fraseDelDia" style="background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem 1.25rem">
-  <div style="max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-    <div style="width:40px;height:40px;border-radius:50%;background:var(--gold-dim);border:2px solid rgba(201,168,76,0.35);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0">💭</div>
-    <div style="flex:1;min-width:180px">
-      <div id="fraseLabel" style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.2rem">Frase del día</div>
-      <div id="fraseTexto" style="font-size:0.9rem;line-height:1.55;color:var(--text);font-style:italic;font-family:var(--font-display)"></div>
-      <div id="fraseAutorQ" style="font-size:0.75rem;color:var(--text3);margin-top:0.2rem;font-weight:600"></div>
-    </div>
-    <button onclick="siguienteFrase()" style="flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--text3);width:34px;height:34px;border-radius:50%;font-size:1rem;cursor:pointer;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text3)'">↻</button>
-  </div>
-</div>
 
 <!-- SOCIAL BANNER -->
 <div class="social-banner">
@@ -1151,11 +1143,12 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
 </section>
 
 <!-- PODCASTS -->
+<!-- MIS VÍDEOS -->
 <section id="mis-videos" style="background:var(--bg2)">
   <div class="container">
     <div class="section-label">FilosoFEANDO en vídeo</div>
     <h2 class="section-title">🎬 Mis Vídeos</h2>
-    <p class="section-sub">Todo el contenido publicado en TikTok e Instagram, organizado por categorías. Haz clic para verlo.</p>
+    <p class="section-sub">Todo el contenido de TikTok e Instagram organizado por categorías.</p>
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:1.5rem" id="vTabBar">
       <button class="tab-btn" onclick="vFiltrar('todos',this)" style="background:var(--gold-dim);border-color:var(--gold);color:var(--gold)">Todos</button>
       <button class="tab-btn" onclick="vFiltrar('filosofo',this)">👤 Filósofos</button>
@@ -1165,17 +1158,15 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
       <button class="tab-btn" onclick="vFiltrar('tiktok',this)">TikTok</button>
       <button class="tab-btn" onclick="vFiltrar('instagram',this)">Instagram</button>
     </div>
-    <!-- Avatares filósofos -->
-    <div id="vAvatares" style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.25rem"></div>
-    <!-- Lista vídeos -->
-    <div id="vGrid" style="display:flex;flex-direction:column;gap:0.65rem"></div>
-    <div style="text-align:center;margin-top:2rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
-      <a href="https://www.tiktok.com/@filosofeando_para_aproba" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1.25rem;background:#010101;color:#fff;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>
+    <div id="vAvatares" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-bottom:1.25rem"></div>
+    <div id="vGrid" style="display:flex;flex-direction:column;gap:0.6rem"></div>
+    <div style="text-align:center;margin-top:1.75rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://www.tiktok.com/@filosofeando_para_aproba" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;background:#010101;color:#fff;border-radius:50px;font-size:0.83rem;font-weight:700;text-decoration:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.77 1.52V6.75a4.85 4.85 0 01-1-.06z"/></svg>
         Seguir en TikTok
       </a>
-      <a href="https://www.instagram.com/filosofeando_para_aprobar/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1.25rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <a href="https://www.instagram.com/filosofeando_para_aprobar/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1.1rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;border-radius:50px;font-size:0.83rem;font-weight:700;text-decoration:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         Seguir en Instagram
       </a>
     </div>
@@ -1447,6 +1438,106 @@ mark{background:rgba(201,168,76,0.3);color:var(--gold);border-radius:2px;padding
       <div style="flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:1rem;text-align:center">
         <div style="font-size:1.5rem;font-weight:800;color:var(--purple)">♾️</div>
         <div style="font-size:0.78rem;color:var(--text2)">Mejoras planeadas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IA CORRECTORA -->
+<section id="ia-correctora" style="background:var(--bg)">
+  <div class="container" style="max-width:720px">
+    <div class="section-label">Inteligencia Artificial</div>
+    <h2 class="section-title">🤖 IA Correctora de Comentarios</h2>
+    <p class="section-sub">Escribe tu respuesta a la pregunta 1c o 2b y la IA la analiza: conceptos, nota estimada y consejo.</p>
+    <div style="background:var(--card);border:1px solid rgba(62,207,178,0.3);border-radius:20px;padding:1.75rem;margin-top:1.5rem">
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
+        <button id="btn1c" onclick="iaSetTipo('1c')" style="padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--teal-dim);border:2px solid var(--teal);color:var(--teal)">1c · Posición filosófica</button>
+        <button id="btn2b" onclick="iaSetTipo('2b')" style="padding:0.4rem 1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;background:var(--card2);border:2px solid var(--border);color:var(--text2)">2b · Valoración personal</button>
+      </div>
+      <select id="iaAutor" style="width:100%;padding:0.65rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;outline:none;margin-bottom:1rem">
+        <option>Platón</option><option>Aristóteles</option><option>Descartes</option>
+        <option>Hume</option><option>Kant</option><option>Nietzsche</option><option>Marx</option>
+      </select>
+      <textarea id="iaResp" rows="7" placeholder="Escribe aquí tu respuesta completa (mínimo 20 palabras)…" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:0.85rem;font-family:var(--font-body);font-size:0.9rem;resize:vertical;outline:none;line-height:1.7;margin-bottom:1rem"></textarea>
+      <button id="iaBtn" onclick="iaCorregir()" style="width:100%;padding:0.85rem;background:linear-gradient(135deg,var(--teal),#2a9d8f);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-size:1rem;font-weight:800;cursor:pointer">🤖 Analizar con IA</button>
+      <div id="iaResult" style="margin-top:1.25rem"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARADOR -->
+<section id="comparador" style="background:var(--bg2)">
+  <div class="container">
+    <div class="section-label">Pregunta 2a</div>
+    <h2 class="section-title">⚖️ Comparador de Autores</h2>
+    <p class="section-sub">Genera una tabla comparativa al instante. Perfecta para preparar la pregunta 2a.</p>
+    <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-top:1.5rem;margin-bottom:1.5rem">
+      <select id="comp1" style="flex:1;min-width:130px;padding:0.65rem 1rem;background:var(--card);border:2px solid #c9a84c;border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;font-weight:600;outline:none">
+        <option value="platon">Platón</option><option value="aristoteles">Aristóteles</option><option value="descartes">Descartes</option><option value="hume">Hume</option><option value="kant">Kant</option><option value="nietzsche">Nietzsche</option><option value="marx">Marx</option>
+      </select>
+      <span style="font-weight:700;color:var(--text3);font-size:1.25rem">VS</span>
+      <select id="comp2" style="flex:1;min-width:130px;padding:0.65rem 1rem;background:var(--card);border:2px solid var(--teal);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:0.9rem;font-weight:600;outline:none">
+        <option value="aristoteles">Aristóteles</option><option value="platon">Platón</option><option value="descartes">Descartes</option><option value="hume">Hume</option><option value="kant">Kant</option><option value="nietzsche">Nietzsche</option><option value="marx">Marx</option>
+      </select>
+      <button onclick="compGenerar()" style="padding:0.7rem 1.5rem;background:linear-gradient(135deg,#c9a84c,#a8732e);color:#0d0f14;border:none;border-radius:var(--radius-sm);font-weight:800;cursor:pointer">Comparar →</button>
+    </div>
+    <div id="compResult"></div>
+  </div>
+</section>
+
+<!-- LOGROS -->
+<section id="logros" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-label">Gamificación</div>
+    <h2 class="section-title">🏆 Logros y Nivel</h2>
+    <p class="section-sub">Desbloquea logros estudiando. Cada acción te da XP.</p>
+    <div style="background:var(--card);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);padding:1.4rem;margin-top:1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap">
+      <div style="width:64px;height:64px;border-radius:50%;background:var(--gold-dim);border:3px solid #c9a84c;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0">
+        <div id="nivelNum" style="font-family:var(--font-mono);font-weight:900;font-size:1.4rem;color:#0d0f14;line-height:1">1</div>
+        <div style="font-size:0.45rem;color:#0d0f14;font-weight:700;text-transform:uppercase">nivel</div>
+      </div>
+      <div style="flex:1;min-width:180px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:0.35rem">
+          <strong id="nivelNombre" style="color:#c9a84c">Novato Filosófico</strong>
+          <span id="nivelXP" style="font-size:0.78rem;color:var(--text3)">0 XP</span>
+        </div>
+        <div style="background:var(--bg3);border-radius:50px;height:7px;overflow:hidden">
+          <div id="nivelBar" style="height:100%;background:linear-gradient(90deg,#c9a84c,#a8732e);border-radius:50px;width:0%;transition:width 1s ease"></div>
+        </div>
+        <div id="nivelProx" style="font-size:0.72rem;color:var(--text3);margin-top:0.3rem">Próximo: 50 XP</div>
+      </div>
+    </div>
+    <div id="logrosGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:0.75rem"></div>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section id="comunidad" style="background:var(--bg2)">
+  <div class="container" style="max-width:680px">
+    <div class="section-label">Entre estudiantes</div>
+    <h2 class="section-title">🗣️ Comunidad FilosoFEANDO</h2>
+    <p class="section-sub">Vota y ve qué piensan el resto de estudiantes.</p>
+    <div id="comunidadGrid" style="display:grid;gap:1.1rem;margin-top:1.5rem"></div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section id="calculadora" style="background:var(--bg)">
+  <div class="container" style="max-width:580px">
+    <div class="section-label">Herramienta</div>
+    <h2 class="section-title">🧮 Calculadora de Nota PAU</h2>
+    <p class="section-sub">Introduce tus puntuaciones y calcula tu nota al instante.</p>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.75rem;margin-top:1.5rem">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:1.25rem">
+        <div><label style="display:block;font-size:0.73rem;font-weight:700;color:var(--text2);margin-bottom:0.35rem">1a · Definiciones (0–2)</label><input type="number" id="cn1a" min="0" max="2" step="0.25" value="0" oninput="calcNota()" style="width:100%;padding:0.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1rem;font-family:var(--font-mono);font-weight:700;text-align:center;outline:none"></div>
+        <div><label style="display:block;font-size:0.73rem;font-weight:700;color:var(--text2);margin-bottom:0.35rem">1b · Idea principal (0–2)</label><input type="number" id="cn1b" min="0" max="2" step="0.25" value="0" oninput="calcNota()" style="width:100%;padding:0.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1rem;font-family:var(--font-mono);font-weight:700;text-align:center;outline:none"></div>
+        <div><label style="display:block;font-size:0.73rem;font-weight:700;color:var(--text2);margin-bottom:0.35rem">1c · Posición (0–2)</label><input type="number" id="cn1c" min="0" max="2" step="0.25" value="0" oninput="calcNota()" style="width:100%;padding:0.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1rem;font-family:var(--font-mono);font-weight:700;text-align:center;outline:none"></div>
+        <div><label style="display:block;font-size:0.73rem;font-weight:700;color:var(--text2);margin-bottom:0.35rem">2a · Relación autores (0–2)</label><input type="number" id="cn2a" min="0" max="2" step="0.25" value="0" oninput="calcNota()" style="width:100%;padding:0.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1rem;font-family:var(--font-mono);font-weight:700;text-align:center;outline:none"></div>
+        <div style="grid-column:span 2"><label style="display:block;font-size:0.73rem;font-weight:700;color:var(--text2);margin-bottom:0.35rem">2b · Valoración (0–2)</label><input type="number" id="cn2b" min="0" max="2" step="0.25" value="0" oninput="calcNota()" style="width:100%;padding:0.6rem;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:1rem;font-family:var(--font-mono);font-weight:700;text-align:center;outline:none"></div>
+      </div>
+      <div style="text-align:center;padding:1.25rem;background:var(--bg3);border-radius:var(--radius-sm)">
+        <div id="cnFinal" style="font-size:3rem;font-weight:900;font-family:var(--font-mono);color:var(--text3)">0.00</div>
+        <div id="cnLabel" style="font-size:0.85rem;color:var(--text3);margin-top:0.2rem">Introduce tus puntuaciones</div>
       </div>
     </div>
   </div>
@@ -1742,40 +1833,31 @@ function openModal(autor) {
   document.body.style.overflow = 'hidden';
   document.querySelectorAll('.modal-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section==='contexto'));
 }
-(function(){
-  var mc=document.getElementById('modalClose');
-  var mo=document.getElementById('modalOverlay');
-  if(mc) mc.addEventListener('click',function(){if(mo)mo.classList.remove('open');document.body.style.overflow='';});
-  if(mo) mo.addEventListener('click',function(e){if(e.target===e.currentTarget){mo.classList.remove('open');document.body.style.overflow='';}});
-})();
-(function(){
-  document.querySelectorAll('.modal-nav-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var s=btn.dataset.section;
-      document.querySelectorAll('.modal-nav-btn').forEach(function(b){b.classList.remove('active');});
-      btn.classList.add('active');
-      document.querySelectorAll('.modal-section').forEach(function(s2){s2.classList.toggle('active',s2.dataset.section===s);});
-    });
+document.getElementById('modalClose').addEventListener('click', () => { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; });
+document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget){ document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow=''; }});
+document.querySelectorAll('.modal-nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const s = btn.dataset.section;
+    document.querySelectorAll('.modal-nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.modal-section').forEach(s2 => s2.classList.toggle('active', s2.dataset.section===s));
   });
-})();
+});
 
 // ===== TABS AUTORES =====
-(function(){
-  document.querySelectorAll('.tab-btn[data-filter]').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('.tab-btn[data-filter]').forEach(function(b){b.classList.remove('active');});
-      btn.classList.add('active');
-      renderAutores(btn.dataset.filter);
-    });
+document.querySelectorAll('.tab-btn[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn[data-filter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderAutores(btn.dataset.filter);
   });
-})();
+});
 
 // ===== TABS LIBROS =====
-(function(){
-  document.querySelectorAll('.tab-btn[data-libfilter]').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('.tab-btn[data-libfilter]').forEach(function(b){b.classList.remove('active');});
-      btn.classList.add('active');
+document.querySelectorAll('.tab-btn[data-libfilter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn[data-libfilter]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     renderLibros(btn.dataset.libfilter);
   });
 });
@@ -1788,8 +1870,9 @@ function updateFC() {
   document.getElementById('fcCount').textContent = `${fcIndex+1} / ${flashcardsData.length}`;
   document.getElementById('flashcard').classList.remove('flipped');
 }
-(function(){var fc=document.getElementById('flashcard');if(fc)fc.addEventListener('click',function(){fc.classList.toggle('flipped');});})();
-(function(){var fp=document.getElementById('fcPrev');var fn=document.getElementById('fcNext');if(fp)fp.addEventListener('click',function(){fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length;updateFC();});if(fn)fn.addEventListener('click',function(){fcIndex=(fcIndex+1)%flashcardsData.length;updateFC();});})();
+document.getElementById('flashcard').addEventListener('click', () => document.getElementById('flashcard').classList.toggle('flipped'));
+document.getElementById('fcPrev').addEventListener('click', () => { fcIndex=(fcIndex-1+flashcardsData.length)%flashcardsData.length; updateFC(); });
+document.getElementById('fcNext').addEventListener('click', () => { fcIndex=(fcIndex+1)%flashcardsData.length; updateFC(); });
 
 // ===== QUIZ =====
 function renderQuiz() {
@@ -2433,7 +2516,7 @@ function renderProgreso() {
 
 // ===== SIMULACRO =====
 let examRunning=false, examSeconds=90*60, examInterval;
-(function(){var se=document.getElementById('startExam');if(se){se.addEventListener('click', function() {
+document.getElementById('startExam').addEventListener('click', function() {
   if(!examRunning) {
     examRunning=true; this.textContent='⏸ Pausar';
     examInterval=setInterval(()=>{
@@ -2445,7 +2528,7 @@ let examRunning=false, examSeconds=90*60, examInterval;
       if(examSeconds<=0){clearInterval(examInterval);el.textContent='00:00';submitExam();}
     },1000);
   } else { clearInterval(examInterval); examRunning=false; this.textContent='▶ Reanudar'; }
-});} })();
+});
 
 function updateWC(id,text) { document.getElementById(id).textContent=`${text.trim().split(/\s+/).filter(w=>w).length} palabras`; }
 
@@ -2463,13 +2546,14 @@ function submitExam() {
 }
 
 // ===== THEME =====
-(function(){var tt=document.getElementById('themeToggle');if(tt)tt.addEventListener('click',function(){var d=document.documentElement.dataset.theme==='dark';document.documentElement.dataset.theme=d?'light':'dark';var t=document.getElementById('themeToggle');if(t)t.textContent=d?'☀️':'🌙';});})();
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const isDark=document.documentElement.dataset.theme==='dark';
   document.documentElement.dataset.theme=isDark?'light':'dark';
   document.getElementById('themeToggle').textContent=isDark?'☀️':'🌙';
 });
 
 // ===== HAMBURGER =====
-(function(){var hb=document.getElementById('hamburger');if(hb)hb.addEventListener('click',function(){var nl=document.getElementById('navLinks');if(nl)nl.classList.toggle('open');});})();
+document.getElementById('hamburger').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 
 // ===== REVEAL =====
 function observeReveal() {
@@ -2772,421 +2856,610 @@ function toggleRelacion(i) {
   const fechaFooter = document.getElementById('fechaFooter');
   if(fechaFooter) fechaFooter.textContent = `Actualizada a ${fechaLarga}`;
 })();
-document.addEventListener('DOMContentLoaded', function() {
-  renderAutores();
-  renderQuiz();
-  renderTimeline();
-  renderCuriosidades();
-  renderRelaciones();
-  renderBanco(bancoData);
-  renderProgreso();
-  renderExamenes();
-  renderPodcasts();
-  renderLibros();
-  updateFC();
-  observeReveal();
-  animateProgressBars();
-  setTimeout(function(){ var f=document.getElementById('radialFill'); if(f) f.style.strokeDashoffset=314*(1-0.30); },500);
-});
-
+renderAutores();
+renderQuiz();
+renderTimeline();
+renderCuriosidades();
+renderRelaciones();
+renderBanco(bancoData);
+renderProgreso();
+renderExamenes();
+renderPodcasts();
+renderLibros();
+updateFC();
+observeReveal();
+animateProgressBars();
+setTimeout(()=>{ const f=document.getElementById('radialFill'); if(f) f.style.strokeDashoffset=314*(1-0.30); },500);
 </script>
 <script>
-// ===== VÍDEOS =====
+// ===== SUPRIMIR ERRORES EXTERNOS =====
+window.addEventListener("error", function(e) {
+  if (!e.filename || e.filename === "") { e.preventDefault(); return false; }
+}, true);
+window.onerror = function(msg, src) { if (!src || src === "") return true; };
 
-function vImgErr(img){
-  var p=img.parentNode;
-  if(p){p.style.background='var(--card2)';img.style.display='none';}
+// ===== FOTOS FILÓSOFOS =====
+var FOTOS = {
+  kant: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQADsDASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAABQECAwQGBwD/xAAsEAACAQMDAwMCBwEAAAAAAAABAgMABBEFITEGElETQWEUIjJxgZGhscFS/8QAGAEAAwEBAAAAAAAAAAAAAAAAAgMEAAH/xAAdEQACAgMBAQEAAAAAAAAAAAAAAQIRAyExQRNR/9oADAMBAAIRAxEAPwDkmMcUnxT6IaPYieQzSDMcZGAeGPisZKyGz0ua67SQVUnYmiEvTcsMXrK3cmAc5rd6d05BcRLJMxJYBttgKmuemYyAsEjoMnG+1JeVWO+To5NeWkkDkMOKre1dMvekYEgdjIzyYz3HiufahatazshG2dqZGalwCeNx6V0pTmvR04jejFkkEZllVM4yefFa2KNLbToYAoDc5xz80B0WeGKVknAKvtg8Gjc0b9iIrg23qEIWI7jx/A/2gkHE6HoEgl06BhgkoKvzED2oZYRSwabFHbdveqAfFVLeG7+peSVpY8SEdvrdwZQPxDbbPipK2y3hbvJlFs5O4xXLep4wtwRncbn9a0+tJeyahcW5lZkQI0aep2AofxNtyQdsVluoIniniWRQrNGCQCdqdiVMVmdxAqc0pO9IBhiBS1QSHs4NENM1ARTKt07GHOx57T5x70ONMY71xqzqdOzs2l6kk0SSQOHjI2ZdwcVba6d2IRR81nuhY0vOl4/pADPaSP6qDkhjmi6usisO8ow/5ODUc40y+E1KNgLX7yKHU7GaQSRzAsjgjhD75G3OKxGu3bz30ju3cQxAPxWn6iSfuMk6uUTJWR2H9D3rDzMXkZj7mn416IzvwRDvTjzTEp9OJjxr3os0Zf8AYeafGmTlh9v91KSQK5YSj+kmha3e6FerdWMmG4dG3Vx4I/2tzcdY6DqljJd3EM1rqKLkRRNgyN8HGCPOQDXOpIu85TAPiowrI33AiuOKZk3HgeW41HW4J4+2SaTIIA2Ufmfigs8MlvO8FwhSRDgijPTnUlxpN3FHM7SWWcNGTso8j8vFP62ijGuF7YH6dolaM42AO4A/estaM3ewElOxSJTsCiBJwPivMKUU1jvsKEYRH7d/BqeJTJIqKO5mICjyahO+Pmn27srKynDKcg1mcJtW02ewkAuY1GfcHIo5p6yX2hzWl5A5eCAGJzsxjzlSPIU/wfigd/e3F8w+pfvCjA2qSLWL8zW7xuRLCO1Sq5Le2CPfbbFc3WwmleigY3icpIuGHIpCN+KvaniSZJ41IjkUbY/CRyv6VROc0Qs//9k=",
+  nietzsche: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAA1AFADASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAYHAgQFAwj/xAAuEAABAwMDAgUDBAMAAAAAAAABAAIDBAURBhIhMUEHEyJRYRUygRQkQpFyobH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8ApNERAWcEEtRM2GCN0kjjhrWjJKwUx0XpuW9Ub20shZNUSmFzh/Fgxx+Sefhvyg1KKxW6GmM10rWvk2nMETwCw59/5ce3+1zbvbIaWYuo5jLSudhjyQecZwcd+V9IWrwv0rbreynnt0dbNtAlqKglz3nvjngfAUV1X4UWh5P0maajjJ3mIepod0yM89EFCuBa4g9Qi6F/t0lpus9FMMOidgEdHDsfyFz0BERAREQFb3gvFVTGlNK1jIY5XGd7nDc/Lh6QM5x05wqhVi+EOoaWiu9Hbamne6eSpJpJmyYa1z2hpa8dxgcHsSgurXOpblYKTzbZZpK7Ddz5N2GM56fJUXm11qOl0wb9ctO+XHJL5UcLXEOwR9xBGQDhTa73SShge/axxx6d3QH3Pwqz1L4lVZf9MEFJLTmRv7mbLHOAGSdmeCT0+EFYa6ur7zeW1slL+me+EB0ec8gnuo6pX4iV0Vzu0FRSQtZTtp2ta5g4JySf+qKICIiAiIgLr6Qa92qrQYyARWwnJ/zC5C96KpfS1dPURu2uhkbICOxBzlB9QXqnjrJHtnqXwb24afYZ56qpr3pq00U1QZa51VJK8BhLBlzieGjByTn2Vz2ato7pQMiqDE/dHv2vxy3H3D455PZVjbbzo+2eIsscUDsGTFLWTS7mQSZ5AaR6QezskjI6IKknq37pYtmGBxwx5zt7f2tNb9/gFNe6+Frmva2oftc3oQTkEfghaCAiIgIiICzaB0REEhuVfVz2+wTuqHt8umfCwMcQRh5BOfkY/pTSPQFrrNAx3R0krbg6N87pySd3J4IyiIKuqWFpG524gDnHbC8ERAREQf/Z",
+  kafka: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQADwDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAABAYBBQADBwL/xAAwEAACAQMCBAQFBAMBAAAAAAABAgMABBEFIQYSMUEUIlFxBxNhkcEjQlKBFTKx0f/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwBvkPKCc1X3EuTjNE3Em5GarpTvigC1XULfTrN7q5YhF7DcsewFIeocY6hNITZj5EedgACcfUmo441Br/U/Bxn9G2OMDux6n8UBa6HcTpmWOUEf6qF6igKi4w1eNlZ5EdBuVZBvTDpnFNtqrrA6GG5YbL1VvY/ikPUbOSznKMrqB2I6fStFtM9vcRzxnzxsGHuKDp0hy2xzXnNaIrlLiCOdB5ZFDAeman5lA5XEuCTtQDzFnwASc1lxMckZoN5cHIJB9aCo4O0CG74svZryEvDDMww3QMd67RFbWyRoogRQo8vl6Uo3HDa6rJdPzpHcyBHbkyMnGMnHVsd61aHoWr6ffyNPfXXhQzARu5IIwcEZO1Bt430y2a0dTBGS3XyDJrhGr2ng72SNQeXO21P01nfazYT3095czXTTlRAjtyqu++3fp96VNesJtOdFuGJlXDkF8lf7oL+yQQWcMeT5Y1G/tW/nB7UBpiyixVpn5mclgT2HaiulAwzOcnehpWyete5mIzQ7MT3oGDhrVLhNQHzJSyiML5v4j/ym3Vr5fD/OjVpEVGLLHjJ27Zrm1kZjdxLbn9R3CLn1JxV1O5e3li8R4e4iJD88rdR6AGgVNG1eSwW6Z43gVWJQSbH+xS/ynXLye6u3bAcbD91etdmRJ5La3c3FzI255i3/AGqq1u3sLlgrc6Zw4HQn1FA1AqoCqAANgKwuPWgra7hulzC2SOqkbit2/pQXt1MqqXdgqgZJPQUv3vEKJ5bNC7fzcYH2qeJ7rlSO2U7t5m9u1Lb7CgudM1W5k1zTpJ525Eu4ThdgPOOwrrXGGjaXqOvpaNexWr3EvK3PjIbHN5R9d/TeuN8OLz8R6THjmzeRbDv5xT9xLc6XrPHFpNJOyc2pxqqg4SWIYXmz65H2NAfxjwzoPC3DVxe2CYmcfLiklbLSOepHqfbYAVxnFOfxI4rPE2uSfJkP+PtSY7VB0I7v7nH2ApOYYJoMVmQhkJUjuDijo9WulXBKv9WG9V5NZmgtdUn8VeSyk7FsL7DpQj+1e+XuanlFAZwwXTiOzuVjZ1tZVmcA/tUgn8ferH4kWyR66LqykHgphz2+DuM7kf0T+O1b/h9BBdXV/aSSLHcXNuFgZunMHDEe2BS3qczTzHLEopIQZyAM9vc70AfYbVjb1LHt27VBORQeTWVNeT1oP//Z",
+  schopenhauer: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQAD8DASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAABQACAwQGAQf/xAAvEAACAQMDAwMEAQMFAAAAAAABAgMABBEFEiEGMUETUWEicYGRoRQVMiM0UrHx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ACrlMnIFSLyoQKT7ADvTkAGOBwfNWoSY3EsYw0f1jHxQXbXp+4eF5nZUKjIU8k1H/bLl1IEYGOQxOB+KM32vQegnpsctwG9j7VPZAyRB2I3MM5NBnrfTJpldTsjYeHbFU76ynsiFuQqsfKndRnWbWKCRbxRIjBwJTGeCPcj8irtxEktoyODyuCzcUGFuQATkfag87sJHJ7UZmXAOaG3AXdjbmgOFGXyT8CpFldT9JKke1IuQmQe1Vndy5I7GgoalqEEepxLqEhigjXeW2Z3E4AwB9jWjh6u6djsIrn+sb+lyUEgjcgsO4HH27+9Z7VolBguJ1ZoslGcLkxnuD8+avdO6hp02mT2NvbzT3QlaR7YIysvbBLY2g4HftnigMxdRWFwrTWkzyxxqGaEp9WD5x5+1RS6ra3UG6AD1QoYpkggZIBI/FdE6TCFLOF9pXl2jCOB5Ujwc8YrOwajp1812mmNITBOwlDjBDHk45PGd380D72fBbPJPJoVNNzz+6tXTluSPiqUozg0GuEP08c5qPYA2MZPsKlWU4Cgc1heretoUguLHRHLzH6JLkD6VB4Ow+T89vagNy9R2F2+saVFcwxrbW4d5ZZAqSsGwyA/bAz7n2FUun7uys2kS6a3gkJP+59VXcfJJwPxmvKCuCAR9gRXrLX0djpbvrtk1tiEv6asHTfyNiZHGcAgZ8/FAT6n12LprQzcwoUvrgFLNGzlvdyDyVUds/FeU9N60+kal67hpIZRtnUHlhnOR8g8/uh95PLcS+pJv2gYRSxYIv/EE+KhQeaD1kXNvf2qzWNws0ZPJU9vgjwfg1DIv0jdkivN9Pv7rS7n17Z8EjDqf8XHsRW2s9es9RjVY39OdhzCx5GO+D2NAc6xvzadO3BVtkk2IVKnk57/wDXlsON+B3+K0PX2qG71BbOPiK2H1fLnv+hgfuswkhDLQdvVHqbfcc1qurdZN7oOi26SA+pCs0y85yo2j+d36rIztulJpxlZ0Te2diBFHsB/6aDhkIHbmuKcnPFJkYIsjf4twOabnigdI2aYhKnKkgjyK5SoCllH/AHC6kmu5OGcAsxxlmPj/ALrQw9OaG07gX1xLgEbNyqUPv2/g1krS7ktiPTYqN4b8iit1qCzSpLJJHJ7NJb4JH3FBS1nTJdOuMFvUgc/6coGN3wR4NDzU9zctKXVVVUYjgZxx9+1QUCPgZNKusVONoxxzTRQLNKlSoP/Z",
+  maquiavelo: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQAD4DASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAABAUDBgECBwAI/8QALBAAAgEDAwIFBAIDAAAAAAAAAQIDAAQRBRIxIUEGEyJRYRQycYEzwUKR4f/EABoBAAIDAQEAAAAAAAAAAAAAAAIEAAEDBQb/xAAhEQACAgICAgMBAAAAAAAAAAABAgADBBEhMRJBEyJRBf/aAAwDAQACEQMRAD8A4+OaJg6MCagVcnFFxL0FZsYwom6AtIDRcyRpGDI2Cf3UKLhgTXSdO0zwvJoVtcX6xi4WMCYNIwDORkbqWtsCa3NkUt1OewQJJGGjIYe4NektWORjFT29ubPXbiER7IZU3ogOcDtRcsYDEdqhb8lEEcGJWtwoO4mgnADYFOrpPScClEqbXNaIdwTMQISSR70dFET2qG1TnNMIQFPQ56VGMsDiaOgC8Yq6aZ4hddHhklnhUWsTQNG/LDptbHfjFUa8vIYTsJLP3Ve35oe31yWAzK1vFLBLjMUnuODkdc9aBqTYvUKu4I3Jj6wX6m/nupXbzXHpyfuHc4oiVMEmqjeaveXVykxcRGPpGsQ2hB8f9omLxBc5AuFSRe5A2mrNLdwGuUmNrpQFJJApROFLZBB+c1rqV357Dy2zHgYoJGI70aIQNyFhuMoG2jiipXWOFnX2yfiobWMySbQe9SasohsmUfcSBn3oTosBGKayVNh6EQnJJJ5JrUit6w3zTc500phpVn5/mu65QDb19zQNWjTYvK0iEkn17nHT3OP6rK5vFY5/PpFt3PQ5lceNoJWhfgdQfescUbqyAtvT/GggMjIqKdjcG+r4rCo69S0Q2M9lKXu4WjU/bu70Fr7b4eMYIIrq0eo6Xa2aJJax3JmIjEfTI9+p4ArkWvuDLJ5f8ZmYRnPKgnH9UpQ5sfZjz2CvHavUVDtWsqsrYZSG5wRg9ansZEjuopJQDGjqzblyMZGcjv8AivoBPD+gXemX1/cW0F5LNAWJmRPThcrjGdvbvmmLbvjI2Jy0rDDucC03T59QnEcK+nPqcj0oPmrf5KWlmsW8lEGzDGvSagohSKJFjRVAKqABnHxS+9vA3JJJOQD2rB3aw/gnoMfGrxVPOyYt1HbvkAIK45pXD9tb3t0ZZGUdBnr81DE2CetNIpCzj5Vy2W8ep0nVbn62CUz7Wl2Md4AB47454qk6+VDWyKAMITj8mrTFmYTOpGPpnJ/1VM1WXzrrKg4VAtLYw+00yj9IKDhT80+8KamILsWd3NJ9FN0MZkITd2yOMdv3SDacV4g44pt1DqQYjW5Rgwh2r3A+unS0uC9sHPl46dPb9cVFYsWZwxJ6Z6mhMGprQkTfkEVXiAuprVaxuBMzex4cOODz+agU4NHzruQqe9LwCDg1aniVkrqwke5//9k=",
+  seneca: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAA5AFADASIAAhEBAxEB/8QAHAAAAgIDAQEAAAAAAAAAAAAAAgYDBwABBQQI/8QAORAAAgEDAgMFAgsJAAAAAAAAAQIDAAQRBSEGEjETIkFRYTJxFDM0NTZScnN0gbIHI5GhscHR4fD/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAaEQEBAAIDAAAAAAAAAAAAAAAAAQIREiEx/9oADAMBAAIRAxEAPwCqjWePpUvIDWcg8KqBBIUnwoVyemc1OkJcqg6scCu/p/D0zyIF3RgMsPHPlVk2F+O3kYZ5dvWhaFlGSNs1bMnBoSxP7hCSAobxz9albifQ/gM0h5FEWAwKncDpg1eITOXFGNwBiidOU1pemayMXOK2PWtisqjAMNREeO2K3gZoCd/Sg9ulmEXcZuA5jBwQhwSPIGrN0a/tYo4FtIUCKvM0p6jzGfzqq7PHbqDy4znBOM4p04WujPayLIkbQxNyyDJzg7CtYhufjbTbq5FnaSS86nc9n3QBuf5Uj8Ua9a6hHMttMGZz0C+Apnv5rCzRpol7pt2UNFHzBAQQAQOlIjTW02kw9vs8PcQIB3vQ/wAatRxSOaAn1qJcFd6OfZQo89xUQ6etYUa0Q61Gp3qTIzjFAZIVsGhcEnIqWRVz3hWwnaEJGGLHoAMk0EMMTyzpGgyzHAzTXwVJDFqc9pcd3touQAnAJz40OicHajciO7fEKBgQG9r/AFTBacNpbXnavEZH6yEnII6beVakoy80t5kuXFyyiPARBNyLv16DJNIM8bJIyFgwBIZs5yaYuIIdR029uIYrmWSBsFPcegpcmUtkuTzE7geFKjnueZic5GaHBzsa9otFPssc1E9pMrbIxHoKwqEEjxo1OSQaAqQSrKQfI7USjGMGgYOEtAl4k1WO1RikQXtJX+qv+auS04V03R7YfArSJHVcc5GWPvNIv7FPnG++4T9Rq2r72V99aiwnsk0nEcFhG4ReyMkgHTAPjXfls0FtJzL4e0o8K5Nn9LZfw/8AemO4+If3GraRW3H2mNHZ213EXaPtVRj559nekYabPJdmCJGkdWw2B0PjVr8W/R2z/Gxfqrx6N8t1b8VJ/Wr6hMj4eNj3rySNJuYFABzZ8qcNL4SlLm51JY3VwDyBcMPL3V4dd+XWv2RVhWXyNfuxS9EhB4z4ZjTRmNvDGMHmXYf9mqkkTkbcbZr6E4n+YZPyqg7745/tGs0f/9k=",
+  wilde: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQADADASIAAhEBAxEB/8QAGwAAAwEAAwEAAAAAAAAAAAAABAUGAwECBwD/xAA0EAACAQMDAQUGBQQDAAAAAAABAgMABBEFEiEGEyIxQVEUMmFxgZEVI0KhsQfR4fBicrL/xAAXAQEBAQEAAAAAAAAAAAAAAAABAgAE/8QAGhEBAQEAAwEAAAAAAAAAAAAAAAERAiExQf/aAAwDAQACEQMRAD8A4QYxRCUOGGa3iauTHUKQVvEooeI1uZ4reMvPIsa+rHFbBohUrvjbXW3minRXhkV0YZBU5BFasODQyWA71ERUOuc0s6j1ttNt1htMe0yfqxnYP71caqJ5Fggkmkz2calmIGeBSZJo9e1eGzuZFSxK7+6+C/hhQfjmohtVvpd3tF1LIADgM5xXoXQkA0zpV7x413zr2ykDJCYwB9wT9acwE2sXqdP67awadJK1tDtZyZN+4HxUfLnjxzV9BPFdWyT27h4pF3Kw8xUPr1gj6a13cRxwRR2x3ke+ZONgx8TmqLo6e1n6dt1tHLdmCsgbxV/E/Tnj4VPLwp/Ub8QO0Dnsiy90nx/xSBo31Q3dzbr2ohUlye7sQHxwfpRnUVtLdaxFbAqpmcKrE5GT55+dUem9GX1m+2W7tbq2mjdZ+4Vc5Ugc+eOD9KqdQV5ncq52IOd3Cj1qng1yW703R9NswUmijEI2E95c5YsfQeP3qa1uC4sdSa1uSwnt1VW58DgHj9sV1sLlvbUiR+z7YlWbdgDd/A4Gav0LTr7VtLa2XSdOJ2xSl3MTDYWPPzPJzmsP6c3cltqrWpOYrlDkf8lGQf5qKmR4rlkkyHViGDeIIqq6Hnji1y134y25AT5Eg4/341NnRjjqiOSSaB02YWJj5gnHl48/tRmkdcanaaUIJbVbpbeJgCX2kr5ZPicfejNSMC2kE85gSOOMgybyxyScgjHvfAZpFfWRmtwwAtkxkDblyD6+Q+Q+9EZl1dbySGHUriczzzBS5A4KFFKnPryftSG2CLNIwywVDgEeZGKc6zNN+AaWEl/KKvbTAActEcoc/wDVx9qS28SOe+Ts8wPOrngaNI11IDIyllAGf1Nj1NPenLWafVLVbdGJV1ZmxwoBySTX2mPBAmdqKucBVAJJpp+KtGivH3McptP7/wC8VPKqhHqlxJqN8kaDMURxGhOM88n5n+KP1y7G1FUYDkgkHx4pdNsgcttywY8evNGazDm2Rx5P/IrMAsdtzpF9bS5IhljuVx6ZKN/6X7Uz0jTum5cjULq6g4G0qM5P0HFDdMWfbai8LSpGs8TxHefHcOMfEEA0deaesFh26ahBLgjKRsc/Y1rfgxld22m6Y7mylN5FK35G4e9/jNBXDyZDSvukc97+w+FbRIObu594jbFH6AVrptt7bqAMyhooxlwTj5CimP/Z",
+  camus: "data:image/jpeg;base64,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",
+  montaigne: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCABQADsDASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAABQIDBAYHAQD/xAA3EAACAQIFAQUGBQIHAAAAAAABAgMAEQQFEiExQQYTIlFhFDJxkaGxI0JSgcEz0QcVctLh8PH/xAAZAQADAQEBAAAAAAAAAAAAAAABAgMEAAX/xAAdEQACAgMBAQEAAAAAAAAAAAAAAQIRAyExBBJB/9oADAMBAAIRAxEAPwDO58ZL3snjPvHk+tRzipDyx+dKmsHfbqaYPoKUYdGKf9bfOutiG51Hc8XpmOMyOqILsxsAByat+B7C4qR4RM1i4u+nhfSknkjDoyi3wrIxchW1zb414zsd/wCat3aLsZFgcG02Flcuguyt1qlA2Fr3pYZI5FaOlFx6SUxUqW0uQPjUlMwmCga2+dD1O/FLFrU4BuRrs1/M03qrr++wP6jTZpgBrsiiy9ocIrC9mJA9QDatjhlIC+H4VjHZRRJn+EQsFDsVufVTWjHAFcJh8BNKzx94zPud/Ic8XPF68/1q5o0YuEztDMzYScFd9N7msdYjUwB21GtVxWFGX5RifaJg5Ksq2FrC2wqlZplDyQ4VMHCO8WK7Iq2Pp+9HzSUbQMsb2V4c804G24pkc2PNPDitpAYlGmRl8mP3pNKkF3cjc3NJt50xxoHZLJIUyI5gkHf4yRSyA/ltewHkfWhbYjNMTi+8mx0sWLjY6UEX4URH5T6/tR7/AA7zYf5eMNJpATw2A3t6VYMd2dyfNsWMXKGDEDvFSTSJB0uOp9axTdSdlVwqkWKx3aSFcDHDokU6cTiQ1408yPU9BVnkwmFyvLWWBQGVdmO5vbkmixOX5VhVhgWKKBBYIg2FVLtFnEXs+IhRryyIRHEBd2PA26Drc0kVbpLQW3+mbSsrzyOAAGckfOnFZdI8P1pCYeWRgscbOxNgqi5+VJBsLVuRIdjVRcgHUWO/JAv09acnjdk8drqB14+lKh0pKARfSCx+IH/JrxlLCzH1/iptuyiSoVCzZe6zxSOrruNJtfrvVggz7MfZNaSSWO1hhyxF+fdP/tVrEOWiXqRYfSp3GXL+G/vWsEdSOb7LtSNX056eieM2zHHY/CwEugeVbBgFvv8ApuSRRrMI8NkTYgFEkkSx1/mdmGwJ+G9V3srGJe0OGAjEaIDI1lA469T86kZtO+cZykCH+pLqPpf+y2Hzrmt0COw12Zw0axz5xjY9cpUtHYWK9Bp8iTsPID1oinZfLZQZMRhWkmclpGCjdid/rUmOJIsPHCq2RR3pHkqiyj+f2qcWdQBZuATv1IqP0xmY/r0yKTx4gaSpAlOo+8vh/wC/tXmicq2sEaWJtSSpdBb3kO3wrXQlnHOqMgWIuCL+VSpda5dHdWEZbrifDe3lyfjUVlKqduRfj6feuzOPZowq4cvfc6fFx9qFWBhXsoRho8yxdx4INCkebG396LdksL3082OlGxJRP5Py+9AcO7w5LoPvzzFm6bAWH3NXTJlTCZfDGylSsa3/ANR8TfSwqWS9jx0grBqxBxRXkkRL9AfqWoj3zL4Y1LqNg1uaD5Wzvg4kRAXm/EbUN97kAevJv0FEbS8FoQRt/UH+2ouIT//Z",
+  spinoza: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAA1AFADASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAwQABgECBQf/xAArEAACAgEDBAIBAgcAAAAAAAABAgADEQQSIQUGMUFRYRMUMiJCcYGRscH/xAAYAQADAQEAAAAAAAAAAAAAAAABAgQAA//EAB0RAAICAgMBAAAAAAAAAAAAAAABAhEDMRIhQTL/2gAMAwEAAhEDEQA/APJFOIRGIBg1HmFRciIMboTCquRgzCKJhEfVakUVnjIEWwmGNanluRMBlb9rePmXXSdiJdUAGLXEZxnAzK53J25qeh2quqG1XGVI5GfiJHJCTpMeWOUVbOWRiCsXMlN24lGOeODMtOggueB9zRj5J8wreYNvBhAMr5h0EAvmMJ6gYUb2HYnHn1N+ku9Wq/LXs3qQQWGR/iA1WdyjHqM9FKrr1VwCG+YH8jLZftF17qtmhTVaVKa33bbLPxblH2ATwDOb3r1W3rHStt7UW2UvzZSpUZ9ggzq9v9QoPTxQtbWDLC1nXCgkk4z79RTvLU1npy6WqtK1J3ttHOcSKNLJVFclcLs80A2sCByPRh1YWfRgmyXIJJx9yDKn0Je0QolinMFjzG3GRmLsMf0gQWHRYwg8QajmGUTMyM3170BHkReqxqb0sA5U8iMPYta5Y4/7Guj6FupautGG1WOT9L8waXYTr9Mt0zK1r6ilKs7vxsDz9cGdyntrVdW0Day/dRphWfwIR/FZjwfpf9ztdudsdJpFepfQ12WZ3KbBuwPXHiWDrPUPx216SsKWZctn0JK2uXR2tuNM8B12ls02odHUjBi2M8AS6d03aXTVBbaRZa2dg8cfMpn5trbtqj6Eri21ZO+mGYHaM+cQLDiFWxbf2n+00fwZkEYHDkTfdtUnHgSSTegF9Ov6jUqLD5Mu/a9KbrDjl2CZ+ATiSSJk0NDZ6hoVAQYHHqV7WWs/WdQ58qCo+gBJJJls6+HkfcOst1nV9U1hwEcoo+AvAnLK+sySS5aJ2aAkNkHBENQ5tVt38p8ySQMKP//Z",
+  marcoaurelio: "data:image/jpeg;base64,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",
+  emerson: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5Ojf/2wBDAQoKCg0MDRoPDxo3JR8lNzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzf/wAARCAAtAFADASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAABAUDBgcBAv/EADEQAAIBAwMDAwMDAgcAAAAAAAECAwAEEQUSITFBUQYTYQcUIjJxgRXBI0NScpGh4f/EABcBAQEBAQAAAAAAAAAAAAAAAAIDAQT/xAAgEQADAAIBBAMAAAAAAAAAAAAAAQIDESESIjFRMkFh/9oADAMBAAIRAxEAPwDNumOetF2yqy45714hj3DyfGaY2FozykNgJ5NZxo68eMieMxsVYHOBWnfTvTvsNEa9ghD3d4GbLcBUU4Az4JyT/FU2eFEHCgsAOTxir79PLi4lsnh3RPb20m2QgkSICCcf7c/3qGR7ngrc9KDfV2men9QW3sdWvVhuP1KqybC2OvHSsfvLWKK7uI4CHiSRlRt24FQeDnvxWy+oNRTT7aTVZNPhuUijMYJ/VIG4IDduPg5rIVgCjaq7AOiqOlZi8toGNPYuliXcpzx815MAwGU5JzjijrqNDGcHp3zXI0bC4/SB4ro3wUc8gOwAZz2qW3I35Jr3Om0qeCD3HeooVAYAZJz0otcAqQqxs/cIMZyQOmad2dvELYKzbWyDyc80q0mT2huLYOPFMFuSQoQ7iT4o1tlo1rZzUnEbKWdmdWBx3NA2Gs3mm3S3On3T21yOpXow8Edx8Gu3c8auxYOW/wBTDg/zSWRzIIpBgfkeB1xnipJtnNlydTLTrF96u1jT7rU7XTxb2Fqga89jciXRzy4UnBx1O3+c0n0TVor+N0kHt3Cc7c53D4q/fTj1jAkH9C1mVBFjFtLKfx2n/LYnt4/fFZV6002PQvVt7bWT4ginzCVbOFIDLz+xFOfQJyOH+FhePc2OxzXvZkAISuBxxSiy9QRSxr943tzDjhchh5+Kc293EUDRncmcZB4pPZ1TU14YLNEpjQDnntUMaCOdiw6Dmp/8WS5KQIzMTnCjkf8AlDzOF3/mmSO3OKf0Y2CQzdF3EfNObKRQbYRgMWdlYk9MDNVpDjJ+adaUxF4iHkEhh8fiw/tRv4slF8EutKqQOzAfsarcG5YXkydwbAz1x4p9rk7RyBVHA6fFV12d5pId+MncTjqTUsa7SN+Sa9zJYGaBzhcEMP8Av/ihr+9udbubq4vWVrmUiTKqACQuOg+BU8kX2sbxoxKOMOD3+fg0siZYpwI1IJGCSc5qiAzulPB7yrcOEViAz4ztHc/NbZe+gdFsNGWfR9SvJZbpY/tJZSjQzu3QKAAeR88VQ/o36UsfU/qOdNTLNbWcXvNABxMd2ApPYefNbH9WLW2b6e3wjgSMWYSaFVGFUqwGMDHGCRTc+jYemZ9YaFJdTR2txf2dsqnNxF+SOw5I4kxk9qQ63pFxptnLLNNZh4mIYifJHgbevPFLj6/9Ry2qW7X7+yihFTJIAAx3pLc6tc3lybm7Ec85IzLKu9j45JzW6Zasp//Z",
+};
+
+// ===== FRASE DEL DÍA =====
+var FRASES = [
+  {t:"La vida sin examen no merece la pena ser vivida.", a:"Sócrates"},
+  {t:"Pienso, luego existo.", a:"Descartes"},
+  {t:"El conocimiento es la única cosa que nadie puede quitarte.", a:"Platón"},
+  {t:"Atrévete a saber. Ten el valor de usar tu propia razón.", a:"Kant"},
+  {t:"Lo que no te destruye te hace más fuerte.", a:"Nietzsche"},
+  {t:"El ser humano es por naturaleza un animal político.", a:"Aristóteles"},
+  {t:"Solo sé que no sé nada.", a:"Sócrates"},
+  {t:"Dios ha muerto. Nosotros lo hemos matado.", a:"Nietzsche"},
+  {t:"La razón es y solo puede ser la esclava de las pasiones.", a:"Hume"},
+  {t:"Quien tiene un porqué puede soportar casi cualquier cómo.", a:"Nietzsche"},
+  {t:"Actúa solo según la máxima que puedas querer como ley universal.", a:"Kant"},
+  {t:"La virtud es el término medio entre dos extremos viciosos.", a:"Aristóteles"},
+  {t:"Si el mundo fuera claro, el arte no existiría.", a:"Camus"},
+  {t:"El hombre está condenado a ser libre.", a:"Sartre"},
+  {t:"El hombre sufre más por lo que imagina que por lo que ocurre.", a:"Montaigne"},
+  {t:"Afronta cada lección como si fuera la última.", a:"Marco Aurelio"},
+  {t:"El amor no es otra cosa que la alegría acompañada de una causa exterior.", a:"Spinoza"},
+  {t:"Un libro debe ser el hacha que rompa el mar helado dentro de nosotros.", a:"Kafka"},
+  {t:"La suerte se entrena. Prepárate para que la oportunidad te encuentre listo.", a:"Séneca"},
+  {t:"No hay viento favorable para quien no sabe a dónde va.", a:"Séneca"},
+  {t:"La educación es el arma más poderosa para cambiar el mundo.", a:"Mandela"},
+  {t:"Un camino de mil millas comienza con un solo paso.", a:"Lao-Tse"},
+  {t:"Somos lo que hacemos repetidamente. La excelencia es un hábito.", a:"Aristóteles"},
+  {t:"Conocerte a ti mismo es el principio de toda sabiduría.", a:"Aristóteles"},
+  {t:"La filosofía comienza con el asombro.", a:"Platón"},
+  {t:"Los límites de mi lenguaje son los límites de mi mundo.", a:"Wittgenstein"},
+  {t:"Todo lo real es racional; todo lo racional es real.", a:"Hegel"},
+  {t:"La verdad es hija del tiempo, no de la autoridad.", a:"Francis Bacon"},
+  {t:"El ignorante afirma, el sabio duda y reflexiona.", a:"Aristóteles"},
+  {t:"La imaginación es más importante que el conocimiento.", a:"Einstein"},
+  {t:"No hay camino hacia la paz; la paz es el camino.", a:"Gandhi"},
+  {t:"Cada concepto que aprendes hoy es una herramienta para toda la vida.", a:"Anónimo"},
+  {t:"Estudiar filosofía es aprender a dudar, a preguntar y a no conformarse.", a:"Anónimo"},
+  {t:"La PAU no define quién eres, sino de lo que eres capaz.", a:"Anónimo"},
+  {t:"El dolor de estudiar es temporal. El de no saber dura toda la vida.", a:"Anónimo"},
+  {t:"Lo que sabemos es una gota; lo que ignoramos es un océano.", a:"Newton"},
+  {t:"Nunca consideres el estudio como una obligación, sino como una oportunidad.", a:"Einstein"},
+  {t:"Invertir en conocimiento paga siempre el mejor interés.", a:"Benjamin Franklin"},
+  {t:"La angustia es el vértigo de la libertad.", a:"Kierkegaard"},
+  {t:"Ante el absurdo, hay que imaginar a Sísifo feliz.", a:"Camus"},
+  {t:"La vida es una constante oscilación entre el dolor y el aburrimiento.", a:"Schopenhauer"},
+  {t:"La gente te amará como puede, no como quieres.", a:"Anónimo"},
+  {t:"Haz hoy lo que otros no harán, y mañana tendrás lo que otros no tienen.", a:"Jerry Rice"},
+  {t:"El hombre no está hecho para la derrota. Puede ser destruido, pero no derrotado.", a:"Hemingway"},
+  {t:"Toda nuestra dignidad consiste en el pensamiento.", a:"Pascal"},
+  {t:"El hombre es libre, pero en todas partes está encadenado.", a:"Rousseau"},
+  {t:"Cometer un error y no corregirlo: eso sí es error.", a:"Confucio"},
+  {t:"Cuida tus hábitos, pues se convertirán en carácter.", a:"Aristóteles"},
+  {t:"El lenguaje es la casa del ser.", a:"Heidegger"},
+];
+var _fraseExtra = 0;
+
+function mostrarFraseDia() {
+  var hoy = new Date();
+  var dia = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / 864e5);
+  var idx = (dia + _fraseExtra) % FRASES.length;
+  var f = FRASES[idx];
+  var dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+  var meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  var lbl = document.getElementById("fraseLabel");
+  var txt = document.getElementById("fraseTexto");
+  var aut = document.getElementById("fraseAutorQ");
+  if (lbl) lbl.textContent = dias[hoy.getDay()] + " " + hoy.getDate() + " de " + meses[hoy.getMonth()] + " · Frase del día";
+  if (txt) {
+    txt.style.opacity = "0";
+    setTimeout(function() {
+      txt.textContent = "\u201c" + f.t + "\u201d";
+      if (aut) aut.textContent = "\u2014 " + f.a;
+      txt.style.transition = "opacity 0.4s";
+      txt.style.opacity = "1";
+    }, 150);
+  }
 }
-var vFotoMap = {
-  emerson:"data:image/jpeg;base64,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",
-  marcoaurelio:"data:image/jpeg;base64,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",
-  nietzsche:"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABQAHgDASIAAhEBAxEB/8QAHAABAAICAwEAAAAAAAAAAAAAAAMHBggBBAUC/8QAMhAAAQMDAwEIAQIGAwAAAAAAAQACAwQFEQYSITEHEyJBUWFxgRSRwRUWMkJSoZKx4f/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwChUREBERARF7NrpKOGifdLix0sbX7IKcHAmf55PXaOM45PRBHa9P3C6Rioih20YkDH1DzhjT8+f0vXuGiXQU01TTXGCVsfVhBbx7Er2LA7Vd+3fy5bJ3Qs4Lo2d3FH7Dnb9JdLPrezOqamqtE8TZYsSOjiy3549ehQV++F7CQQDgZODlRr2bzJCaqGWNjI+8gBkYzjx85/XAP2vKnBDwdpbloPPwgjREQEREBERAREQEREBXbadG098rKOn2s/Gijip4g0Y7tpaHPfn/JxJ8vJUxSR97WQR5A3yNbz05K2L0Fcd+oWUNJE407XjvXuHAcG/wBvr7+iC2bfbKS022CgooWQ08DAxjWjyH7+6kkLTGWuGW45GOqiuV0o7TRPqq2dsUTernKv6ntr0lBM6EVEshB2gxs3coI79oexV0skjrbC0l5eSG46qgNb2N1ivj4Bk08njhPt6fRWx8vaTp6CgbPV1DIRM3LN7TkhUp2qXy13wW+ptswlG5wcMf0j/wBQVqiHqiAiIgIiICIiAiIg5DiwhwJBByCPJbR9n9RT09z/AIPHbYaYQQNrWTQxbI3MkaAAHEkyOwSS7A5zwtW1c3ZR2gXGtulv0vV9w4Y209S5vjAY04YfI+EEA/8AaC+LzZLdfqVkFyj76Bjg8M3EAkdOir8dimnX30VVZOfx3vBjpI27N5A8z1Pv6rPKyR8LGua/y8ICrvUWon07qucSVZuLo3xU7oZdjaduMOcT6oO52raDpL7DbZocU/cNdB4RhuDjGf06ql9b6Tl07aaaR7hiSpLdjejfB5fou7UasvdVcqYXC+l8NKxpYwSOeJBk4DjnJPPn7KHX17n1BQW7uXmaCMncQOQ7GOQgr5EIIOCOUQEREBERAREQEREBZP2dSmHtFsDxnIrWDj34WMgE9Asm0HVQ0OubNI85AqW5d6Eggf7IQbP3YTVckEMbwGFxJB6ZHRVprTS+oq6nkEEAdGXHLYn4+8ZVqGifXUodTTNY884eOPo+SwzWN5umn6ECppXGEnbvzgc8cO6f7QVHLoeaGga+aPDm9TG4Et+Vi0td+JUT08cokiHhLv8ALjnH2rPsFHeNe3aKGmYaSzNkAqq0nO8A8sZ6k9OOiqK40/4lzq6fGO6nfHj4cR+yD4qZI3y5iaWsx59SoURAREQEREBERAREQc5UlPIIqiOYjIjeHY+DlRgevRfeARwEG3Wmb1A6mg3vDYpWtMcjneE56Ak9Dz9qbXmp6LTunJTVMjlfONjYJGhwx5uc09Wj08zgLXauv9VWdldDRRtc9sdUIal4/tDBlgPzkf8AFdCjfe9X1tBaZrlUVDZ5I4cykvLGDoC4+Q5wEFi9nfaeKivbYLu+DZktoKpkbYgME4Y4DAAI6ED2VWa0poabWFy/HcHwSymeNwOQWv8AFwfsrLdZdk9XYKY1lDNJWU7Rue3YNzB+6r6YyytiEocO7j2NLhgloPH6ZQdVFzx8FcICIiAiIg//2Q==",
-  kant:"data:image/jpeg;base64,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",
-  kafka:"data:image/jpeg;base64,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",
-  schopenhauer:"data:image/jpeg;base64,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",
-  maquiavelo:"data:image/jpeg;base64,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",
-  seneca:"data:image/jpeg;base64,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",
-  wilde:"data:image/jpeg;base64,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",
-  camus:"data:image/jpeg;base64,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",
-  montaigne:"data:image/jpeg;base64,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",
-  spinoza:"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABQAHgDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAgMABgEEBQf/xAArEAACAQMDAwMEAwEBAAAAAAABAgADBBEFEiExQVEGE2EUIjJxI3KRocH/xAAYAQADAQEAAAAAAAAAAAAAAAAAAQIEA//EAB0RAQADAAMBAQEAAAAAAAAAAAABAhEDITESIiP/2gAMAwEAAhEDEQA/APLBkH9w8wB1hY5kqMVvtxCU4MDtiGqmKQIE5h43dZhVmGqqhxjJ8CSae2TMhSOkUWrux2qcdgIDLVAyc58wwacQQc4gkZge+6gbgDGBlcDaefEPABuTFOI4xbRgkTBcgYhEcwSIyCcYkmGHEkA2FHOYQ5MwIxcQAgsYsERgHHMmTYqNtpkwdPtTdXCKecnH7i6zbsjtN/R7gWdRK3sNW2nO0HH/AGKdivSo7ntdrHQLalSRTTBcjkx136I+rXerKqY/EDmYs/UdrXt/qko1AUGGpcFgZuWXrau7GnV0OoE8pcIzY/rMH9InWz8ZjzTVtOOmXdS3rp9wPB8icoVdlRSo4z0lw9dVqF7XS5oZwwxgjBB+fmU8pwOZv47TauyxXj5tkNokMMjoYsyUXX2wp4hFfHMYJaAYxxAMpID0kmccGSAP7xixYHMavWEgxYdQ7EzAXrM3OfbAElTXJzOlpdNqiDaDweoGcfM5qjI56zp6FUC19jHjPML+HX1a/TWm06q3L1m9wFgh425OMk4H7m5caNqNLfR0+psQtuUhFYMvg57/ADOfourbEe1t7ZmrGozltwAIM79G8cqGLqTt+4KfxMwXm0W1upFZhVPVmnPY29Fa9ValRlyxA6fHzKayqp4aW/1JcG5rOWOQoxKg/wCZAmzh357Y+bProJIzlQTjvG02wMNB+5hjtBHByTk5nWXKDXXxFMs2MHbFMIoOSpJk8GSMjVBzGqvPMELgiMURSBqOYdRN9PpzBHaMDcSVNMgqcGNsqwoXQLdDDq0Q3IODEeySfMr2C8WK33U7hvYp1tr8/wAT4OJ1AfplWs5qpU53b26j9Tg6bU1SiVW3tatU442rmXTQ/Smo6rWS613+KgvIt8/c/wC8dBM165PbRW/5xWn0u91K1q3dOkRbIclzxvPx5lWr0zTrMD5nvOo21IWbUUVVphdqqowAMTynV9FNRmq0l78iXx3crwq/JHLSEDPiPr2lWi2DTYERaUix54nfXMwcoIDRpwBgRZGTJUU44kmX6SSkn4GR2hjiCc7hmGIpAwJnOBk8CDuCqTnAE1KtVqp8L4hmnpzVmrOKVLv3nc0HTUuLtdy5p0uT8mcyyt9lI1CPubpLhotsKVkqIP5arBR+zIvOQdY1ZdFoKie8qge6eP6jgf8Av+yw27FUJPaaNpTVVCqMKoCr+hHX1b6WxqOOoHEyW7l2hyK99Uu9QcK5CU2wAO/mVfU7lbG3qVn/ABzwO5PidiwOxarnOcEkyi+q9T+o1EWqc07cbTju3f8Azp/s7Urs452npyL3UK95W3u+1eyjpNUVCh4JEhyf1BIJ/U1OTYSulTAP2t4MJppHrGC4ZAAeR8ycPTW4Ekzw6hh0Ikgb/9k=",
+function siguienteFrase() {
+  _fraseExtra = (_fraseExtra + 1) % FRASES.length;
+  mostrarFraseDia();
+}
+
+// ===== BUSCADOR (FIX) =====
+// Patch: replace toString bug with index-based approach
+var _origBuscarFilo = window.buscarFilo;
+window.buscarFilo = function(q) {
+  var btn = document.getElementById("buscadorClear");
+  var sugs = document.getElementById("sugerenciasRapidas");
+  var res = document.getElementById("buscadorResultados");
+  if (btn) btn.style.display = q ? "block" : "none";
+  if (sugs) sugs.style.display = q ? "none" : "flex";
+  if (!q.trim()) { if (res) res.innerHTML = ""; return; }
+  var query = q.toLowerCase().trim();
+  var results = [];
+  if (typeof searchIndex !== "undefined") {
+    for (var i = 0; i < searchIndex.length; i++) {
+      var item = searchIndex[i];
+      if ((item.titulo && item.titulo.toLowerCase().indexOf(query) >= 0) ||
+          (item.subtitulo && item.subtitulo.toLowerCase().indexOf(query) >= 0) ||
+          (item.texto && item.texto.toLowerCase().indexOf(query) >= 0)) {
+        results.push({item: item, idx: i});
+        if (results.length >= 8) break;
+      }
+    }
+  }
+  if (!results.length) {
+    if (res) res.innerHTML = "<div style=\"text-align:center;padding:2rem;color:var(--text3)\"><div style=\"font-size:2rem;margin-bottom:0.5rem\">🔭</div><p>Sin resultados para <strong>" + q + "</strong>.</p></div>";
+    return;
+  }
+  var html = results.map(function(r) {
+    var item = r.item;
+    var col = {autor:"var(--gold)",concepto:"var(--teal)",corriente:"var(--blue)",sección:"var(--purple)"}[item.tipo] || "var(--text2)";
+    var bg = {autor:"var(--gold-dim)",concepto:"var(--teal-dim)",corriente:"var(--blue-dim)",sección:"var(--purple-dim)"}[item.tipo] || "var(--card2)";
+    return "<div class=\"search-result\" onclick=\"searchIndex[" + r.idx + "].accion();document.getElementById('buscadorInput').blur();\">"
+      + "<div class=\"search-result-icon\">" + (item.icon || "📖") + "</div>"
+      + "<div class=\"search-result-body\">"
+      + "<div class=\"search-result-title\">" + item.titulo + "</div>"
+      + "<div class=\"search-result-subtitle\">" + item.subtitulo + "</div>"
+      + "<div class=\"search-result-excerpt\">" + (item.texto || "").split(" ").slice(0,10).join(" ") + "…</div>"
+      + "</div>"
+      + "<span class=\"search-result-type\" style=\"background:" + bg + ";color:" + col + "\">" + item.tipo + "</span>"
+      + "</div>";
+  }).join("");
+  if (res) res.innerHTML = html;
 };
-var vNombreMap = {
-  kant:'Kant', nietzsche:'Nietzsche', camus:'Camus', montaigne:'Montaigne',
-  marcoaurelio:'Marco Aurelio', kafka:'Kafka', schopenhauer:'Schopenhauer',
-  spinoza:'Spinoza', seneca:'Séneca', maquiavelo:'Maquiavelo', emerson:'Emerson', wilde:'Oscar Wilde'
+
+// ===== VÍDEOS =====
+var VNOMBRES = {
+  kant:"Kant", nietzsche:"Nietzsche", camus:"Camus", montaigne:"Montaigne",
+  marcoaurelio:"Marco Aurelio", kafka:"Kafka", schopenhauer:"Schopenhauer",
+  spinoza:"Spinoza", seneca:"Séneca", maquiavelo:"Maquiavelo", emerson:"Emerson", wilde:"Oscar Wilde"
 };
-var vCatColor = {filosofo:'#c9a84c', reflexion:'#a78bfa', arte:'#3ecfb2', web:'#5b8dee'};
-var vCatLabel = {filosofo:'Filósofo', reflexion:'Reflexión', arte:'Arte', web:'Mi Web'};
-var misVideos = [
-  {cat:'filosofo',autor:'kant',red:'tiktok',titulo:'Crítica de la Razón Pura — La revolución de Kant',desc:'Kant explica cómo la mente organiza la experiencia mediante estructuras a priori. Fenómenos y noúmenos.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648372615500926230'},
-  {cat:'filosofo',autor:'nietzsche',red:'tiktok',titulo:'Nietzsche: los que bailaban fueron vistos como locos',desc:'Una de sus frases más profundas sobre el pensamiento propio y la incomprensión social.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647500022803696918'},
-  {cat:'filosofo',autor:'nietzsche',red:'tiktok',titulo:'¿Qué plantea Nietzsche sobre el cuerpo y el pensamiento?',desc:'El pensamiento no es solo racional: expresa fuerzas fisiológicas e instintos vitales.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648377661504507158'},
-  {cat:'filosofo',autor:'nietzsche',red:'instagram',titulo:'Nietzsche: pensar por uno mismo aunque seas incomprendido',desc:'Gran parte de su obra cuestiona las normas sociales y anima a pensar por uno mismo.',url:'https://www.instagram.com/reel/DZKY4iXMXwg/'},
-  {cat:'filosofo',autor:'camus',red:'tiktok',titulo:'Albert Camus: "Si el mundo fuera claro, el arte no existiría" (P.1)',desc:'Camus y la filosofía del absurdo: el ser humano busca sentido en un mundo que no lo da.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647487188719963414'},
-  {cat:'filosofo',autor:'camus',red:'tiktok',titulo:'Albert Camus: filosofía del absurdo (P.2)',desc:'Continuación del análisis de Camus: la creación artística como respuesta al absurdo.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647490855665716502'},
-  {cat:'filosofo',autor:'camus',red:'tiktok',titulo:'Camus: ¿Es inmoral ser feliz en un mundo injusto?',desc:'Una provocación filosófica sobre la culpa de la felicidad. Para la valoración personal.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648378609928932630'},
-  {cat:'filosofo',autor:'camus',red:'instagram',titulo:'Camus: si el mundo fuera claro, el arte no existiría',desc:'El arte como respuesta al absurdo de la existencia humana según Albert Camus.',url:'https://www.instagram.com/reel/DZLnE2Nsez4/'},
-  {cat:'filosofo',autor:'montaigne',red:'tiktok',titulo:'Montaigne: "El que teme sufrir, ya sufre el miedo" (P.5)',desc:'El miedo anticipado que nos hace sufrir antes de que ocurra cualquier cosa.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647573114787859734'},
-  {cat:'filosofo',autor:'montaigne',red:'tiktok',titulo:'Montaigne: "El hombre sufre más por lo que imagina"',desc:'Nuestros pensamientos nos causan más dolor que la realidad. Psicología filosófica.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648247757530058006'},
-  {cat:'filosofo',autor:'montaigne',red:'instagram',titulo:'Montaigne: "El hombre sufre más por lo que imagina"',desc:'Padre del ensayo moderno: los pensamientos nos causan más dolor que la propia realidad.',url:'https://www.instagram.com/reel/DZPlBSLsDOm/'},
-  {cat:'filosofo',autor:'montaigne',red:'instagram',titulo:'Montaigne: "El que tiene miedo de sufrir, ya sufre el miedo"',desc:'Sus escritos exploraron la naturaleza humana, el miedo y la incertidumbre.',url:'https://www.instagram.com/reel/DZK7xGVM69R/'},
-  {cat:'filosofo',autor:'marcoaurelio',red:'tiktok',titulo:'Marco Aurelio: "Afronta cada lección como si fuera la última"',desc:'El emperador estoico y sus Meditaciones: los obstáculos son parte del camino.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647523013545577750'},
-  {cat:'filosofo',autor:'marcoaurelio',red:'instagram',titulo:'Marco Aurelio: estoicismo para la vida real',desc:'Aceptar las dificultades como oportunidades de crecimiento en sabiduría.',url:'https://www.instagram.com/reel/DZKizOOs8pY/'},
-  {cat:'filosofo',autor:'kafka',red:'tiktok',titulo:'Kafka: "Un libro debe ser el hacha que rompa el mar helado"',desc:'Para Kafka la literatura no entretiene: transforma y despierta lo que duerme en nosotros.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647628372041944342'},
-  {cat:'filosofo',autor:'kafka',red:'tiktok',titulo:'Kafka: la historia de sus manuscritos quemados',desc:'Pidió que quemaran todo. Max Brod lo desobedeció. Sin esa traición no existiría La metamorfosis.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648947714952088854'},
-  {cat:'filosofo',autor:'kafka',red:'instagram',titulo:'Kafka: la historia de sus obras condenadas',desc:'Kafka ordenó destruir sus obras. Su amigo Max Brod las salvó para siempre.',url:'https://www.instagram.com/reel/DZUa1R9sRoE/'},
-  {cat:'filosofo',autor:'kafka',red:'instagram',titulo:'Kafka: "Un libro debe ser el hacha que rompa el mar helado"',desc:'La literatura debe transformarnos, cuestionarnos y despertar lo dormido en nosotros.',url:'https://www.instagram.com/reel/DZLWsZERB_2/'},
-  {cat:'filosofo',autor:'schopenhauer',red:'tiktok',titulo:'Schopenhauer: "La vida oscila entre el dolor y el aburrimiento"',desc:'El pesimismo filosófico: el deseo genera sufrimiento. Una visión radical pero clarificadora.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647834158672153878'},
-  {cat:'filosofo',autor:'schopenhauer',red:'instagram',titulo:'Schopenhauer y su caniche Atma',desc:'"El destino baraja las cartas, pero nosotros las jugamos." El filósofo del pesimismo.',url:'https://www.instagram.com/reel/DZL3xEYiWu0/'},
-  {cat:'filosofo',autor:'spinoza',red:'tiktok',titulo:'Spinoza: "El amor es alegría acompañada de una causa exterior"',desc:'La filosofía del amor según Spinoza: ante todo, una forma de alegría.',url:'https://www.tiktok.com/@filosofeando_para_aproba/photo/7649118707922373910'},
-  {cat:'filosofo',autor:'spinoza',red:'instagram',titulo:'Spinoza: el amor como alegría',desc:'"El amor no es otra cosa que la alegría acompañada de la idea de una causa exterior."',url:'https://www.instagram.com/reel/DZVm4yHRHEe/'},
-  {cat:'filosofo',autor:'seneca',red:'tiktok',titulo:'Séneca: la suerte se entrena',desc:'La oportunidad de tu vida puede pasar hoy, pero si no estás preparado, no la verás.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647863549770943766'},
-  {cat:'filosofo',autor:'seneca',red:'instagram',titulo:'Séneca: prepárate para que la oportunidad te encuentre listo',desc:'Menos cruzar los dedos y más trabajar en ti. Estoicismo aplicado a la vida cotidiana.',url:'https://www.instagram.com/reel/DZM45DSMlX3/'},
-  {cat:'filosofo',autor:'maquiavelo',red:'instagram',titulo:'Maquiavelo: la astucia como virtud superior',desc:'Los seres humanos no actuamos por benevolencia sino por interés, miedo o ambición.',url:'https://www.instagram.com/reel/DZNI8vMMRYX/'},
-  {cat:'filosofo',autor:'emerson',red:'tiktok',titulo:'Ralph Waldo Emerson y el trascendentalismo',desc:'Libertad individual, confianza en uno mismo y naturaleza como fuente de conocimiento.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648376365846334743'},
-  {cat:'filosofo',autor:'wilde',red:'instagram',titulo:'Oscar Wilde: el arte no debe copiar la realidad',desc:'"Las artes toman prestadas no de la vida, sino unas de otras." Wilde y la estética.',url:'https://www.instagram.com/reel/DZNYTb0sywk/'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Reflexión P.1 — Filosofía para vivir',desc:'Reflexión filosófica sobre el pensamiento y la vida.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647361372505804054'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Heráclito y el cambio — Reflexión P.2',desc:'La filosofía del cambio constante: no puedes bañarte dos veces en el mismo río.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647348624413691158'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Tales de Mileto: la verdadera batalla es interior',desc:'Reconocer cuándo el ego nos gana es el primer paso para dominarlo.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647835017099431190'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Hemingway: el hombre no está hecho para la derrota',desc:'"Un hombre puede ser destruido, pero no derrotado." Filosofía de la perseverancia.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647933708355292438'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'Pitágoras y la sabiduría',desc:'El legado filosófico de Pitágoras más allá de las matemáticas.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648390742070529302'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'La noche no trae respuestas, solo preguntas',desc:'Los pensamientos que callamos durante el día y la importancia de la introspección.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648466200313236758'},
-  {cat:'reflexion',autor:'',red:'tiktok',titulo:'"La gente te amará como puede, no como quieres"',desc:'El único amor a tu completo gusto es el que te brindes a ti mismo.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648378156805623062'},
-  {cat:'reflexion',autor:'',red:'instagram',titulo:'La tormenta siempre pasa — Nunca dejes de confiar en ti',desc:'La constancia y la disciplina son lo que te llevan a lo más alto.',url:'https://www.instagram.com/reel/DZTiqmNiBft/'},
-  {cat:'reflexion',autor:'',red:'instagram',titulo:'Bondad y religión — Una reflexión filosófica',desc:'Creer no te hace automáticamente bueno, ni dudar te hace malo.',url:'https://www.instagram.com/reel/DZVDat3MhXG/'},
-  {cat:'reflexion',autor:'',red:'instagram',titulo:'"La gente te amará como puede, no como quieres"',desc:'El único amor a tu gusto es el que te brindes a ti mismo. Sobre expectativas.',url:'https://www.instagram.com/reel/DZSfptrMQAq/'},
-  {cat:'reflexion',autor:'',red:'instagram',titulo:'La noche no trae respuestas, solo preguntas',desc:'Una reflexión nocturna sobre la introspección y los pensamientos silenciados.',url:'https://www.instagram.com/reel/DZRFxuYCeCP/'},
-  {cat:'reflexion',autor:'',red:'instagram',titulo:'Pitágoras — Reflexión filosófica',desc:'La sabiduría de Pitágoras más allá de su legado matemático.',url:'https://www.instagram.com/reel/DZQxmWOMlS8/'},
-  {cat:'arte',autor:'',red:'tiktok',titulo:'La Mona Lisa — ¿Por qué es tan famosa?',desc:'El sfumato, la sonrisa que cambia, el robo de 1911. Todo lo que hace grande a Da Vinci.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648341588166364438'},
-  {cat:'arte',autor:'',red:'tiktok',titulo:'Salvator Mundi — Leonardo da Vinci',desc:'La esfera que no distorsiona. El simbolismo filosófico de la obra más cara de la historia.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648107788752784662'},
-  {cat:'arte',autor:'',red:'tiktok',titulo:'Daniel en el foso de los leones — Rubens',desc:'La tensión contenida: los leones están listos pero no actúan. Rubens estudió leones reales.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647975213841288450'},
-  {cat:'arte',autor:'',red:'instagram',titulo:'La Mona Lisa — Misterio y sfumato',desc:'La mirada que te sigue y el fondo irreal. El retrato más enigmático de la historia.',url:'https://www.instagram.com/reel/DZQPXxisxul/'},
-  {cat:'arte',autor:'',red:'instagram',titulo:'Salvator Mundi — Simbolismo y percepción',desc:'Una obra sobre control, percepción y realidad. El debate filosófico de la esfera.',url:'https://www.instagram.com/reel/DZOmSxfi9Dk/'},
-  {cat:'arte',autor:'',red:'instagram',titulo:'Daniel en el foso de los leones — Rubens',desc:'Más que un milagro: el instante en que la naturaleza se detiene y nadie sabe por qué.',url:'https://www.instagram.com/reel/DZNri6CsW8U/'},
-  {cat:'web',autor:'',red:'tiktok',titulo:'He creado la web de Filosofía que me habría ahorrado horas',desc:'Autores PAU, juegos, simulacros, flashcards y exámenes anteriores. Todo gratis.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7647434603548003606'},
-  {cat:'web',autor:'',red:'tiktok',titulo:'¿De qué se compone FilosoFEANDO?',desc:'Esquema completo de todo lo que abarca la plataforma.',url:'https://www.tiktok.com/@filosofeando_para_aproba/photo/7647365426778754326'},
-  {cat:'web',autor:'',red:'tiktok',titulo:'Plataforma GRATUITA PAU Filosofía Andalucía',desc:'Tests, flashcards, simulacros y exámenes anteriores. Todo en un solo sitio.',url:'https://www.tiktok.com/@filosofeando_para_aproba/video/7648736661001784579'},
-  {cat:'web',autor:'',red:'instagram',titulo:'Bienvenido a Filosofeando',desc:'Piensa menos como todos. Piensa más por ti mismo. Filosofía práctica para tu vida.',url:'https://www.instagram.com/p/DZJhNfcCSLP/'},
-  {cat:'web',autor:'',red:'instagram',titulo:'Plataforma GRATUITA PAU Filosofía Andalucía',desc:'Tests interactivos, flashcards, simulacros y exámenes anteriores. Todo gratis.',url:'https://www.instagram.com/reel/DZS9--pR7e4/'},
-  {cat:'web',autor:'',red:'instagram',titulo:'¿Por qué usar FilosoFEANDO?',desc:'¿Por qué pensamos como pensamos? Entra, explora y descubre nuevas formas de ver la realidad.',url:'https://www.instagram.com/reel/DZQYHq8MUpR/'}
+var VCAT_COLOR = {filosofo:"#c9a84c", reflexion:"#a78bfa", arte:"#3ecfb2", web:"#5b8dee"};
+var VCAT_LABEL = {filosofo:"👤 Filósofos", reflexion:"💭 Reflexión", arte:"🎨 Arte", web:"🌐 Mi Web"};
+var VRED_BG = {tiktok:"#010101", instagram:"linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)"};
+
+var VIDEOS = [
+  {cat:"filosofo",autor:"kant",red:"tiktok",titulo:"Crítica de la Razón Pura — Kant",desc:"Fenómenos, noúmenos y estructuras a priori. Clave para la PAU.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648372615500926230"},
+  {cat:"filosofo",autor:"nietzsche",red:"tiktok",titulo:"Nietzsche: los que bailaban eran vistos como locos",desc:"El pensamiento propio frente a la incomprensión social.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647500022803696918"},
+  {cat:"filosofo",autor:"nietzsche",red:"tiktok",titulo:"¿Qué plantea Nietzsche sobre el cuerpo y el pensamiento?",desc:"El pensamiento como expresión de fuerzas fisiológicas e instintos.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648377661504507158"},
+  {cat:"filosofo",autor:"nietzsche",red:"instagram",titulo:"Nietzsche: pensar por uno mismo aunque seas incomprendido",desc:"Gran parte de su obra cuestiona las normas sociales.",url:"https://www.instagram.com/reel/DZKY4iXMXwg/"},
+  {cat:"filosofo",autor:"camus",red:"tiktok",titulo:"Albert Camus: Si el mundo fuera claro, el arte no existiría (P.1)",desc:"La filosofía del absurdo y el arte como respuesta.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647487188719963414"},
+  {cat:"filosofo",autor:"camus",red:"tiktok",titulo:"Albert Camus: filosofía del absurdo (P.2)",desc:"Continuación: la creación como respuesta al absurdo.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647490855665716502"},
+  {cat:"filosofo",autor:"camus",red:"tiktok",titulo:"Camus: ¿Es inmoral ser feliz en un mundo injusto?",desc:"Provocación filosófica perfecta para la valoración personal.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648378609928932630"},
+  {cat:"filosofo",autor:"camus",red:"instagram",titulo:"Camus: el arte como respuesta al absurdo",desc:"Con contexto histórico y aplicación filosófica para la PAU.",url:"https://www.instagram.com/reel/DZLnE2Nsez4/"},
+  {cat:"filosofo",autor:"montaigne",red:"tiktok",titulo:"Montaigne: El que teme sufrir, ya sufre el miedo (P.4)",desc:"La anticipación del sufrimiento y la mente humana.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647576623654505750"},
+  {cat:"filosofo",autor:"montaigne",red:"tiktok",titulo:"Montaigne: El hombre sufre más por lo que imagina",desc:"Nuestros pensamientos nos causan más dolor que la realidad.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648247757530058006"},
+  {cat:"filosofo",autor:"montaigne",red:"instagram",titulo:"Montaigne: El hombre sufre más por lo que imagina",desc:"Padre del ensayo moderno. Psicología filosófica avant la lettre.",url:"https://www.instagram.com/reel/DZPlBSLsDOm/"},
+  {cat:"filosofo",autor:"montaigne",red:"instagram",titulo:"Montaigne: El que teme sufrir ya sufre el miedo",desc:"Sus escritos sobre el miedo y la naturaleza humana.",url:"https://www.instagram.com/reel/DZK7xGVM69R/"},
+  {cat:"filosofo",autor:"marcoaurelio",red:"tiktok",titulo:"Marco Aurelio: Afronta cada lección como si fuera la última",desc:"Estoicismo puro: los obstáculos son parte del camino.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647523013545577750"},
+  {cat:"filosofo",autor:"marcoaurelio",red:"instagram",titulo:"Marco Aurelio: estoicismo para la vida real",desc:"Las dificultades como oportunidades de crecimiento.",url:"https://www.instagram.com/reel/DZKizOOs8pY/"},
+  {cat:"filosofo",autor:"kafka",red:"tiktok",titulo:"Kafka: Un libro debe ser el hacha que rompa el mar helado",desc:"La literatura no entretiene: transforma.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647628372041944342"},
+  {cat:"filosofo",autor:"kafka",red:"tiktok",titulo:"Kafka: la historia de sus manuscritos condenados",desc:"Pidió que quemaran todo. Max Brod lo desobedeció.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648947714952088854"},
+  {cat:"filosofo",autor:"kafka",red:"instagram",titulo:"Kafka: la historia de sus obras condenadas",desc:"Sin la traición de Max Brod no existiría La metamorfosis.",url:"https://www.instagram.com/reel/DZUa1R9sRoE/"},
+  {cat:"filosofo",autor:"schopenhauer",red:"tiktok",titulo:"Schopenhauer: La vida oscila entre el dolor y el aburrimiento",desc:"El pesimismo filosófico y el deseo como sufrimiento.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647834158672153878"},
+  {cat:"filosofo",autor:"schopenhauer",red:"instagram",titulo:"Schopenhauer y su caniche Atma",desc:"El destino baraja las cartas, pero nosotros las jugamos.",url:"https://www.instagram.com/reel/DZL3xEYiWu0/"},
+  {cat:"filosofo",autor:"spinoza",red:"tiktok",titulo:"Spinoza: El amor es alegría acompañada de una causa exterior",desc:"La filosofía del amor según Spinoza.",url:"https://www.tiktok.com/@filosofeando_para_aproba/photo/7649118707922373910"},
+  {cat:"filosofo",autor:"spinoza",red:"instagram",titulo:"Spinoza: el amor como forma de alegría",desc:"Una definición filosófica del amor que lo cambia todo.",url:"https://www.instagram.com/reel/DZVm4yHRHEe/"},
+  {cat:"filosofo",autor:"seneca",red:"tiktok",titulo:"Séneca: la suerte se entrena",desc:"Prepárate para que la oportunidad te encuentre listo.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647863549770943766"},
+  {cat:"filosofo",autor:"seneca",red:"instagram",titulo:"Séneca: prepárate para que la oportunidad te encuentre",desc:"Estoicismo aplicado a la vida cotidiana.",url:"https://www.instagram.com/reel/DZM45DSMlX3/"},
+  {cat:"filosofo",autor:"maquiavelo",red:"instagram",titulo:"Maquiavelo: la astucia como virtud superior",desc:"Los seres humanos no actuamos por benevolencia sino por interés.",url:"https://www.instagram.com/reel/DZNI8vMMRYX/"},
+  {cat:"filosofo",autor:"wilde",red:"instagram",titulo:"Oscar Wilde: el arte no debe copiar la realidad",desc:"Las artes se inspiran unas en otras, no en la vida.",url:"https://www.instagram.com/reel/DZNYTb0sywk/"},
+  {cat:"reflexion",autor:"",red:"tiktok",titulo:"Reflexión P.1 — Filosofía para vivir",desc:"Reflexión sobre el pensamiento filosófico y la vida.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647361372505804054"},
+  {cat:"reflexion",autor:"",red:"tiktok",titulo:"Heráclito y el cambio — Reflexión P.2",desc:"No puedes bañarte dos veces en el mismo río.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647348624413691158"},
+  {cat:"reflexion",autor:"",red:"tiktok",titulo:"Tales de Mileto: la verdadera batalla es interior",desc:"Reconocer cuándo el ego nos gana es el primer paso.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647835017099431190"},
+  {cat:"reflexion",autor:"",red:"tiktok",titulo:"Hemingway: el hombre no está hecho para la derrota",desc:"Un hombre puede ser destruido, pero no derrotado.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647933708355292438"},
+  {cat:"reflexion",autor:"",red:"tiktok",titulo:"La noche no trae respuestas, solo preguntas",desc:"Los pensamientos que callamos durante el día.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648466200313236758"},
+  {cat:"reflexion",autor:"",red:"instagram",titulo:"La tormenta siempre pasa — Nunca dejes de confiar en ti",desc:"La constancia y la disciplina te llevan a lo más alto.",url:"https://www.instagram.com/reel/DZTiqmNiBft/"},
+  {cat:"reflexion",autor:"",red:"instagram",titulo:"La gente te amará como puede, no como quieres",desc:"El único amor a tu gusto es el que te brindes a ti mismo.",url:"https://www.instagram.com/reel/DZSfptrMQAq/"},
+  {cat:"reflexion",autor:"",red:"instagram",titulo:"La noche no trae respuestas, solo preguntas",desc:"Reflexión nocturna sobre la introspección.",url:"https://www.instagram.com/reel/DZRFxuYCeCP/"},
+  {cat:"arte",autor:"",red:"tiktok",titulo:"La Mona Lisa — ¿Por qué es tan famosa?",desc:"El sfumato, la sonrisa y el robo de 1911.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648341588166364438"},
+  {cat:"arte",autor:"",red:"tiktok",titulo:"Salvator Mundi — Leonardo da Vinci",desc:"La esfera que no distorsiona. Simbolismo y percepción.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648107788752784662"},
+  {cat:"arte",autor:"",red:"tiktok",titulo:"Daniel en el foso de los leones — Rubens",desc:"Tensión contenida: los leones no actúan.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647975213841288450"},
+  {cat:"arte",autor:"",red:"instagram",titulo:"La Mona Lisa — Misterio y sfumato",desc:"La mirada que te sigue y el fondo irreal.",url:"https://www.instagram.com/reel/DZQPXxisxul/"},
+  {cat:"arte",autor:"",red:"instagram",titulo:"Salvator Mundi — Simbolismo y percepción",desc:"Control, percepción y realidad en Da Vinci.",url:"https://www.instagram.com/reel/DZOmSxfi9Dk/"},
+  {cat:"web",autor:"",red:"tiktok",titulo:"He creado la web de Filosofía que me habría ahorrado horas",desc:"Autores PAU, juegos, simulacros, flashcards. Todo gratis.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7647434603548003606"},
+  {cat:"web",autor:"",red:"tiktok",titulo:"Plataforma GRATUITA PAU Filosofía Andalucía",desc:"Tests, flashcards, simulacros y exámenes anteriores.",url:"https://www.tiktok.com/@filosofeando_para_aproba/video/7648736661001784579"},
+  {cat:"web",autor:"",red:"instagram",titulo:"Bienvenido a Filosofeando",desc:"Piensa menos como todos. Piensa más por ti mismo.",url:"https://www.instagram.com/p/DZJhNfcCSLP/"},
+  {cat:"web",autor:"",red:"instagram",titulo:"Plataforma GRATUITA PAU Filosofía Andalucía",desc:"Tests, flashcards, simulacros y exámenes anteriores.",url:"https://www.instagram.com/reel/DZS9--pR7e4/"},
 ];
 
-var vFiltroActual = 'todos';
-var vAutorActual = '';
+var _vFiltro = "todos";
+var _vAutor = "";
 
 function vFiltrar(f, btn) {
-  vFiltroActual = f;
-  vAutorActual = '';
-  document.querySelectorAll('#vTabBar .tab-btn').forEach(function(b) {
-    b.style.background = ''; b.style.borderColor = ''; b.style.color = '';
+  _vFiltro = f;
+  _vAutor = "";
+  document.querySelectorAll("#vTabBar .tab-btn").forEach(function(b) {
+    b.style.background = ""; b.style.borderColor = ""; b.style.color = "";
   });
-  if (btn) { btn.style.background = 'var(--gold-dim)'; btn.style.borderColor = 'var(--gold)'; btn.style.color = 'var(--gold)'; }
+  if (btn) { btn.style.background = "var(--gold-dim)"; btn.style.borderColor = "var(--gold)"; btn.style.color = "var(--gold)"; }
   vRenderAvatares();
   vRender();
 }
 
 function vFiltrarAutor(a) {
-  vAutorActual = vAutorActual === a ? '' : a;
+  _vAutor = _vAutor === a ? "" : a;
   vRenderAvatares();
   vRender();
 }
 
 function vRenderAvatares() {
-  var el = document.getElementById('vAvatares');
+  var el = document.getElementById("vAvatares");
   if (!el) return;
-  var show = vFiltroActual === 'todos' || vFiltroActual === 'filosofo';
-  el.style.display = show ? 'flex' : 'none';
+  var show = _vFiltro === "todos" || _vFiltro === "filosofo";
+  el.style.display = show ? "flex" : "none";
   if (!show) return;
   var autores = [];
-  misVideos.forEach(function(v) {
-    if (v.cat === 'filosofo' && v.autor && autores.indexOf(v.autor) === -1) autores.push(v.autor);
-  });
+  for (var i = 0; i < VIDEOS.length; i++) {
+    var v = VIDEOS[i];
+    if (v.cat === "filosofo" && v.autor && autores.indexOf(v.autor) < 0) autores.push(v.autor);
+  }
   el.innerHTML = autores.map(function(a) {
-    var sel = vAutorActual === a;
-    var foto = vFotoMap[a];
-    var nombre = vNombreMap[a] || a;
-    var cnt = misVideos.filter(function(v) { return v.autor === a; }).length;
-    var avatarHtml = foto
-      ? '<img src="' + foto + '" alt="' + nombre + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="vImgErr(this)">'
-      : '<span style="font-size:1.1rem;font-weight:800;color:#c9a84c">' + nombre[0] + '</span>';
-    return '<button onclick="vFiltrarAutor(\'' + a + '\')" style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;background:none;border:none;cursor:pointer;padding:0.2rem;opacity:' + (sel || !vAutorActual ? 1 : 0.35) + ';transition:opacity 0.2s">'
-      + '<div style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:2.5px solid ' + (sel ? '#c9a84c' : 'var(--border)') + ';display:flex;align-items:center;justify-content:center;background:var(--card2)">' + avatarHtml + '</div>'
-      + '<span style="font-size:0.61rem;color:' + (sel ? '#c9a84c' : 'var(--text3)') + ';font-weight:' + (sel ? 700 : 500) + ';max-width:54px;text-align:center;line-height:1.2">' + nombre + '</span>'
-      + '<span style="font-size:0.58rem;color:var(--text3)">' + cnt + 'v</span>'
-      + '</button>';
-  }).join('');
+    var sel = _vAutor === a;
+    var n = VNOMBRES[a] || a;
+    var cnt = VIDEOS.filter(function(v) { return v.autor === a; }).length;
+    var foto = FOTOS[a];
+    var av = foto
+      ? "<img src=\"" + foto + "\" alt=\"" + n + "\" style=\"width:100%;height:100%;object-fit:cover;border-radius:50%\" onerror=\"this.style.display='none'\">"
+      : "<span style=\"font-weight:800;color:#c9a84c\">" + n[0] + "</span>";
+    return "<button onclick=\"vFiltrarAutor('" + a + "')\" style=\"display:flex;flex-direction:column;align-items:center;gap:0.25rem;background:none;border:none;cursor:pointer;padding:0.2rem;opacity:" + (sel || !_vAutor ? 1 : 0.35) + "\">"
+      + "<div style=\"width:46px;height:46px;border-radius:50%;overflow:hidden;border:2.5px solid " + (sel ? "#c9a84c" : "var(--border)") + ";display:flex;align-items:center;justify-content:center;background:var(--card2)\">" + av + "</div>"
+      + "<span style=\"font-size:0.6rem;color:" + (sel ? "#c9a84c" : "var(--text3)") + ";font-weight:" + (sel ? 700 : 400) + ";max-width:52px;text-align:center;line-height:1.2\">" + n + "</span>"
+      + "</button>";
+  }).join("");
 }
 
 function vRender() {
-  var el = document.getElementById('vGrid');
+  var el = document.getElementById("vGrid");
   if (!el) return;
-  var lista = misVideos;
-  if (vFiltroActual === 'filosofo') lista = lista.filter(function(v) { return v.cat === 'filosofo'; });
-  else if (vFiltroActual === 'reflexion') lista = lista.filter(function(v) { return v.cat === 'reflexion'; });
-  else if (vFiltroActual === 'arte') lista = lista.filter(function(v) { return v.cat === 'arte'; });
-  else if (vFiltroActual === 'web') lista = lista.filter(function(v) { return v.cat === 'web'; });
-  else if (vFiltroActual === 'tiktok') lista = lista.filter(function(v) { return v.red === 'tiktok'; });
-  else if (vFiltroActual === 'instagram') lista = lista.filter(function(v) { return v.red === 'instagram'; });
-  if (vAutorActual) lista = lista.filter(function(v) { return v.autor === vAutorActual; });
-  if (!lista.length) { el.innerHTML = '<p style="text-align:center;color:var(--text3);padding:1.5rem">Sin vídeos para este filtro.</p>'; return; }
+  var lista = VIDEOS;
+  if (_vFiltro === "filosofo") lista = lista.filter(function(v) { return v.cat === "filosofo"; });
+  else if (_vFiltro === "reflexion") lista = lista.filter(function(v) { return v.cat === "reflexion"; });
+  else if (_vFiltro === "arte") lista = lista.filter(function(v) { return v.cat === "arte"; });
+  else if (_vFiltro === "web") lista = lista.filter(function(v) { return v.cat === "web"; });
+  else if (_vFiltro === "tiktok") lista = lista.filter(function(v) { return v.red === "tiktok"; });
+  else if (_vFiltro === "instagram") lista = lista.filter(function(v) { return v.red === "instagram"; });
+  if (_vAutor) lista = lista.filter(function(v) { return v.autor === _vAutor; });
+  if (!lista.length) { el.innerHTML = "<p style=\"text-align:center;color:var(--text3);padding:1.5rem\">Sin vídeos para este filtro.</p>"; return; }
 
-  // Group by category when showing all
-  var cats = vFiltroActual === 'todos' ? ['filosofo','reflexion','arte','web'] : [vFiltroActual];
-  var html = '';
+  var cats = _vFiltro === "todos" ? ["filosofo","reflexion","arte","web"] : [_vFiltro.replace("tiktok","mix").replace("instagram","mix")];
+  var html = "";
   cats.forEach(function(cat) {
-    var items = lista.filter(function(v) { return v.cat === cat; });
+    var items = lista.filter(function(v) { return _vFiltro === "todos" ? v.cat === cat : true; });
+    if (_vFiltro !== "todos") items = lista;
     if (!items.length) return;
-    var col = vCatColor[cat] || '#c9a84c';
-    if (vFiltroActual === 'todos') {
-      html += '<div style="display:flex;align-items:center;gap:0.5rem;margin:1rem 0 0.6rem">'
-        + '<span style="width:14px;height:2px;background:' + col + ';display:block;border-radius:2px"></span>'
-        + '<span style="font-size:0.7rem;font-weight:800;text-transform:uppercase;letter-spacing:0.09em;color:' + col + '">' + (vCatLabel[cat]||cat) + '</span>'
-        + '<span style="flex:1;height:1px;background:var(--border);display:block"></span>'
-        + '<span style="font-size:0.68rem;color:var(--text3)">' + items.length + ' vídeos</span>'
-        + '</div>';
+    var col = VCAT_COLOR[cat] || "#c9a84c";
+    if (_vFiltro === "todos") {
+      html += "<div style=\"display:flex;align-items:center;gap:0.5rem;margin:1rem 0 0.5rem\">"
+        + "<span style=\"width:12px;height:2px;background:" + col + ";display:block;border-radius:2px\"></span>"
+        + "<span style=\"font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.09em;color:" + col + "\">" + (VCAT_LABEL[cat] || cat) + "</span>"
+        + "<span style=\"flex:1;height:1px;background:var(--border);display:block\"></span>"
+        + "<span style=\"font-size:0.68rem;color:var(--text3)\">" + items.length + " vídeos</span></div>";
     }
     items.forEach(function(v) {
-      var col2 = vCatColor[v.cat] || '#c9a84c';
-      var foto = vFotoMap[v.autor];
-      var nombre = vNombreMap[v.autor] || (v.cat === 'reflexion' ? 'Reflexión' : v.cat === 'arte' ? 'Arte' : 'Mi Web');
-      var avatarHtml = foto
-        ? '<img src="' + foto + '" alt="' + nombre + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="vImgErr(this)">'
-        : '<span style="font-size:1rem">' + (v.cat==='reflexion'?'💭':v.cat==='arte'?'🎨':'🌐') + '</span>';
-      var redBg = v.red === 'tiktok' ? '#010101' : 'linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)';
-      var redLabel = v.red === 'tiktok' ? 'TikTok' : 'IG';
-      html += '<a href="' + v.url + '" target="_blank" rel="noopener" '
-        + 'style="display:flex;gap:0.85rem;align-items:center;background:var(--card);border:1px solid var(--border);border-left:3px solid ' + col2 + ';border-radius:var(--radius-sm);padding:0.85rem;text-decoration:none;color:inherit;transition:transform 0.18s" '
-        + 'onmouseover="this.style.transform=\'translateX(4px)\'" onmouseout="this.style.transform=\'\'">'
-        + '<div style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid ' + col2 + '55;display:flex;align-items:center;justify-content:center;background:var(--bg3)">' + avatarHtml + '</div>'
-        + '<div style="flex:1;min-width:0">'
-        + '<div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.2rem">'
-        + '<span style="font-size:0.65rem;font-weight:700;color:' + col2 + '">' + nombre + '</span>'
-        + '<span style="font-size:0.62rem;font-weight:700;padding:1px 6px;border-radius:50px;background:' + redBg + ';color:#fff">' + redLabel + '</span>'
-        + '</div>'
-        + '<div style="font-weight:600;font-size:0.84rem;line-height:1.35;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">' + v.titulo + '</div>'
-        + '<div style="font-size:0.75rem;color:var(--text3);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-top:0.15rem">' + v.desc + '</div>'
-        + '</div>'
-        + '<span style="flex-shrink:0;color:' + col2 + ';font-size:0.8rem">▶</span>'
-        + '</a>';
+      var col2 = VCAT_COLOR[v.cat] || "#c9a84c";
+      var foto = FOTOS[v.autor];
+      var nom = VNOMBRES[v.autor] || (v.cat === "reflexion" ? "Reflexión" : v.cat === "arte" ? "Arte" : "Mi Web");
+      var av = foto
+        ? "<img src=\"" + foto + "\" alt=\"" + nom + "\" style=\"width:100%;height:100%;object-fit:cover;border-radius:50%\" onerror=\"this.style.display='none'\">"
+        : "<span style=\"font-size:0.9rem\">" + (v.cat==="reflexion" ? "💭" : v.cat==="arte" ? "🎨" : "🌐") + "</span>";
+      var rbg = VRED_BG[v.red] || "#010101";
+      var rl = v.red === "tiktok" ? "TikTok" : "IG";
+      html += "<a href=\"" + v.url + "\" target=\"_blank\" rel=\"noopener\" "
+        + "style=\"display:flex;gap:0.85rem;align-items:center;background:var(--card);border:1px solid var(--border);border-left:3px solid " + col2 + ";border-radius:var(--radius-sm);padding:0.85rem;text-decoration:none;color:inherit;transition:transform 0.18s\" "
+        + "onmouseover=\"this.style.transform='translateX(3px)'\" onmouseout=\"this.style.transform=''\"> "
+        + "<div style=\"width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1.5px solid " + col2 + "55;display:flex;align-items:center;justify-content:center;background:var(--bg3)\">" + av + "</div>"
+        + "<div style=\"flex:1;min-width:0\">"
+        + "<div style=\"display:flex;align-items:center;gap:0.35rem;margin-bottom:0.2rem\">"
+        + "<span style=\"font-size:0.64rem;font-weight:700;color:" + col2 + "\">" + nom + "</span>"
+        + "<span style=\"font-size:0.62rem;font-weight:700;padding:1px 6px;border-radius:50px;background:" + rbg + ";color:#fff\">" + rl + "</span>"
+        + "</div>"
+        + "<div style=\"font-weight:600;font-size:0.84rem;line-height:1.35;overflow:hidden;white-space:nowrap;text-overflow:ellipsis\">" + v.titulo + "</div>"
+        + "<div style=\"font-size:0.75rem;color:var(--text3);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin-top:0.12rem\">" + v.desc + "</div>"
+        + "</div><span style=\"flex-shrink:0;color:" + col2 + ";font-size:0.8rem\">▶</span></a>";
     });
+    if (_vFiltro !== "todos") return;
   });
   el.innerHTML = html;
 }
 
-// ===== SECCIONES COLAPSABLES =====
-function vColapsarSeccion(id, previewText) {
-  var sec = document.getElementById(id);
-  if (!sec) return;
-  var cont = sec.querySelector('.container');
-  if (!cont) return;
-  var h2 = cont.querySelector('h2');
-  if (!h2) return;
+// ===== PROGRESO =====
+var STO = {
+  get: function(k) { try { return JSON.parse(localStorage.getItem("filo_" + k)); } catch(e) { return null; } },
+  set: function(k, v) { localStorage.setItem("filo_" + k, JSON.stringify(v)); }
+};
+function getProg() { return STO.get("prog") || {tests:0,notas:[],juegos:0,autores:[],dias:[],xp:0,iaUsos:0}; }
+function saveProg(p) { STO.set("prog", p); }
 
-  // Wrap content after h2 in collapsible div
-  var body = document.createElement('div');
-  body.id = 'scb-' + id;
-  body.style.cssText = 'overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s;';
-
-  var children = Array.prototype.slice.call(cont.children);
-  children.forEach(function(ch) {
-    if (ch !== h2 && !ch.classList.contains('section-label') && !ch.classList.contains('section-sub')) {
-      body.appendChild(ch);
-    }
-  });
-
-  // Add chevron to h2
-  h2.style.cursor = 'pointer';
-  h2.style.display = 'flex';
-  h2.style.alignItems = 'center';
-  h2.style.justifyContent = 'space-between';
-  var chev = document.createElement('span');
-  chev.id = 'scc-' + id;
-  chev.textContent = '▾';
-  chev.style.cssText = 'font-size:1.1rem;color:var(--text3);transition:transform 0.3s;margin-left:0.5rem;flex-shrink:0';
-  h2.appendChild(chev);
-  h2.addEventListener('click', function() { vToggleSec(id); });
-
-  // Preview text
-  var prev = document.createElement('div');
-  prev.id = 'scp-' + id;
-  prev.textContent = previewText;
-  prev.style.cssText = 'font-size:0.78rem;color:var(--text3);font-style:italic;margin-top:0.25rem;display:none';
-
-  cont.appendChild(prev);
-  cont.appendChild(body);
-  body.style.maxHeight = body.scrollHeight + 'px';
+function addXP(n, msg) {
+  var p = getProg(); p.xp = (p.xp || 0) + n; saveProg(p);
+  renderNivel(p.xp);
+  var t = document.createElement("div");
+  t.textContent = "+" + n + " XP · " + msg;
+  t.style.cssText = "position:fixed;bottom:6rem;left:50%;transform:translateX(-50%);background:#c9a84c;color:#0d0f14;padding:0.4rem 1.2rem;border-radius:50px;font-weight:700;font-size:0.8rem;z-index:900;pointer-events:none";
+  document.body.appendChild(t);
+  setTimeout(function() { t.remove(); }, 2000);
 }
 
-function vToggleSec(id) {
-  var body = document.getElementById('scb-' + id);
-  var chev = document.getElementById('scc-' + id);
-  var prev = document.getElementById('scp-' + id);
-  if (!body) return;
-  var isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
-  if (isOpen) {
-    body.style.maxHeight = '0px';
-    body.style.opacity = '0';
-    if (chev) chev.style.transform = 'rotate(-90deg)';
-    if (prev) prev.style.display = 'block';
-  } else {
-    body.style.maxHeight = body.scrollHeight + 100 + 'px';
-    body.style.opacity = '1';
-    if (chev) chev.style.transform = '';
-    if (prev) prev.style.display = 'none';
+function registrarDia() {
+  var p = getProg(), hoy = new Date().toDateString();
+  if (!p.dias) p.dias = [];
+  if (p.dias.indexOf(hoy) < 0) { p.dias.push(hoy); saveProg(p); addXP(10, "Día de estudio"); }
+}
+
+function calcRacha(dias) {
+  if (!dias || !dias.length) return 0;
+  var sorted = dias.map(function(d) { return new Date(d); }).sort(function(a,b) { return b-a; });
+  var hoy = new Date(); hoy.setHours(0,0,0,0);
+  var ayer = new Date(hoy); ayer.setDate(ayer.getDate()-1);
+  if (sorted[0].toDateString() !== hoy.toDateString() && sorted[0].toDateString() !== ayer.toDateString()) return 0;
+  var racha = 1;
+  for (var i = 1; i < sorted.length; i++) {
+    if (Math.round((sorted[i-1]-sorted[i])/864e5) === 1) racha++;
+    else break;
   }
+  return racha;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Init videos
-  vRenderAvatares();
-  vRender();
-  // Make sections collapsible
-  var secs = [
-    ['podcasts', '12 podcasts y canales de filosofía'],
-    ['libros', '25 libros seleccionados por nivel'],
-    ['cronologia', 'Línea de tiempo de los 7 autores del currículo'],
-    ['comparativa', 'Tabla comparativa de autores'],
-    ['guia-pau', 'Estructura y tiempo para cada pregunta del examen'],
-    ['calculadora', 'Introduce tus notas y calcula tu nota final'],
-    ['curiosidades', 'Datos curiosos que no vienen en el libro'],
-    ['relaciones', 'Pares más frecuentes en la pregunta 2a'],
-    ['estadisticas-pau', 'Frecuencia de aparición 2015-2026'],
-    ['comunidad', 'Encuestas entre estudiantes'],
-    ['consejos', '6 consejos para sacar un 10']
-  ];
-  secs.forEach(function(s) { vColapsarSeccion(s[0], s[1]); });
-});
-</script>
-<script>
-// ===== ERROR SUPPRESSOR =====
-window.addEventListener("error",function(e){if(!e.filename||e.filename===""){e.preventDefault();return false;}},true);
-window.onerror=function(msg,src){if(!src||src==="")return true;};
+var NIVELES = [
+  {min:0,max:50,num:1,n:"Novato Filosófico"},
+  {min:50,max:150,num:2,n:"Aprendiz de Sócrates"},
+  {min:150,max:300,num:3,n:"Discípulo de Platón"},
+  {min:300,max:500,num:5,n:"Seguidor de Aristóteles"},
+  {min:500,max:800,num:8,n:"Racionalista Cartesiano"},
+  {min:800,max:1200,num:12,n:"Escéptico de Hume"},
+  {min:1200,max:1800,num:18,n:"Kantiano Crítico"},
+  {min:1800,max:2500,num:25,n:"Sócrates"},
+  {min:2500,max:4000,num:35,n:"Aristóteles"},
+  {min:4000,max:1e9,num:50,n:"Filósofo Supremo"},
+];
+function renderNivel(xp) {
+  var nv = NIVELES[0];
+  for (var i = 0; i < NIVELES.length; i++) { if (xp >= NIVELES[i].min && xp < NIVELES[i].max) { nv = NIVELES[i]; break; } }
+  var next = NIVELES[NIVELES.indexOf(nv)+1];
+  var pct = next ? Math.round((xp-nv.min)/(next.min-nv.min)*100) : 100;
+  var g = function(id) { return document.getElementById(id); };
+  if (g("nivelNum")) g("nivelNum").textContent = nv.num;
+  if (g("nivelNombre")) g("nivelNombre").textContent = nv.n;
+  if (g("nivelXP")) g("nivelXP").textContent = xp + " XP";
+  if (g("nivelBar")) g("nivelBar").style.width = pct + "%";
+  if (g("nivelProx")) g("nivelProx").textContent = next ? "Próximo: " + next.n + " (" + next.min + " XP)" : "🏆 Nivel máximo";
+}
 
-// ===== FRASE DEL DÍA =====
-var frasesDelDia=[
-  {t:"La vida sin examen no merece la pena ser vivida.",a:"Sócrates"},
-  {t:"El conocimiento es la única cosa que nadie puede quitarte.",a:"Platón"},
-  {t:"El principio de la sabiduría es la admiración.",a:"Aristóteles"},
-  {t:"Pienso, luego existo.",a:"Descartes"},
-  {t:"Atrévete a saber. Ten el valor de usar tu propia razón.",a:"Kant"},
-  {t:"Lo que no te destruye te hace más fuerte.",a:"Nietzsche"},
-  {t:"La religión es el opio del pueblo.",a:"Marx"},
-  {t:"La razón es y solo puede ser la esclava de las pasiones.",a:"Hume"},
-  {t:"Dios ha muerto. Nosotros lo hemos matado.",a:"Nietzsche"},
-  {t:"El ser humano es por naturaleza un animal político.",a:"Aristóteles"},
-  {t:"Solo sé que no sé nada.",a:"Sócrates"},
-  {t:"La duda es el origen de la sabiduría.",a:"Descartes"},
-  {t:"Quien tiene un porqué para vivir puede soportar casi cualquier cómo.",a:"Nietzsche"},
-  {t:"El verdadero conocimiento es conocer el alcance de la propia ignorancia.",a:"Confucio"},
-  {t:"Actúa solo según aquella máxima que puedas querer que sea ley universal.",a:"Kant"},
-  {t:"La virtud es el término medio entre dos extremos viciosos.",a:"Aristóteles"},
-  {t:"La libertad no consiste en hacer lo que se quiere, sino en querer lo que se hace.",a:"Sartre"},
-  {t:"El hombre está condenado a ser libre.",a:"Sartre"},
-  {t:"La existencia precede a la esencia.",a:"Sartre"},
-  {t:"Ante el absurdo de la existencia, hay que imaginar a Sísifo feliz.",a:"Camus"},
-  {t:"Si el mundo fuera claro, el arte no existiría.",a:"Camus"},
-  {t:"El hombre que teme sufrir ya sufre el miedo.",a:"Montaigne"},
-  {t:"El hombre sufre más por lo que imagina que por lo que realmente sucede.",a:"Montaigne"},
-  {t:"Afronta cada lección como si fuera la última.",a:"Marco Aurelio"},
-  {t:"Los obstáculos no son el camino; son parte del camino.",a:"Marco Aurelio"},
-  {t:"La vida es una constante oscilación entre el dolor y el aburrimiento.",a:"Schopenhauer"},
-  {t:"El amor no es otra cosa que la alegría acompañada de la idea de una causa exterior.",a:"Spinoza"},
-  {t:"Un libro debe ser el hacha que rompa el mar helado dentro de nosotros.",a:"Kafka"},
-  {t:"La suerte se entrena. Prepárate para que la oportunidad te encuentre listo.",a:"Séneca"},
-  {t:"No hay viento favorable para aquel que no sabe hacia dónde va.",a:"Séneca"},
-  {t:"Para Maquiavelo, la astucia es un atributo superior a la inteligencia.",a:"Maquiavelo"},
-  {t:"Somos lo que hacemos repetidamente. La excelencia no es un acto, sino un hábito.",a:"Aristóteles"},
-  {t:"Los límites de mi lenguaje son los límites de mi mundo.",a:"Wittgenstein"},
-  {t:"El lenguaje es la casa del ser.",a:"Heidegger"},
-  {t:"La angustia es el vértigo de la libertad.",a:"Kierkegaard"},
-  {t:"Toda nuestra dignidad consiste en el pensamiento.",a:"Pascal"},
-  {t:"El hombre es libre, pero en todas partes está encadenado.",a:"Rousseau"},
-  {t:"La verdad es hija del tiempo, no de la autoridad.",a:"Francis Bacon"},
-  {t:"El ignorante afirma, el sabio duda y reflexiona.",a:"Aristóteles"},
-  {t:"Todo lo real es racional; todo lo racional es real.",a:"Hegel"},
-  {t:"No hay camino hacia la paz; la paz es el camino.",a:"Gandhi"},
-  {t:"Cuida tus hábitos, pues se convertirán en carácter.",a:"Aristóteles"},
-  {t:"La filosofía comienza con el asombro.",a:"Platón"},
-  {t:"La educación es el arma más poderosa para cambiar el mundo.",a:"Mandela"},
-  {t:"Un camino de mil millas comienza con un solo paso.",a:"Lao-Tse"},
-  {t:"El dolor de estudiar es temporal. El de no saber dura toda la vida.",a:"Anónimo"},
-  {t:"Cada concepto que aprendes hoy es una herramienta para toda la vida.",a:"Anónimo"},
-  {t:"Estudiar filosofía es aprender a dudar, a preguntar y a no conformarse.",a:"Anónimo"},
-  {t:"La PAU no define quién eres, pero sí demuestra de lo que eres capaz.",a:"Anónimo"},
-  {t:"Conocerte a ti mismo es el principio de toda sabiduría.",a:"Aristóteles"},
-  {t:"No busques que los sucesos ocurran como deseas; desea que ocurran como son.",a:"Epicteto"},
-  {t:"La gente te amará como puede, no como quieres.",a:"Anónimo"},
-  {t:"La noche no trae respuestas, solo preguntas que durante el día lograste callar.",a:"Anónimo"},
-  {t:"El hombre no está hecho para la derrota. Puede ser destruido, pero no derrotado.",a:"Hemingway"},
-  {t:"Las palabras son la única cosa que dura para siempre.",a:"Winston Churchill"},
-  {t:"El que no arriesga no gana.",a:"Proverbio popular"},
-  {t:"Si quieres ir rápido, ve solo. Si quieres llegar lejos, ve acompañado.",a:"Proverbio africano"},
-  {t:"La imaginación es más importante que el conocimiento.",a:"Einstein"},
-  {t:"Lo que sabemos es una gota; lo que ignoramos es un océano.",a:"Newton"},
-  {t:"Aprender sin reflexionar es malgastar la energía.",a:"Confucio"},
-  {t:"Nunca consideres el estudio como una obligación, sino como una oportunidad.",a:"Einstein"},
-  {t:"Haz hoy lo que otros no harán y mañana tendrás lo que otros no tendrán.",a:"Jerry Rice"},
-  {t:"La perseverancia no es una carrera larga; es muchas carreras cortas, una tras otra.",a:"W. Elliott"},
-  {t:"El talento es más barato que la sal. Lo que separa al talentoso del exitoso es el trabajo.",a:"Stephen King"},
-  {t:"La mente es como un paracaídas: solo funciona cuando está abierta.",a:"Frank Zappa"},
-  {t:"Invertir en conocimiento paga siempre el mejor interés.",a:"Benjamin Franklin"},
-  {t:"Cometer un error y no corregirlo: eso sí es error.",a:"Confucio"},
-  {t:"El hombre sabio no dice todo lo que piensa, pero siempre piensa todo lo que dice.",a:"Aristóteles"},
+// ===== LOGROS =====
+var LOGROS = [
+  {id:"d1",i:"🎯",n:"Primer día",d:"Visita la web",check:function(p){return (p.dias||[]).length>=1;},xp:10},
+  {id:"a1",i:"📚",n:"Primer autor",d:"Estudia un autor PAU",check:function(p){return (p.autores||[]).length>=1;},xp:30},
+  {id:"a7",i:"🌍",n:"Currículo completo",d:"Estudia los 7 autores",check:function(p){return (p.autores||[]).length>=7;},xp:300},
+  {id:"r3",i:"🔥",n:"3 días seguidos",d:"Racha de 3 días",check:function(p){return calcRacha(p.dias||[])>=3;},xp:60},
+  {id:"r7",i:"💪",n:"Semana filosófica",d:"Racha de 7 días",check:function(p){return calcRacha(p.dias||[])>=7;},xp:150},
+  {id:"ia1",i:"🤖",n:"Amigo de la IA",d:"Usa el corrector de IA",check:function(p){return (p.iaUsos||0)>=1;},xp:40},
 ];
 
-var _fraseExtra=0;
-function mostrarFraseDia(){
-  var hoy=new Date();
-  var dia=Math.floor((hoy-new Date(hoy.getFullYear(),0,0))/(864e5));
-  var idx=(dia+_fraseExtra)%frasesDelDia.length;
-  var f=frasesDelDia[idx];
-  var dias=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-  var meses=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
-  var lbl=document.getElementById("fraseLabel");
-  var txt=document.getElementById("fraseTexto");
-  var aut=document.getElementById("fraseAutorQ");
-  if(lbl) lbl.textContent=dias[hoy.getDay()]+" "+hoy.getDate()+" de "+meses[hoy.getMonth()]+" · Frase del día";
-  if(txt){
-    txt.style.opacity="0";
-    setTimeout(function(){
-      txt.textContent="\u201c"+f.t+"\u201d";
-      if(aut) aut.textContent="— "+f.a;
-      txt.style.transition="opacity 0.4s";
-      txt.style.opacity="1";
-    },150);
-  }
-}
-function siguienteFrase(){
-  _fraseExtra=(_fraseExtra+1)%frasesDelDia.length;
-  mostrarFraseDia();
+function verificarLogros(p) {
+  var desbloqueados = STO.get("logros") || [];
+  LOGROS.forEach(function(l) {
+    if (desbloqueados.indexOf(l.id) < 0 && l.check(p)) {
+      desbloqueados.push(l.id);
+      STO.set("logros", desbloqueados);
+      addXP(l.xp, "🏆 " + l.n);
+      var t = document.createElement("div");
+      t.innerHTML = "<div style=\"font-size:1.4rem\">" + l.i + "</div><div><strong>¡Logro!</strong><br><span style=\"font-size:0.75rem\">" + l.n + "</span></div>";
+      t.style.cssText = "position:fixed;top:80px;right:1rem;background:var(--card);border:2px solid #c9a84c;border-radius:12px;padding:0.75rem 1rem;display:flex;gap:0.65rem;align-items:center;z-index:901;box-shadow:0 8px 32px rgba(0,0,0,0.4);max-width:230px";
+      document.body.appendChild(t);
+      setTimeout(function() { t.remove(); }, 4000);
+    }
+  });
+  renderLogros();
 }
 
-document.addEventListener("DOMContentLoaded",function(){
-  mostrarFraseDia();
-  // Init videos
-  if(typeof vRenderAvatares==="function") vRenderAvatares();
-  if(typeof vRender==="function") vRender();
-  var ct=document.getElementById("countTodos");
-  if(ct&&typeof misVideos!=="undefined") ct.textContent="("+misVideos.length+")";
-  // Collapsible sections
-  var secs=[
-    ["podcasts","12 podcasts y canales de filosofía"],
-    ["libros","25 libros seleccionados por nivel"],
-    ["cronologia","Línea de tiempo de los 7 autores"],
-    ["comparativa","Tabla comparativa de autores"],
-    ["guia-pau","Estructura y tiempo para cada pregunta"],
-    ["calculadora","Calcula tu nota final de filosofía"],
-    ["curiosidades","Datos curiosos que no vienen en el libro"],
-    ["relaciones","Pares más frecuentes en la pregunta 2a"],
-    ["estadisticas-pau","Frecuencia de aparición 2015-2026"],
-    ["comunidad","Encuestas entre estudiantes"],
-    ["consejos","6 consejos para sacar un 10"]
-  ];
-  secs.forEach(function(s){
-    if(typeof vColapsarSeccion==="function") vColapsarSeccion(s[0],s[1]);
+function renderLogros() {
+  var grid = document.getElementById("logrosGrid");
+  if (!grid) return;
+  var desbloqueados = STO.get("logros") || [];
+  grid.innerHTML = LOGROS.map(function(l) {
+    var ok = desbloqueados.indexOf(l.id) >= 0;
+    return "<div style=\"background:var(--card);border:1px solid " + (ok ? "rgba(201,168,76,0.5)" : "var(--border)") + ";border-radius:var(--radius-sm);padding:0.85rem;display:flex;gap:0.65rem;align-items:center;opacity:" + (ok ? 1 : 0.4) + "\">"
+      + "<div style=\"font-size:1.4rem;filter:" + (ok ? "none" : "grayscale(1)") + "\">" + l.i + "</div>"
+      + "<div><div style=\"font-weight:700;font-size:0.82rem;color:" + (ok ? "#c9a84c" : "var(--text)") + "\">" + l.n + "</div>"
+      + "<div style=\"font-size:0.72rem;color:var(--text3)\">" + l.d + "</div>"
+      + "<div style=\"font-size:0.68rem;color:var(--text3);margin-top:0.15rem\">+" + l.xp + " XP · " + (ok ? "✅ Desbloqueado" : "🔒 Bloqueado") + "</div></div></div>";
+  }).join("");
+}
+
+// ===== IA CORRECTORA =====
+var _iaTipo = "1c";
+function iaSetTipo(t) {
+  _iaTipo = t;
+  var b1 = document.getElementById("btn1c");
+  var b2 = document.getElementById("btn2b");
+  if (b1) { b1.style.background = t==="1c" ? "var(--teal-dim)" : "var(--card2)"; b1.style.borderColor = t==="1c" ? "var(--teal)" : "var(--border)"; b1.style.color = t==="1c" ? "var(--teal)" : "var(--text2)"; }
+  if (b2) { b2.style.background = t==="2b" ? "var(--teal-dim)" : "var(--card2)"; b2.style.borderColor = t==="2b" ? "var(--teal)" : "var(--border)"; b2.style.color = t==="2b" ? "var(--teal)" : "var(--text2)"; }
+}
+
+async function iaCorregir() {
+  var autor = (document.getElementById("iaAutor") || {}).value || "Kant";
+  var resp = ((document.getElementById("iaResp") || {}).value || "").trim();
+  var btn = document.getElementById("iaBtn");
+  var res = document.getElementById("iaResult");
+  if (resp.split(/\s+/).filter(Boolean).length < 20) {
+    if (res) res.innerHTML = "<div style=\"background:var(--red-dim);border:1px solid var(--red);border-radius:var(--radius-sm);padding:0.75rem;color:var(--red)\">✍️ Escribe al menos 20 palabras.</div>";
+    return;
+  }
+  if (btn) { btn.textContent = "⏳ Analizando…"; btn.disabled = true; }
+  if (res) res.innerHTML = "<div style=\"text-align:center;padding:1.5rem;color:var(--text3)\">🤖 Analizando tu respuesta…</div>";
+  var prompt = "Eres profesor de filosofía PAU Andalucía. El alumno responde a la pregunta " + (_iaTipo === "1c" ? "1c (posición filosófica)" : "2b (valoración personal)") + " sobre " + autor + ".\n\nRESPUESTA: \"" + resp + "\"\n\nDevuelve SOLO JSON sin markdown:\n{\"notaEstimada\":0.0,\"correctos\":[\"...\"],\"mejoras\":[\"...\"],\"estructuraOk\":true,\"vocabularioOk\":true,\"consejo\":\"...\"}";
+  try {
+    var r = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:800,messages:[{role:"user",content:prompt}]})
+    });
+    var data = await r.json();
+    var text = data.content.map(function(i) { return i.text || ""; }).join("").replace(/```json|```/g,"").trim();
+    var j = JSON.parse(text);
+    var nc = j.notaEstimada >= 1.5 ? "var(--teal)" : j.notaEstimada >= 1 ? "#c9a84c" : "var(--red)";
+    if (res) res.innerHTML = "<div style=\"display:grid;gap:0.85rem\">"
+      + "<div style=\"background:var(--bg3);border-radius:var(--radius-sm);padding:1rem;display:flex;align-items:center;gap:1rem\">"
+      + "<div style=\"text-align:center\"><div style=\"font-size:2.5rem;font-weight:900;color:" + nc + "\">" + j.notaEstimada + "</div><div style=\"font-size:0.68rem;color:var(--text3)\">de 2 pts</div></div>"
+      + "<div><div style=\"display:flex;gap:0.4rem;margin-bottom:0.3rem\">"
+      + "<span style=\"font-size:0.68rem;font-weight:700;padding:2px 7px;border-radius:50px;background:" + (j.estructuraOk ? "var(--teal-dim)" : "var(--red-dim)") + ";color:" + (j.estructuraOk ? "var(--teal)" : "var(--red)") + "\">" + (j.estructuraOk ? "✅" : "❌") + " Estructura</span>"
+      + "<span style=\"font-size:0.68rem;font-weight:700;padding:2px 7px;border-radius:50px;background:" + (j.vocabularioOk ? "var(--teal-dim)" : "var(--red-dim)") + ";color:" + (j.vocabularioOk ? "var(--teal)" : "var(--red)") + "\">" + (j.vocabularioOk ? "✅" : "❌") + " Vocabulario</span>"
+      + "</div></div></div>"
+      + "<div style=\"background:var(--teal-dim);border:1px solid var(--teal);border-radius:var(--radius-sm);padding:0.85rem\"><div style=\"font-weight:700;color:var(--teal);margin-bottom:0.4rem;font-size:0.82rem\">✅ Bien desarrollado</div><ul style=\"margin:0;padding-left:1.1rem;font-size:0.8rem;color:var(--text2);line-height:1.8\">" + j.correctos.map(function(x) { return "<li>" + x + "</li>"; }).join("") + "</ul></div>"
+      + "<div style=\"background:var(--gold-dim);border:1px solid rgba(201,168,76,0.4);border-radius:var(--radius-sm);padding:0.85rem\"><div style=\"font-weight:700;color:#c9a84c;margin-bottom:0.4rem;font-size:0.82rem\">⚠️ Puedes mejorar</div><ul style=\"margin:0;padding-left:1.1rem;font-size:0.8rem;color:var(--text2);line-height:1.8\">" + j.mejoras.map(function(x) { return "<li>" + x + "</li>"; }).join("") + "</ul></div>"
+      + "<div style=\"background:var(--blue-dim);border:1px solid var(--blue);border-radius:var(--radius-sm);padding:0.85rem\"><div style=\"font-weight:700;color:var(--blue);margin-bottom:0.3rem;font-size:0.82rem\">💡 Consejo</div><p style=\"font-size:0.82rem;color:var(--text2);line-height:1.55;margin:0\">" + j.consejo + "</p></div></div>";
+    var p = getProg(); p.iaUsos = (p.iaUsos||0)+1; saveProg(p); verificarLogros(p); addXP(15,"Corrección con IA");
+  } catch(e) {
+    if (res) res.innerHTML = "<div style=\"background:var(--red-dim);border:1px solid var(--red);border-radius:var(--radius-sm);padding:0.85rem;color:var(--red)\">❌ Error al conectar. Inténtalo de nuevo.</div>";
+  }
+  if (btn) { btn.textContent = "🤖 Analizar con IA"; btn.disabled = false; }
+}
+
+// ===== COMPARADOR =====
+var COMP = {
+  platon:{n:"Platón",c:"#c9a84c",t:{Realidad:"Dualismo: mundo sensible (apariencias) y mundo inteligible (Ideas verdaderas).",Conocimiento:"Reminiscencia: conocer es recordar las Ideas. Doxa (opinión) vs episteme (ciencia).",Ética:"Virtud como armonía del alma bajo la razón. Bien supremo como fin último.",Política:"Aristocracia gobernada por filósofos-reyes que conocen el Bien.",Ser_humano:"Alma inmortal atrapada en el cuerpo. Tres partes: racional, irascible, concupiscible."}},
+  aristoteles:{n:"Aristóteles",c:"#3ecfb2",t:{Realidad:"Hilemorfismo: materia y forma inseparables en la sustancia individual concreta.",Conocimiento:"Parte de la experiencia sensible. Abstracción de universales desde los particulares.",Ética:"Eudaimonía: virtud como término medio. Felicidad como fin supremo de la vida.",Política:"Animal político por naturaleza. La polis necesaria para el desarrollo humano.",Ser_humano:"Animal racional. El alma es la forma del cuerpo, no sustancia separada."}},
+  descartes:{n:"Descartes",c:"#5b8dee",t:{Realidad:"Dualismo: res cogitans (mente) y res extensa (cuerpo). Dios como garante.",Conocimiento:"Duda metódica → cogito ergo sum. Ideas claras y distintas garantizadas por Dios.",Ética:"Dominio de las pasiones por la razón. Generosidad como virtud principal.",Política:"No desarrolló filosofía política sistemática. Prima el orden racional.",Ser_humano:"Res cogitans: ser pensante. El cuerpo es máquina; la mente, sustancia inmaterial."}},
+  hume:{n:"Hume",c:"#a78bfa",t:{Realidad:"Solo podemos conocer nuestras percepciones. Escepticismo sobre el exterior y el yo.",Conocimiento:"Impresiones → ideas. Causalidad: hábito mental, no razón. Guillotina de Hume.",Ética:"Moral basada en el sentimiento. La razón es esclava de las pasiones.",Política:"Convencionalismo: las instituciones son convenciones útiles, no naturales.",Ser_humano:"El yo es un haz de percepciones. No hay identidad personal sustancial."}},
+  kant:{n:"Kant",c:"#3ecfb2",t:{Realidad:"Fenómeno (lo que conocemos) vs noúmeno (cosa en sí, incognoscible). Giro copernicano.",Conocimiento:"Síntesis de intuiciones a priori (espacio/tiempo) y categorías del entendimiento.",Ética:"Imperativo categórico: actúa según la máxima que puedas querer como ley universal.",Política:"Paz perpetua mediante federación de repúblicas. Uso público de la razón.",Ser_humano:"Ser racional y autónomo. Fin en sí mismo, nunca solo medio."}},
+  nietzsche:{n:"Nietzsche",c:"#e05c5c",t:{Realidad:"No hay mundos verdaderos: solo interpretaciones. Crítica radical al platonismo.",Conocimiento:"Perspectivismo: no hay verdad objetiva, solo perspectivas al servicio de la vida.",Ética:"Transvaloración: moral de señores (afirmación) vs moral de esclavos (resentimiento).",Política:"Crítica al Estado, al nacionalismo y a la democracia igualitaria.",Ser_humano:"Ser que puede superarse: del último hombre al superhombre. Voluntad de poder."}},
+  marx:{n:"Marx",c:"#e05c5c",t:{Realidad:"Materialismo: la realidad material (economía) determina la conciencia.",Conocimiento:"La ideología distorsiona el conocimiento para servir a la clase dominante.",Ética:"Moral burguesa es ideología. La praxis revolucionaria transforma el mundo.",Política:"Materialismo histórico: historia = lucha de clases. Estado = instrumento burgués.",Ser_humano:"Ser social y productor. Alienación separa al trabajador de su esencia creadora."}}
+};
+
+function compGenerar() {
+  var k1 = (document.getElementById("comp1") || {}).value || "platon";
+  var k2 = (document.getElementById("comp2") || {}).value || "aristoteles";
+  var res = document.getElementById("compResult");
+  if (!res) return;
+  if (k1 === k2) { res.innerHTML = "<p style=\"color:var(--text3);text-align:center;padding:1rem\">Selecciona dos autores distintos.</p>"; return; }
+  var d1 = COMP[k1], d2 = COMP[k2];
+  var temas = Object.keys(d1.t);
+  var html = "<div style=\"overflow-x:auto\"><table style=\"width:100%;border-collapse:collapse;font-size:0.8rem\">"
+    + "<thead><tr>"
+    + "<th style=\"background:var(--card);border:1px solid var(--border);padding:0.65rem 0.85rem;text-align:left;color:var(--text3);font-size:0.7rem;text-transform:uppercase;width:12%\">Tema</th>"
+    + "<th style=\"background:var(--card);border:1px solid var(--border);padding:0.65rem 0.85rem;text-align:left;color:" + d1.c + "\">⚖️ " + d1.n + "</th>"
+    + "<th style=\"background:var(--card);border:1px solid var(--border);padding:0.65rem 0.85rem;text-align:left;color:" + d2.c + "\">⚖️ " + d2.n + "</th>"
+    + "</tr></thead><tbody>";
+  temas.forEach(function(t, i) {
+    html += "<tr style=\"background:" + (i%2===0 ? "var(--bg3)" : "var(--card)") + "\">"
+      + "<td style=\"border:1px solid var(--border);padding:0.65rem 0.85rem;font-weight:700;color:var(--text2);white-space:nowrap\">" + t.replace("_"," ") + "</td>"
+      + "<td style=\"border:1px solid var(--border);border-left:3px solid " + d1.c + ";padding:0.65rem 0.85rem;line-height:1.55\">" + d1.t[t] + "</td>"
+      + "<td style=\"border:1px solid var(--border);border-left:3px solid " + d2.c + ";padding:0.65rem 0.85rem;line-height:1.55\">" + d2.t[t] + "</td>"
+      + "</tr>";
   });
+  html += "</tbody></table></div>"
+    + "<div style=\"margin-top:0.85rem;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius-sm);padding:0.85rem;font-size:0.8rem;color:var(--text2)\">"
+    + "💡 <strong style=\"color:#c9a84c\">Para la 2a:</strong> <em>\"mientras " + d1.n + " defiende…, " + d2.n + " sostiene por el contrario…\"</em>, <em>\"ambos coinciden en…, sin embargo difieren en…\"</em></div>";
+  res.innerHTML = html;
+}
+
+// ===== CALCULADORA =====
+function calcNota() {
+  var ids = ["cn1a","cn1b","cn1c","cn2a","cn2b"];
+  var total = 0;
+  for (var i = 0; i < ids.length; i++) {
+    var el = document.getElementById(ids[i]);
+    if (el) total += Math.min(2, Math.max(0, parseFloat(el.value) || 0));
+  }
+  var nota = Math.min(10, total);
+  var ef = document.getElementById("cnFinal");
+  var el2 = document.getElementById("cnLabel");
+  if (ef) {
+    ef.textContent = nota.toFixed(2);
+    ef.style.color = nota>=9 ? "#c9a84c" : nota>=7 ? "var(--teal)" : nota>=5 ? "var(--blue)" : "var(--red)";
+  }
+  if (el2) el2.textContent = nota>=9 ? "🏆 Sobresaliente" : nota>=7 ? "👏 Notable" : nota>=5 ? "✅ Aprobado" : nota>=3 ? "⚠️ Cerca" : "❌ Suspendido";
+}
+
+// ===== COMUNIDAD =====
+var ENCUESTAS = [
+  {id:"dif",q:"¿Qué autor te cuesta más?",ops:["Kant","Platón","Nietzsche","Hume","Marx","Descartes","Aristóteles"]},
+  {id:"preg",q:"¿Qué pregunta es más difícil?",ops:["1a Definiciones","1b Idea principal","1c Posición filosófica","2a Relación autores","2b Valoración personal"]},
+  {id:"cnd",q:"¿Cuándo empezaste a estudiar?",ops:["Más de 3 meses antes","1-3 meses antes","1 mes antes","2 semanas antes","La noche anterior 😅"]},
+];
+
+function renderComunidad() {
+  var grid = document.getElementById("comunidadGrid");
+  if (!grid) return;
+  grid.innerHTML = ENCUESTAS.map(function(e) {
+    var votos = STO.get("v_" + e.id) || {};
+    var votado = STO.get("vt_" + e.id);
+    var total = Object.values(votos).reduce(function(a,b) { return a+b; }, 0) || 1;
+    return "<div style=\"background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem\">"
+      + "<h3 style=\"font-size:0.9rem;font-weight:700;margin-bottom:0.85rem\">🗳️ " + e.q + "</h3>"
+      + "<div style=\"display:flex;flex-direction:column;gap:0.5rem\">"
+      + e.ops.map(function(op) {
+          var v = votos[op] || 0;
+          var pct = Math.round(v/total*100);
+          var sel = votado === op;
+          return "<div><div style=\"display:flex;justify-content:space-between;margin-bottom:0.2rem;font-size:0.8rem\">"
+            + "<button onclick=\"votar('" + e.id + "','" + op + "')\" style=\"background:none;border:none;color:" + (sel ? "#c9a84c" : "var(--text2)") + ";cursor:pointer;font-size:0.8rem;text-align:left;font-family:var(--font-body);font-weight:" + (sel ? 700 : 400) + ";padding:0\">" + (sel ? "✓ " : "") + op + "</button>"
+            + (votado ? "<span style=\"color:var(--text3)\">" + pct + "%</span>" : "")
+            + "</div>"
+            + (votado ? "<div style=\"background:var(--bg3);border-radius:50px;height:4px;overflow:hidden\"><div style=\"height:100%;background:" + (sel ? "#c9a84c" : "var(--teal)") + ";border-radius:50px;width:" + pct + "%;transition:width 0.6s\"></div></div>" : "")
+            + "</div>";
+        }).join("")
+      + "</div>"
+      + (!votado ? "<p style=\"font-size:0.7rem;color:var(--text3);margin-top:0.65rem\">Vota para ver resultados</p>" : "<p style=\"font-size:0.7rem;color:var(--text3);margin-top:0.5rem\">" + total + " votos</p>")
+      + "</div>";
+  }).join("");
+}
+
+function votar(id, op) {
+  if (STO.get("vt_" + id)) return;
+  var votos = STO.get("v_" + id) || {};
+  votos[op] = (votos[op] || 0) + 1;
+  STO.set("v_" + id, votos);
+  STO.set("vt_" + id, op);
+  addXP(5, "Voto en comunidad");
+  renderComunidad();
+}
+
+// ===== FRASE DEL DÍA HTML =====
+document.addEventListener("DOMContentLoaded", function() {
+  // Frase del día: insertar antes del social banner
+  var banner = document.querySelector(".social-banner, #mis-videos");
+  if (banner) {
+    var fd = document.createElement("div");
+    fd.style.cssText = "background:var(--bg2);border-bottom:1px solid var(--border);padding:0.9rem 1.25rem";
+    fd.innerHTML = "<div style=\"max-width:860px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap\">"
+      + "<div style=\"width:38px;height:38px;border-radius:50%;background:var(--gold-dim);border:2px solid rgba(201,168,76,0.35);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0\">💭</div>"
+      + "<div style=\"flex:1;min-width:180px\">"
+      + "<div id=\"fraseLabel\" style=\"font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#c9a84c;margin-bottom:0.15rem\">Frase del día</div>"
+      + "<div id=\"fraseTexto\" style=\"font-size:0.88rem;line-height:1.5;color:var(--text);font-style:italic\"></div>"
+      + "<div id=\"fraseAutorQ\" style=\"font-size:0.73rem;color:var(--text3);margin-top:0.15rem;font-weight:600\"></div></div>"
+      + "<button onclick=\"siguienteFrase()\" style=\"flex-shrink:0;background:var(--card);border:1px solid var(--border);color:var(--text3);width:32px;height:32px;border-radius:50%;font-size:0.95rem;cursor:pointer\" title=\"Otra frase\">↻</button></div>";
+    banner.parentNode.insertBefore(fd, banner);
+  }
+  mostrarFraseDia();
+
+  // Init vídeos
+  vRenderAvatares();
+  vRender();
+
+  // Init demás secciones
+  renderLogros();
+  renderComunidad();
+  compGenerar();
+
+  // Progreso
+  registrarDia();
+  var p = getProg();
+  renderNivel(p.xp || 0);
+  verificarLogros(p);
 });
 </script>
+
 </body>
 </html>
